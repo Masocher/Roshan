@@ -1,0 +1,126 @@
+.black_back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000004d;
+    z-index: 9;
+    display: none;
+}
+.black_back.show {
+    display: block;
+}
+
+.leave_comment_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 100%;
+    left: 0;
+    z-index: 9;
+    transition: 1s ease;
+}
+.leave_comment_wrapper.show {
+    top: 0;
+}
+
+.leave_comment_box {
+    background-color: #fff;
+    height: fit-content;
+    padding: 40px;
+    border-radius: 16px;
+    width: 400px;
+}
+
+.top_content {
+    display: flex;
+    align-items: center;
+}
+
+.main_title {
+    font-size: 20px;
+    font-family: KalamehM;
+    text-align: center;
+    width: calc(100% - 160px);
+}
+
+.back_btn {
+    background-color: #f3f4f6;
+    width: fit-content;
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+.back_btn span {
+    margin-left: 5px;
+    font-size: 10px;
+}
+
+.about_product {
+    display: flex;
+    margin: 20px 0 40px 0;
+    padding: 20px 0;
+    border-top: 1px solid #e8eef2;
+    border-bottom: 1px solid #e8eef2;
+}
+
+.product_img {
+    object-fit: contain;
+    width: 50px;
+    height: fit-content;
+}
+
+.product_title {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.leave_comment_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.leave_comment_form .title {
+    font-family: KalamehM;
+    margin-bottom: 10px;
+}
+
+.leave_comment_form textarea {
+    margin-bottom: 20px;
+    height: 100px;
+    background-color: #f3f4f6;
+    outline: 0;
+    border: 1px solid #ccc;
+    font-family: Kalameh;
+    padding: 12px;
+    border-radius: 8px;
+    width: calc(100% - 24px);
+    resize: none;
+}
+.leave_comment_form textarea:focus {
+    border-color: #ff4545;
+}
+
+.submit_comment_btn {
+    background-color: #ff4545;
+    color: #fff;
+    font-family: Kalameh;
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid #ff4545;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.submit_comment_btn:hover {
+    background: none;
+    color: #ff4545;
+}

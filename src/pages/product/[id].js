@@ -13,10 +13,14 @@ import {
 import Image from "next/image";
 import img from "../../../public/images/1.webp";
 import Comment from "@/components/global/Comment";
+import LeaveComment from "@/components/product/LeaveComment";
+import { useState } from "react";
 
 export default function ProductSinglePage() {
+    const [commentFormStatus, setCommentFormStatus] = useState(false);
+
     const router = useRouter();
-    console.log("router", router);
+
     return (
         <div>
             <Header />
@@ -173,7 +177,12 @@ export default function ProductSinglePage() {
                                     درباره این محصول دیدگاه ثبت کنید
                                 </div>
 
-                                <div className={styles.submit}>ثبت دیدگاه</div>
+                                <div
+                                    className={styles.submit}
+                                    onClick={() => setCommentFormStatus(true)}
+                                >
+                                    ثبت دیدگاه
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,6 +213,10 @@ export default function ProductSinglePage() {
                 </div>
             </div>
 
+            <LeaveComment
+                status={commentFormStatus}
+                setStatus={setCommentFormStatus}
+            />
             <MiniMenu />
             <Footer />
         </div>
