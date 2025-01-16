@@ -556,7 +556,7 @@
         z-index: 2;
         margin-top: 280px;
         border-top: 1px solid #e8eef2;
-        box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
 
     .left_section,
