@@ -34,6 +34,8 @@
     padding: 40px;
     border-radius: 16px;
     width: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 .top_content {
@@ -123,4 +125,23 @@
 .submit_comment_btn:hover {
     background: none;
     color: #ff4545;
+}
+
+@media (max-width: 580px) {
+    .leave_comment_wrapper {
+        transition: 0.5s;
+    }
+
+    .leave_comment_box {
+        padding: 20px;
+        border-radius: 16px;
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+        border-radius: 0;
+        justify-content: center;
+    }
+
+    .main_title {
+        width: calc(100% - 140px);
+    }
 }
