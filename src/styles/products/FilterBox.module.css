@@ -1,0 +1,278 @@
+.container {
+    background-color: #fff;
+    width: calc(16% - 60px);
+    height: fit-content;
+    padding: 30px;
+    font-size: 16px;
+    position: sticky;
+    top: 86px;
+    border-bottom: 1px solid #d9eafd;
+}
+
+.title_box {
+    font-family: KalamehM;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.filter_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+    user-select: none;
+}
+.filter_box:nth-child(2) {
+    border-bottom: 1px solid #d9eafd;
+    border-top: 1px solid #d9eafd;
+}
+
+.filter_box_inf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.filter_box_inf div {
+    width: 100%;
+}
+
+.filter_box span {
+    color: #777;
+}
+
+.options {
+    flex-direction: column;
+    margin-top: 20px;
+    display: none;
+    width: 100%;
+}
+.filter_box.show .options {
+    display: flex;
+}
+
+.options .option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 20px 10px 0;
+    margin: 5px 0;
+    width: fit-content;
+    font-size: 14px;
+}
+.options .option:nth-child(1) {
+    border-radius: 10px 10px 0 0;
+}
+.options .option:nth-child(3) {
+    border-radius: 0 0 10px 10px;
+}
+
+.option span {
+    color: #000 !important;
+    margin: 0 0 0 10px;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9eafd;
+}
+
+.option span div {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: #ff4545;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.option span div.show {
+    display: flex;
+}
+
+.price_range {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input_box .title {
+    margin-left: 10px;
+}
+
+.price_input {
+    font-family: Kalameh;
+    background-color: #e8eef2;
+    outline: 0;
+    border: none;
+    padding: 10px 10px 10px 50px;
+    border-radius: 10px;
+    border: 1px solid #e8eef2;
+    width: calc(100% - 60px);
+}
+.price_input:focus {
+    border-color: #ff4545;
+}
+
+.price_btn {
+    outline: 0;
+    border: 1px solid #ff4545;
+    color: #fff;
+    background-color: #ff4545;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Kalameh;
+}
+.price_btn:hover {
+    background: none;
+    color: #ff4545;
+}
+
+.toman {
+    position: absolute;
+    left: 15px;
+    font-size: 10px;
+    color: #777;
+}
+
+.black_box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0000004d;
+    display: none;
+}
+
+.hidden_title {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-family: KalamehM;
+}
+.hidden_title span {
+    color: #000;
+}
+
+@media (max-width: 1500px) {
+    .container {
+        width: calc(25% - 60px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        width: calc(30% - 60px);
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        width: calc(100% - 40px);
+        padding: 20px;
+        position: fixed;
+        left: 0;
+        top: 168px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        z-index: 9;
+    }
+
+    .title_box {
+        display: none;
+    }
+
+    .filters {
+        display: flex;
+    }
+
+    .filter_box {
+        background-color: #e8eef2;
+        padding: 5px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+    }
+
+    .filter_box_inf span {
+        display: none;
+    }
+
+    .filter_box:nth-child(2) {
+        border: none;
+        margin: 0 20px;
+    }
+
+    .options {
+        position: fixed;
+        right: 0;
+        bottom: -50%;
+        background-color: #fff;
+        width: calc(100% - 100px);
+        height: fit-content;
+        padding: 50px;
+        transition: 0.5s ease;
+        display: block;
+        border-radius: 10px 10px 0 0;
+    }
+    .filter_box.show .options {
+        transition: 0.5s;
+        bottom: 0;
+    }
+
+    .price_range {
+        width: 100%;
+    }
+
+    .input_box {
+        width: 100%;
+    }
+
+    .black_box.show {
+        display: block;
+    }
+
+    .hidden_title {
+        display: flex;
+    }
+}
+
+@media (max-width: 580px) {
+    .container {
+        padding: 20px;
+        width: calc(100% - 40px);
+        top: 160px;
+    }
+
+    .filters {
+        width: 100%;
+        display: flex;
+    }
+
+    .filter_box {
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+
+    .filter_box:nth-child(2) {
+        margin: 0 10px;
+    }
+}

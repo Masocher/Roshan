@@ -1,0 +1,128 @@
+.container {
+    background-color: #ff4545;
+    width: calc(100% - 60px);
+    padding: 40px 60px 40px 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right_section {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.title_box {
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 30px;
+    font-family: KalamehB;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+}
+
+.timer_box {
+    background-color: #fff;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.timer span {
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.left_section {
+    width: calc(100% - 150px);
+    border-radius: 0 50px 50px 0;
+    overflow: hidden;
+}
+
+.product {
+    background-color: #fff;
+}
+
+.last_product {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ff4545;
+    margin: auto 0;
+    background: none;
+}
+
+.last_product div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.last_product span {
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    color: #ff4545;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    transition: 0.2s;
+}
+.last_product span:hover {
+    background-color: #ff4545;
+    color: #fff;
+}
+
+@media (max-width: 950px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .right_section {
+        margin: 0 0 20px 0;
+    }
+
+    .right_section .title_box {
+        display: flex;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .right_section .title_box div:nth-child(2) {
+        margin: 0 10px;
+    }
+
+    .left_section {
+        width: 100%;
+    }
+}
+
+@media (max-width: 580px) {
+    .container {
+        width: calc(100% - 20px);
+        padding: 20px 20px 20px 0;
+    }
+
+    .right_section .title_box {
+        font-size: 20px;
+    }
+}

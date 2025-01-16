@@ -1,0 +1,42 @@
+.container {
+    width: 84%;
+}
+
+.products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    direction: ltr;
+}
+
+.product_box {
+    background-color: #fff;
+    width: calc(100% / 5);
+    direction: rtl;
+}
+
+@media (max-width: 1500px) {
+    .product_box {
+        width: calc(100% / 4);
+    }
+
+    .container {
+        width: 75%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .product_box {
+        width: calc(100% / 2);
+    }
+
+    .container {
+        width: 70%;
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        width: 100%;
+    }
+}

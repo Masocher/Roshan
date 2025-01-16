@@ -1,0 +1,277 @@
+.footer_container {
+    height: fit-content;
+    width: calc(100% - 100px);
+    color: #000;
+    position: relative;
+    padding: 150px 50px 100px 50px;
+    z-index: 2;
+    background-color: #f2f9ff;
+}
+
+.logo {
+    font-size: 40px;
+    font-family: KalamehB;
+    color: #ff4545;
+}
+
+.top_section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact_information {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.icons {
+    display: flex;
+}
+
+.icon_box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #ff4545;
+    margin-right: 10px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.icon_box:hover {
+    background: none;
+    color: #ff4545;
+}
+
+.scroll_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9eafd;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 20px;
+    border-radius: 5px;
+    width: fit-content;
+    height: 40px;
+    margin-bottom: 20px;
+}
+.scroll_btn span {
+    margin: 4px 10px 0 0;
+}
+
+.left_section {
+    display: flex;
+}
+
+.bottom_section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #ff4545;
+    color: #fff;
+    padding: 20px 0;
+    height: fit-content;
+    margin: 0;
+}
+
+.center_sections {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+}
+
+.center_section {
+    width: 45%;
+    display: flex;
+}
+
+.cs1 {
+    justify-content: space-between;
+}
+
+.cs2 {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.cs2 form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cs2 form input {
+    width: calc(75% - 40px);
+    font-family: Kalameh;
+    background-color: #d9eafd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: 0;
+}
+
+.cs2 form button {
+    border: none;
+    outline: 0;
+    background-color: #ff4545;
+    color: #fff;
+    font-family: Kalameh;
+    cursor: pointer;
+    padding: 0 20px;
+    border-radius: 5px;
+}
+
+.c_sec .title {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.section_options {
+    color: #999;
+}
+
+.section_options div {
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.section_options div:hover {
+    color: #ff4545;
+}
+
+.hidden_center_sections {
+    display: none;
+    flex-direction: column;
+}
+
+.hcb {
+    padding: 20px;
+    width: calc(100% - 40px);
+    background-color: #fff;
+    overflow: hidden;
+    height: 20px;
+    cursor: pointer;
+}
+.hcb:nth-child(2) {
+    border-top: 1px solid #d9eafd;
+    border-bottom: 1px solid #d9eafd;
+}
+.hcb.show {
+    height: fit-content;
+}
+
+.hcb .title {
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hidden_section_options {
+    font-size: 14px;
+    color: #999;
+    transition: 0.2s;
+    margin-top: 20px;
+}
+
+.hidden_section_options div {
+    margin-top: 10px;
+}
+.hidden_section_options div:hover {
+    color: #ff4545;
+}
+
+@media (max-width: 1200px) {
+    .center_section {
+        width: 65%;
+    }
+
+    .cs2 {
+        width: 30%;
+    }
+
+    .c_sec .title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 950px) {
+    .top_section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top_section .section {
+        text-align: center;
+    }
+
+    .left_section {
+        margin: 30px 0;
+    }
+
+    .center_sections {
+        flex-direction: column;
+    }
+
+    .center_section {
+        width: 100%;
+    }
+
+    .cs2 {
+        width: 50%;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 580px) {
+    .footer_container {
+        width: 100%;
+        padding: 100px 0 70px 0;
+    }
+
+    .center_section {
+        display: none;
+    }
+
+    .hidden_center_sections {
+        display: flex;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    .left_section {
+        flex-direction: column-reverse;
+    }
+
+    .scroll_btn {
+        width: 160px;
+        margin: 20px 0 0 0;
+    }
+
+    .cs2 {
+        width: 100%;
+    }
+
+    .icons {
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+    }
+
+    .icon_box {
+        margin: 0;
+    }
+}

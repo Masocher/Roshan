@@ -1,0 +1,39 @@
+@font-face {
+    font-family: Kalameh;
+    src: url(../../../public/fonts/Kalameh-Regular.ttf);
+}
+
+@font-face {
+    font-family: KalamehM;
+    src: url(../../../public/fonts/Kalameh-Medium.ttf);
+}
+
+@font-face {
+    font-family: KalamehB;
+    src: url(../../../public/fonts/Kalameh-Black.ttf);
+}
+
+body {
+    direction: rtl;
+    margin: 0;
+    background-color: #f2f9ff;
+    font-family: Kalameh;
+}
+body::-webkit-scrollbar {
+    width: 0;
+}
+body::-webkit-scrollbar-track {
+    background: none;
+}
+body::-webkit-scrollbar-thumb {
+    background: none;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background: none;
+}
+
+@media (max-width: 950px) {
+    body {
+        padding-bottom: 63px;
+    }
+}
