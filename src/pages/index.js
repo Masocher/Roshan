@@ -1,7 +1,7 @@
 import Alert from "@/components/home/Alert";
 import Header from "@/components/global/Header";
 import MiniMenu from "@/components/global/MiniMenu";
-import HomePopularProducts from "@/components/home/HomePopularProducts";
+import HomeSlider from "@/components/home/HomeSlider";
 import AmazingOffer from "@/components/home/AmazingOffer";
 import Categories from "@/components/home/Categories";
 import LatestArticles from "@/components/home/LatestArticles";
@@ -14,7 +14,7 @@ export default function Home() {
             <Alert />
             <Header />
             <MiniMenu />
-            <HomePopularProducts />
+            <HomeSlider />
             <AmazingOffer />
             <Alert />
             <Categories />

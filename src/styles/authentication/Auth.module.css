@@ -184,4 +184,28 @@
     .container {
         background-color: #fff;
     }
+
+    .back_btn_2 {
+        margin: 0;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
+    .logo {
+        font-size: 30px;
+        margin: 0 0 10px 0;
+    }
+
+    .submit_btn {
+        font-size: 14px;
+    }
+
+    .main_title {
+        font-size: 14px;
+    }
+
+    .main_title span {
+        font-size: 12px;
+    }
 }

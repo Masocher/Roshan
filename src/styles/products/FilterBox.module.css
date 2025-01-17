@@ -6,7 +6,7 @@
     font-size: 16px;
     position: sticky;
     top: 86px;
-    border-bottom: 1px solid #d9eafd;
+    border-bottom: 1px solid #e8eef2;
 }
 
 .title_box {
@@ -23,8 +23,8 @@
     user-select: none;
 }
 .filter_box:nth-child(2) {
-    border-bottom: 1px solid #d9eafd;
-    border-top: 1px solid #d9eafd;
+    border-bottom: 1px solid #e8eef2;
+    border-top: 1px solid #e8eef2;
 }
 
 .filter_box_inf {
@@ -78,7 +78,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d9eafd;
+    background-color: #e8eef2;
 }
 
 .option span div {

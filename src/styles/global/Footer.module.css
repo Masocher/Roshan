@@ -52,7 +52,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d9eafd;
+    background-color: #e8eef2;
     color: #000;
     cursor: pointer;
     font-size: 14px;
@@ -113,7 +113,7 @@
 .cs2 form input {
     width: calc(75% - 40px);
     font-family: Kalameh;
-    background-color: #d9eafd;
+    background-color: #e8eef2;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
@@ -163,8 +163,8 @@
     cursor: pointer;
 }
 .hcb:nth-child(2) {
-    border-top: 1px solid #d9eafd;
-    border-bottom: 1px solid #d9eafd;
+    border-top: 1px solid #e8eef2;
+    border-bottom: 1px solid #e8eef2;
 }
 .hcb.show {
     height: fit-content;
