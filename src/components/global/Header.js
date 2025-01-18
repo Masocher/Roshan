@@ -7,7 +7,7 @@ export default function Header() {
     return (
         <div className={styles.header_container}>
             <div className={styles.right_secrion}>
-                <div className={styles.logo_wrapper}>روشن مارکت</div>
+                <Link href={"/"} className={styles.logo_wrapper}>روشن مارکت</Link>
 
                 <div className={styles.search_box_wrapper}>
                     <form action={"#"} className={styles.search_box}>
@@ -25,9 +25,9 @@ export default function Header() {
                         خانه
                     </Link>
 
-                    <Link href={"/"} className={styles.header_l}>
+                    <div className={styles.header_l}>
                         دسته بندی ها
-                    </Link>
+                    </div>
 
                     <Link href={"/products"} className={styles.header_l}>
                         محصولات
