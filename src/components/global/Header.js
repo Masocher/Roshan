@@ -33,7 +33,7 @@ export default function Header() {
                         محصولات
                     </Link>
 
-                    <Link href={"/"} className={styles.header_l}>
+                    <Link href={"/shopping-cart"} className={styles.header_l}>
                         سبد خرید
                     </Link>
 

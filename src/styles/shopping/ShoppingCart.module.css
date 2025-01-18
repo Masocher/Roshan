@@ -1,0 +1,138 @@
+.cart_wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    width: calc(100% - 100px);
+    padding: 0 50px;
+}
+
+.right_section {
+    width: 75%;
+}
+
+.cart_product {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 80px);
+    padding: 30px 30px 30px 50px;
+    margin-bottom: 20px;
+}
+
+.product_right_content {
+    display: flex;
+    align-items: center;
+}
+
+.cart_product_img {
+    width: 150px;
+    height: fit-content;
+    object-fit: contain;
+    margin-left: 20px;
+}
+
+.product_title {
+    font-size: 20px;
+    font-family: KalamehM;
+    padding-left: 100px;
+}
+
+.cart_product_value {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #ff4545;
+    border: 1px solid #e8eef2;
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: fit-content;
+    margin-top: 20px;
+    user-select: none;
+}
+
+.cart_product_num {
+    width: 50px;
+    text-align: center;
+    font-family: KalamehM;
+}
+
+.cart_product_value span {
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.product_left_content {
+    display: flex;
+    align-items: center;
+}
+
+.cart_product_price {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-family: KalamehM;
+}
+
+.toman {
+    font-size: 12px;
+    margin-right: 10px;
+    font-family: Kalameh;
+}
+
+.left_section {
+    width: calc(25% - 80px);
+    padding: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 86px;
+    height: fit-content;
+}
+
+.left_section .title {
+    font-size: 20px;
+    font-family: KalamehM;
+    margin-bottom: 50px;
+}
+
+.value_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.value {
+    display: flex;
+    align-items: center;
+    color: #607496;
+    font-size: 22px;
+    font-family: KalamehM;
+    margin-bottom: 8px;
+}
+.off_value {
+    color: #ff4545;
+}
+
+.buy_value {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e8eef2;
+}
+.buy_value .value {
+    color: #000;
+}
+
+.buy_btn {
+    width: 100%;
+    border-radius: 8px;
+    padding: 12px 0;
+    background-color: #ff4545;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid #ff4545;
+}
