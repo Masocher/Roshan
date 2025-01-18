@@ -86,3 +86,71 @@
     border: none;
     outline: 0;
 }
+
+@media (max-width: 1200px) {
+    .right_section {
+        width: calc(100% - 60px);
+    }
+
+    .body_input {
+        height: 100px;
+    }
+
+    .left_section {
+        width: calc(100% - 60px);
+    }
+}
+
+@media (max-width: 950px) {
+    .wrapper {
+        margin: 120px auto 0 auto;
+    }
+
+    .right_section {
+        width: calc(100% - 40px);
+    }
+
+    .left_section {
+        width: calc(100% - 40px);
+    }
+
+    .input_box {
+        margin-bottom: 10px;
+    }
+
+    .inf_input {
+        width: calc(50% - 47px);
+    }
+
+    .send_message_btn {
+        margin-top: 10px;
+    }
+
+    .main_title {
+        margin: 40px 0 30px 0;
+    }
+}
+
+@media (max-width: 580px) {
+    .main_title {
+        font-size: 18px;
+    }
+
+    .left_section {
+        flex-direction: column;
+    }
+
+    .inf_box:nth-child(2) {
+        margin: 20px 0;
+    }
+
+    .input_box {
+        width: calc(100% - 32px);
+        padding: 15px;
+        font-size: 12px;
+    }
+
+    .send_message_btn {
+        font-size: 12px;
+    }
+}
