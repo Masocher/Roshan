@@ -55,9 +55,9 @@ export default function MiniMenu() {
             </Link>
 
             <Link
-                href={"/"}
+                href={"/shopping-cart"}
                 className={`${styles.menu_section} ${
-                    location.pathname === "//" ? styles.show : ""
+                    location.pathname === "/shopping-cart" ? styles.show : ""
                 }`}
             >
                 <div className={styles.menu_icon}>

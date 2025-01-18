@@ -27,7 +27,7 @@ export default function ShoppingCart() {
 
                             <div className={styles.cart_product_inf}>
                                 <div className={styles.product_title}>
-                                لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی است
+                                    ایپسوم یک متن ساختگی است ایپسوم یک متن ساختگی است
                                 </div>
 
                                 <div className={styles.cart_product_value}>

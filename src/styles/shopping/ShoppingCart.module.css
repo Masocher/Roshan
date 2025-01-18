@@ -136,3 +136,149 @@
     transition: 0.2s;
     border: 1px solid #ff4545;
 }
+
+@media (max-width: 1500px) {
+    .right_section {
+        width: 70%;
+    }
+
+    .cart_product_img {
+        width: 100px;
+    }
+
+    .product_title {
+        font-size: 18px;
+        padding-left: 50px;
+    }
+
+    .cart_product_value {
+        font-size: 14px;
+    }
+
+    .cart_product_num {
+        width: 40px;
+    }
+
+    .cart_product_value span {
+        font-size: 12px;
+    }
+
+    .cart_product_price {
+        font-size: 22px;
+    }
+
+    .toman {
+        font-size: 12px;
+    }
+
+    .left_section {
+        width: calc(30% - 80px);
+    }
+
+    .left_section .title {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .value {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .cart_product {
+        width: calc(100% - 50px);
+        padding: 20px 20px 20px 30px;
+    }
+
+    .right_section {
+        width: 60%;
+    }
+
+    .cart_product_img {
+        width: 50px;
+    }
+
+    .product_title {
+        font-size: 14px;
+        padding-left: 20px;
+    }
+
+    .cart_product_price {
+        font-size: 16px;
+    }
+
+    .toman {
+        font-size: 10px;
+        margin-right: 5px;
+    }
+
+    .left_section {
+        width: calc(40% - 80px);
+    }
+
+    .left_section .title {
+        font-size: 16px;
+    }
+
+    .value_title {
+        font-size: 14px;
+    }
+
+    .value {
+        font-size: 16px;
+    }
+
+    .buy_btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 950px) {
+    .cart_wrapper {
+        margin-top: 82px;
+        padding: 0;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .left_section {
+        width: calc(100% - 60px);
+        margin: 0;
+        top: 0;
+        position: relative;
+    }
+
+    .right_section {
+        width: 100%;
+    }
+
+    .cart_product {
+        margin: 0;
+        border-bottom: 1px solid #e8eef2;
+    }
+}
+
+@media (max-width: 580px) {
+    .cart_product {
+        position: relative;
+        flex-direction: column;
+    }
+
+    .product_left_content {
+        margin-top: 20px;
+        justify-content: flex-end;
+    }
+
+    .cart_product_value {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 0;
+        border: none;
+    }
+
+    .product_title {
+        padding: 0;
+    }
+}
