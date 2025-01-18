@@ -2,7 +2,7 @@ import styles from "../../styles/global/MiniMenu.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
-    faList,
+    faPhone,
     faBoxOpen,
     faBasketShopping,
     faUser,
@@ -26,19 +26,6 @@ export default function MiniMenu() {
                 </div>
 
                 <div className={styles.menu_title}>خانه</div>
-            </Link>
-
-            <Link
-                href={"/"}
-                className={`${styles.menu_section} ${
-                    location.pathname === "//" ? styles.show : ""
-                }`}
-            >
-                <div className={styles.menu_icon}>
-                    <FontAwesomeIcon icon={faList} />
-                </div>
-
-                <div className={styles.menu_title}>دسته بندی ها</div>
             </Link>
 
             <Link
@@ -68,16 +55,16 @@ export default function MiniMenu() {
             </Link>
 
             <Link
-                href={"/"}
+                href={"/contact-us"}
                 className={`${styles.menu_section} ${
-                    location.pathname === "//" ? styles.show : ""
+                    location.pathname === "/contact-us" ? styles.show : ""
                 }`}
             >
                 <div className={styles.menu_icon}>
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faPhone} />
                 </div>
 
-                <div className={styles.menu_title}>درباره ما</div>
+                <div className={styles.menu_title}>تماس با ما</div>
             </Link>
         </div>
     );

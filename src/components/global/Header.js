@@ -25,10 +25,6 @@ export default function Header() {
                         خانه
                     </Link>
 
-                    <div className={styles.header_l}>
-                        دسته بندی ها
-                    </div>
-
                     <Link href={"/products"} className={styles.header_l}>
                         محصولات
                     </Link>
@@ -37,8 +33,8 @@ export default function Header() {
                         سبد خرید
                     </Link>
 
-                    <Link href={"/"} className={styles.header_l}>
-                        درباره ما
+                    <Link href={"/contact-us"} className={styles.header_l}>
+                        تماس با ما
                     </Link>
                 </div>
 
