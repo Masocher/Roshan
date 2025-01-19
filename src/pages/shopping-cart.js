@@ -1,5 +1,6 @@
 import styles from "../styles/shopping/ShoppingCart.module.css";
 import Header from "@/components/global/Header";
+import BlackBackground from "@/components/global/BlacKBackground";
 import MiniMenu from "@/components/global/MiniMenu";
 import Footer from "@/components/global/Footer";
 import Image from "next/image";
@@ -9,11 +10,16 @@ import { faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function ShoppingCart() {
+    let [categoriesStatus, setCategoriesStatus] = useState(false);
     const [productValue, setProductValue] = useState(1);
 
     return (
         <div className={styles.container}>
-            <Header />
+            <BlackBackground
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
+            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.cart_wrapper}>
                 <div className={styles.right_section}>
@@ -27,7 +33,8 @@ export default function ShoppingCart() {
 
                             <div className={styles.cart_product_inf}>
                                 <div className={styles.product_title}>
-                                    ایپسوم یک متن ساختگی است ایپسوم یک متن ساختگی است
+                                    ایپسوم یک متن ساختگی است ایپسوم یک متن
+                                    ساختگی است
                                 </div>
 
                                 <div className={styles.cart_product_value}>
@@ -218,7 +225,10 @@ export default function ShoppingCart() {
                 </div>
             </div>
 
-            <MiniMenu />
+            <MiniMenu
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
             <Footer />
         </div>
     );

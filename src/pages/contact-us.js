@@ -1,5 +1,6 @@
 import styles from "../styles/contact-us/ContactUs.module.css";
 import Header from "@/components/global/Header";
+import BlackBackground from "@/components/global/BlacKBackground";
 import MiniMenu from "@/components/global/MiniMenu";
 import Footer from "@/components/global/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,11 +9,18 @@ import {
     faLocationDot,
     faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function ContactUs() {
+    let [categoriesStatus, setCategoriesStatus] = useState(false);
+
     return (
         <div className={styles.container}>
-            <Header />
+            <BlackBackground
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
+            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.wrapper}>
                 <div className={styles.left_section}>
@@ -78,7 +86,10 @@ export default function ContactUs() {
                 </form>
             </div>
 
-            <MiniMenu />
+            <MiniMenu
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
             <Footer />
         </div>
     );

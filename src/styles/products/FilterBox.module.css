@@ -164,12 +164,22 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 18px;
     font-family: KalamehM;
 }
 .hidden_title span {
     color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff4545;
+    border-radius: 50%;
+    color: #fff;
 }
 
 @media (max-width: 1500px) {
@@ -194,7 +204,7 @@
         display: flex;
         align-items: center;
         flex-direction: row;
-        z-index: 9;
+        z-index: 8;
     }
 
     .title_box {
@@ -235,7 +245,7 @@
     }
     .filter_box.show .options {
         transition: 0.5s;
-        bottom: 0;
+        bottom: 60px;
     }
 
     .price_range {

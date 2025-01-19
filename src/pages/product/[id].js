@@ -1,6 +1,6 @@
 import styles from "../../styles/product/ProductSinglePage.module.css";
-import { useRouter } from "next/router";
 import Header from "@/components/global/Header";
+import BlackBackground from "@/components/global/BlacKBackground";
 import MiniMenu from "@/components/global/MiniMenu";
 import Footer from "@/components/global/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,13 +17,16 @@ import LeaveComment from "@/components/product/LeaveComment";
 import { useState } from "react";
 
 export default function ProductSinglePage() {
+    let [categoriesStatus, setCategoriesStatus] = useState(false);
     const [commentFormStatus, setCommentFormStatus] = useState(false);
-
-    const router = useRouter();
 
     return (
         <div>
-            <Header />
+            <BlackBackground
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
+            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.container}>
                 <div className={styles.top_section}>
@@ -217,7 +220,10 @@ export default function ProductSinglePage() {
                 status={commentFormStatus}
                 setStatus={setCommentFormStatus}
             />
-            <MiniMenu />
+            <MiniMenu
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
             <Footer />
         </div>
     );

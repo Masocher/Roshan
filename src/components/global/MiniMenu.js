@@ -5,18 +5,19 @@ import {
     faPhone,
     faBoxOpen,
     faBasketShopping,
-    faUser,
+    faList,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function MiniMenu() {
+export default function MiniMenu({ status, setStatus }) {
     const location = useRouter();
 
     return (
         <div className={styles.container}>
             <Link
                 href={"/"}
+                onClick={() => setStatus(false)}
                 className={`${styles.menu_section} ${
                     location.pathname === "/" ? styles.show : ""
                 }`}
@@ -30,6 +31,7 @@ export default function MiniMenu() {
 
             <Link
                 href={"/products"}
+                onClick={() => setStatus(false)}
                 className={`${styles.menu_section} ${
                     location.pathname === "/products" ? styles.show : ""
                 }`}
@@ -41,8 +43,22 @@ export default function MiniMenu() {
                 <div className={styles.menu_title}>محصولات</div>
             </Link>
 
+            <div
+                className={`${styles.menu_section} ${
+                    status ? styles.show2 : ""
+                }`}
+                onClick={() => setStatus(!status)}
+            >
+                <div className={styles.menu_icon}>
+                    <FontAwesomeIcon icon={faList} />
+                </div>
+
+                <div className={styles.menu_title}>دسته بندی ها</div>
+            </div>
+
             <Link
                 href={"/shopping-cart"}
+                onClick={() => setStatus(false)}
                 className={`${styles.menu_section} ${
                     location.pathname === "/shopping-cart" ? styles.show : ""
                 }`}
@@ -56,6 +72,7 @@ export default function MiniMenu() {
 
             <Link
                 href={"/contact-us"}
+                onClick={() => setStatus(false)}
                 className={`${styles.menu_section} ${
                     location.pathname === "/contact-us" ? styles.show : ""
                 }`}
