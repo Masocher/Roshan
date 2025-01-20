@@ -11,7 +11,7 @@
 .logo {
     font-size: 40px;
     font-family: KalamehB;
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 .top_section {
@@ -35,7 +35,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    background-color: #ff4545;
+    background-color: #0D7C66;
     margin-right: 10px;
     color: #fff;
     font-size: 18px;
@@ -45,15 +45,15 @@
 }
 .icon_box:hover {
     background: none;
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 .scroll_btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e8eef2;
-    color: #000;
+    background-color: #0D7C66;
+    color: #fff;
     cursor: pointer;
     font-size: 14px;
     padding: 0 20px;
@@ -76,7 +76,7 @@
     left: 0;
     width: 100%;
     text-align: center;
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
     padding: 20px 0;
     height: fit-content;
@@ -113,7 +113,7 @@
 .cs2 form input {
     width: calc(75% - 40px);
     font-family: Kalameh;
-    background-color: #e8eef2;
+    background-color: #0D7C66;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
@@ -123,7 +123,7 @@
 .cs2 form button {
     border: none;
     outline: 0;
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
     font-family: Kalameh;
     cursor: pointer;
@@ -146,7 +146,7 @@
     font-size: 14px;
 }
 .section_options div:hover {
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 .hidden_center_sections {
@@ -163,8 +163,8 @@
     cursor: pointer;
 }
 .hcb:nth-child(2) {
-    border-top: 1px solid #e8eef2;
-    border-bottom: 1px solid #e8eef2;
+    border-top: 1px solid #f3f4f6;
+    border-bottom: 1px solid #f3f4f6;
 }
 .hcb.show {
     height: fit-content;
@@ -189,7 +189,7 @@
     margin-top: 10px;
 }
 .hidden_section_options div:hover {
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 @media (max-width: 1200px) {

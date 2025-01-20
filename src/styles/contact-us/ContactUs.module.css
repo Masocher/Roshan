@@ -32,7 +32,7 @@
     letter-spacing: 0.5px;
 }
 .input_box:focus {
-    border-color: #ff4545;
+    border-color: #0d7c66;
 }
 
 .inf_input {
@@ -58,7 +58,7 @@
 .inf_title {
     width: fit-content;
     margin-left: 10px;
-    color: #ff4545;
+    color: #0d7c66;
 }
 
 .inf_value {
@@ -72,7 +72,7 @@
 }
 
 .send_message_btn {
-    background-color: #ff4545;
+    background-color: #0d7c66;
     color: #fff;
     margin: 0;
     padding: 16px 0;
@@ -134,10 +134,12 @@
 @media (max-width: 580px) {
     .main_title {
         font-size: 18px;
+        margin-top: 0;
     }
 
     .left_section {
         flex-direction: column;
+        margin-top: 30px;
     }
 
     .inf_box:nth-child(2) {
@@ -152,5 +154,9 @@
 
     .send_message_btn {
         font-size: 12px;
+    }
+
+    .wrapper {
+        flex-direction: column-reverse;
     }
 }

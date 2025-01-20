@@ -33,7 +33,7 @@
 
 .product_category {
     font-size: 14px;
-    color: #ff4545;
+    color: #0D7C66;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -176,7 +176,7 @@
 
 .add_to_basket_btn {
     width: 100%;
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
     padding: 10px 0;
     border-radius: 8px;
@@ -251,11 +251,11 @@
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
-    border: 1px solid #ff4545;
-    background-color: #ff4545;
+    border: 1px solid #0D7C66;
+    background-color: #0D7C66;
 }
 .submit_comment .submit:hover {
-    color: #ff4545;
+    color: #0D7C66;
     background-color: #fff;
 }
 
@@ -270,7 +270,7 @@
 
 .bottom_left_section .title {
     font-family: KalamehM;
-    border-bottom: 2px solid #ff4545;
+    border-bottom: 2px solid #0D7C66;
     padding: 0 0 10px 50px;
     margin-bottom: 10px;
     width: fit-content;

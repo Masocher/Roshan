@@ -20,7 +20,7 @@
 }
 
 .logo {
-    color: #ff4545;
+    color: #0D7C66;
     font-family: KalamehB;
     font-size: 40px;
     text-align: center;
@@ -51,7 +51,7 @@
 }
 .main_title.show {
     color: #fff;
-    background-color: #ff4545;
+    background-color: #0D7C66;
 }
 
 .main_title span {
@@ -77,22 +77,22 @@
     outline: 0;
     border: 1px solid #e8eef2;
     font-family: Kalameh;
-    padding: 8px 12px;
+    padding: 12px;
     border-radius: 8px;
     width: calc(100% - 24px);
 }
 .input_box input:focus {
-    border-color: #ff4545;
+    border-color: #0D7C66;
 }
 
 .submit_btn {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     outline: 0;
-    border: 1px solid #ff4545;
+    border: 1px solid #0D7C66;
     transition: 0.2s;
     cursor: pointer;
     color: #fff;
-    padding: 8px 0;
+    padding: 12px 0;
     font-size: 16px;
     width: 100%;
     text-align: center;
@@ -170,7 +170,7 @@
 
 .get_code_again span {
     margin: 4px 0 0 5px;
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 @media (max-width: 580px) {

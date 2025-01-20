@@ -14,7 +14,7 @@
 
 .logo_wrapper {
     font-size: 30px;
-    color: #ff4545;
+    color: #0D7C66;
     font-family: KalamehB;
     margin: 0 0 0 40px;
     text-decoration: none;
@@ -45,14 +45,14 @@
     align-items: center;
 }
 .header_l.show {
-    color: #ff4545;
+    color: #0D7C66;
     font-family: KalamehM;
 }
 
 .auth_btn {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
-    border: 1px solid #ff4545;
+    border: 1px solid #0D7C66;
     cursor: pointer;
     transition: 0.2s;
     border-radius: 5px;
@@ -78,7 +78,7 @@
     border: 1px solid #e8eef2;
 }
 .search_box input:focus {
-    border-color: #ff4545;
+    border-color: #0D7C66;
 }
 
 .search_box div {
@@ -147,9 +147,9 @@
     background-color: #fff;
 }
 .categ_box.show {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
-    border-color: #ff4545;
+    border-color: #0D7C66;
 }
 
 .categories_left {
@@ -168,7 +168,7 @@
     transition: 0.1s ease;
 }
 .categ_item:hover {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
 }
 
@@ -189,7 +189,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ff4545;
+    background-color: #0D7C66;
     border-radius: 50%;
     color: #fff;
 }

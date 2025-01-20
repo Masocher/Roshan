@@ -79,8 +79,8 @@
     padding: 10px 20px;
     border-radius: 5px;
     color: #fff;
-    border: 1px solid #ff4545;
-    background-color: #ff4545;
+    border: 1px solid #0D7C66;
+    background-color: #0D7C66;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -89,7 +89,7 @@
 }
 .show_all_btn:hover {
     background-color: #fff;
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 .show_all_btn span {

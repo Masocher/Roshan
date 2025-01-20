@@ -1,5 +1,5 @@
 .container {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     width: calc(100% - 60px);
     padding: 40px 60px 40px 0;
     color: #fff;
@@ -61,7 +61,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #ff4545;
+    color: #0D7C66;
     margin: auto 0;
     background: none;
 }
@@ -78,7 +78,7 @@
     background-color: #fff;
     width: 60px;
     height: 60px;
-    color: #ff4545;
+    color: #0D7C66;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +89,7 @@
     transition: 0.2s;
 }
 .last_product span:hover {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
 }
 

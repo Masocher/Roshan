@@ -108,23 +108,23 @@
     resize: none;
 }
 .leave_comment_form textarea:focus {
-    border-color: #ff4545;
+    border-color: #0D7C66;
 }
 
 .submit_comment_btn {
-    background-color: #ff4545;
+    background-color: #0D7C66;
     color: #fff;
     font-family: Kalameh;
     padding: 12px 0;
     outline: 0;
-    border: 1px solid #ff4545;
+    border: 1px solid #0D7C66;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.2s;
 }
 .submit_comment_btn:hover {
     background: none;
-    color: #ff4545;
+    color: #0D7C66;
 }
 
 @media (max-width: 580px) {
