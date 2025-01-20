@@ -6,7 +6,7 @@ import Footer from "@/components/global/Footer";
 import Image from "next/image";
 import img from "../../public/images/1.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function ShoppingCart() {
@@ -55,7 +55,7 @@ export default function ShoppingCart() {
 
                                     <span>
                                         <FontAwesomeIcon
-                                            icon={faTrashCan}
+                                            icon={faMinus}
                                             onClick={() => {
                                                 if (productValue > 1) {
                                                     setProductValue(
@@ -72,6 +72,10 @@ export default function ShoppingCart() {
                         </div>
 
                         <div className={styles.product_left_content}>
+                            <span>
+                                <FontAwesomeIcon icon={faTrashCan} />
+                            </span>
+
                             <div className={styles.cart_product_price}>
                                 1,500,000
                                 <div className={styles.toman}>تومان</div>
@@ -110,7 +114,7 @@ export default function ShoppingCart() {
 
                                     <span>
                                         <FontAwesomeIcon
-                                            icon={faTrashCan}
+                                            icon={faMinus}
                                             onClick={() => {
                                                 if (productValue > 1) {
                                                     setProductValue(
@@ -127,6 +131,10 @@ export default function ShoppingCart() {
                         </div>
 
                         <div className={styles.product_left_content}>
+                            <span>
+                                <FontAwesomeIcon icon={faTrashCan} />
+                            </span>
+
                             <div className={styles.cart_product_price}>
                                 1,500,000
                                 <div className={styles.toman}>تومان</div>
@@ -165,7 +173,7 @@ export default function ShoppingCart() {
 
                                     <span>
                                         <FontAwesomeIcon
-                                            icon={faTrashCan}
+                                            icon={faMinus}
                                             onClick={() => {
                                                 if (productValue > 1) {
                                                     setProductValue(
@@ -182,6 +190,10 @@ export default function ShoppingCart() {
                         </div>
 
                         <div className={styles.product_left_content}>
+                            <span>
+                                <FontAwesomeIcon icon={faTrashCan} />
+                            </span>
+
                             <div className={styles.cart_product_price}>
                                 1,500,000
                                 <div className={styles.toman}>تومان</div>
@@ -192,6 +204,18 @@ export default function ShoppingCart() {
 
                 <div className={styles.left_section}>
                     <div className={styles.title}>اطلاعات پرداخت</div>
+
+                    <form
+                        className={styles.bonus_code_box}
+                        onSubmit={(e) => e.preventDefault()}
+                    >
+                        <input
+                            type="text"
+                            placeholder="کد تخفیف را اینجا وارد کنید"
+                        />
+
+                        <button type="submit">اعمال تخفیف</button>
+                    </form>
 
                     <div className={styles.value_box}>
                         <div className={styles.value_title}>جمع کل</div>

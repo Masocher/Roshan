@@ -64,7 +64,28 @@
 
 .product_left_content {
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.product_left_content span {
+    font-size: 14px;
+    color: #ff4545;
+    margin-bottom: 10px;
+    background-color: #e8eef2;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+.product_left_content span:hover {
+    background-color: #ff4545;
+    color: #fff;
 }
 
 .cart_product_price {
@@ -94,7 +115,41 @@
 .left_section .title {
     font-size: 20px;
     font-family: KalamehM;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.bonus_code_box {
+    width: 100%;
+    position: relative;
+}
+
+.bonus_code_box input {
+    width: calc(100% - 140px);
+    font-family: Kalameh;
+    background-color: #e8eef2;
+    outline: 0;
+    border: 1px solid #e8eef2;
+    padding: 12px 20px 12px 120px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.bonus_code_box input:focus {
+    border-color: #ff4545;
+}
+
+.bonus_code_box button {
+    position: absolute;
+    left: 10px;
+    top: 9.5px;
+    font-family: Kalameh;
+    font-size: 12px;
+    background-color: #ff4545;
+    color: #fff;
+    outline: 0;
+    border: 1px solid #ff4545;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 3px 10px;
 }
 
 .value_box {
@@ -232,6 +287,12 @@
     .buy_btn {
         font-size: 14px;
     }
+
+    .product_left_content span {
+        font-size: 12px;
+        width: 25px;
+        height: 25px;
+    }
 }
 
 @media (max-width: 950px) {
@@ -257,6 +318,17 @@
         margin: 0;
         border-bottom: 1px solid #e8eef2;
     }
+
+    .product_left_content {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .product_left_content span {
+        margin: 0 15px 0 0;
+    }
 }
 
 @media (max-width: 580px) {
@@ -267,7 +339,6 @@
 
     .product_left_content {
         margin-top: 20px;
-        justify-content: flex-end;
     }
 
     .cart_product_value {
@@ -280,5 +351,14 @@
 
     .product_title {
         padding: 0;
+    }
+
+    .bonus_code_box input {
+        font-size: 12px;
+    }
+
+    .product_left_content span {
+        width: 20px;
+        height: 20px;
     }
 }
