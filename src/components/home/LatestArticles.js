@@ -7,6 +7,7 @@ import img from "../../../public/images/11.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import Link from "next/link";
 
 export default function LatestArticles() {
     const matches3 = useMediaQuery(950);
@@ -35,148 +36,158 @@ export default function LatestArticles() {
                 modules={[Autoplay]}
             >
                 <SwiperSlide className={styles.article}>
-                    <Image
-                        className={styles.article_cover}
-                        src={img}
-                        alt="عکس مقاله"
-                    />
+                    <Link href={`/`} className={styles.article_content}>
+                        <Image
+                            className={styles.article_cover}
+                            src={img}
+                            alt="عکس مقاله"
+                        />
 
-                    <div className={styles.article_information}>
-                        <div className={styles.article_title}>
-                            لورم ایپسوم یک متن ساختگی است
-                        </div>
+                        <div className={styles.article_information}>
+                            <div className={styles.article_title}>
+                                لورم ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_decription}>
-                            لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
-                            ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم
-                            یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم
-                            ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی
-                            است
-                        </div>
+                            <div className={styles.article_decription}>
+                                لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_date}>
-                            <span>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </span>
-                            13 فروردین 1404
+                            <div className={styles.article_date}>
+                                <span>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                </span>
+                                13 فروردین 1404
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Image
-                        className={styles.article_cover}
-                        src={img}
-                        alt="عکس مقاله"
-                    />
+                    <Link href={`/`} className={styles.article_content}>
+                        <Image
+                            className={styles.article_cover}
+                            src={img}
+                            alt="عکس مقاله"
+                        />
 
-                    <div className={styles.article_information}>
-                        <div className={styles.article_title}>
-                            لورم ایپسوم یک متن ساختگی است
-                        </div>
+                        <div className={styles.article_information}>
+                            <div className={styles.article_title}>
+                                لورم ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_decription}>
-                            لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
-                            ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم
-                            یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم
-                            ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی
-                            است
-                        </div>
+                            <div className={styles.article_decription}>
+                                لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_date}>
-                            <span>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </span>
-                            13 فروردین 1404
+                            <div className={styles.article_date}>
+                                <span>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                </span>
+                                13 فروردین 1404
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Image
-                        className={styles.article_cover}
-                        src={img}
-                        alt="عکس مقاله"
-                    />
+                    <Link href={`/`} className={styles.article_content}>
+                        <Image
+                            className={styles.article_cover}
+                            src={img}
+                            alt="عکس مقاله"
+                        />
 
-                    <div className={styles.article_information}>
-                        <div className={styles.article_title}>
-                            لورم ایپسوم یک متن ساختگی است
-                        </div>
+                        <div className={styles.article_information}>
+                            <div className={styles.article_title}>
+                                لورم ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_decription}>
-                            لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
-                            ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم
-                            یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم
-                            ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی
-                            است
-                        </div>
+                            <div className={styles.article_decription}>
+                                لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_date}>
-                            <span>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </span>
-                            13 فروردین 1404
+                            <div className={styles.article_date}>
+                                <span>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                </span>
+                                13 فروردین 1404
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Image
-                        className={styles.article_cover}
-                        src={img}
-                        alt="عکس مقاله"
-                    />
+                    <Link href={`/`} className={styles.article_content}>
+                        <Image
+                            className={styles.article_cover}
+                            src={img}
+                            alt="عکس مقاله"
+                        />
 
-                    <div className={styles.article_information}>
-                        <div className={styles.article_title}>
-                            لورم ایپسوم یک متن ساختگی است
-                        </div>
+                        <div className={styles.article_information}>
+                            <div className={styles.article_title}>
+                                لورم ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_decription}>
-                            لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
-                            ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم
-                            یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم
-                            ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی
-                            است
-                        </div>
+                            <div className={styles.article_decription}>
+                                لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_date}>
-                            <span>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </span>
-                            13 فروردین 1404
+                            <div className={styles.article_date}>
+                                <span>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                </span>
+                                13 فروردین 1404
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Image
-                        className={styles.article_cover}
-                        src={img}
-                        alt="عکس مقاله"
-                    />
+                    <Link href={`/`} className={styles.article_content}>
+                        <Image
+                            className={styles.article_cover}
+                            src={img}
+                            alt="عکس مقاله"
+                        />
 
-                    <div className={styles.article_information}>
-                        <div className={styles.article_title}>
-                            لورم ایپسوم یک متن ساختگی است
-                        </div>
+                        <div className={styles.article_information}>
+                            <div className={styles.article_title}>
+                                لورم ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_decription}>
-                            لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
-                            ساختگی است لورم ایپسوم یک متن ساختگی است لورم ایپسوم
-                            یک متن ساختگی است لورم ایپسوم یک متن ساختگی است لورم
-                            ایپسوم یک متن ساختگی است لورم ایپسوم یک متن ساختگی
-                            است
-                        </div>
+                            <div className={styles.article_decription}>
+                                لورم ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است لورم ایپسوم یک متن
+                                ساختگی است لورم ایپسوم یک متن ساختگی است لورم
+                                ایپسوم یک متن ساختگی است
+                            </div>
 
-                        <div className={styles.article_date}>
-                            <span>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </span>
-                            13 فروردین 1404
+                            <div className={styles.article_date}>
+                                <span>
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                </span>
+                                13 فروردین 1404
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </SwiperSlide>
             </Swiper>
         </div>
