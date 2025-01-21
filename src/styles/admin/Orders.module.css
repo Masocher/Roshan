@@ -1,10 +1,10 @@
-.products {
+.orders {
     width: 100%;
     background-color: #fff;
     text-align: center;
 }
 
-.products_top {
+.orders_top {
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
@@ -12,32 +12,12 @@
     padding: 20px;
 }
 
-.products_title {
+.orders_title {
     font-family: KalamehM;
-}
-.products_title:nth-child(1) {
-    width: 10%;
-}
-.products_title:nth-child(2) {
-    width: 100px;
-}
-.products_title:nth-child(3) {
-    width: calc(55% - 100px);
-}
-.products_title:nth-child(4) {
-    width: 10%;
-}
-.products_title:nth-child(5) {
-    width: 10%;
-}
-.products_title:nth-child(6) {
-    width: 10%;
-}
-.hidden_box {
-    width: 5%;
+    width: calc(100% / 6);
 }
 
-.product {
+.order {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -46,34 +26,26 @@
     width: calc(100% - 40px);
     font-size: 14px;
 }
-.product_id {
-    width: 10%;
+.order_id {
+    width: calc(100% / 6);
 }
-.product_image {
-    width: 100px;
-    height: fit-content;
-    object-fit: contain;
+.phone_number {
+    width: calc(100% / 6);
 }
-.product_name {
-    width: calc(55% - 100px);
+.order_value {
+    width: calc(100% / 6);
 }
-.product_price {
-    width: 10%;
+.order_price {
+    width: calc(100% / 6);
 }
-.product_date {
-    width: 10%;
+.order_date {
+    width: calc(100% / 6);
 }
-.product_active {
-    width: 10%;
-}
-.product_buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 5%;
+.order_active {
+    width: calc(100% / 6);
 }
 
-.product_buttons div {
+.order_buttons div {
     width: 20px;
     height: 20px;
     display: flex;
@@ -83,12 +55,12 @@
     cursor: pointer;
 }
 
-.product_delete {
+.order_delete {
     color: red;
     margin-bottom: 15px;
 }
 
-.product_edit {
+.order_edit {
     color: #0d7c66;
 }
 
@@ -164,6 +136,13 @@
     background-color: #0d7c66;
 }
 
+.search_buttons {
+    display: flex;
+}
+.inventory_button:nth-child(2) {
+    margin-right: 30px;
+}
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -175,7 +154,7 @@
 
 .perv_btn,
 .next_btn {
-    background-color: #0D7C66;
+    background-color: #0d7c66;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -183,13 +162,13 @@
     padding: 0 20px;
     border-radius: 5px;
     color: #fff;
-    border: 1px solid #0D7C66;
+    border: 1px solid #0d7c66;
     font-size: 14px;
 }
 .perv_btn:hover,
 .next_btn:hover {
     background-color: #fff;
-    color: #0D7C66;
+    color: #0d7c66;
 }
 
 .perv_btn {
@@ -221,28 +200,14 @@
     border: 1px solid #e8eef2;
 }
 .page_btn.show {
-    border-color: #0D7C66;
+    border-color: #0d7c66;
     color: #fff;
-    background-color: #0D7C66;
+    background-color: #0d7c66;
 }
 .page_btn:hover {
-    border-color: #0D7C66;
-    color: #0D7C66;
+    border-color: #0d7c66;
+    color: #0d7c66;
 }
 .page_btn.show:hover {
     color: #fff;
-}
-
-.add_btn {
-    background-color: #0D7C66;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.add_btn span {
-    margin: 5px 0 0 5px;
 }

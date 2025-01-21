@@ -13,8 +13,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Products from "@/components/admin/Products";
+import Orders from "@/components/admin/Orders";
+import { useState } from "react";
 
 export default function Admin() {
+    const [pageNum, setPageNum] = useState(1);
+
     return (
         <div className={styles.container}>
             <div className={styles.admin_menu}>
@@ -30,14 +34,24 @@ export default function Admin() {
                 </div>
 
                 <div className={styles.menu_items}>
-                    <div className={`${styles.menu_item} ${styles.show}`}>
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 1 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(1)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faBoxOpen} />
                         </span>
                         محصولات
                     </div>
 
-                    <div className={styles.menu_item}>
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 2 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(2)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faTruckRampBox} />
                         </span>
@@ -96,7 +110,13 @@ export default function Admin() {
             </div>
 
             <div className={styles.admin_content}>
-                <Products />
+                {pageNum === 1 ? (
+                    <Products />
+                ) : pageNum === 2 ? (
+                    <Orders />
+                ) : (
+                    <div>چنین اطلاعاتی یافت نشد !</div>
+                )}
             </div>
         </div>
     );

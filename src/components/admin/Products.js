@@ -6,6 +6,7 @@ import {
     faTrashCan,
     faAngleLeft,
     faAngleRight,
+    faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import img from "../../../public/images/1.webp";
 import Image from "next/image";
@@ -14,6 +15,13 @@ export default function Products() {
     return (
         <div className={styles.container}>
             <div className={styles.search_box}>
+                <div className={styles.add_btn}>
+                    <span>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </span>
+                    محصول جدید
+                </div>
+                
                 <form className={styles.products_search}>
                     <input type="text" placeholder="جستجوی محصول ..." />
 
@@ -26,7 +34,7 @@ export default function Products() {
                     <div>
                         <span></span>
                     </div>
-                    فقط کالا های موجود
+                    موجودی ها
                 </div>
             </div>
 
