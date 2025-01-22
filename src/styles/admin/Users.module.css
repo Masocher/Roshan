@@ -1,10 +1,10 @@
-.brands {
+.users {
     width: 100%;
     background-color: #fff;
     text-align: center;
 }
 
-.brands_top {
+.users_top {
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@
     padding: 20px;
 }
 
-.brands_title {
+.users_title {
     font-family: KalamehM;
     width: 10%;
 }
@@ -20,7 +20,7 @@
     width: 5%;
 }
 
-.brand {
+.user {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,25 +30,25 @@
     font-size: 14px;
     cursor: pointer;
 }
-.brand:hover {
+.user:hover {
     background-color: #0d7c6611;
 }
-.brand_id {
+.user_id {
     width: 10%;
 }
-.brand_name {
+.user_name {
     width: 10%;
 }
-.brand_phone {
+.user_phone {
     width: 10%;
 }
-.brand_status {
+.user_status {
     width: 10%;
 }
-.brand_phone_status {
+.user_phone_status {
     width: 10%;
 }
-.brand_date {
+.user_date {
     width: 10%;
 }
 
