@@ -19,6 +19,7 @@ import Brands from "@/components/admin/Brands";
 import Comments from "@/components/admin/Comments";
 import Users from "@/components/admin/Users";
 import Offers from "@/components/admin/Offers";
+import Tickets from "@/components/admin/Tickets";
 import { useState } from "react";
 
 export default function Admin() {
@@ -123,7 +124,12 @@ export default function Admin() {
                         کد های تخفیف
                     </div>
 
-                    <div className={styles.menu_item}>
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 8 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(8)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faMessage} />
                         </span>
@@ -154,6 +160,8 @@ export default function Admin() {
                     <Users />
                 ) : pageNum === 7 ? (
                     <Offers />
+                ) : pageNum === 8 ? (
+                    <Tickets />
                 ) : (
                     <div>چنین اطلاعاتی یافت نشد !</div>
                 )}

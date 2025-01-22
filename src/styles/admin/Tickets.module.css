@@ -1,10 +1,10 @@
-.users {
+.tickets {
     width: 100%;
     background-color: #fff;
     text-align: center;
 }
 
-.users_top {
+.tickets_top {
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
@@ -12,15 +12,15 @@
     padding: 20px;
 }
 
-.users_title {
+.tickets_title {
     font-family: KalamehM;
-    width: 10%;
+    width: 30%;
 }
 .hidden_title {
     width: 5%;
 }
 
-.user {
+.ticket {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,36 +30,27 @@
     font-size: 14px;
     cursor: pointer;
 }
-.user:hover {
+.ticket:hover {
     background-color: #0d7c6611;
 }
-.user_id {
-    width: 10%;
+.ticket_id {
+    width: 30%;
 }
-.user_name {
-    width: 10%;
+.ticket_name {
+    width: 30%;
 }
-.user_phone {
-    width: 10%;
-}
-.user_status {
-    width: 10%;
-}
-.user_phone_status {
-    width: 10%;
-}
-.user_date {
-    width: 10%;
+.ticket_phone {
+    width: 30%;
 }
 
-.comment_buttons {
+.ticket_buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 5%;
 }
 
-.comment_buttons div {
+.ticket_buttons div {
     width: 20px;
     height: 20px;
     display: flex;
@@ -69,11 +60,11 @@
     cursor: pointer;
 }
 
-.comment_change_status {
-    color: #ffb200;
+.ticket_seen {
+    color: #0d7c66;
     margin-bottom: 10px;
 }
 
-.comment_edit {
-    color: #0d7c66;
+.ticket_reply {
+    color: #00A9FF;
 }

@@ -6,7 +6,7 @@ import {
     faAngleRight,
     faAngleLeft,
     faStar,
-    faMessage,
+    faReply,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Comments() {
@@ -85,7 +85,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -217,7 +217,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -305,7 +305,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -349,7 +349,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -393,7 +393,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -437,7 +437,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
@@ -481,7 +481,7 @@ export default function Comments() {
                         </div>
 
                         <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faMessage} />
+                            <FontAwesomeIcon icon={faReply} />
                         </div>
                     </div>
                 </div>
