@@ -15,6 +15,7 @@ import Link from "next/link";
 import Products from "@/components/admin/Products";
 import Orders from "@/components/admin/Orders";
 import Categories from "@/components/admin/Categories";
+import Brands from "@/components/admin/Brands";
 import { useState } from "react";
 
 export default function Admin() {
@@ -71,7 +72,12 @@ export default function Admin() {
                         دسته بندی ها
                     </div>
 
-                    <div className={styles.menu_item}>
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 4 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(4)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faCopyright} />
                         </span>
@@ -122,6 +128,8 @@ export default function Admin() {
                     <Orders />
                 ) : pageNum === 3 ? (
                     <Categories />
+                ) : pageNum === 4 ? (
+                    <Brands />
                 ) : (
                     <div>چنین اطلاعاتی یافت نشد !</div>
                 )}

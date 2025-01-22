@@ -1,10 +1,10 @@
-.categories {
+.brands {
     width: 100%;
     background-color: #fff;
     text-align: center;
 }
 
-.categories_top {
+.brands_top {
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
@@ -12,15 +12,15 @@
     padding: 20px;
 }
 
-.categories_title {
+.brands_title {
     font-family: KalamehM;
     width: calc(100% / 2 - 5%);
 }
-.categories_title:nth-child(1) {
+.brands_title:nth-child(1) {
     width: 10%;
 }
 
-.category {
+.brand {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,17 +29,17 @@
     width: calc(100% - 40px);
     font-size: 14px;
 }
-.category_id {
+.brand_id {
     width: 10%;
 }
-.category_name {
+.brand_name {
     width: calc(100% / 2 - 5%);
 }
-.category_value {
+.brand_value {
     width: calc(100% / 2 - 5%);
 }
 
-.category_buttons div {
+.brand_buttons div {
     width: 20px;
     height: 20px;
     display: flex;
@@ -49,11 +49,11 @@
     cursor: pointer;
 }
 
-.category_delete {
+.brand_delete {
     color: red;
     margin-bottom: 15px;
 }
 
-.category_edit {
+.brand_edit {
     color: #0d7c66;
 }
