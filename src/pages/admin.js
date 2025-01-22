@@ -18,6 +18,7 @@ import Categories from "@/components/admin/Categories";
 import Brands from "@/components/admin/Brands";
 import Comments from "@/components/admin/Comments";
 import Users from "@/components/admin/Users";
+import Offers from "@/components/admin/Offers";
 import { useState } from "react";
 
 export default function Admin() {
@@ -110,11 +111,16 @@ export default function Admin() {
                         کاربران
                     </div>
 
-                    <div className={styles.menu_item}>
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 7 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(7)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faSackDollar} />
                         </span>
-                        تخفیفات
+                        کد های تخفیف
                     </div>
 
                     <div className={styles.menu_item}>
@@ -146,6 +152,8 @@ export default function Admin() {
                     <Comments />
                 ) : pageNum === 6 ? (
                     <Users />
+                ) : pageNum === 7 ? (
+                    <Offers />
                 ) : (
                     <div>چنین اطلاعاتی یافت نشد !</div>
                 )}
