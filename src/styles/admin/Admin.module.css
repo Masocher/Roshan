@@ -6,6 +6,7 @@
     right: 0;
     display: flex;
     justify-content: flex-end;
+    user-select: none;
 }
 
 .admin_menu {

@@ -1,0 +1,79 @@
+.brands {
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.brands_top {
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8eef2;
+    padding: 20px;
+}
+
+.brands_title {
+    font-family: KalamehM;
+    width: 10%;
+}
+.hidden_title {
+    width: 5%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8eef2;
+    padding: 20px;
+    width: calc(100% - 40px);
+    font-size: 14px;
+    cursor: pointer;
+}
+.brand:hover {
+    background-color: #0d7c6611;
+}
+.brand_id {
+    width: 10%;
+}
+.brand_name {
+    width: 10%;
+}
+.brand_phone {
+    width: 10%;
+}
+.brand_status {
+    width: 10%;
+}
+.brand_phone_status {
+    width: 10%;
+}
+.brand_date {
+    width: 10%;
+}
+
+.comment_buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 5%;
+}
+
+.comment_buttons div {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.comment_change_status {
+    color: #ffb200;
+    margin-bottom: 10px;
+}
+
+.comment_edit {
+    color: #37AFE1;
+}
