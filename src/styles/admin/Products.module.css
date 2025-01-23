@@ -78,13 +78,9 @@
 }
 
 .product_buttons div {
-    width: 20px;
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
 .product_delete {
@@ -241,11 +237,17 @@
     background-color: #0D7C66;
     color: #fff;
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 5px;
     font-size: 14px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    border: 1px solid #0D7C66;
+    transition: .2s;
+}
+.add_btn:hover {
+    background-color: #fff;
+    color: #0D7C66;
 }
 .add_btn span {
     margin: 5px 0 0 5px;

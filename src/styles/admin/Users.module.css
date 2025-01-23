@@ -52,28 +52,24 @@
     width: 10%;
 }
 
-.comment_buttons {
+.user_buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 5%;
 }
 
-.comment_buttons div {
-    width: 20px;
-    height: 20px;
+.user_buttons div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
-.comment_change_status {
+.user_change_status {
     color: #ffb200;
     margin-bottom: 10px;
 }
 
-.comment_edit {
+.user_edit {
     color: #0d7c66;
 }

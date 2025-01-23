@@ -51,13 +51,9 @@
 }
 
 .ticket_buttons div {
-    width: 20px;
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
 .ticket_seen {

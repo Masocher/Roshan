@@ -1,10 +1,19 @@
 import styles from "../../styles/admin/Offers.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faGear, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Offers() {
     return (
         <div className={styles.container}>
+            <div className={styles.top_box}>
+                <div className={styles.add_btn}>
+                    <span>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </span>
+                    دسته بندی جدید
+                </div>
+            </div>
+
             <div className={styles.offers}>
                 <div className={styles.offers_top}>
                     <div className={styles.offers_title}>شماره</div>

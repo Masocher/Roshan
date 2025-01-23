@@ -54,13 +54,9 @@
 }
 
 .offer_buttons div {
-    width: 20px;
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
 .offer_delete {
@@ -70,4 +66,41 @@
 
 .offer_edit {
     color: #0d7c66;
+}
+
+.top_box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: fit-content;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #e8eef2;
+    border-left: 1px solid #e8eef2;
+    border-right: 1px solid #e8eef2;
+    position: sticky;
+    top: -30px;
+    margin-bottom: 30px;
+    margin: 0 0 20px 0;
+    box-shadow: 0 0 30px #00000017;
+}
+
+.add_btn {
+    background-color: #0d7c66;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #0d7c66;
+    transition: 0.2s;
+}
+.add_btn:hover {
+    background-color: #fff;
+    color: #0d7c66;
+}
+.add_btn span {
+    margin: 5px 0 0 5px;
 }

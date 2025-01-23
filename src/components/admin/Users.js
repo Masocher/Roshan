@@ -26,12 +26,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -48,12 +48,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -70,12 +70,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -92,12 +92,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -114,12 +114,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -136,12 +136,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -158,12 +158,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -180,12 +180,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -202,12 +202,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -224,12 +224,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -246,12 +246,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -268,12 +268,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -290,12 +290,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -312,12 +312,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>
@@ -334,12 +334,12 @@ export default function Users() {
 
                     <div className={styles.user_phone_status}>تایید شده</div>
 
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_change_status}>
+                    <div className={styles.user_buttons}>
+                        <div className={styles.user_change_status}>
                             <FontAwesomeIcon icon={faTriangleExclamation} />
                         </div>
 
-                        <div className={styles.comment_edit}>
+                        <div className={styles.user_edit}>
                             <FontAwesomeIcon icon={faGear} />
                         </div>
                     </div>

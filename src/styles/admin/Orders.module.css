@@ -49,25 +49,6 @@
     width: calc(100% / 6);
 }
 
-.order_buttons div {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.order_delete {
-    color: red;
-    margin-bottom: 15px;
-}
-
-.order_edit {
-    color: #0d7c66;
-}
-
 .search_box {
     display: flex;
     justify-content: space-between;
