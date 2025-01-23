@@ -29,12 +29,7 @@ export default function Admin() {
         <div className={styles.container}>
             <div className={styles.admin_menu}>
                 <div className={styles.main_title}>
-                    <Link
-                        href={"/"}
-                        style={{ textDecoration: "none", color: "#0d7c66" }}
-                    >
-                        پنل ادمین
-                    </Link>
+                    <div>پنل ادمین</div>
 
                     <span>فرشاد چراغی</span>
                 </div>
@@ -137,12 +132,12 @@ export default function Admin() {
                     </div>
                 </div>
 
-                <div className={styles.back_to_home_btn}>
+                <Link href={"/"} className={styles.back_to_home_btn}>
                     <span>
                         <FontAwesomeIcon icon={faArrowRightToBracket} />
                     </span>
                     برگشت به فروشگاه
-                </div>
+                </Link>
             </div>
 
             <div className={styles.admin_content}>

@@ -161,13 +161,13 @@
 .value {
     display: flex;
     align-items: center;
-    color: #607496;
+    color: #777;
     font-size: 22px;
     font-family: KalamehM;
     margin-bottom: 8px;
 }
 .off_value {
-    color: #0D7C66;
+    color: #F93827;
 }
 
 .buy_value {
