@@ -1,16 +1,102 @@
 import styles from "../../styles/global/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+    faClose,
+    faMobile,
+    faReceipt,
+    faRightToBracket,
+    faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faComments, faMap, faAddressCard } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useState } from "react";
 
 export default function Header({ status, setStatus }) {
     const location = useRouter();
     const matches2 = useMediaQuery(1200);
+    const [authStatus, setAuthStatus] = useState(true);
+    const [menuStatus, setMenuStatus] = useState(false);
 
     return (
         <div className={styles.header_container}>
+            <div
+                className={`${styles.black_back_2} ${
+                    menuStatus ? styles.show : ""
+                }`}
+                onClick={() => setMenuStatus(false)}
+            ></div>
+
+            <div
+                className={`${styles.user_pannel} ${
+                    menuStatus ? styles.show : ""
+                }`}
+            >
+                <div className={styles.user_main_title}>
+                    پنل کاربری
+                    <div
+                        className={styles.close_btn}
+                        onClick={() => setMenuStatus(false)}
+                    >
+                        <FontAwesomeIcon icon={faClose} />
+                    </div>
+                </div>
+
+                <div className={styles.user_information}>
+                    <div className={styles.user_inf}>
+                        <span>
+                            <FontAwesomeIcon icon={faUser} />
+                        </span>
+                        امیر مسعود چراغی
+                    </div>
+
+                    <div className={styles.user_inf}>
+                        <span>
+                            <FontAwesomeIcon icon={faMobile} />
+                        </span>
+                        09054182307
+                    </div>
+                </div>
+
+                <div className={styles.menu_sections}>
+                    <div className={styles.menu_sec}>
+                        <span>
+                            <FontAwesomeIcon icon={faReceipt} />
+                        </span>
+                        سفارشات
+                    </div>
+
+                    <div className={styles.menu_sec}>
+                        <span>
+                            <FontAwesomeIcon icon={faAddressCard} />
+                        </span>
+                        اطلاعات شخصی
+                    </div>
+
+                    <div className={styles.menu_sec}>
+                        <span>
+                            <FontAwesomeIcon icon={faMap} />
+                        </span>
+                        آدرس ها
+                    </div>
+
+                    <div className={styles.menu_sec}>
+                        <span>
+                            <FontAwesomeIcon icon={faComments} />
+                        </span>
+                        کامنت ها و نظرات
+                    </div>
+
+                    <div className={styles.menu_sec}>
+                        <span>
+                            <FontAwesomeIcon icon={faRightToBracket} />
+                        </span>
+                        خروج از حساب
+                    </div>
+                </div>
+            </div>
+
             <div className={styles.right_section}>
                 <Link href={"/"} className={styles.logo_wrapper}>
                     روشن مارکت
@@ -77,9 +163,18 @@ export default function Header({ status, setStatus }) {
                     </Link>
                 </div>
 
-                <Link href={"/sign-in"} className={styles.auth_btn}>
-                    ورود | ثبت نام
-                </Link>
+                {authStatus ? (
+                    <div
+                        className={styles.user_icon}
+                        onClick={() => setMenuStatus(true)}
+                    >
+                        <FontAwesomeIcon icon={faUser} />
+                    </div>
+                ) : (
+                    <Link href={"/sign-in"} className={styles.auth_btn}>
+                        ورود | ثبت نام
+                    </Link>
+                )}
             </div>
 
             <div
