@@ -464,3 +464,138 @@
     background-color: #fff;
     color: #0d7c66;
 }
+
+@media (max-width: 1200px) {
+    .container {
+        font-size: 14px !important;
+    }
+
+    .right_section {
+        width: 60%;
+    }
+
+    .purchase_inf {
+        width: calc(40% - 61px);
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        width: 100%;
+        padding: 0;
+        height: fit-content;
+    }
+
+    .right_section {
+        width: 100%;
+    }
+
+    .purchase_inf {
+        width: calc(100% - 41px);
+        padding: 20px;
+    }
+
+    .location_box {
+        padding: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .selected_address_box {
+        padding: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .products {
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+
+    .user_inf_form {
+        padding: 20px;
+        width: calc(100% - 40px);
+    }
+}
+
+@media (max-width: 580px) {
+    .gateway_container,
+    .address_container {
+        align-items: flex-end;
+    }
+
+    .payment_gateway,
+    .select_address {
+        width: 100%;
+        height: fit-content;
+        padding: 50px 20px;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .top_section {
+        flex-direction: column-reverse;
+    }
+
+    .top_section .main_title {
+        position: relative;
+        right: 0;
+        width: 100%;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+    .main_title span {
+        margin: 5px 0 0 10px;
+    }
+
+    .user_inf_form .title {
+        margin-bottom: 10px;
+    }
+
+    .user_inf_form input {
+        width: calc(100% - 32px);
+        margin-top: 10px;
+    }
+
+    .selected_address_box .title_box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .select_address_btn {
+        margin-top: 10px;
+        font-size: 12px;
+        background: #fff;
+        color: #0d7c66;
+        border: none;
+    }
+
+    .selected_address {
+        font-size: 12px;
+    }
+
+    .new_address {
+        padding: 15px 20px;
+    }
+
+    .value {
+        font-size: 14px;
+    }
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .purchase_inf {
+        margin: 0;
+    }
+}
+
+@media (max-width: 350px) {
+    .product_box {
+        width: 50%;
+        margin-left: 0;
+    }
+}
