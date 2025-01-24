@@ -190,6 +190,7 @@
     cursor: pointer;
     transition: 0.2s;
     border: 1px solid #0D7C66;
+    text-decoration: none;
 }
 
 @media (max-width: 1500px) {

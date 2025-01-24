@@ -8,6 +8,7 @@ import img from "../../public/images/1.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ShoppingCart() {
     let [categoriesStatus, setCategoriesStatus] = useState(false);
@@ -245,7 +246,12 @@ export default function ShoppingCart() {
                         </div>
                     </div>
 
-                    <div className={styles.buy_btn}>تایید و تکمیل سفارش</div>
+                    <Link
+                        href={"/purchase-information"}
+                        className={styles.buy_btn}
+                    >
+                        تایید و تکمیل سفارش
+                    </Link>
                 </div>
             </div>
 
