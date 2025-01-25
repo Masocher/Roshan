@@ -7,7 +7,7 @@ import {
     faRightToBracket,
     faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUser, faComments, faMap, faAddressCard } from "@fortawesome/free-regular-svg-icons";
+import { faUser, faComments, faMap } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -60,40 +60,49 @@ export default function Header({ status, setStatus }) {
                 </div>
 
                 <div className={styles.menu_sections}>
-                    <div className={styles.menu_sec}>
+                    <Link
+                        className={styles.menu_sec}
+                        href={"/user-orders"}
+                        onClick={() => setMenuStatus(false)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faReceipt} />
                         </span>
-                        سفارشات
-                    </div>
+                        تاریخچه سفارشات
+                    </Link>
 
-                    <div className={styles.menu_sec}>
-                        <span>
-                            <FontAwesomeIcon icon={faAddressCard} />
-                        </span>
-                        اطلاعات شخصی
-                    </div>
-
-                    <div className={styles.menu_sec}>
+                    <Link
+                        className={styles.menu_sec}
+                        href={"/user-orders"}
+                        onClick={() => setMenuStatus(false)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faMap} />
                         </span>
                         آدرس ها
-                    </div>
+                    </Link>
 
-                    <div className={styles.menu_sec}>
+                    <Link
+                        className={styles.menu_sec}
+                        href={"/user-orders"}
+                        onClick={() => setMenuStatus(false)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faComments} />
                         </span>
-                        کامنت ها و نظرات
-                    </div>
+                        کامنت ها
+                    </Link>
 
-                    <div className={styles.menu_sec}>
+                    <Link
+                        className={styles.menu_sec}
+                        href={"/user-orders"}
+                        onClick={() => setMenuStatus(false)}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faRightToBracket} />
                         </span>
                         خروج از حساب
-                    </div>
+                    </Link>
                 </div>
             </div>
 
