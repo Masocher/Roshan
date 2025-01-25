@@ -26,6 +26,10 @@ export default function ProductSinglePage() {
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
+            <MiniMenu
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
             <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.container}>
@@ -219,10 +223,6 @@ export default function ProductSinglePage() {
             <LeaveComment
                 status={commentFormStatus}
                 setStatus={setCommentFormStatus}
-            />
-            <MiniMenu
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
             />
             <Footer />
         </div>

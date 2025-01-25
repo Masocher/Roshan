@@ -14,12 +14,12 @@ export default function Products() {
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
-            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
-            <ProductsSection />
             <MiniMenu
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
+            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+            <ProductsSection />
             <Footer />
         </div>
     );

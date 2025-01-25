@@ -1,4 +1,4 @@
-import styles from "../styles/user-orders/UserOrders.module.css";
+import styles from "../styles/user-pannel/UserOrders.module.css";
 import Header from "@/components/global/Header";
 import MiniMenu from "@/components/global/MiniMenu";
 import BlackBackground from "@/components/global/BlacKBackground";

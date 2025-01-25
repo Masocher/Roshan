@@ -260,6 +260,7 @@
     display: none;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 .gateway_container.show,
 .address_container.show {

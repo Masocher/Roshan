@@ -20,11 +20,11 @@ export default function Home() {
                 setStatus={setCategoriesStatus}
             />
             <Alert />
-            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
             <MiniMenu
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
+            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
             <HomeSlider />
             <AmazingOffer />
             <Alert />

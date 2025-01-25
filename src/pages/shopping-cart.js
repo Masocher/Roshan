@@ -20,6 +20,10 @@ export default function ShoppingCart() {
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
+            <MiniMenu
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
             <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.cart_wrapper}>
@@ -255,10 +259,6 @@ export default function ShoppingCart() {
                 </div>
             </div>
 
-            <MiniMenu
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
             <Footer />
         </div>
     );

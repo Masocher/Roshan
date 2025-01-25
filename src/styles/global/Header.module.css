@@ -120,8 +120,8 @@
     position: fixed;
     top: 0;
     right: -25%;
-    width: calc(25% - 100px);
-    padding: 50px;
+    width: calc(25% - 60px);
+    padding: 30px;
     height: 100%;
     background-color: #fff;
     z-index: 12;
@@ -142,10 +142,17 @@
 .user_information {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    background-color: #0d7c6611;
+    margin-top: 40px;
+    background-color: #0d7c66;
+    color: #fff;
     padding: 15px;
     border-radius: 8px;
+}
+
+.user_inf_number {
+    font-size: 12px;
+    margin-top: 10px;
+    letter-spacing: 1px;
 }
 
 .user_inf {
@@ -154,7 +161,7 @@
     margin-top: 10px;
 }
 .user_inf span {
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .close_btn {
@@ -184,11 +191,10 @@
     color: #000;
 }
 .menu_sec:hover {
-    background-color: #0d7c66;
-    color: #fff;
+    background-color: #0d7c6611;
 }
 .menu_sec span {
-    margin-left: 20px;
+    margin: 5px 0 0 15px;
 }
 
 .categories_menu {
@@ -204,6 +210,7 @@
     flex-direction: column;
     overflow-y: scroll;
     border-radius: 0 0 8px 8px;
+    user-select: none;
 }
 .categories_menu.show {
     height: fit-content;
@@ -213,6 +220,7 @@
 .categories {
     display: flex;
     justify-content: space-between;
+    user-select: none;
 }
 
 .categories_right {
@@ -264,16 +272,16 @@
     margin-bottom: 50px;
 }
 .main_title span {
-    font-size: 14px;
-    cursor: pointer;
+    background-color: red;
+    color: #fff;
     width: 25px;
     height: 25px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0d7c66;
-    border-radius: 50%;
-    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .user_icon {
@@ -291,6 +299,14 @@
 .user_icon:hover {
     background-color: #0d7c66;
     color: #fff;
+}
+
+@media (max-width: 1500px) {
+    .user_pannel {
+        right: -30%;
+        width: calc(30% - 60px);
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 1350px) {
@@ -351,6 +367,11 @@
         cursor: pointer;
         transition: 0.1s ease;
     }
+
+    .user_pannel {
+        right: -40%;
+        width: calc(40% - 60px);
+    }
 }
 
 @media (max-width: 950px) {
@@ -387,6 +408,11 @@
 
     .categ_item {
         width: 20%;
+    }
+
+    .user_pannel {
+        right: -50%;
+        width: calc(50% - 60px);
     }
 }
 
@@ -449,10 +475,6 @@
     .user_pannel {
         right: -100%;
         width: calc(100% - 60px);
-        padding: 30px;
-    }
-    .user_pannel.show {
-        right: 0;
     }
 }
 

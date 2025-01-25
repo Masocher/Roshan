@@ -138,6 +138,7 @@
 
 .section_options {
     color: #999;
+    user-select: none;
 }
 
 .section_options div {

@@ -2,12 +2,11 @@ import styles from "../../styles/global/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faClose,
-    faMobile,
     faReceipt,
     faRightToBracket,
     faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUser, faComments, faMap } from "@fortawesome/free-regular-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -51,12 +50,7 @@ export default function Header({ status, setStatus }) {
                         امیر مسعود چراغی
                     </div>
 
-                    <div className={styles.user_inf}>
-                        <span>
-                            <FontAwesomeIcon icon={faMobile} />
-                        </span>
-                        09054182307
-                    </div>
+                    <div className={styles.user_inf_number}>09054182307</div>
                 </div>
 
                 <div className={styles.menu_sections}>
@@ -71,7 +65,7 @@ export default function Header({ status, setStatus }) {
                         تاریخچه سفارشات
                     </Link>
 
-                    <Link
+                    {/* <Link
                         className={styles.menu_sec}
                         href={"/user-orders"}
                         onClick={() => setMenuStatus(false)}
@@ -84,14 +78,14 @@ export default function Header({ status, setStatus }) {
 
                     <Link
                         className={styles.menu_sec}
-                        href={"/user-orders"}
+                        href={"/user-comments"}
                         onClick={() => setMenuStatus(false)}
                     >
                         <span>
                             <FontAwesomeIcon icon={faComments} />
                         </span>
                         کامنت ها
-                    </Link>
+                    </Link> */}
 
                     <Link
                         className={styles.menu_sec}

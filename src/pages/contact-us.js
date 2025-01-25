@@ -20,6 +20,10 @@ export default function ContactUs() {
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
+            <MiniMenu
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
             <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.wrapper}>
@@ -86,10 +90,6 @@ export default function ContactUs() {
                 </form>
             </div>
 
-            <MiniMenu
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
             <Footer />
         </div>
     );
