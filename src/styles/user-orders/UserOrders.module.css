@@ -85,13 +85,15 @@
 
 .order_informations {
     display: flex;
-    margin: 30px 0;
+    flex-wrap: wrap;
+    margin: 30px 0 0 0;
 }
 
 .order_informations div {
     border-left: 1px solid #e8eef2;
     margin-left: 40px;
     padding-left: 40px;
+    margin-bottom: 30px;
 }
 
 .order_informations div {
@@ -121,7 +123,7 @@
 
 .product {
     width: 80px;
-    margin-left: 10px;
+    margin-left: 15px;
     position: relative;
 }
 
@@ -144,4 +146,35 @@
     position: absolute;
     left: 0;
     bottom: 0;
+}
+
+@media (max-width: 950px) {
+    .orders_container {
+        padding: 0;
+        width: 100%;
+        margin-top: 83px;
+    }   
+
+    .user_orders_main_title {
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+
+    .order {
+        padding: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .order_informations div {
+        margin-left: 20px;
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 580px) {
+    .order_informations div {
+        padding-left: 0;
+        border: none;
+    }
 }

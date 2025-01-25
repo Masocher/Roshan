@@ -10,6 +10,7 @@
     z-index: 9;
     border-bottom: 1px solid #e8eef2;
     user-select: none;
+    height: 85px;
 }
 
 .logo_wrapper {
@@ -30,7 +31,7 @@
 .header_links {
     display: flex;
     align-items: center;
-    height: 85px;
+    height: 100%;
     z-index: 9;
 }
 
@@ -123,7 +124,7 @@
     padding: 50px;
     height: 100%;
     background-color: #fff;
-    z-index: 10;
+    z-index: 12;
     transition: 0.5s ease;
 }
 .user_pannel.show {
@@ -301,6 +302,7 @@
 @media (max-width: 1200px) {
     .header_container {
         padding: 20px 30px;
+        height: 45px;
     }
     .header_links {
         display: none;
@@ -406,10 +408,6 @@
         font-size: 12px;
     }
 
-    .search_box_wrapper {
-        top: 77px;
-    }
-
     .categories_menu {
         height: calc(100% - 100px) !important;
         top: 100%;
@@ -446,6 +444,15 @@
     .main_title {
         font-size: 18px;
         margin: 30px 0;
+    }
+
+    .user_pannel {
+        right: -100%;
+        width: calc(100% - 60px);
+        padding: 30px;
+    }
+    .user_pannel.show {
+        right: 0;
     }
 }
 

@@ -1,5 +1,6 @@
 import styles from "../styles/user-orders/UserOrders.module.css";
 import Header from "@/components/global/Header";
+import MiniMenu from "@/components/global/MiniMenu";
 import BlackBackground from "@/components/global/BlacKBackground";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +19,10 @@ export default function UserOrders() {
     return (
         <div className={styles.container}>
             <BlackBackground
+                status={categoriesStatus}
+                setStatus={setCategoriesStatus}
+            />
+            <MiniMenu
                 status={categoriesStatus}
                 setStatus={setCategoriesStatus}
             />
