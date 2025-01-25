@@ -184,6 +184,26 @@ export default function UserOrders() {
 
                                 <div className={styles.badge}>2</div>
                             </div>
+
+                            <div className={styles.product}>
+                                <Image
+                                    className={styles.product_img}
+                                    src={img}
+                                    alt="عکس محصول"
+                                />
+
+                                <div className={styles.badge}>2</div>
+                            </div>
+
+                            <div className={styles.product}>
+                                <Image
+                                    className={styles.product_img}
+                                    src={img}
+                                    alt="عکس محصول"
+                                />
+
+                                <div className={styles.badge}>2</div>
+                            </div>
                         </div>
                     </div>
                 </div>

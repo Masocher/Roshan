@@ -118,6 +118,7 @@
 
 .products {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 30px;
 }
 
@@ -176,5 +177,9 @@
     .order_informations div {
         padding-left: 0;
         border: none;
+    }
+
+    .product {
+        margin: 0 0 20px 10px;
     }
 }
