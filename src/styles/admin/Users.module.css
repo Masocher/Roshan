@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #fff;
     text-align: center;
+    font-size: 14px;
 }
 
 .users_top {
@@ -14,6 +15,9 @@
 
 .users_title {
     font-family: KalamehM;
+    width: calc(85% / 5);
+}
+.users_title:nth-child(1) {
     width: 10%;
 }
 .hidden_title {
@@ -37,19 +41,19 @@
     width: 10%;
 }
 .user_name {
-    width: 10%;
+    width: calc(85% / 5);
 }
 .user_phone {
-    width: 10%;
+    width: calc(85% / 5);
 }
 .user_status {
-    width: 10%;
+    width: calc(85% / 5);
 }
 .user_phone_status {
-    width: 10%;
+    width: calc(85% / 5);
 }
 .user_date {
-    width: 10%;
+    width: calc(85% / 5);
 }
 
 .user_buttons {
@@ -72,4 +76,10 @@
 
 .user_edit {
     color: #0d7c66;
+}
+
+@media (max-width: 1300px) {
+    .top_box {
+        top: 0;
+    }
 }

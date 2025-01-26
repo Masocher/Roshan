@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     font-size: 16px;
-    color: #0D7C66;
+    color: #12a386;
     border: 1px solid #e8eef2;
     padding: 8px 16px;
     border-radius: 8px;
@@ -71,7 +71,7 @@
 
 .product_left_content span {
     font-size: 14px;
-    color: #0D7C66;
+    color: #12a386;
     margin-bottom: 10px;
     background-color: #e8eef2;
     width: 30px;
@@ -84,7 +84,7 @@
     transition: .2s;
 }
 .product_left_content span:hover {
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
 }
 
@@ -134,7 +134,7 @@
     margin-bottom: 30px;
 }
 .bonus_code_box input:focus {
-    border-color: #0D7C66;
+    border-color: #12a386;
 }
 
 .bonus_code_box button {
@@ -143,10 +143,10 @@
     top: 9.5px;
     font-family: Kalameh;
     font-size: 12px;
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     outline: 0;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     border-radius: 8px;
     cursor: pointer;
     padding: 3px 10px;
@@ -183,13 +183,13 @@
     width: 100%;
     border-radius: 8px;
     padding: 12px 0;
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     text-align: center;
     margin-top: 20px;
     cursor: pointer;
     transition: 0.2s;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     text-decoration: none;
 }
 

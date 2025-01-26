@@ -8,7 +8,7 @@
 }
 
 .alert_link {
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     display: flex;
     align-items: center;
@@ -16,13 +16,13 @@
     padding: 4px 10px;
     border-radius: 5px;
     margin-right: 20px;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     cursor: pointer;
     transition: 0.2s;
 }
 .alert_link:hover {
     background-color: #fff;
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .alert_link div {

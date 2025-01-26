@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #fff;
     text-align: center;
+    font-size: 14px;
 }
 
 .orders_top {
@@ -28,7 +29,7 @@
     cursor: pointer;
 }
 .order:hover {
-    background-color: #0d7c6611;
+    background-color: #12a38611;
 }
 .order_id {
     width: calc(100% / 6);
@@ -63,7 +64,7 @@
 }
 
 .products_search {
-    width: 500px;
+    width: 400px;
     position: relative;
 }
 
@@ -89,7 +90,7 @@
     cursor: pointer;
 }
 .products_search span:hover {
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .inventory_button {
@@ -118,7 +119,7 @@
     position: absolute;
     left: 3px;
     top: 3px;
-    background-color: #0d7c66;
+    background-color: #12a386;
 }
 
 .search_buttons {
@@ -139,7 +140,7 @@
 
 .perv_btn,
 .next_btn {
-    background-color: #0d7c66;
+    background-color: #12a386;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -147,13 +148,13 @@
     padding: 0 20px;
     border-radius: 5px;
     color: #fff;
-    border: 1px solid #0d7c66;
+    border: 1px solid #12a386;
     font-size: 14px;
 }
 .perv_btn:hover,
 .next_btn:hover {
     background-color: #fff;
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .perv_btn {
@@ -185,14 +186,24 @@
     border: 1px solid #e8eef2;
 }
 .page_btn.show {
-    border-color: #0d7c66;
+    border-color: #12a386;
     color: #fff;
-    background-color: #0d7c66;
+    background-color: #12a386;
 }
 .page_btn:hover {
-    border-color: #0d7c66;
-    color: #0d7c66;
+    border-color: #12a386;
+    color: #12a386;
 }
 .page_btn.show:hover {
     color: #fff;
+}
+
+@media (max-width: 1300px) {
+    .search_box {
+        top: 0;
+    }
+
+    .pagination {
+        margin-bottom: 50px;
+    }
 }

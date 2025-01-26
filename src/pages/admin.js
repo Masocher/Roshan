@@ -44,7 +44,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faBoxOpen} />
                         </span>
-                        محصولات
+                        <div>محصولات</div>
                     </div>
 
                     <div
@@ -56,7 +56,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faTruckRampBox} />
                         </span>
-                        سفارشات
+                        <div>سفارشات</div>
                     </div>
 
                     <div
@@ -68,7 +68,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faList} />
                         </span>
-                        دسته بندی ها
+                        <div>دسته بندی ها</div>
                     </div>
 
                     <div
@@ -80,7 +80,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faCopyright} />
                         </span>
-                        برند ها
+                        <div>برند ها</div>
                     </div>
 
                     <div
@@ -92,7 +92,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faComments} />
                         </span>
-                        نظرات
+                        <div>نظرات</div>
                     </div>
 
                     <div
@@ -104,7 +104,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faUsers} />
                         </span>
-                        کاربران
+                        <div>کاربران</div>
                     </div>
 
                     <div
@@ -116,7 +116,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faSackDollar} />
                         </span>
-                        کد های تخفیف
+                        <div>کد های تخفیف</div>
                     </div>
 
                     <div
@@ -128,7 +128,7 @@ export default function Admin() {
                         <span>
                             <FontAwesomeIcon icon={faMessage} />
                         </span>
-                        تیکت ها
+                        <div>تیکت ها</div>
                     </div>
                 </div>
 
@@ -136,7 +136,7 @@ export default function Admin() {
                     <span>
                         <FontAwesomeIcon icon={faArrowRightToBracket} />
                     </span>
-                    برگشت به فروشگاه
+                    <div>برگشت به فروشگاه</div>
                 </Link>
             </div>
 

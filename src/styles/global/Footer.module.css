@@ -11,7 +11,7 @@
 .logo {
     font-size: 40px;
     font-family: KalamehB;
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .top_section {
@@ -35,7 +35,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    background-color: #0D7C66;
+    background-color: #12a386;
     margin-right: 10px;
     color: #fff;
     font-size: 18px;
@@ -45,14 +45,14 @@
 }
 .icon_box:hover {
     background: none;
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .scroll_btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     cursor: pointer;
     font-size: 14px;
@@ -76,7 +76,7 @@
     left: 0;
     width: 100%;
     text-align: center;
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     padding: 20px 0;
     height: fit-content;
@@ -123,7 +123,7 @@
 .cs2 form button {
     border: none;
     outline: 0;
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     font-family: Kalameh;
     cursor: pointer;
@@ -147,7 +147,7 @@
     font-size: 14px;
 }
 .section_options div:hover {
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .hidden_center_sections {
@@ -190,7 +190,7 @@
     margin-top: 10px;
 }
 .hidden_section_options div:hover {
-    color: #0D7C66;
+    color: #12a386;
 }
 
 @media (max-width: 1200px) {

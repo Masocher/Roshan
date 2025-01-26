@@ -10,7 +10,7 @@ export default function Brands() {
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
-                    دسته بندی جدید
+                    برند جدید
                 </div>
             </div>
 

@@ -15,7 +15,7 @@
 
 .logo_wrapper {
     font-size: 30px;
-    color: #0d7c66;
+    color: #12a386;
     font-family: KalamehB;
     margin: 0 0 0 40px;
     text-decoration: none;
@@ -46,14 +46,14 @@
     align-items: center;
 }
 .header_l.show {
-    color: #0d7c66;
+    color: #12a386;
     font-family: KalamehM;
 }
 
 .auth_btn {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
-    border: 1px solid #0d7c66;
+    border: 1px solid #12a386;
     cursor: pointer;
     transition: 0.2s;
     border-radius: 5px;
@@ -79,7 +79,7 @@
     border: 1px solid #e8eef2;
 }
 .search_box input:focus {
-    border-color: #0d7c66;
+    border-color: #12a386;
 }
 
 .search_box div {
@@ -94,6 +94,7 @@
 .header_left_section {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .black_back,
@@ -143,7 +144,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -237,9 +238,9 @@
     background-color: #fff;
 }
 .categ_box.show {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
-    border-color: #0d7c66;
+    border-color: #12a386;
 }
 
 .categories_left {
@@ -255,10 +256,9 @@
     padding: 20px 0;
     font-size: 14px;
     cursor: pointer;
-    transition: 0.1s ease;
 }
 .categ_item:hover {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
 }
 
@@ -297,7 +297,7 @@
     transition: 0.2s;
 }
 .user_icon:hover {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
 }
 

@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #fff;
     text-align: center;
+    font-size: 14px;
 }
 
 .offers_top {
@@ -14,7 +15,10 @@
 
 .offers_title {
     font-family: KalamehM;
-    width: 20%;
+    width: calc(90% / 3);
+}
+.offers_title:nth-child(1) {
+    width: 10%;
 }
 .hidden_title {
     width: 5%;
@@ -31,19 +35,19 @@
     cursor: pointer;
 }
 .offer:hover {
-    background-color: #0d7c6611;
+    background-color: #12a38611;
 }
 .offer_id {
-    width: 20%;
+    width: 10%;
 }
 .offer_date {
-    width: 20%;
+    width: calc(90% / 3);
 }
 .offer_code {
-    width: 20%;
+    width: calc(90% / 3);
 }
 .offer_value {
-    width: 20%;
+    width: calc(90% / 3);
 }
 
 .offer_buttons {
@@ -65,7 +69,7 @@
 }
 
 .offer_edit {
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .top_box {
@@ -86,7 +90,7 @@
 }
 
 .add_btn {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
     padding: 8px 16px;
     border-radius: 5px;
@@ -94,13 +98,19 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    border: 1px solid #0d7c66;
+    border: 1px solid #12a386;
     transition: 0.2s;
 }
 .add_btn:hover {
     background-color: #fff;
-    color: #0d7c66;
+    color: #12a386;
 }
 .add_btn span {
     margin: 5px 0 0 5px;
+}
+
+@media (max-width: 1300px) {
+    .top_box {
+        top: 0;
+    }
 }

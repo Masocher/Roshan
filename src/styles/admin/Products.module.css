@@ -22,7 +22,7 @@
     width: 100px;
 }
 .products_title:nth-child(3) {
-    width: calc(55% - 100px);
+    width: calc(50% - 100px);
 }
 .products_title:nth-child(4) {
     width: 10%;
@@ -48,7 +48,7 @@
     cursor: pointer;
 }
 .product:hover {
-    background-color: #0d7c6611;
+    background-color: #12a38611;
 }
 .product_id {
     width: 10%;
@@ -59,10 +59,11 @@
     object-fit: contain;
 }
 .product_name {
-    width: calc(55% - 100px);
+    width: calc(50% - 100px);
 }
 .product_price {
     width: 10%;
+    overflow: auto;
 }
 .product_date {
     width: 10%;
@@ -89,7 +90,7 @@
 }
 
 .product_edit {
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .search_box {
@@ -106,7 +107,7 @@
 }
 
 .products_search {
-    width: 500px;
+    width: 400px;
     position: relative;
 }
 
@@ -132,7 +133,7 @@
     cursor: pointer;
 }
 .products_search span:hover {
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .inventory_button {
@@ -161,7 +162,7 @@
     position: absolute;
     left: 3px;
     top: 3px;
-    background-color: #0d7c66;
+    background-color: #12a386;
 }
 
 .pagination {
@@ -175,7 +176,7 @@
 
 .perv_btn,
 .next_btn {
-    background-color: #0D7C66;
+    background-color: #12a386;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -183,13 +184,13 @@
     padding: 0 20px;
     border-radius: 5px;
     color: #fff;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     font-size: 14px;
 }
 .perv_btn:hover,
 .next_btn:hover {
     background-color: #fff;
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .perv_btn {
@@ -221,20 +222,20 @@
     border: 1px solid #e8eef2;
 }
 .page_btn.show {
-    border-color: #0D7C66;
+    border-color: #12a386;
     color: #fff;
-    background-color: #0D7C66;
+    background-color: #12a386;
 }
 .page_btn:hover {
-    border-color: #0D7C66;
-    color: #0D7C66;
+    border-color: #12a386;
+    color: #12a386;
 }
 .page_btn.show:hover {
     color: #fff;
 }
 
 .add_btn {
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     padding: 8px 16px;
     border-radius: 5px;
@@ -242,13 +243,23 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     transition: .2s;
 }
 .add_btn:hover {
     background-color: #fff;
-    color: #0D7C66;
+    color: #12a386;
 }
 .add_btn span {
     margin: 5px 0 0 5px;
+}
+
+@media (max-width: 1300px) {
+    .search_box {
+        top: 0;
+    }
+
+    .pagination {
+        margin-bottom: 50px;
+    }
 }

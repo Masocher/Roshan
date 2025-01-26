@@ -32,7 +32,7 @@
     letter-spacing: 0.5px;
 }
 .input_box:focus {
-    border-color: #0d7c66;
+    border-color: #12a386;
 }
 
 .inf_input {
@@ -58,7 +58,7 @@
 .inf_title {
     width: fit-content;
     margin-left: 10px;
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .inf_value {
@@ -72,7 +72,7 @@
 }
 
 .send_message_btn {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
     margin: 0;
     padding: 16px 0;

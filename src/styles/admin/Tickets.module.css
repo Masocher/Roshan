@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #fff;
     text-align: center;
+    font-size: 14px;
 }
 
 .tickets_top {
@@ -14,7 +15,10 @@
 
 .tickets_title {
     font-family: KalamehM;
-    width: 30%;
+    width: calc(85% / 2);
+}
+.tickets_title:nth-child(1) {
+    width: 10%;
 }
 .hidden_title {
     width: 5%;
@@ -34,13 +38,13 @@
     background-color: #0d7c6611;
 }
 .ticket_id {
-    width: 30%;
+    width: 10%;
 }
 .ticket_name {
-    width: 30%;
+    width: calc(85% / 2);
 }
 .ticket_phone {
-    width: 30%;
+    width: calc(85% / 2);
 }
 
 .ticket_buttons {
@@ -57,10 +61,16 @@
 }
 
 .ticket_seen {
-    color: #0d7c66;
+    color: #12a386;
     margin-bottom: 10px;
 }
 
 .ticket_reply {
     color: #00A9FF;
+}
+
+@media (max-width: 1300px) {
+    .top_box {
+        top: 0;
+    }
 }

@@ -33,7 +33,7 @@
     user-select: none;
 }
 .f_box.show {
-    color: #0D7C66;
+    color: #12a386;
     font-family: KalamehM;
 }
 
@@ -53,7 +53,7 @@
 
 .perv_btn,
 .next_btn {
-    background-color: #0D7C66;
+    background-color: #12a386;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -61,13 +61,13 @@
     padding: 0 20px;
     border-radius: 5px;
     color: #fff;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     font-size: 14px;
 }
 .perv_btn:hover,
 .next_btn:hover {
     background-color: #fff;
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .perv_btn {
@@ -99,13 +99,13 @@
     border: 1px solid #e8eef2;
 }
 .page_btn.show {
-    border-color: #0D7C66;
+    border-color: #12a386;
     color: #fff;
-    background-color: #0D7C66;
+    background-color: #12a386;
 }
 .page_btn:hover {
-    border-color: #0D7C66;
-    color: #0D7C66;
+    border-color: #12a386;
+    color: #12a386;
 }
 .page_btn.show:hover {
     color: #fff;

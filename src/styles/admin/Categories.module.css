@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #fff;
     text-align: center;
+    font-size: 14px;
 }
 
 .categories_top {
@@ -14,7 +15,10 @@
 
 .categories_title {
     font-family: KalamehM;
-    width: calc(100% / 3);
+    width: calc(90% / 2);
+}
+.categories_title:nth-child(1) {
+    width: 10%;
 }
 .hidden_title {
     width: 5%;
@@ -31,16 +35,16 @@
     cursor: pointer;
 }
 .category:hover {
-    background-color: #0d7c6611;
+    background-color: #12a38611;
 }
 .category_id {
-    width: calc(100% / 3);
+    width: 10%;
 }
 .category_name {
-    width: calc(100% / 3);
+    width: calc(90% / 2);
 }
 .category_value {
-    width: calc(100% / 3);
+    width: calc(90% / 2);
 }
 
 .category_buttons {
@@ -59,7 +63,7 @@
 }
 
 .category_edit {
-    color: #0d7c66;
+    color: #12a386;
 }
 
 .top_box {
@@ -80,7 +84,7 @@
 }
 
 .add_btn {
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
     padding: 8px 16px;
     border-radius: 5px;
@@ -88,13 +92,19 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    border: 1px solid #0d7c66;
+    border: 1px solid #12a386;
     transition: 0.2s;
 }
 .add_btn:hover {
     background-color: #fff;
-    color: #0d7c66;
+    color: #12a386;
 }
 .add_btn span {
     margin: 5px 0 0 5px;
+}
+
+@media (max-width: 1300px) {
+    .top_box {
+        top: 0;
+    }
 }

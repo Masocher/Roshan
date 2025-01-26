@@ -56,7 +56,7 @@
 .status_box {
     width: 18px;
     height: 18px;
-    background-color: #0d7c66;
+    background-color: #12a386;
     margin-left: 10px;
     color: #fff;
     display: flex;
@@ -72,7 +72,7 @@
 
 .tracking_code {
     margin-top: 30px;
-    background-color: #0d7c6611;
+    background-color: #12a38611;
     width: fit-content;
     padding: 10px 20px;
     border-radius: 8px;
@@ -106,7 +106,7 @@
 }
 
 .order_address {
-    background-color: #0d7c6611;
+    background-color: #12a38611;
     padding: 15px;
     border-radius: 8px;
     display: flex;
@@ -136,7 +136,7 @@
 .badge {
     width: 20px;
     height: 20px;
-    background-color: #0d7c66;
+    background-color: #12a386;
     color: #fff;
     border-radius: 50%;
     display: flex;

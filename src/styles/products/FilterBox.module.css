@@ -85,7 +85,7 @@
     display: none;
     width: 100%;
     height: 100%;
-    background-color: #0D7C66;
+    background-color: #12a386;
     color: #fff;
     justify-content: center;
     align-items: center;
@@ -124,14 +124,14 @@
     width: calc(100% - 60px);
 }
 .price_input:focus {
-    border-color: #0D7C66;
+    border-color: #12a386;
 }
 
 .price_btn {
     outline: 0;
-    border: 1px solid #0D7C66;
+    border: 1px solid #12a386;
     color: #fff;
-    background-color: #0D7C66;
+    background-color: #12a386;
     padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -139,7 +139,7 @@
 }
 .price_btn:hover {
     background: none;
-    color: #0D7C66;
+    color: #12a386;
 }
 
 .toman {
@@ -177,7 +177,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0D7C66;
+    background-color: #12a386;
     border-radius: 50%;
     color: #fff;
 }
