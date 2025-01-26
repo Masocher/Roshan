@@ -67,7 +67,7 @@
 }
 
 .order_status:nth-child(2) .status_box {
-    background-color: red;
+    background-color: #F93827;
 }
 
 .tracking_code {

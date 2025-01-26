@@ -71,7 +71,7 @@
 
 .product_left_content span {
     font-size: 14px;
-    color: #12a386;
+    color: #F93827;
     margin-bottom: 10px;
     background-color: #e8eef2;
     width: 30px;
@@ -84,7 +84,7 @@
     transition: .2s;
 }
 .product_left_content span:hover {
-    background-color: #12a386;
+    background-color: #F93827;
     color: #fff;
 }
 

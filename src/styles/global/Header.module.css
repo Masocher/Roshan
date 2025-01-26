@@ -166,7 +166,7 @@
 }
 
 .close_btn {
-    background-color: red;
+    background-color: #F93827;
     color: #fff;
     width: 25px;
     height: 25px;
@@ -272,7 +272,7 @@
     margin-bottom: 50px;
 }
 .main_title span {
-    background-color: red;
+    background-color: #F93827;
     color: #fff;
     width: 25px;
     height: 25px;
