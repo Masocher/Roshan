@@ -10,18 +10,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import img from "../../../public/images/1.webp";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Products() {
     return (
         <div className={styles.container}>
             <div className={styles.search_box}>
-                <div className={styles.add_btn}>
+                <Link className={styles.add_btn} href={"/admin/create-product"}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
                     محصول جدید
-                </div>
-                
+                </Link>
+
                 <form className={styles.products_search}>
                     <input type="text" placeholder="جستجوی محصول ..." />
 

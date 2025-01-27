@@ -245,6 +245,7 @@
     cursor: pointer;
     border: 1px solid #12a386;
     transition: .2s;
+    text-decoration: none;
 }
 .add_btn:hover {
     background-color: #fff;
