@@ -72,9 +72,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${0}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -100,9 +103,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${1}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -128,9 +134,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${2}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -156,9 +165,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${3}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -184,9 +196,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${4}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -212,9 +227,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${5}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -240,9 +258,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${6}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -268,9 +289,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${7}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -296,9 +320,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${8}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -324,9 +351,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${9}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -352,9 +382,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${10}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -380,9 +413,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${11}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -408,9 +444,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${12}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -436,9 +475,12 @@ export default function Products() {
                             <FontAwesomeIcon icon={faTrashCan} />
                         </div>
 
-                        <div className={styles.product_edit}>
+                        <Link
+                            href={`/admin/edit-product/${13}`}
+                            className={styles.product_edit}
+                        >
                             <FontAwesomeIcon icon={faGear} />
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>

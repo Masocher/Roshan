@@ -26,6 +26,7 @@
     color: #fff;
     border: 1px solid #12a386;
     transition: 0.2s;
+    cursor: pointer;
 }
 .back_btn:hover {
     background: none;
@@ -180,6 +181,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    border: 1px solid #12a386;
+    transition: .2s;
+}
+.add_feature_btn:hover {
+    background: none;
+    color: #12a386;
 }
 
 .features {
@@ -195,10 +203,27 @@
     flex-direction: column;
     margin-left: 20px;
     margin-top: 20px;
+    position: relative;
 }
 .feature_box .title {
     color: #777;
     margin-bottom: 5px;
+}
+
+.close_btn {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    font-size: 12px;
+    background-color: #F93827;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .inventory_button {

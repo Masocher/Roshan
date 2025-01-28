@@ -1,6 +1,11 @@
 import styles from "../../styles/admin/Orders.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+    faSearch,
+    faAngleLeft,
+    faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function Orders() {
     return (
@@ -41,7 +46,7 @@ export default function Orders() {
                     <div className={styles.orders_title}>وضعیت ارسال</div>
                 </div>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${0}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -51,9 +56,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${1}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -63,9 +68,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${2}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -75,9 +80,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${3}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -87,9 +92,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${4}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -99,9 +104,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${5}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -111,9 +116,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${6}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -123,9 +128,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${7}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -135,9 +140,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${8}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -147,9 +152,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${9}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -159,9 +164,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${10}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -171,9 +176,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${11}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -183,9 +188,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${12}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -195,9 +200,9 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
 
-                <div className={styles.order}>
+                <Link className={styles.order} href={`/admin/order/${13}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -207,7 +212,7 @@ export default function Orders() {
                     <div className={styles.order_price}>پرداخت شده</div>
                     <div className={styles.order_date}>1403/1/14</div>
                     <div className={styles.order_active}>ارسال شده</div>
-                </div>
+                </Link>
             </div>
 
             <div className={styles.pagination}>

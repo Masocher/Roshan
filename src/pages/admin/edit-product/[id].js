@@ -1,13 +1,13 @@
-import styles from "../../styles/admin-options/CreateProduct.module.css";
+import styles from "../../../styles/admin-options/CreateProduct.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faArrowRight,
-    faPlus,
     faClose,
+    faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
-export default function CreateProduct() {
+export default function EditProduct() {
     const router = useRouter();
 
     return (
@@ -19,7 +19,7 @@ export default function CreateProduct() {
                     </span>
                     بازگشت
                 </div>
-                افزودن محصول جدید
+                ویرایش محصول
             </div>
 
             <form
@@ -98,22 +98,6 @@ export default function CreateProduct() {
                         </div>
 
                         <div className={styles.features}>
-                            <div className={styles.feature_box}>
-                                <div className={styles.title}>جنس</div>
-                                <div className={styles.desc}>فلزی</div>
-                                <div className={styles.close_btn}>
-                                    <FontAwesomeIcon icon={faClose} />
-                                </div>
-                            </div>
-
-                            <div className={styles.feature_box}>
-                                <div className={styles.title}>جنس</div>
-                                <div className={styles.desc}>فلزی</div>
-                                <div className={styles.close_btn}>
-                                    <FontAwesomeIcon icon={faClose} />
-                                </div>
-                            </div>
-
                             <div className={styles.feature_box}>
                                 <div className={styles.title}>جنس</div>
                                 <div className={styles.desc}>فلزی</div>

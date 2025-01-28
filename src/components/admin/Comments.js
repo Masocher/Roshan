@@ -43,7 +43,6 @@ export default function Comments() {
                     <div className={styles.comments_title}>امتیاز</div>
                     <div className={styles.comments_title}>تاریخ</div>
                     <div className={styles.comments_title}>وضعیت</div>
-                    <div className={styles.hidden_box}></div>
                 </div>
 
                 <div className={styles.comment}>
@@ -74,20 +73,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -118,20 +103,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -162,20 +133,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -206,20 +163,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -250,20 +193,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -294,20 +223,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -338,20 +253,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -382,20 +283,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -426,20 +313,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.comment}>
@@ -470,20 +343,6 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-
-                    <div className={styles.comment_buttons}>
-                        <div className={styles.comment_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.comment_edit}>
-                            <FontAwesomeIcon icon={faCheckSquare} />
-                        </div>
-
-                        <div className={styles.comment_reply}>
-                            <FontAwesomeIcon icon={faReply} />
-                        </div>
-                    </div>
                 </div>
             </div>
 
