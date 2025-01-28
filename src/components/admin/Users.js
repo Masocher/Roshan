@@ -1,6 +1,5 @@
 import styles from "../../styles/admin/Users.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function Users() {
     return (
@@ -15,7 +14,7 @@ export default function Users() {
                     <div className={styles.hidden_title}></div>
                 </div>
 
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -25,19 +24,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -47,19 +36,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -69,19 +48,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -91,19 +60,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -113,19 +72,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -135,19 +84,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -157,19 +96,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -179,19 +108,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -201,19 +120,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -223,19 +132,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -245,19 +144,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -267,19 +156,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -289,19 +168,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -311,19 +180,9 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
+                </Link>
 
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.user}>
+                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -333,17 +192,7 @@ export default function Users() {
                     <div className={styles.user_status}>غیر فعال</div>
 
                     <div className={styles.user_phone_status}>تایید شده</div>
-
-                    <div className={styles.user_buttons}>
-                        <div className={styles.user_change_status}>
-                            <FontAwesomeIcon icon={faTriangleExclamation} />
-                        </div>
-
-                        <div className={styles.user_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
+                </Link>
             </div>
         </div>
     );

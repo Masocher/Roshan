@@ -15,13 +15,7 @@
 
 .users_title {
     font-family: KalamehM;
-    width: calc(85% / 5);
-}
-.users_title:nth-child(1) {
-    width: 10%;
-}
-.hidden_title {
-    width: 5%;
+    width: calc(100% / 5);
 }
 
 .user {
@@ -33,49 +27,26 @@
     width: calc(100% - 40px);
     font-size: 14px;
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 .user:hover {
     background-color: #0d7c6611;
 }
 .user_id {
-    width: 10%;
+    width: calc(100% / 5);
 }
 .user_name {
-    width: calc(85% / 5);
+    width: calc(100% / 5);
 }
 .user_phone {
-    width: calc(85% / 5);
+    width: calc(100% / 5);
 }
 .user_status {
-    width: calc(85% / 5);
+    width: calc(100% / 5);
 }
 .user_phone_status {
-    width: calc(85% / 5);
-}
-.user_date {
-    width: calc(85% / 5);
-}
-
-.user_buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 5%;
-}
-
-.user_buttons div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.user_change_status {
-    color: #ffb200;
-    margin-bottom: 10px;
-}
-
-.user_edit {
-    color: #0d7c66;
+    width: calc(100% / 5);
 }
 
 @media (max-width: 1300px) {
