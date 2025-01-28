@@ -184,15 +184,14 @@
 }
 
 .section_title {
-    color: #fff;
+    color: #444;
     padding: 15px 0;
-    background-color: #12a386;
     width: 870px;
     text-align: center;
-    border-radius: 8px;
     margin-top: 20px;
     font-family: KalamehM;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #444;
 }
 
 .bottom_section {

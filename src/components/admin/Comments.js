@@ -1,13 +1,11 @@
 import styles from "../../styles/admin/Comments.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faTrashCan,
-    faCheckSquare,
     faAngleRight,
     faAngleLeft,
     faStar,
-    faReply,
 } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function Comments() {
     return (
@@ -45,7 +43,10 @@ export default function Comments() {
                     <div className={styles.comments_title}>وضعیت</div>
                 </div>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -73,9 +74,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -103,9 +107,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -133,9 +140,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -163,9 +173,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -193,9 +206,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -223,9 +239,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -253,9 +272,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -283,9 +305,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -313,9 +338,12 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
 
-                <div className={styles.comment}>
+                <Link
+                    className={styles.comment}
+                    href={`/admin/edit-comment/${0}`}
+                >
                     <div className={styles.comment_id}>1</div>
 
                     <div className={styles.comment_user}>09054182307</div>
@@ -343,7 +371,7 @@ export default function Comments() {
                     <div className={styles.comment_date}>1403/1/14</div>
 
                     <div className={styles.comment_status}>تایید نشده</div>
-                </div>
+                </Link>
             </div>
 
             <div className={styles.pagination}>

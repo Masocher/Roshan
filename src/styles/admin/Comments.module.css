@@ -34,9 +34,6 @@
 .comments_title:nth-child(6) {
     width: 10%;
 }
-.hidden_box {
-    width: 5%;
-}
 
 .comment {
     display: flex;
@@ -47,6 +44,8 @@
     width: calc(100% - 40px);
     font-size: 14px;
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 .comment:hover {
     background-color: #12a38611;
@@ -72,31 +71,6 @@
 }
 .comment_status {
     width: 10%;
-}
-.comment_buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 5%;
-}
-
-.comment_buttons div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.comment_delete {
-    color: #F93827;
-}
-
-.comment_edit {
-    color: #12a386;
-    margin: 10px 0;
-}
-
-.comment_reply {
-    color: #00A9FF;
 }
 
 .top_box {
