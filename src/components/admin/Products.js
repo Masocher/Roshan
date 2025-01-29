@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../../styles/admin/Products.module.css";
 import {
-    faGear,
     faSearch,
-    faTrashCan,
     faAngleLeft,
     faAngleRight,
     faPlus,
@@ -47,10 +45,12 @@ export default function Products() {
                     <div className={styles.products_title}>قیمت</div>
                     <div className={styles.products_title}>تاریخ</div>
                     <div className={styles.products_title}>وضعیت</div>
-                    <div className={styles.hidden_box}></div>
                 </div>
 
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -66,22 +66,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${0}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -97,22 +87,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${1}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -128,22 +108,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${2}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -159,22 +129,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${3}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -190,22 +150,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${4}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -221,22 +171,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${5}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -252,22 +192,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${6}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -283,22 +213,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${7}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -314,22 +234,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${8}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -345,22 +255,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${9}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -376,22 +276,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${10}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -407,22 +297,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${11}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -438,22 +318,12 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
+                </Link>
 
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${12}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
-
-                <div className={styles.product}>
+                <Link
+                    href={`/admin/edit-product/${0}`}
+                    className={styles.product}
+                >
                     <div className={styles.product_id}>1</div>
 
                     <Image
@@ -469,20 +339,7 @@ export default function Products() {
                     <div className={styles.product_price}>1,500,000</div>
                     <div className={styles.product_date}>1403/1/14</div>
                     <div className={styles.product_active}>فعال</div>
-
-                    <div className={styles.product_buttons}>
-                        <div className={styles.product_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <Link
-                            href={`/admin/edit-product/${13}`}
-                            className={styles.product_edit}
-                        >
-                            <FontAwesomeIcon icon={faGear} />
-                        </Link>
-                    </div>
-                </div>
+                </Link>
             </div>
 
             <div className={styles.pagination}>

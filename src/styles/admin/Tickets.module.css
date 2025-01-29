@@ -15,13 +15,10 @@
 
 .tickets_title {
     font-family: KalamehM;
-    width: calc(85% / 2);
+    width: calc(90% / 2);
 }
 .tickets_title:nth-child(1) {
     width: 10%;
-}
-.hidden_title {
-    width: 5%;
 }
 
 .ticket {
@@ -33,6 +30,8 @@
     width: calc(100% - 40px);
     font-size: 14px;
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 .ticket:hover {
     background-color: #0d7c6611;
@@ -41,32 +40,10 @@
     width: 10%;
 }
 .ticket_name {
-    width: calc(85% / 2);
+    width: calc(90% / 2);
 }
 .ticket_phone {
-    width: calc(85% / 2);
-}
-
-.ticket_buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 5%;
-}
-
-.ticket_buttons div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ticket_seen {
-    color: #12a386;
-    margin-bottom: 10px;
-}
-
-.ticket_reply {
-    color: #00A9FF;
+    width: calc(90% / 2);
 }
 
 @media (max-width: 1300px) {
