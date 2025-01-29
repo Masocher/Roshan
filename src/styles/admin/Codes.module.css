@@ -15,7 +15,7 @@
 
 .offers_title {
     font-family: KalamehM;
-    width: calc(90% / 4);
+    width: calc(90% / 3);
 }
 .offers_title:nth-child(1) {
     width: 10%;
@@ -39,17 +39,14 @@
 .offer_id {
     width: 10%;
 }
-.offer_product {
-    width: calc(90% / 4);
+.offer_date {
+    width: calc(90% / 3);
 }
-.offer_num {
-    width: calc(90% / 4);
-}
-.offer_status {
-    width: calc(90% / 4);
+.offer_code {
+    width: calc(90% / 3);
 }
 .offer_value {
-    width: calc(90% / 4);
+    width: calc(90% / 3);
 }
 
 .top_box {

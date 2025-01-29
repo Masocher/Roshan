@@ -10,6 +10,7 @@ import {
     faTruckRampBox,
     faUsers,
     faMessage,
+    faCubes,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Products from "@/components/admin/Products";
@@ -18,6 +19,7 @@ import Categories from "@/components/admin/Categories";
 import Brands from "@/components/admin/Brands";
 import Comments from "@/components/admin/Comments";
 import Users from "@/components/admin/Users";
+import Codes from "@/components/admin/Codes";
 import Offers from "@/components/admin/Offers";
 import Tickets from "@/components/admin/Tickets";
 import { useState } from "react";
@@ -126,6 +128,18 @@ export default function Admin() {
                         onClick={() => setPageNum(8)}
                     >
                         <span>
+                            <FontAwesomeIcon icon={faCubes} />
+                        </span>
+                        <div>آفر ها</div>
+                    </div>
+
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 9 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(9)}
+                    >
+                        <span>
                             <FontAwesomeIcon icon={faMessage} />
                         </span>
                         <div>تیکت ها</div>
@@ -154,8 +168,10 @@ export default function Admin() {
                 ) : pageNum === 6 ? (
                     <Users />
                 ) : pageNum === 7 ? (
-                    <Offers />
+                    <Codes />
                 ) : pageNum === 8 ? (
+                    <Offers />
+                ) : pageNum === 9 ? (
                     <Tickets />
                 ) : (
                     <div>چنین اطلاعاتی یافت نشد !</div>

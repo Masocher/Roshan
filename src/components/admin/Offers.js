@@ -1,147 +1,75 @@
 import styles from "../../styles/admin/Offers.module.css";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
 
 export default function Offers() {
     return (
         <div className={styles.container}>
             <div className={styles.top_box}>
-                <Link href={"/admin/create-code"} className={styles.add_btn}>
+                <Link href={"/admin/create-offer"} className={styles.add_btn}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
-                    کد تخفیف جدید
+                    آفر جدید
                 </Link>
             </div>
 
             <div className={styles.offers}>
                 <div className={styles.offers_top}>
                     <div className={styles.offers_title}>شماره</div>
-                    <div className={styles.offers_title}>فعال تا</div>
-                    <div className={styles.offers_title}>کد تخفیف</div>
-                    <div className={styles.offers_title}>مقدار</div>
-                    <div className={styles.hidden_title}></div>
+                    <div className={styles.offers_title}>محصولات</div>
+                    <div className={styles.offers_title}>حداقل تعداد</div>
+                    <div className={styles.offers_title}>نوع تخفیف</div>
+                    <div className={styles.offers_title}>مقدار تخفیف</div>
                 </div>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
-                    <div className={styles.offer_date}>1403/1/14</div>
+                    <div className={styles.offer_product}>4</div>
 
-                    <div className={styles.offer_code}>yalda00</div>
+                    <div className={styles.offer_num}>20</div>
 
-                    <div className={styles.offer_value}>500 هزارتومان</div>
+                    <div className={styles.offer_status}>درصدی</div>
+
+                    <div className={styles.offer_value}>10%</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
-                    <div className={styles.offer_date}>1403/1/14</div>
+                    <div className={styles.offer_product}>4</div>
 
-                    <div className={styles.offer_code}>yalda00</div>
+                    <div className={styles.offer_num}>20</div>
 
-                    <div className={styles.offer_value}>500 هزارتومان</div>
+                    <div className={styles.offer_status}>درصدی</div>
+
+                    <div className={styles.offer_value}>10%</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
-                    <div className={styles.offer_date}>1403/1/14</div>
+                    <div className={styles.offer_product}>4</div>
 
-                    <div className={styles.offer_code}>yalda00</div>
+                    <div className={styles.offer_num}>20</div>
 
-                    <div className={styles.offer_value}>500 هزارتومان</div>
+                    <div className={styles.offer_status}>درصدی</div>
+
+                    <div className={styles.offer_value}>10%</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
-                    <div className={styles.offer_date}>1403/1/14</div>
+                    <div className={styles.offer_product}>4</div>
 
-                    <div className={styles.offer_code}>yalda00</div>
+                    <div className={styles.offer_num}>20</div>
 
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
+                    <div className={styles.offer_status}>درصدی</div>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
-                </Link>
-
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
-                    <div className={styles.offer_id}>1</div>
-
-                    <div className={styles.offer_date}>1403/1/14</div>
-
-                    <div className={styles.offer_code}>yalda00</div>
-
-                    <div className={styles.offer_value}>500 هزارتومان</div>
+                    <div className={styles.offer_value}>10%</div>
                 </Link>
             </div>
         </div>
