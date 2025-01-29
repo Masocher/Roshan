@@ -188,14 +188,14 @@
 }
 
 .section_title {
-    color: #444;
+    color: #999;
     padding: 15px 0;
     width: 870px;
     text-align: center;
     margin-top: 20px;
     font-family: KalamehM;
     letter-spacing: 0.5px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #999;
 }
 
 .reply_input {
