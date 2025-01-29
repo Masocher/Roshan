@@ -20,9 +20,6 @@
 .offers_title:nth-child(1) {
     width: 10%;
 }
-.hidden_title {
-    width: 5%;
-}
 
 .offer {
     display: flex;
@@ -33,6 +30,8 @@
     width: calc(100% - 40px);
     font-size: 14px;
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 .offer:hover {
     background-color: #12a38611;
@@ -48,28 +47,6 @@
 }
 .offer_value {
     width: calc(90% / 3);
-}
-
-.offer_buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 5%;
-}
-
-.offer_buttons div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.offer_delete {
-    color: #F93827;
-    margin-bottom: 15px;
-}
-
-.offer_edit {
-    color: #12a386;
 }
 
 .top_box {

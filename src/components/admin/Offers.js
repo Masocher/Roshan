@@ -1,6 +1,7 @@
 import styles from "../../styles/admin/Offers.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faGear, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function Offers() {
     return (
@@ -23,7 +24,7 @@ export default function Offers() {
                     <div className={styles.hidden_title}></div>
                 </div>
 
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -31,19 +32,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -51,19 +42,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -71,19 +52,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -91,19 +62,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -111,19 +72,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -131,19 +82,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -151,19 +92,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -171,19 +102,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -191,19 +112,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -211,19 +122,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -231,19 +132,9 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
+                </Link>
 
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.offer}>
+                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -251,17 +142,7 @@ export default function Offers() {
                     <div className={styles.offer_code}>yalda00</div>
 
                     <div className={styles.offer_value}>500 هزارتومان</div>
-
-                    <div className={styles.offer_buttons}>
-                        <div className={styles.offer_delete}>
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </div>
-
-                        <div className={styles.offer_edit}>
-                            <FontAwesomeIcon icon={faGear} />
-                        </div>
-                    </div>
-                </div>
+                </Link>
             </div>
         </div>
     );
