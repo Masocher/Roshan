@@ -7,12 +7,12 @@ export default function Offers() {
     return (
         <div className={styles.container}>
             <div className={styles.top_box}>
-                <div className={styles.add_btn}>
+                <Link href={"/admin/create-code"} className={styles.add_btn}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
-                    دسته بندی جدید
-                </div>
+                    کد تخفیف جدید
+                </Link>
             </div>
 
             <div className={styles.offers}>

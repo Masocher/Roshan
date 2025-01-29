@@ -131,6 +131,8 @@ export default function CreateProduct() {
                         فعال کردن
                     </div>
                 </div>
+
+                <div className={styles.edit_btn}>افزودن محصول</div>
             </form>
         </div>
     );

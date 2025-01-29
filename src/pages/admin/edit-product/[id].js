@@ -115,6 +115,8 @@ export default function EditProduct() {
                         فعال کردن
                     </div>
                 </div>
+
+                <div className={styles.edit_btn}>ویرایش محصول</div>
             </form>
         </div>
     );

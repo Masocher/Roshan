@@ -39,7 +39,6 @@
 .create_product {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: fit-content;
     margin: 50px auto 0 auto;
     font-size: 14px;
@@ -183,7 +182,7 @@
     align-items: center;
     cursor: pointer;
     border: 1px solid #12a386;
-    transition: .2s;
+    transition: 0.2s;
 }
 .add_feature_btn:hover {
     background: none;
@@ -215,7 +214,7 @@
     top: -3px;
     right: -3px;
     font-size: 12px;
-    background-color: #F93827;
+    background-color: #f93827;
     width: 18px;
     height: 18px;
     display: flex;
@@ -258,4 +257,20 @@
     left: 3px;
     top: 3px;
     background-color: #12a386;
+}
+
+.edit_btn {
+    background-color: #12a386;
+    color: #fff;
+    border: 1px solid #12a386;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: fit-content;
+    transition: 0.2s;
+}
+.edit_btn:hover {
+    background: none;
+    color: #12a386;
 }
