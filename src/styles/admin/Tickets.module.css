@@ -15,10 +15,59 @@
 
 .tickets_title {
     font-family: KalamehM;
-    width: calc(90% / 2);
+    width: calc(90% / 3);
 }
 .tickets_title:nth-child(1) {
     width: 10%;
+}
+
+.top_box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: fit-content;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #e8eef2;
+    border-left: 1px solid #e8eef2;
+    border-right: 1px solid #e8eef2;
+    position: sticky;
+    top: -30px;
+    margin-bottom: 30px;
+    margin: 0 auto 20px 0;
+    box-shadow: 0 0 30px #00000017;
+}
+
+.inventory_button {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    color: #777;
+}
+.inventory_button:nth-child(2) {
+    margin: 0 50px;
+}
+
+.inventory_button div {
+    width: 37px;
+    height: 18px;
+    background-color: #e8eef2;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.inventory_button div span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    background-color: #12a386;
 }
 
 .ticket {
@@ -40,10 +89,13 @@
     width: 10%;
 }
 .ticket_name {
-    width: calc(90% / 2);
+    width: calc(90% / 3);
 }
 .ticket_phone {
-    width: calc(90% / 2);
+    width: calc(90% / 3);
+}
+.ticket_status {
+    width: calc(90% / 3);
 }
 
 @media (max-width: 1300px) {
