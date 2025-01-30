@@ -11,6 +11,7 @@ import {
     faUsers,
     faMessage,
     faCubes,
+    faPercent,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Products from "@/components/admin/Products";
@@ -21,6 +22,7 @@ import Comments from "@/components/admin/Comments";
 import Users from "@/components/admin/Users";
 import Codes from "@/components/admin/Codes";
 import Offers from "@/components/admin/Offers";
+import Discounts from "@/components/admin/Discounts";
 import Tickets from "@/components/admin/Tickets";
 import { useState } from "react";
 
@@ -140,6 +142,18 @@ export default function Admin() {
                         onClick={() => setPageNum(9)}
                     >
                         <span>
+                            <FontAwesomeIcon icon={faPercent} />
+                        </span>
+                        <div>تخفیف ها</div>
+                    </div>
+
+                    <div
+                        className={`${styles.menu_item} ${
+                            pageNum === 10 ? styles.show : ""
+                        }`}
+                        onClick={() => setPageNum(10)}
+                    >
+                        <span>
                             <FontAwesomeIcon icon={faMessage} />
                         </span>
                         <div>تیکت ها</div>
@@ -172,6 +186,8 @@ export default function Admin() {
                 ) : pageNum === 8 ? (
                     <Offers />
                 ) : pageNum === 9 ? (
+                    <Discounts />
+                ) : pageNum === 10 ? (
                     <Tickets />
                 ) : (
                     <div>چنین اطلاعاتی یافت نشد !</div>
