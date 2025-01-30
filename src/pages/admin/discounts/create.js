@@ -1,9 +1,9 @@
-import styles from "../../styles/admin-options/CreateOffer.module.css";
+import styles from "../../../styles/admin-options/EditDiscount.module.css";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
 
-export default function CreateOffer() {
+export default function CreateDiscount() {
     const router = useRouter();
 
     return (
@@ -15,17 +15,12 @@ export default function CreateOffer() {
                     </span>
                     بازگشت
                 </div>
-                افزودن آفر
+                افزودن تخفیف
             </div>
 
             <div className={styles.code}>
                 <div className={styles.first_section}>
                     <div className={styles.inputs}>
-                        <input
-                            type="text"
-                            placeholder="حداقل تعداد را وارد کنید"
-                        />
-                        
                         <input type="text" placeholder="مقدار تخفیف" />
                     </div>
 
@@ -69,7 +64,7 @@ export default function CreateOffer() {
                     </div>
                 </div>
 
-                <div className={styles.edit_btn}>افزودن آفر</div>
+                <div className={styles.edit_btn}>افزودن تخفیف</div>
             </div>
         </div>
     );

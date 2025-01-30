@@ -7,7 +7,7 @@ export default function Codes() {
     return (
         <div className={styles.container}>
             <div className={styles.top_box}>
-                <Link href={"/admin/create-code"} className={styles.add_btn}>
+                <Link href={"/admin/codes/create"} className={styles.add_btn}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
@@ -24,7 +24,7 @@ export default function Codes() {
                     <div className={styles.hidden_title}></div>
                 </div>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -34,7 +34,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -44,7 +44,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -54,7 +54,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -64,7 +64,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -74,7 +74,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -84,7 +84,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -94,7 +94,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -104,7 +104,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -114,7 +114,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -124,7 +124,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>
@@ -134,7 +134,7 @@ export default function Codes() {
                     <div className={styles.offer_value}>500 هزارتومان</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-code/${0}`}>
+                <Link className={styles.offer} href={`/admin/codes/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_date}>1403/1/14</div>

@@ -46,7 +46,7 @@ export default function Orders() {
                     <div className={styles.orders_title}>وضعیت ارسال</div>
                 </div>
 
-                <Link className={styles.order} href={`/admin/order/${0}`}>
+                <Link className={styles.order} href={`/admin/orders/${0}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -58,7 +58,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${1}`}>
+                <Link className={styles.order} href={`/admin/orders/${1}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -70,7 +70,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${2}`}>
+                <Link className={styles.order} href={`/admin/orders/${2}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -82,7 +82,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${3}`}>
+                <Link className={styles.order} href={`/admin/orders/${3}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -94,7 +94,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${4}`}>
+                <Link className={styles.order} href={`/admin/orders/${4}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -106,7 +106,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${5}`}>
+                <Link className={styles.order} href={`/admin/orders/${5}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -118,7 +118,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${6}`}>
+                <Link className={styles.order} href={`/admin/orders/${6}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -130,7 +130,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${7}`}>
+                <Link className={styles.order} href={`/admin/orders/${7}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -142,7 +142,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${8}`}>
+                <Link className={styles.order} href={`/admin/orders/${8}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -154,7 +154,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${9}`}>
+                <Link className={styles.order} href={`/admin/orders/${9}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -166,7 +166,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${10}`}>
+                <Link className={styles.order} href={`/admin/orders/${10}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -178,7 +178,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${11}`}>
+                <Link className={styles.order} href={`/admin/orders/${11}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -190,7 +190,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${12}`}>
+                <Link className={styles.order} href={`/admin/orders/${12}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>
@@ -202,7 +202,7 @@ export default function Orders() {
                     <div className={styles.order_active}>ارسال شده</div>
                 </Link>
 
-                <Link className={styles.order} href={`/admin/order/${13}`}>
+                <Link className={styles.order} href={`/admin/orders/${13}`}>
                     <div className={styles.order_id}>1</div>
 
                     <div className={styles.phone_number}>09054182307</div>

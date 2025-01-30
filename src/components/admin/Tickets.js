@@ -36,7 +36,7 @@ export default function Tickets() {
                 </div>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -49,7 +49,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -62,7 +62,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -75,7 +75,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -88,7 +88,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -101,7 +101,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -114,7 +114,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -127,7 +127,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -140,7 +140,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -153,7 +153,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>
@@ -166,7 +166,7 @@ export default function Tickets() {
                 </Link>
 
                 <Link
-                    href={`/admin/show-ticket/${0}`}
+                    href={`/admin/tickets/${0}`}
                     className={styles.ticket}
                 >
                     <div className={styles.ticket_id}>1</div>

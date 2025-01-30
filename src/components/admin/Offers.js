@@ -7,7 +7,7 @@ export default function Offers() {
     return (
         <div className={styles.container}>
             <div className={styles.top_box}>
-                <Link href={"/admin/create-offer"} className={styles.add_btn}>
+                <Link href={"/admin/offers/create"} className={styles.add_btn}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
@@ -24,7 +24,7 @@ export default function Offers() {
                     <div className={styles.offers_title}>مقدار تخفیف</div>
                 </div>
 
-                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
+                <Link className={styles.offer} href={`/admin/offers/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_product}>4</div>
@@ -36,7 +36,7 @@ export default function Offers() {
                     <div className={styles.offer_value}>10%</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
+                <Link className={styles.offer} href={`/admin/offers/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_product}>4</div>
@@ -48,7 +48,7 @@ export default function Offers() {
                     <div className={styles.offer_value}>10%</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
+                <Link className={styles.offer} href={`/admin/offers/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_product}>4</div>
@@ -60,7 +60,7 @@ export default function Offers() {
                     <div className={styles.offer_value}>10%</div>
                 </Link>
 
-                <Link className={styles.offer} href={`/admin/edit-offer/${0}`}>
+                <Link className={styles.offer} href={`/admin/offers/${0}`}>
                     <div className={styles.offer_id}>1</div>
 
                     <div className={styles.offer_product}>4</div>

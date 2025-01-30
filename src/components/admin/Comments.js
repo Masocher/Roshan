@@ -45,7 +45,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -78,7 +78,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -111,7 +111,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -144,7 +144,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -177,7 +177,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -210,7 +210,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -243,7 +243,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -276,7 +276,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -309,7 +309,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 
@@ -342,7 +342,7 @@ export default function Comments() {
 
                 <Link
                     className={styles.comment}
-                    href={`/admin/edit-comment/${0}`}
+                    href={`/admin/comments/${0}`}
                 >
                     <div className={styles.comment_id}>1</div>
 

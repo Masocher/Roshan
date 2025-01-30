@@ -1,4 +1,4 @@
-import styles from "../../styles/admin-options/CreateProduct.module.css";
+import styles from "../../../styles/admin-options/CreateProduct.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faArrowRight,

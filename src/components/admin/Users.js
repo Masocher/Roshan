@@ -14,7 +14,7 @@ export default function Users() {
                     <div className={styles.hidden_title}></div>
                 </div>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -26,7 +26,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -38,7 +38,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -50,7 +50,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -62,7 +62,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -74,7 +74,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -86,7 +86,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -98,7 +98,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -110,7 +110,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -122,7 +122,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -134,7 +134,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -146,7 +146,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -158,7 +158,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -170,7 +170,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>
@@ -182,7 +182,7 @@ export default function Users() {
                     <div className={styles.user_phone_status}>تایید شده</div>
                 </Link>
 
-                <Link className={styles.user} href={`/admin/edit-user/${0}`}>
+                <Link className={styles.user} href={`/admin/users/${0}`}>
                     <div className={styles.user_id}>1</div>
 
                     <div className={styles.user_name}>عبدالله</div>

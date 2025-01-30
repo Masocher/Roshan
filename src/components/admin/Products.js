@@ -14,7 +14,7 @@ export default function Products() {
     return (
         <div className={styles.container}>
             <div className={styles.search_box}>
-                <Link className={styles.add_btn} href={"/admin/create-product"}>
+                <Link className={styles.add_btn} href={"/admin/products/create"}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
@@ -48,7 +48,7 @@ export default function Products() {
                 </div>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -69,7 +69,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -90,7 +90,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -111,7 +111,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -132,7 +132,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -153,7 +153,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -174,7 +174,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -195,7 +195,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -216,7 +216,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -237,7 +237,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -258,7 +258,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -279,7 +279,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -300,7 +300,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>
@@ -321,7 +321,7 @@ export default function Products() {
                 </Link>
 
                 <Link
-                    href={`/admin/edit-product/${0}`}
+                    href={`/admin/products/${0}`}
                     className={styles.product}
                 >
                     <div className={styles.product_id}>1</div>

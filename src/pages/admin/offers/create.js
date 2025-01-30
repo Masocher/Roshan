@@ -1,9 +1,9 @@
-import styles from "../../styles/admin-options/EditCode.module.css";
+import styles from "../../../styles/admin-options/CreateOffer.module.css";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
 
-export default function CreateCode() {
+export default function CreateOffer() {
     const router = useRouter();
 
     return (
@@ -15,25 +15,18 @@ export default function CreateCode() {
                     </span>
                     بازگشت
                 </div>
-                افزودن کد تخفیف
+                افزودن آفر
             </div>
 
             <div className={styles.code}>
                 <div className={styles.first_section}>
-                    <input type="text" placeholder="کد را وارد کنید" />
-                    <input type="text" placeholder="تاریخ شروع" />
-                    <input type="text" placeholder="تاریخ اتمام" />
-                </div>
-
-                <div className={styles.second_section}>
-                    <div className={styles.feature_box}>
-                        <div className={styles.title}>اعمال روی همه</div>
-
-                        <div className={styles.inventory_button}>
-                            <div>
-                                <span></span>
-                            </div>
-                        </div>
+                    <div className={styles.inputs}>
+                        <input
+                            type="text"
+                            placeholder="حداقل تعداد را وارد کنید"
+                        />
+                        
+                        <input type="text" placeholder="مقدار تخفیف" />
                     </div>
 
                     <div className={styles.feature_box}>
@@ -53,36 +46,6 @@ export default function CreateCode() {
                             <div>
                                 <span></span>
                             </div>
-                        </div>
-                    </div>
-
-                    <div
-                        className={`${styles.feature_box} ${styles.main_feature}`}
-                    >
-                        <div className={styles.title}>مقدار تخفیف</div>
-
-                        <input
-                            type="text"
-                            placeholder="مقدار تخفیف را وارد کنید"
-                        />
-                    </div>
-                </div>
-
-                <div className={styles.third_section}>
-                    <div className={styles.title}>انتخاب دسته بندی ها</div>
-
-                    <div className={styles.select_category}>
-                        <input placeholder="نام دسته بندی" type="text" />
-
-                        <div className={styles.submit_btn}>ثبت</div>
-                    </div>
-
-                    <div className={styles.content}>
-                        <div className={styles.category}>
-                            <span>
-                                <FontAwesomeIcon icon={faClose} />
-                            </span>
-                            ابزار خانگی
                         </div>
                     </div>
                 </div>
@@ -106,7 +69,7 @@ export default function CreateCode() {
                     </div>
                 </div>
 
-                <div className={styles.edit_btn}>افزودن کد تخفیف</div>
+                <div className={styles.edit_btn}>افزودن آفر</div>
             </div>
         </div>
     );

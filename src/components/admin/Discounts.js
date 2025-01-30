@@ -7,7 +7,7 @@ export default function Discounts() {
     return (
         <div className={styles.container}>
             <div className={styles.top_box}>
-                <Link href={"/admin/create-offer"} className={styles.add_btn}>
+                <Link href={"/admin/discounts/create"} className={styles.add_btn}>
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
@@ -26,7 +26,7 @@ export default function Discounts() {
 
                 <Link
                     className={styles.discount}
-                    href={`/admin/edit-discount/${0}`}
+                    href={`/admin/discounts/${0}`}
                 >
                     <div className={styles.discount_id}>1</div>
 
@@ -41,7 +41,7 @@ export default function Discounts() {
 
                 <Link
                     className={styles.discount}
-                    href={`/admin/edit-discount/${0}`}
+                    href={`/admin/discounts/${0}`}
                 >
                     <div className={styles.discount_id}>1</div>
 
@@ -56,7 +56,7 @@ export default function Discounts() {
 
                 <Link
                     className={styles.discount}
-                    href={`/admin/edit-discount/${0}`}
+                    href={`/admin/discounts/${0}`}
                 >
                     <div className={styles.discount_id}>1</div>
 
@@ -71,7 +71,7 @@ export default function Discounts() {
 
                 <Link
                     className={styles.discount}
-                    href={`/admin/edit-discount/${0}`}
+                    href={`/admin/discounts/${0}`}
                 >
                     <div className={styles.discount_id}>1</div>
 
