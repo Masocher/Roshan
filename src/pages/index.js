@@ -6,6 +6,7 @@ import HomeSlider from "@/components/home/HomeSlider";
 import AmazingOffer from "@/components/home/AmazingOffer";
 import BestSellers from "@/components/home/BestSellers";
 import Categories from "@/components/home/Categories";
+import Affordables from "@/components/home/Affordables";
 import LatestArticles from "@/components/home/LatestArticles";
 import BrandsSlider from "@/components/global/BrandsSlider";
 import Footer from "@/components/global/Footer";
@@ -31,6 +32,7 @@ export default function Home() {
             <Alert />
             <BestSellers />
             <Categories />
+            <Affordables />
             <LatestArticles />
             <BrandsSlider />
             <Footer />
