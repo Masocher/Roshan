@@ -4,6 +4,7 @@ import BlackBackground from "@/components/global/BlacKBackground";
 import MiniMenu from "@/components/global/MiniMenu";
 import HomeSlider from "@/components/home/HomeSlider";
 import AmazingOffer from "@/components/home/AmazingOffer";
+import BestSellers from "@/components/home/BestSellers";
 import Categories from "@/components/home/Categories";
 import LatestArticles from "@/components/home/LatestArticles";
 import BrandsSlider from "@/components/global/BrandsSlider";
@@ -28,6 +29,7 @@ export default function Home() {
             <HomeSlider />
             <AmazingOffer />
             <Alert />
+            <BestSellers />
             <Categories />
             <LatestArticles />
             <BrandsSlider />
