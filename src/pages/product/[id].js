@@ -15,10 +15,19 @@ import img from "../../../public/images/1.webp";
 import Comment from "@/components/global/Comment";
 import LeaveComment from "@/components/product/LeaveComment";
 import { useState } from "react";
+import { SwiperSlide, Swiper } from "swiper/react";
+import "swiper/css";
+import ProductBox from "@/components/global/ProductBox";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function ProductSinglePage() {
     let [categoriesStatus, setCategoriesStatus] = useState(false);
     const [commentFormStatus, setCommentFormStatus] = useState(false);
+
+    const matches1 = useMediaQuery(1500);
+    const matches2 = useMediaQuery(1200);
+    const matches3 = useMediaQuery(950);
+    const matches4 = useMediaQuery(580);
 
     return (
         <div>
@@ -174,6 +183,81 @@ export default function ProductSinglePage() {
                             </div>
                         </dvi>
                     </div>
+                </div>
+
+                <div className={styles.similar_products}>
+                    <div className={styles.title}>کالا های مشابه</div>
+
+                    <Swiper
+                        className={styles.products}
+                        slidesPerView={
+                            matches4
+                                ? 2
+                                : matches3
+                                ? 3
+                                : matches2
+                                ? 4
+                                : matches1
+                                ? 5
+                                : 6
+                        }
+                    >
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+
+                        <SwiperSlide className={styles.product}>
+                            <ProductBox
+                                image={img}
+                                name={"دستگاه جوش آذین"}
+                                price={"1,500,00"}
+                            />
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
 
                 <div className={styles.bottom_section}>
