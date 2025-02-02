@@ -292,6 +292,11 @@
     background-color: #fff;
 }
 
+.similar_products .product {
+    border-right: 1px solid #e8eef2;
+    border-bottom: 1px solid #e8eef2;
+}
+
 .similar_products .title {
     font-family: KalamehM;
     border-bottom: 2px solid #12a386;

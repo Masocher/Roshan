@@ -5,11 +5,6 @@
     padding: 20px;
     text-decoration: none;
     color: #000;
-    border-right: 1px solid #e8eef2;
-    border-bottom: 1px solid #e8eef2;
-}
-.product:hover {
-    box-shadow: 0 0 30px #0000001b;
 }
 
 .product_image {

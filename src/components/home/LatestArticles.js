@@ -36,7 +36,10 @@ export default function LatestArticles() {
                 modules={[Autoplay]}
             >
                 <SwiperSlide className={styles.article}>
-                    <Link href={`/`} className={styles.article_content}>
+                    <Link
+                        href={`/articles/0`}
+                        className={styles.article_content}
+                    >
                         <Image
                             className={styles.article_cover}
                             src={img}
@@ -67,7 +70,10 @@ export default function LatestArticles() {
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Link href={`/`} className={styles.article_content}>
+                    <Link
+                        href={`/articles/1`}
+                        className={styles.article_content}
+                    >
                         <Image
                             className={styles.article_cover}
                             src={img}
@@ -98,7 +104,10 @@ export default function LatestArticles() {
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Link href={`/`} className={styles.article_content}>
+                    <Link
+                        href={`/articles/2`}
+                        className={styles.article_content}
+                    >
                         <Image
                             className={styles.article_cover}
                             src={img}
@@ -129,7 +138,10 @@ export default function LatestArticles() {
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Link href={`/`} className={styles.article_content}>
+                    <Link
+                        href={`/articles/3`}
+                        className={styles.article_content}
+                    >
                         <Image
                             className={styles.article_cover}
                             src={img}
@@ -160,7 +172,10 @@ export default function LatestArticles() {
                 </SwiperSlide>
 
                 <SwiperSlide className={styles.article}>
-                    <Link href={`/`} className={styles.article_content}>
+                    <Link
+                        href={`/articles/4`}
+                        className={styles.article_content}
+                    >
                         <Image
                             className={styles.article_cover}
                             src={img}
