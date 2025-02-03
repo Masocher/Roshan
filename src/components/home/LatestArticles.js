@@ -17,12 +17,12 @@ export default function LatestArticles() {
         <div className={styles.container}>
             <div className={styles.main_title}>
                 جدیدترین مقالات
-                <div className={styles.show_all_btn}>
+                <Link href={"/articles"} className={styles.show_all_btn}>
                     مشاهده همه
                     <span>
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </span>
-                </div>
+                </Link>
             </div>
 
             <Swiper

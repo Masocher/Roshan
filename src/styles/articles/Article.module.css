@@ -80,7 +80,7 @@
     width: fit-content;
     padding: 5px 10px;
     border-radius: 5px;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
 }
 .seen_num span {
     margin-left: 5px;
@@ -92,12 +92,16 @@
     flex-direction: column;
 }
 
+.products_slider_wrapper {
+    width: calc(100% - 60px);
+    padding: 0 30px;
+    background-color: #fff;
+}
+
 .products_slider {
     width: 100%;
-    padding: 0 30px;
     display: flex;
     border-bottom: 1px solid #e8eef2;
-    background-color: #fff;
 }
 
 .product {

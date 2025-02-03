@@ -33,7 +33,10 @@ export default function Article() {
             <div className={styles.container}>
                 <div className={styles.right_section}>
                     <div className={styles.category_row}>
-                        <Link href={"/articles"} className={styles.category_content}>
+                        <Link
+                            href={"/articles"}
+                            className={styles.category_content}
+                        >
                             مقالات
                             <span>
                                 <FontAwesomeIcon icon={faAngleLeft} />
@@ -146,85 +149,93 @@ export default function Article() {
                 </div>
 
                 <div className={styles.left_section}>
-                    <Swiper
-                        className={styles.products_slider}
-                        slidesPerView={1}
-                        autoplay={{
-                            delay: 4000,
-                            disableOnInteraction: false,
-                        }}
-                        loop={"true"}
-                        modules={[Autoplay]}
-                    >
-                        <SwiperSlide className={styles.product}>
-                            <div className={styles.product_inf}>
-                                <Image
-                                    className={styles.product_image}
-                                    src={img2}
-                                    alt="عکس محصول"
-                                />
+                    <div className={styles.products_slider_wrapper}>
+                        <Swiper
+                            className={styles.products_slider}
+                            slidesPerView={1}
+                            autoplay={{
+                                delay: 4000,
+                                disableOnInteraction: false,
+                            }}
+                            loop={"true"}
+                            modules={[Autoplay]}
+                        >
+                            <SwiperSlide className={styles.product}>
+                                <div className={styles.product_inf}>
+                                    <Image
+                                        className={styles.product_image}
+                                        src={img2}
+                                        alt="عکس محصول"
+                                    />
 
-                                <div className={styles.product_name}>
-                                    هود آشپزخانه مدل سیمرغ
+                                    <div className={styles.product_name}>
+                                        هود آشپزخانه مدل سیمرغ
+                                    </div>
+
+                                    <div className={styles.product_price}>
+                                        1,500,000
+                                        <div className={styles.toman}>
+                                            تومان
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.show_and_buy_btn}>
+                                        مشاهده و خرید
+                                    </div>
                                 </div>
+                            </SwiperSlide>
 
-                                <div className={styles.product_price}>
-                                    1,500,000
-                                    <div className={styles.toman}>تومان</div>
+                            <SwiperSlide className={styles.product}>
+                                <div className={styles.product_inf}>
+                                    <Image
+                                        className={styles.product_image}
+                                        src={img2}
+                                        alt="عکس محصول"
+                                    />
+
+                                    <div className={styles.product_name}>
+                                        هود آشپزخانه مدل سیمرغ
+                                    </div>
+
+                                    <div className={styles.product_price}>
+                                        1,500,000
+                                        <div className={styles.toman}>
+                                            تومان
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.show_and_buy_btn}>
+                                        مشاهده و خرید
+                                    </div>
                                 </div>
+                            </SwiperSlide>
 
-                                <div className={styles.show_and_buy_btn}>
-                                    مشاهده و خرید
+                            <SwiperSlide className={styles.product}>
+                                <div className={styles.product_inf}>
+                                    <Image
+                                        className={styles.product_image}
+                                        src={img2}
+                                        alt="عکس محصول"
+                                    />
+
+                                    <div className={styles.product_name}>
+                                        هود آشپزخانه مدل سیمرغ
+                                    </div>
+
+                                    <div className={styles.product_price}>
+                                        1,500,000
+                                        <div className={styles.toman}>
+                                            تومان
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.show_and_buy_btn}>
+                                        مشاهده و خرید
+                                    </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide className={styles.product}>
-                            <div className={styles.product_inf}>
-                                <Image
-                                    className={styles.product_image}
-                                    src={img2}
-                                    alt="عکس محصول"
-                                />
-
-                                <div className={styles.product_name}>
-                                    هود آشپزخانه مدل سیمرغ
-                                </div>
-
-                                <div className={styles.product_price}>
-                                    1,500,000
-                                    <div className={styles.toman}>تومان</div>
-                                </div>
-
-                                <div className={styles.show_and_buy_btn}>
-                                    مشاهده و خرید
-                                </div>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide className={styles.product}>
-                            <div className={styles.product_inf}>
-                                <Image
-                                    className={styles.product_image}
-                                    src={img2}
-                                    alt="عکس محصول"
-                                />
-
-                                <div className={styles.product_name}>
-                                    هود آشپزخانه مدل سیمرغ
-                                </div>
-
-                                <div className={styles.product_price}>
-                                    1,500,000
-                                    <div className={styles.toman}>تومان</div>
-                                </div>
-
-                                <div className={styles.show_and_buy_btn}>
-                                    مشاهده و خرید
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    </Swiper>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
 
                     <div className={styles.mini_articles}>
                         <div className={styles.mini_article}>
