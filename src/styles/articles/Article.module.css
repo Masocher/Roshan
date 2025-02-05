@@ -247,3 +247,140 @@
     background-color: #12a386;
     color: #fff;
 }
+
+@media (max-width: 1500px) {
+    .right_section {
+        width: calc(70% - 60px);
+    }
+
+    .article_title {
+        font-size: 18px;
+    }
+
+    .article_cover {
+        height: 350px;
+    }
+
+    .left_section {
+        width: calc(30% - 20px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 30px;
+        width: calc(100% - 60px);
+        flex-direction: column;
+    }
+
+    .right_section {
+        width: calc(100% - 60px);
+    }
+
+    .left_section {
+        width: 100%;
+        border-top: 1px solid #e8eef2;
+    }
+
+    .product {
+        border-left: 1px solid #e8eef2;
+    }
+
+    .products_slider_wrapper {
+        width: 100%;
+        padding: 0;
+    }
+
+    .product_image {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+    }
+
+    .product,
+    .product_price {
+        font-size: 12px !important;
+    }
+
+    .show_and_buy_btn {
+        font-size: 10px;
+    }
+
+    .article_cover {
+        height: 300px;
+    }
+
+    .mini_articles {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        padding: 0;
+        width: 100%;
+        margin-top: 83px;
+    }
+
+    .category_row {
+        display: flex;
+        border-bottom: 1px solid #e8eef2;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .article_cover {
+        height: 250px;
+    }
+
+    .right_section {
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+
+    .mini_article {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 580px) {
+    .article_cover {
+        height: 200px;
+    }
+
+    .article_assets {
+        font-size: 12px;
+    }
+
+    .article_advice,
+    .article_important_alert,
+    .article_alert {
+        font-size: 12px;
+    }
+
+    .article_tit {
+        font-size: 14px;
+    }
+
+    .article_title {
+        font-size: 16px;
+    }
+
+    .article_parag {
+        font-size: 12px;
+        line-height: 26px;
+    }
+}
+
+@media (max-width: 380px) {
+    .article_cover {
+        height: 150px;
+    }
+
+    .category_main {
+        font-size: 12px;
+        margin: 2px 0 0 0;
+        color: #777;
+    }
+}
