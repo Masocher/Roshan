@@ -1,13 +1,12 @@
 .container {
-    width: 100%;
+    width: 1920px;
     height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     justify-content: flex-end;
     user-select: none;
     font-size: 14px;
+    position: relative;
+    background-color: #e8eef2;
 }
 
 .admin_menu {
@@ -18,6 +17,7 @@
     position: fixed;
     right: 0;
     top: 0;
+    z-index: 2;
 }
 
 .main_title {
@@ -41,8 +41,24 @@
 .menu_items {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 20px);
+    height: 400px;
     margin-top: 50px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-left: 20px;
+}
+.menu_items::-webkit-scrollbar {
+    width: 3px;
+}
+.menu_items::-webkit-scrollbar-track {
+    background: #e8eef2;
+}
+.menu_items::-webkit-scrollbar-thumb {
+    background: #12a386;
+}
+.menu_items::-webkit-scrollbar-thumb:hover {
+    background: #12a386;
 }
 
 .menu_item {
@@ -108,87 +124,4 @@
 }
 .admin_content::-webkit-scrollbar-thumb:hover {
     background: none;
-}
-
-@media (max-width: 1300px) {
-    .admin_menu {
-        height: 100px;
-        width: calc(100% - 40px);
-        padding: 10px 20px 0 20px;
-        top: calc(100% - 110px);
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #12a386;
-        color: #fff;
-    }
-
-    .main_title {
-        font-size: 20px;
-        width: fit-content;
-        height: fit-content;
-        color: #fff;
-    }
-    .main_title span {
-        color: #fff;
-    }
-
-    .menu_items {
-        flex-direction: row-reverse;
-        width: fit-content;
-        margin-top: 0;
-        height: fit-content;
-    }
-
-    .menu_item {
-        width: 60px;
-        height: 60px;
-        padding: 0;
-        border-radius: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-    }
-    .menu_item.show {
-        background-color: #fff;
-        color: #12a386;
-    }
-    .menu_item div {
-        display: none;
-    }
-    .menu_item span {
-        margin: 0;
-    }
-
-    .back_to_home_btn {
-        width: 60px;
-        position: relative;
-        bottom: 0;
-        right: 0;
-        padding: 0;
-        height: 60px;
-        font-size: 16px;
-        color: #fff;
-        border-color: #fff;
-    }
-    .back_to_home_btn:hover {
-        background-color: #fff;
-        color: #12a386;
-    }
-    .back_to_home_btn div {
-        display: none;
-    }
-    .back_to_home_btn span {
-        margin: 0;
-    }
-
-    .admin_content {
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        padding-bottom: 110px;
-    }
 }
