@@ -67,6 +67,8 @@
     border-radius: 10px;
     cursor: pointer;
     display: flex;
+    text-decoration: none;
+    color: #000;
 }
 .menu_item:hover {
     background-color: #12a38611;

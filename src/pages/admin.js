@@ -12,6 +12,7 @@ import {
     faMessage,
     faCubes,
     faPercent,
+    faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Products from "@/components/admin/Products";
@@ -158,6 +159,13 @@ export default function Admin() {
                         </span>
                         <div>تیکت ها</div>
                     </div>
+
+                    <Link href={"/admin/settings"} className={styles.menu_item}>
+                        <span>
+                            <FontAwesomeIcon icon={faGear} />
+                        </span>
+                        <div>تنظیمات کلی</div>
+                    </Link>
                 </div>
 
                 <Link href={"/"} className={styles.back_to_home_btn}>
