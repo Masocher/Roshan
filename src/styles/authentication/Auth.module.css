@@ -80,9 +80,13 @@
     padding: 12px;
     border-radius: 8px;
     width: calc(100% - 24px);
+    letter-spacing: 1px;
 }
 .input_box input:focus {
     border-color: #12a386;
+}
+.input_box input.error {
+    border-color: #f93827;
 }
 
 .submit_btn {
@@ -171,6 +175,16 @@
 .get_code_again span {
     margin: 4px 0 0 5px;
     color: #12a386;
+}
+
+.error_box {
+    color: #f93827;
+    margin-top: 10px;
+    font-size: 12px;
+    display: none;
+}
+.error_box.show {
+    display: block;
 }
 
 @media (max-width: 580px) {

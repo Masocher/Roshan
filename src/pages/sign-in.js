@@ -6,8 +6,46 @@ import {
     faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function SignIn() {
+    const router = useRouter();
+
+    const [number, setNumber] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [err1, setErr1] = useState(false);
+    const [err2, setErr2] = useState(false);
+
+    const signInFunction = (num, pas) => {
+        // axios.post("/api/auth/login/", {
+        //     number: `${num}`,
+        //     password: `${pas}`,
+        // });
+        console.log("number : " + num);
+        console.log("password : " + pas);
+
+        router.push("/auth-code");
+    };
+
+    const checkNumber = (number) => {
+        if (number.length > 0) {
+            setErr1(false);
+        } else {
+            setErr1(true);
+        }
+    };
+
+    const checkPassword = (password) => {
+        if (password.length > 0) {
+            setErr2(false);
+        } else {
+            setErr2(true);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <Link href={"/"} className={styles.logo}>
@@ -48,20 +86,53 @@ export default function SignIn() {
                     <div className={styles.input_box}>
                         <div className={styles.input_title}>شماره موبایل</div>
 
-                        <input type="text" />
+                        <input
+                            type="text"
+                            onChange={(e) => {
+                                setNumber(e.target.value);
+                                checkNumber(e.target.value);
+                            }}
+                            className={`${err1 ? styles.error : ""}`}
+                        />
+
+                        <div
+                            className={`${styles.error_box} ${
+                                err1 ? styles.show : ""
+                            }`}
+                        >
+                            شماره تلفن نمیتواند خالی باشد !
+                        </div>
                     </div>
 
                     <div className={styles.input_box}>
                         <div className={styles.input_title}>رمز عبور</div>
 
-                        <input type="password" />
+                        <input
+                            type="password"
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                checkPassword(e.target.value);
+                            }}
+                            className={`${err2 ? styles.error : ""}`}
+                        />
+
+                        <div
+                            className={`${styles.error_box} ${
+                                err2 ? styles.show : ""
+                            }`}
+                        >
+                            رمز عبور نمیتواند خالی باشد !
+                        </div>
                     </div>
 
-                    <Link href={"/auth-code"}>
-                        <button className={styles.submit_btn}>
-                            ورود به حساب
-                        </button>
-                    </Link>
+                    <button
+                        className={styles.submit_btn}
+                        onClick={() => {
+                            signInFunction(number, password);
+                        }}
+                    >
+                        ورود به حساب
+                    </button>
                 </form>
             </div>
         </div>

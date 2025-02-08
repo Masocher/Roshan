@@ -3,9 +3,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faRotate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import axios from "axios";
 
 export default function AuthCode() {
     const router = useRouter();
+
+    const [code, setCode] = useState("");
+
+    const [err1, setErr1] = useState(false);
+
+    const sendCode = (code) => {
+        // axios.post("/auth/register/verify/", {
+        //     "number" : localStorage.getItem("number"),
+        //     "otp" : code
+        // })
+
+        console.log(localStorage.getItem("number"));
+        console.log(code);
+        
+        localStorage.removeItem("number");
+        router.push("/");
+    };
+
+    const checkCode = (code) => {
+        if (code.length > 0) {
+            setErr1(false);
+        } else {
+            setErr1(true);
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -27,14 +54,31 @@ export default function AuthCode() {
 
                 <div className={styles.title}>کد تایید را وارد کنید</div>
 
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <div
                         className={`${styles.input_box} ${styles.code_input_box}`}
                     >
                         <div className={styles.input_title}>
                             کد تایید به شماره 09054182307 ارسال شد
                         </div>
-                        <input type="text" maxLength={"6"} />
+
+                        <input
+                            type="text"
+                            maxLength={"6"}
+                            onChange={(e) => {
+                                setCode(e.target.value);
+                                checkCode(e.target.value);
+                            }}
+                            className={`${err1 ? styles.error : ""}`}
+                        />
+
+                        <div
+                            className={`${styles.error_box} ${
+                                err1 ? styles.show : ""
+                            }`}
+                        >
+                            کد وارد شده صحیح نیست !
+                        </div>
                     </div>
 
                     <div className={styles.again_code_time}>
@@ -51,7 +95,12 @@ export default function AuthCode() {
                         دریافت مجدد کد
                     </div>
 
-                    <button className={styles.submit_btn}>تایید</button>
+                    <button
+                        className={styles.submit_btn}
+                        onClick={() => sendCode(code)}
+                    >
+                        تایید
+                    </button>
                 </form>
             </div>
         </div>
