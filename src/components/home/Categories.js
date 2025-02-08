@@ -1,5 +1,5 @@
 import styles from "../../styles/home/Categories.module.css";
-import img from "../../../public/images/1.webp";
+import img from "../../../public/images/11.jpg";
 import Image from "next/image";
 
 export default function Categories() {
@@ -14,6 +14,7 @@ export default function Categories() {
 
                 <div className={styles.category_title}>
                     لورم ایپسوم یک متن ساختگی است
+                    <div className={styles.show_btn}>مشاهده</div>
                 </div>
             </div>
 
@@ -26,6 +27,7 @@ export default function Categories() {
 
                 <div className={styles.category_title}>
                     لورم ایپسوم یک متن ساختگی است
+                    <div className={styles.show_btn}>مشاهده</div>
                 </div>
             </div>
 
@@ -38,6 +40,7 @@ export default function Categories() {
 
                 <div className={styles.category_title}>
                     لورم ایپسوم یک متن ساختگی است
+                    <div className={styles.show_btn}>مشاهده</div>
                 </div>
             </div>
 
@@ -50,6 +53,7 @@ export default function Categories() {
 
                 <div className={styles.category_title}>
                     لورم ایپسوم یک متن ساختگی است
+                    <div className={styles.show_btn}>مشاهده</div>
                 </div>
             </div>
         </div>

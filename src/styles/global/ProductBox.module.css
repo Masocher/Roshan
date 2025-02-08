@@ -14,9 +14,6 @@
     font-family: KalamehB;
     margin-bottom: 10px;
 }
-.amazing_box span {
-    margin: 2px 0 0 5px;
-}
 
 .off_percent {
     background-color: #f93827;
@@ -82,6 +79,17 @@
     letter-spacing: 0;
 }
 
+@media (max-width: 1500px) {
+    .amazing_box {
+        font-size: 14px;
+    }
+    
+    .off_percent {
+        font-size: 10px;
+        padding: 3px 5px 1px 5px;
+    }
+}
+
 @media (max-width: 1200px) {
     .product_informations {
         font-size: 12px;
@@ -91,5 +99,16 @@
 @media (max-width: 580px) {
     .product_informations {
         font-size: 10px;
+    }
+
+    .amazing_box {
+        font-size: 12px;
+    }
+    
+    .off_percent {
+        font-size: 8px;
+    }
+    .off_percent span {
+        margin-left: 1px;
     }
 }

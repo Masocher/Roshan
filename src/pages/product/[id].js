@@ -183,6 +183,10 @@ export default function ProductSinglePage() {
                             </div>
                         </dvi>
                     </div>
+
+                    <div className={styles.more_off}>
+                        با خرید هر 5 عدد از این محصول تخفیف بیشتر دریافت کنید
+                    </div>
                 </div>
 
                 <div className={styles.similar_products}>

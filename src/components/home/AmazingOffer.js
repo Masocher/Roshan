@@ -8,7 +8,9 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function AmazingOffer() {
+    const matches1 = useMediaQuery(1500);
     const matches2 = useMediaQuery(1200);
+    const matches3 = useMediaQuery(950);
     const matches4 = useMediaQuery(580);
     const matches5 = useMediaQuery(380);
 
@@ -38,7 +40,17 @@ export default function AmazingOffer() {
                 <Swiper
                     className={styles.products}
                     slidesPerView={
-                        matches5 ? 2 : matches4 ? 3 : matches2 ? 5 : 7
+                        matches5
+                            ? 2
+                            : matches4
+                            ? 2
+                            : matches3
+                            ? 4
+                            : matches2
+                            ? 5
+                            : matches1
+                            ? 6
+                            : 7
                     }
                     spaceBetween={2}
                 >
