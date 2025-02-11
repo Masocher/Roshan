@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function SignIn() {
     const router = useRouter();
@@ -20,14 +21,28 @@ export default function SignIn() {
     const [err2, setErr2] = useState(false);
 
     const signInFunction = (num, pas) => {
-        // axios.post("/api/auth/login/", {
-        //     number: `${num}`,
-        //     password: `${pas}`,
-        // });
-        console.log("number : " + num);
-        console.log("password : " + pas);
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://roshan-api.liara.run/api/auth/login/", {
+                "number": `${num}`,
+                "password": `${pas}`,
+            })
+            .then((response) => {
+                toast.success(response.data.detail);
+                console.log(response.data.detail);
+                router.push("/");
+            })
+            .catch((err) => {
+                if (err.response.data.detail) {
+                    toast.error(err.response.data.detail);
+                }
 
-        router.push("/auth-code");
+                if (err.response.data.number) {
+                    toast.error("شماره تلفن : " + err.response.data.number);
+                } else if (err.response.data.password) {
+                    toast.error("رمز عبور : " + err.response.data.password);
+                }
+            });
     };
 
     const checkNumber = (number) => {
@@ -48,6 +63,8 @@ export default function SignIn() {
 
     return (
         <div className={styles.container}>
+            <Toaster position="top-left" reverseOrder={true} />
+
             <Link href={"/"} className={styles.logo}>
                 روشن مارکت
             </Link>
@@ -100,7 +117,7 @@ export default function SignIn() {
                                 err1 ? styles.show : ""
                             }`}
                         >
-                            شماره تلفن نمیتواند خالی باشد !
+                            شماره تلفن اجباری است !
                         </div>
                     </div>
 
@@ -121,7 +138,7 @@ export default function SignIn() {
                                 err2 ? styles.show : ""
                             }`}
                         >
-                            رمز عبور نمیتواند خالی باشد !
+                            رمز عبور اجباری است !
                         </div>
                     </div>
 

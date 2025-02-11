@@ -8,10 +8,13 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function SignUp() {
     const router = useRouter();
 
+    const [name, setName] = useState("");
     const [number, setNumber] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
@@ -19,42 +22,60 @@ export default function SignUp() {
     const [err1, setErr1] = useState(false);
     const [err2, setErr2] = useState(false);
     const [err3, setErr3] = useState(false);
+    const [err4, setErr4] = useState(false);
 
-    const signUpFunction = (num, pas1, pas2) => {
-        // axios.post("/api/auth/login/", {
-        //     "number": `${num}`,
-        //     "password1": `${pas1}`,
-        //     "password2": `${pas2}`,
-        // });
-        console.log("number : " + num);
-        console.log("password : " + pas1);
-        console.log("confirm password : " + pas2);
-        localStorage.setItem("number", num);
-        
-        if (localStorage.getItem("number")) {
-            router.push("/auth-code");
-        } else {
-            router.push("/");
-        }
+    const signUpFunction = (nam, num, pas1, pas2) => {
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://roshan-api.liara.run/api/auth/register/", {
+                "full_name": `${nam}`,
+                "number": `${num}`,
+                "password": `${pas1}`,
+                "password2": `${pas2}`,
+            })
+            .then((response) => {
+                toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
+                localStorage.setItem("number", num);
+                router.push("/auth-code");
+            })
+            .catch((err) => {
+                if (err.response.data.detail) {
+                    toast.error(err.response.data.detail);
+                }
+
+                if (err.response.data.full_name) {
+                    toast.error(
+                        "نام و نام خانوادگی : " + err.response.data.full_name
+                    );
+                } else if (err.response.data.number) {
+                    toast.error("شماره تلفن : " + err.response.data.number);
+                } else if (err.response.data.password) {
+                    toast.error("رمز عبور : " + err.response.data.password);
+                } else if (err.response.data.password2) {
+                    toast.error(
+                        "تکرار رمز عبور : " + err.response.data.password2
+                    );
+                }
+            });
     };
 
-    const checkNumber = (number) => {
-        if (number.length > 0) {
+    const checkName = (name) => {
+        if (name.length > 0) {
             setErr1(false);
         } else {
             setErr1(true);
         }
     };
 
-    const checkPassword = (password) => {
-        if (password.length > 0) {
+    const checkNumber = (number) => {
+        if (number.length > 0) {
             setErr2(false);
         } else {
             setErr2(true);
         }
     };
 
-    const checkPassword2 = (password) => {
+    const checkPassword = (password) => {
         if (password.length > 0) {
             setErr3(false);
         } else {
@@ -62,8 +83,18 @@ export default function SignUp() {
         }
     };
 
+    const checkPassword2 = (password) => {
+        if (password.length > 0) {
+            setErr4(false);
+        } else {
+            setErr4(true);
+        }
+    };
+
     return (
         <div className={styles.container}>
+            <Toaster position="top-left" reverseOrder={true} />
+
             <Link href={"/"} className={styles.logo}>
                 روشن مارکت
             </Link>
@@ -100,13 +131,15 @@ export default function SignUp() {
 
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className={styles.input_box}>
-                        <div className={styles.input_title}>شماره موبایل</div>
+                        <div className={styles.input_title}>
+                            نام و نام خانوادگی
+                        </div>
 
                         <input
                             type="text"
                             onChange={(e) => {
-                                setNumber(e.target.value);
-                                checkNumber(e.target.value);
+                                setName(e.target.value);
+                                checkName(e.target.value);
                             }}
                             className={`${err1 ? styles.error : ""}`}
                         />
@@ -116,7 +149,28 @@ export default function SignUp() {
                                 err1 ? styles.show : ""
                             }`}
                         >
-                            شماره تلفن نمیتواند خالی باشد !
+                            نام و نام خانوادگی اجباری است !
+                        </div>
+                    </div>
+
+                    <div className={styles.input_box}>
+                        <div className={styles.input_title}>شماره موبایل</div>
+
+                        <input
+                            type="text"
+                            onChange={(e) => {
+                                setNumber(e.target.value);
+                                checkNumber(e.target.value);
+                            }}
+                            className={`${err2 ? styles.error : ""}`}
+                        />
+
+                        <div
+                            className={`${styles.error_box} ${
+                                err2 ? styles.show : ""
+                            }`}
+                        >
+                            شماره تلفن اجباری است !
                         </div>
                     </div>
 
@@ -129,15 +183,15 @@ export default function SignUp() {
                                 setPassword(e.target.value);
                                 checkPassword(e.target.value);
                             }}
-                            className={`${err2 ? styles.error : ""}`}
+                            className={`${err3 ? styles.error : ""}`}
                         />
 
                         <div
                             className={`${styles.error_box} ${
-                                err2 ? styles.show : ""
+                                err3 ? styles.show : ""
                             }`}
                         >
-                            رمز عبور نمیتواند خالی باشد !
+                            رمز عبور اجباری است !
                         </div>
                     </div>
 
@@ -150,12 +204,12 @@ export default function SignUp() {
                                 setPassword2(e.target.value);
                                 checkPassword2(e.target.value);
                             }}
-                            className={`${err3 ? styles.error : ""}`}
+                            className={`${err4 ? styles.error : ""}`}
                         />
 
                         <div
                             className={`${styles.error_box} ${
-                                err3 ? styles.show : ""
+                                err4 ? styles.show : ""
                             }`}
                         >
                             تکرار رمز عبور اجباری است !
@@ -165,7 +219,7 @@ export default function SignUp() {
                     <button
                         className={styles.submit_btn}
                         onClick={() => {
-                            signUpFunction(number, password, password2);
+                            signUpFunction(name, number, password, password2);
                         }}
                     >
                         ثبت نام

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function AuthCode() {
     const router = useRouter();
@@ -14,16 +15,26 @@ export default function AuthCode() {
     const [err1, setErr1] = useState(false);
 
     const sendCode = (code) => {
-        // axios.post("/auth/register/verify/", {
-        //     "number" : localStorage.getItem("number"),
-        //     "otp" : code
-        // })
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://roshan-api.liara.run/api/auth/register/verify/", {
+                "number": `${localStorage.getItem("number")}`,
+                "otp": `${code}`,
+            })
+            .then((response) => {
+                toast.success(response.data.detail);
+                localStorage.removeItem("number");
+                router.push("/sign-in");
+            })
+            .catch((err) => {
+                if (err.response.data.detail) {
+                    toast.error(err.response.data.detail);
+                }
 
-        console.log(localStorage.getItem("number"));
-        console.log(code);
-        
-        localStorage.removeItem("number");
-        router.push("/");
+                if (err.response.data.otp) {
+                    toast.error("کد تایید : " + err.response.data.otp);
+                }
+            });
     };
 
     const checkCode = (code) => {
@@ -36,6 +47,8 @@ export default function AuthCode() {
 
     return (
         <div className={styles.container}>
+            <Toaster position="top-left" reverseOrder={true} />
+
             <Link href={"/"} className={styles.logo}>
                 روشن مارکت
             </Link>
@@ -77,7 +90,7 @@ export default function AuthCode() {
                                 err1 ? styles.show : ""
                             }`}
                         >
-                            کد وارد شده صحیح نیست !
+                            کد تایید اجباری است !
                         </div>
                     </div>
 

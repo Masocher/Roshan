@@ -4,9 +4,16 @@ import ProductsSection from "@/components/products/ProductsSection";
 import MiniMenu from "@/components/global/MiniMenu";
 import Footer from "@/components/global/Footer";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Products() {
     let [categoriesStatus, setCategoriesStatus] = useState(false);
+
+    axios.defaults.withCredentials = true;
+    axios
+        .post("https://roshan-api.liara.run/api/admin/products/")
+        .then((response) => console.log(response))
+        .catch((err) => console.log(err));
 
     return (
         <div>
