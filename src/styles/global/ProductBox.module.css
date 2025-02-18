@@ -13,6 +13,10 @@
     color: #f93827;
     font-family: KalamehB;
     margin-bottom: 10px;
+    display: none;
+}
+.amazing_box.show {
+    display: block;
 }
 
 .off_percent {
@@ -27,6 +31,9 @@
 }
 .off_percent span {
     margin-left: 2px;
+}
+.off_percent.show {
+    display: none;
 }
 
 .product_image {

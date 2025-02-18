@@ -6,20 +6,47 @@ import {
     faCheck,
     faClose,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
-export default function FilterBox() {
+export default function FilterBox({
+    filters,
+    setFilters,
+    categName,
+    brandName,
+    setPriceRange,
+    min_price,
+    max_price,
+    minPriceText,
+    maxPriceText,
+    setMinPriceText,
+    setMaxPriceText,
+}) {
     const [option1, setOption1] = useState(false);
     const [option2, setOption2] = useState(false);
     const [option3, setOption3] = useState(false);
 
-    const [categ1, setCateg1] = useState(false);
-    const [categ2, setCateg2] = useState(false);
-    const [categ3, setCateg3] = useState(false);
+    const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
 
-    const [categ4, setCateg4] = useState(false);
-    const [categ5, setCateg5] = useState(false);
-    const [categ6, setCateg6] = useState(false);
+    useEffect(() => {
+        axios
+            .get("https://roshan-api.liara.run/api/categories/")
+            .then((response) => {
+                setCategories(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        axios
+            .get("https://roshan-api.liara.run/api/brands/")
+            .then((response) => {
+                setBrands(response.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -80,53 +107,38 @@ export default function FilterBox() {
                             </span>
                         </div>
 
-                        <div
-                            className={styles.option}
-                            onClick={() => {
-                                setCateg1(!categ1);
-                                setCateg2(false);
-                                setCateg3(false);
-                            }}
-                        >
-                            <span>
-                                <div className={categ1 ? styles.show : ""}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </div>
-                            </span>
-                            ابزار اندازه گیری
-                        </div>
-
-                        <div
-                            className={styles.option}
-                            onClick={() => {
-                                setCateg1(false);
-                                setCateg2(!categ2);
-                                setCateg3(false);
-                            }}
-                        >
-                            <span>
-                                <div className={categ2 ? styles.show : ""}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </div>
-                            </span>
-                            ابزار خانگی
-                        </div>
-
-                        <div
-                            className={styles.option}
-                            onClick={() => {
-                                setCateg1(false);
-                                setCateg2(false);
-                                setCateg3(!categ3);
-                            }}
-                        >
-                            <span>
-                                <div className={categ3 ? styles.show : ""}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </div>
-                            </span>
-                            ابزار مکانیکی
-                        </div>
+                        {categories.map((categ) => (
+                            <div
+                                className={styles.option}
+                                onClick={() => {
+                                    if (categ.name === categName) {
+                                        setFilters({
+                                            ...filters,
+                                            categName: "",
+                                        });
+                                    } else {
+                                        setFilters({
+                                            ...filters,
+                                            categName: categ.name,
+                                        });
+                                    }
+                                }}
+                                key={categ.id}
+                            >
+                                <span>
+                                    <div
+                                        className={
+                                            categ.name === categName
+                                                ? styles.show
+                                                : ""
+                                        }
+                                    >
+                                        <FontAwesomeIcon icon={faCheck} />
+                                    </div>
+                                </span>
+                                {categ.name}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
@@ -172,41 +184,38 @@ export default function FilterBox() {
                             </span>
                         </div>
 
-                        <div
-                            className={styles.option}
-                            onClick={() => setCateg4(!categ4)}
-                        >
-                            <span>
-                                <div className={categ4 ? styles.show : ""}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </div>
-                            </span>
-                            ابزار اندازه گیری
-                        </div>
-
-                        <div
-                            className={styles.option}
-                            onClick={() => setCateg5(!categ5)}
-                        >
-                            <span>
-                                <div className={categ5 ? styles.show : ""}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </div>
-                            </span>
-                            ابزار خانگی
-                        </div>
-
-                        <div
-                            className={styles.option}
-                            onClick={() => setCateg6(!categ6)}
-                        >
-                            <span>
-                                <div className={categ6 ? styles.show : ""}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </div>
-                            </span>
-                            ابزار مکانیکی
-                        </div>
+                        {brands.map((brand) => (
+                            <div
+                                className={styles.option}
+                                onClick={() => {
+                                    if (brand.name === brandName) {
+                                        setFilters({
+                                            ...filters,
+                                            brandName: "",
+                                        });
+                                    } else {
+                                        setFilters({
+                                            ...filters,
+                                            brandName: brand.name,
+                                        });
+                                    }
+                                }}
+                                key={brand.id}
+                            >
+                                <span>
+                                    <div
+                                        className={
+                                            brand.name === brandName
+                                                ? styles.show
+                                                : ""
+                                        }
+                                    >
+                                        <FontAwesomeIcon icon={faCheck} />
+                                    </div>
+                                </span>
+                                {brand.name}
+                            </div>
+                        ))}
                     </div>
                 </div>
 
@@ -261,8 +270,11 @@ export default function FilterBox() {
 
                                 <input
                                     className={styles.price_input}
-                                    type="text"
+                                    type="number"
                                     placeholder="کف قیمت"
+                                    onChange={(e) => {
+                                        setMinPriceText(e.target.value);
+                                    }}
                                 />
 
                                 <div className={styles.toman}>تومان</div>
@@ -273,18 +285,60 @@ export default function FilterBox() {
 
                                 <input
                                     className={styles.price_input}
-                                    type="text"
+                                    type="number"
                                     placeholder="سقف قیمت"
+                                    onChange={(e) => {
+                                        setMaxPriceText(e.target.value);
+                                    }}
                                 />
 
                                 <div className={styles.toman}>تومان</div>
                             </div>
 
-                            <button className={styles.price_btn} type="submit">
+                            <button
+                                className={styles.price_btn}
+                                onClick={() =>
+                                    setPriceRange({
+                                        min_price: minPriceText,
+                                        max_price: maxPriceText,
+                                    })
+                                }
+                            >
                                 اعمال
                             </button>
                         </form>
                     </div>
+                </div>
+
+                <div
+                    className={`${styles.reset_btn} ${
+                        min_price === "" &&
+                        max_price === "" &&
+                        categName === "" &&
+                        brandName === ""
+                            ? ""
+                            : styles.show
+                    }`}
+                    onClick={() => {
+                        setOption1(false);
+                        setOption2(false);
+                        setOption3(false);
+
+                        setPriceRange({
+                            min_price: "",
+                            max_price: "",
+                        });
+
+                        setFilters({
+                            categName: "",
+                            brandName: "",
+                        });
+                    }}
+                >
+                    <span>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </span>
+                    حذف فیلتر ها
                 </div>
             </div>
         </div>

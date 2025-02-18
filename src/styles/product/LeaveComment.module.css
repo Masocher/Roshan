@@ -13,19 +13,18 @@
 }
 
 .leave_comment_wrapper {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
     position: fixed;
-    top: 100%;
+    top: 0;
     left: 0;
     z-index: 9;
-    transition: 1s ease;
 }
 .leave_comment_wrapper.show {
-    top: 0;
+    display: flex;
 }
 
 .leave_comment_box {
@@ -68,7 +67,7 @@
 
 .about_product {
     display: flex;
-    margin: 20px 0 40px 0;
+    margin: 20px 0 20px 0;
     padding: 20px 0;
     border-top: 1px solid #e8eef2;
     border-bottom: 1px solid #e8eef2;
@@ -100,7 +99,7 @@
     height: 100px;
     background-color: #f3f4f6;
     outline: 0;
-    border: 1px solid #ccc;
+    border: 1px solid #f3f4f6;
     font-family: Kalameh;
     padding: 12px;
     border-radius: 8px;
@@ -127,6 +126,36 @@
     color: #12a386;
 }
 
+.stars {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8eef2;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+.star_boxes {
+    display: flex;
+}
+
+.star_box {
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.star_box div {
+    font-size: 14px;
+}
+
+.star_box.show {
+    color: #ffb200;
+}
+
 @media (max-width: 580px) {
     .leave_comment_wrapper {
         transition: 0.5s;
@@ -143,5 +172,9 @@
 
     .main_title {
         width: calc(100% - 140px);
+    }
+
+    .stars .title {
+        font-size: 14px;
     }
 }

@@ -1,137 +1,66 @@
 import styles from "../../styles/products/ProductsAll.module.css";
 import ProductBox from "../global/ProductBox";
-import img from "../../../public/images/1.webp";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSlug, getProducts } from "@/store/Actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProductsAll() {
-    return (
-        <div className={styles.container}>
-            <div className={styles.products}>
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={0}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
+    const dispatch = useDispatch();
 
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={1}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
+    const [loading, setLoading] = useState(false);
 
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={2}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
+    const products = useSelector((rootReducer) => rootReducer.productsReducer);
 
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={3}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
+    useEffect(() => {
+        setLoading(true);
+        axios
+            .get("https://roshan-api.liara.run/api/products/")
+            .then((response) => {
+                dispatch(getProducts(response.data.results));
+            })
+            .catch((error) => console.log(error));
+        setLoading(false);
+    }, []);
 
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={4}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={5}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={6}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={7}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={8}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={9}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={10}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={11}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={12}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
-                </div>
-
-                <div className={styles.product_box}>
-                    <ProductBox
-                        id={13}
-                        image={img}
-                        name={"هود آشپزی مدل سیمرغ"}
-                        price={"4,000,000"}
-                    />
+    if (loading) {
+        <div className={styles.loading}>در حال دریافت اطلاعات</div>;
+    } else {
+        return (
+            <div className={styles.container}>
+                <div className={styles.products}>
+                    {products.length === 0 ? (
+                        <div className={styles.no_product}>
+                            <span>
+                                <FontAwesomeIcon icon={faExclamationTriangle} />
+                            </span>
+                            محصولی یافت نشد
+                        </div>
+                    ) : (
+                        products.map((product) => (
+                            <div
+                                className={styles.product_box}
+                                key={product.id}
+                                onClick={() =>
+                                    dispatch(changeSlug(product.slug))
+                                }
+                            >
+                                <ProductBox
+                                    slug={product.slug}
+                                    image={product.image}
+                                    name={product.name}
+                                    price={product.price}
+                                    finalPrice={product.final_price}
+                                    discount={product.discount}
+                                    amazing={product.is_amazing}
+                                />
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }

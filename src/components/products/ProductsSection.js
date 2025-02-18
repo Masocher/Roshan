@@ -7,14 +7,75 @@ import {
     faAngleRight,
     faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProducts } from "@/store/Actions";
+import axios from "axios";
 
 export default function ProductsSection() {
+    const dispatch = useDispatch();
+
     const [option1, setOption1] = useState(true);
     const [option2, setOption2] = useState(false);
     const [option3, setOption3] = useState(false);
     const [option4, setOption4] = useState(false);
     const [option5, setOption5] = useState(false);
+
+    const [filters, setFilters] = useState({
+        categName: "",
+        brandName: "",
+    });
+
+    const [minPriceText, setMinPriceText] = useState("");
+    const [maxPriceText, setMaxPriceText] = useState("");
+
+    const [priceRange, setPriceRange] = useState({
+        min_price: "",
+        max_price: "",
+    });
+
+    const [ordering, setOrdering] = useState("-date");
+
+    const selectFilter = () => {
+        axios
+            .get(
+                `https://roshan-api.liara.run/api/products/${
+                    ordering === "" ? "" : `?ordering=${ordering}`
+                }${
+                    filters.categName === ""
+                        ? ""
+                        : `${ordering === "" ? "?" : "&"}category__name=${
+                              filters.categName
+                          }`
+                }${
+                    filters.brandName === ""
+                        ? ""
+                        : `${
+                              filters.categName === "" && ordering === ""
+                                  ? "?"
+                                  : "&"
+                          }brand__name=${filters.brandName}`
+                }${
+                    priceRange.max_price === "" && priceRange.min_price === ""
+                        ? ""
+                        : `${
+                              filters.categName === "" &&
+                              filters.brandName === "" &&
+                              ordering === ""
+                                  ? "?"
+                                  : "&"
+                          }min_price=${priceRange.min_price}&max_price=${
+                              priceRange.max_price
+                          }`
+                }`
+            )
+            .then((response) => dispatch(getProducts(response.data.results)))
+            .catch((err) => console.log(err));
+    };
+
+    useEffect(() => {
+        selectFilter();
+    }, [ordering, filters, priceRange]);
 
     return (
         <div className={styles.container}>
@@ -27,72 +88,74 @@ export default function ProductsSection() {
                 </div>
 
                 <div
-                    className={`${styles.f_box} ${option1 ? styles.show : ""}`}
+                    className={`${styles.f_box} ${
+                        ordering === "-date" ? styles.show : ""
+                    }`}
                     onClick={() => {
-                        setOption1(true);
-                        setOption2(false);
-                        setOption3(false);
-                        setOption4(false);
-                        setOption5(false);
+                        setOrdering("-date");
                     }}
                 >
                     همه
                 </div>
                 <div
-                    className={`${styles.f_box} ${option2 ? styles.show : ""}`}
+                    className={`${styles.f_box} ${
+                        ordering === "hits_count" ? styles.show : ""
+                    }`}
                     onClick={() => {
-                        setOption1(false);
-                        setOption2(true);
-                        setOption3(false);
-                        setOption4(false);
-                        setOption5(false);
+                        setOrdering("hits_count");
                     }}
                 >
                     پر فروش ترین
                 </div>
 
                 <div
-                    className={`${styles.f_box} ${option3 ? styles.show : ""}`}
+                    className={`${styles.f_box} ${
+                        ordering === "-date" ? styles.show : ""
+                    }`}
                     onClick={() => {
-                        setOption1(false);
-                        setOption2(false);
-                        setOption3(true);
-                        setOption4(false);
-                        setOption5(false);
+                        setOrdering("-date");
                     }}
                 >
                     جدید ترین
                 </div>
 
                 <div
-                    className={`${styles.f_box} ${option4 ? styles.show : ""}`}
+                    className={`${styles.f_box} ${
+                        ordering === "price" ? styles.show : ""
+                    }`}
                     onClick={() => {
-                        setOption1(false);
-                        setOption2(false);
-                        setOption3(false);
-                        setOption4(true);
-                        setOption5(false);
-                    }}
-                >
-                    گران ترین
-                </div>
-
-                <div
-                    className={`${styles.f_box} ${option5 ? styles.show : ""}`}
-                    onClick={() => {
-                        setOption1(false);
-                        setOption2(false);
-                        setOption3(false);
-                        setOption4(false);
-                        setOption5(true);
+                        setOrdering("price");
                     }}
                 >
                     ارزان ترین
                 </div>
+
+                <div
+                    className={`${styles.f_box} ${
+                        ordering === "-price" ? styles.show : ""
+                    }`}
+                    onClick={() => {
+                        setOrdering("-price");
+                    }}
+                >
+                    گران ترین
+                </div>
             </div>
 
             <div className={styles.products_container}>
-                <FilterBox />
+                <FilterBox
+                    filters={filters}
+                    setFilters={setFilters}
+                    categName={filters.categName}
+                    brandName={filters.brandName}
+                    setPriceRange={setPriceRange}
+                    min_price={priceRange.min_price}
+                    max_price={priceRange.max_price}
+                    minPriceText={minPriceText}
+                    maxPriceText={maxPriceText}
+                    setMinPriceText={setMinPriceText}
+                    setMaxPriceText={setMaxPriceText}
+                />
                 <ProductsAll />
             </div>
 

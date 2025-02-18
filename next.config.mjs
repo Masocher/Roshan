@@ -4,6 +4,9 @@ const nextConfig = {
     devIndicators: {
         buildActivity: false,
     },
+    images: {
+        domains: ["s3.ir-thr-at1.arvanstorage.ir"],
+    },
 };
 
 export default nextConfig;

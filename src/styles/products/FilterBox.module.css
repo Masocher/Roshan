@@ -116,7 +116,7 @@
 .price_input {
     font-family: Kalameh;
     background-color: #e8eef2;
-    outline: 0;
+    outline: none;
     border: none;
     padding: 10px 10px 10px 50px;
     border-radius: 10px;
@@ -180,6 +180,31 @@
     background-color: #12a386;
     border-radius: 50%;
     color: #fff;
+}
+
+.reset_btn {
+    width: calc(100% - 20px);
+    background-color: #f93827;
+    color: #fff;
+    border: 1px solid #f93827;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: .2s;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+}
+.reset_btn.show {
+    display: block;
+}
+.reset_btn span {
+    margin-left: 10px;
+}
+.reset_btn:hover {
+    background: none;
+    color: #f93827;
 }
 
 @media (max-width: 1500px) {
