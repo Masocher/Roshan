@@ -1,6 +1,6 @@
 import styles from "../styles/authentication/ChangePassword.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ChangePassword() {
     const router = useRouter();
@@ -11,17 +11,23 @@ export default function ChangePassword() {
     const [code, setCode] = useState("");
     const [password, setPassword] = useState("");
 
+    let [number, setNumber] = useState("");
+
+    useEffect(() => {
+        setNumber(localStorage.getItem("number"));
+    }, []);
+
     const changePasswordFunction = (code, pas) => {
         // axios.post("/auth/reset_password/verify/", {
         //     "number": `${localStorage.getItem("number")}`,
         //     "otp": `${code}`,
         //     "new_password": `${pas}`,
         // });
-        console.log("number : " + localStorage.getItem("number"));
+        console.log("number : " + number);
         console.log("otp : " + code);
         console.log("new password : " + pas);
-        router.push("/")
-        localStorage.removeItem("number")
+        router.push("/");
+        localStorage.removeItem("number");
     };
 
     const checkCode = (code) => {
@@ -51,7 +57,7 @@ export default function ChangePassword() {
                     >
                         <div className={styles.input_title}>
                             کد تایید ارسال شده به شماره
-                            <span>{localStorage.getItem("number")}</span>
+                            <span>{number}</span>
                         </div>
 
                         <input
