@@ -1,9 +1,8 @@
 import styles from "../../styles/products/ProductsAll.module.css";
 import ProductBox from "../global/ProductBox";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSlug, getProducts } from "@/store/Actions";
+import { changeSlug } from "@/store/Actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,17 +12,6 @@ export default function ProductsAll() {
     const [loading, setLoading] = useState(false);
 
     const products = useSelector((rootReducer) => rootReducer.productsReducer);
-
-    useEffect(() => {
-        setLoading(true);
-        axios
-            .get("https://roshan-api.liara.run/api/products/")
-            .then((response) => {
-                dispatch(getProducts(response.data.results));
-            })
-            .catch((error) => console.log(error));
-        setLoading(false);
-    }, []);
 
     if (loading) {
         <div className={styles.loading}>در حال دریافت اطلاعات</div>;

@@ -15,12 +15,6 @@ import axios from "axios";
 export default function ProductsSection() {
     const dispatch = useDispatch();
 
-    const [option1, setOption1] = useState(true);
-    const [option2, setOption2] = useState(false);
-    const [option3, setOption3] = useState(false);
-    const [option4, setOption4] = useState(false);
-    const [option5, setOption5] = useState(false);
-
     const [filters, setFilters] = useState({
         categName: "",
         brandName: "",
@@ -34,7 +28,7 @@ export default function ProductsSection() {
         max_price: "",
     });
 
-    const [ordering, setOrdering] = useState("-date");
+    const [ordering, setOrdering] = useState("");
 
     const selectFilter = () => {
         axios
@@ -89,14 +83,15 @@ export default function ProductsSection() {
 
                 <div
                     className={`${styles.f_box} ${
-                        ordering === "-date" ? styles.show : ""
+                        ordering === "" ? styles.show : ""
                     }`}
                     onClick={() => {
-                        setOrdering("-date");
+                        setOrdering("");
                     }}
                 >
-                    همه
+                    جدید ترین
                 </div>
+
                 <div
                     className={`${styles.f_box} ${
                         ordering === "hits_count" ? styles.show : ""
@@ -106,17 +101,6 @@ export default function ProductsSection() {
                     }}
                 >
                     پر فروش ترین
-                </div>
-
-                <div
-                    className={`${styles.f_box} ${
-                        ordering === "-date" ? styles.show : ""
-                    }`}
-                    onClick={() => {
-                        setOrdering("-date");
-                    }}
-                >
-                    جدید ترین
                 </div>
 
                 <div
