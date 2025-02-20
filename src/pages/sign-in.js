@@ -63,7 +63,7 @@ export default function SignIn() {
 
     return (
         <div className={styles.container}>
-            <Toaster position="top-left" reverseOrder={true} />
+            <Toaster position="bottom-left" reverseOrder={true} />
 
             <Link href={"/"} className={styles.logo}>
                 روشن مارکت

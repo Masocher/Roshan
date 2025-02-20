@@ -31,6 +31,7 @@ export default function FilterBox({
     const [brands, setBrands] = useState([]);
 
     useEffect(() => {
+        axios.defaults.withCredentials = true;
         axios
             .get("https://roshan-api.liara.run/api/categories/")
             .then((response) => {
@@ -40,6 +41,7 @@ export default function FilterBox({
     }, []);
 
     useEffect(() => {
+        axios.defaults.withCredentials = true;
         axios
             .get("https://roshan-api.liara.run/api/brands/")
             .then((response) => {

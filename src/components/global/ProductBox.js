@@ -12,8 +12,6 @@ export default function ProductBox({
     amazing,
     discount,
 }) {
-    const [offer, setOffer] = useState(true);
-
     return (
         <Link className={styles.product} href={`/product/${slug}`}>
             <div

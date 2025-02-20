@@ -31,6 +31,7 @@ export default function ProductsSection() {
     const [ordering, setOrdering] = useState("");
 
     const selectFilter = () => {
+        axios.defaults.withCredentials = true;
         axios
             .get(
                 `https://roshan-api.liara.run/api/products/${

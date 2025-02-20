@@ -18,6 +18,7 @@ export default function LeaveComment({
     const [content, setContent] = useState("");
 
     const addComment = () => {
+        axios.defaults.withCredentials = true;
         axios
             .post(
                 `https://roshan-api.liara.run/api/products/${product_slug}/add_comment/`,

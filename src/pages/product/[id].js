@@ -44,6 +44,7 @@ export default function ProductSinglePage() {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
+        axios.defaults.withCredentials = true;
         axios
             .get(`https://roshan-api.liara.run/api/products/${slug}/`)
             .then((response) => {
@@ -67,6 +68,7 @@ export default function ProductSinglePage() {
     }, [product]);
 
     const addToCart = () => {
+        axios.defaults.withCredentials = true;
         axios
             .post(
                 `https://roshan-api.liara.run/api/products/${product.slug}/add_cart/`
@@ -89,6 +91,7 @@ export default function ProductSinglePage() {
     };
 
     const removeFromCart = () => {
+        axios.defaults.withCredentials = true;
         axios
             .post(
                 `https://roshan-api.liara.run/api/products/${product.slug}/remove_cart/`
