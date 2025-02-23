@@ -74,7 +74,7 @@
 
 .product_left_content span {
     font-size: 14px;
-    color: #F93827;
+    color: #f93827;
     margin-bottom: 10px;
     background-color: #e8eef2;
     width: 30px;
@@ -84,10 +84,10 @@
     align-items: center;
     border-radius: 5px;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 }
 .product_left_content span:hover {
-    background-color: #F93827;
+    background-color: #f93827;
     color: #fff;
 }
 
@@ -127,6 +127,7 @@
 .bonus_code_box {
     width: 100%;
     position: relative;
+    user-select: none;
 }
 
 .bonus_code_box input {
@@ -158,6 +159,52 @@
     padding: 3px 10px;
 }
 
+.bonus_box {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    background-color: #e8eef2;
+    padding: 15px 20px;
+    width: calc(100% - 40px);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.bonus_title {
+    font-size: 14px;
+}
+
+.bonus_box .bottom_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bonus_code {
+    font-family: KalamehM;
+}
+
+.delete_bonus {
+    background-color: #f93827;
+    color: #fff;
+    border: 1px solid #f93827;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.delete_bonus:hover {
+    background: none;
+    color: #f93827;
+}
+
+.delete_bonus span {
+    margin-left: 5px;
+}
+
 .value_box {
     display: flex;
     align-items: center;
@@ -173,7 +220,7 @@
     margin-bottom: 8px;
 }
 .off_value {
-    color: #F93827;
+    color: #f93827;
 }
 
 .buy_value {
@@ -232,7 +279,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid #12a386;
-    transition: .2s;
+    transition: 0.2s;
     cursor: pointer;
     margin-top: 15px;
 }

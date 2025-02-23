@@ -9,7 +9,6 @@ import {
     faPlus,
     faMinus,
     faTrashCan,
-    faExclamationTriangle,
     faCartPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
@@ -26,17 +25,29 @@ export default function ShoppingCart() {
     const router = useRouter();
 
     let [categoriesStatus, setCategoriesStatus] = useState(false);
-    const [productValue, setProductValue] = useState(1);
 
     const [products, setProducts] = useState([]);
+    const [productsPrice, setProductsPrice] = useState({
+        base_price: "",
+        discount_amount: "",
+        final_price: "",
+    });
+    const [bonusStatus, setBonusStatus] = useState(null);
 
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
             .get("https://roshan-api.liara.run/api/ordering/cart/")
             .then((response) => {
-                setProducts(response.data);
-                console.log(response.data);
+                setProducts(response.data.items);
+
+                setProductsPrice({
+                    base_price: response.data.base_price,
+                    discount_amount: response.data.discount_amount,
+                    final_price: response.data.final_price,
+                });
+
+                setBonusStatus(response.data.cupon);
             })
             .catch((err) => {
                 if (err.status === 401) {
@@ -57,7 +68,71 @@ export default function ShoppingCart() {
                 "https://roshan-api.liara.run/api/ordering/cart/change-item/",
                 { item_id: `${id}`, action: type }
             )
-            .then((response) => setProducts(response.data))
+            .then((response) => {
+                setProducts(response.data.items);
+
+                setProductsPrice({
+                    base_price: response.data.base_price,
+                    discount_amount: response.data.discount_amount,
+                    final_price: response.data.final_price,
+                });
+
+                setBonusStatus(response.data.cupon);
+            })
+            .catch((err) => console.log(err));
+    };
+
+    const [bonusCode, setBonusCode] = useState("");
+
+    const setBonus = (code) => {
+        if (code.length === 0) {
+            toast.error("یک مقدار معتبر وارد کنید");
+        } else {
+            axios.defaults.withCredentials = true;
+            axios
+                .post(
+                    "https://roshan-api.liara.run/api/ordering/cart/apply-cupon/",
+                    { code: `${code}` }
+                )
+                .then((response) => {
+                    toast.success("کد تخفیف روی سبد خرید شما اعمال شد");
+
+                    setProductsPrice({
+                        base_price: response.data.base_price,
+                        discount_amount: response.data.discount_amount,
+                        final_price: response.data.final_price,
+                    });
+
+                    setBonusCode("");
+
+                    setBonusStatus(response.data.cupon);
+                })
+                .catch((err) => {
+                    if (err.status === 400) {
+                        toast.error("کد تخفیف وارد شده صحیح نیست");
+                    }
+                    setBonusCode("");
+                });
+        }
+    };
+
+    const removeBonus = () => {
+        axios.defaults.withCredentials = true;
+        axios
+            .post(
+                "https://roshan-api.liara.run/api/ordering/cart/remove-cupon/"
+            )
+            .then((response) => {
+                toast.success("کد تخفیف با موفقیت حذف شد");
+
+                setProductsPrice({
+                    base_price: response.data.base_price,
+                    discount_amount: response.data.discount_amount,
+                    final_price: response.data.final_price,
+                });
+
+                setBonusStatus(response.data.cupon);
+            })
             .catch((err) => console.log(err));
     };
 
@@ -76,7 +151,7 @@ export default function ShoppingCart() {
             <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
 
             <div className={styles.cart_wrapper}>
-                {products.length === 0 || products.items.length === 0 ? (
+                {products.length === 0 ? (
                     <div className={styles.no_product}>
                         <span>
                             <FontAwesomeIcon icon={faCartPlus} />
@@ -91,7 +166,7 @@ export default function ShoppingCart() {
                     </div>
                 ) : (
                     <div className={styles.right_section}>
-                        {products.items.map((product) => (
+                        {products.map((product) => (
                             <div
                                 className={styles.cart_product}
                                 key={product.product.id}
@@ -197,30 +272,59 @@ export default function ShoppingCart() {
 
                 <div
                     className={`${styles.left_section} ${
-                        products.length === 0 || products.items.length === 0
-                            ? styles.show
-                            : ""
+                        products.length === 0 ? styles.show : ""
                     }`}
                 >
                     <div className={styles.title}>اطلاعات پرداخت</div>
 
-                    <form
-                        className={styles.bonus_code_box}
-                        onSubmit={(e) => e.preventDefault()}
-                    >
-                        <input
-                            type="text"
-                            placeholder="کد تخفیف را وارد کنید"
-                        />
+                    {bonusStatus === null ? (
+                        <form
+                            className={styles.bonus_code_box}
+                            onSubmit={(e) => e.preventDefault()}
+                        >
+                            <input
+                                type="text"
+                                placeholder="کد تخفیف را وارد کنید"
+                                onChange={(e) => {
+                                    setBonusCode(e.target.value);
+                                }}
+                                value={bonusCode}
+                            />
 
-                        <button type="submit">اعمال تخفیف</button>
-                    </form>
+                            <button
+                                type="submit"
+                                onClick={() => setBonus(bonusCode)}
+                            >
+                                اعمال تخفیف
+                            </button>
+                        </form>
+                    ) : (
+                        <div className={styles.bonus_box}>
+                            <div className={styles.bonus_title}>کد تخفیف</div>
+
+                            <div className={styles.bottom_content}>
+                                <div className={styles.bonus_code}>
+                                    {bonusStatus.code}
+                                </div>
+
+                                <div
+                                    className={styles.delete_bonus}
+                                    onClick={() => removeBonus()}
+                                >
+                                    <span>
+                                        <FontAwesomeIcon icon={faTrashCan} />
+                                    </span>
+                                    حذف کردن
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     <div className={styles.value_box}>
                         <div className={styles.value_title}>جمع کل</div>
 
                         <div className={styles.value}>
-                            {products.base_price}
+                            {productsPrice.base_price}
                             <div className={styles.toman}>تومان</div>
                         </div>
                     </div>
@@ -229,7 +333,7 @@ export default function ShoppingCart() {
                         <div className={styles.value_title}>تخفیف</div>
 
                         <div className={`${styles.value} ${styles.off_value}`}>
-                            {products.discount_amount}
+                            {productsPrice.discount_amount}
                             <div className={styles.toman}>تومان</div>
                         </div>
                     </div>
@@ -240,7 +344,7 @@ export default function ShoppingCart() {
                         </div>
 
                         <div className={styles.value}>
-                            {products.final_price}
+                            {productsPrice.final_price}
                             <div className={styles.toman}>تومان</div>
                         </div>
                     </div>

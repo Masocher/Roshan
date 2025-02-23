@@ -346,7 +346,7 @@
     }
     .categories_menu.show {
         left: 0;
-        top: calc(50% - 30px);
+        top: calc(50% + 25px);
     }
 
     .main_title {
@@ -403,7 +403,7 @@
         padding: 20px;
     }
     .categories_menu.show {
-        top: calc(50% - 10px);
+        top: calc(50% + 45px);
     }
 
     .categ_item {
