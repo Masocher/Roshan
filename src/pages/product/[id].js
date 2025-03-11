@@ -46,7 +46,7 @@ export default function ProductSinglePage() {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get(`https://roshan-api.liara.run/api/products/${slug}/`)
+            .get(`https://abazarak.ir/api/products/${slug}/`)
             .then((response) => {
                 setProduct(response.data);
                 setDeleteStatus(product.in_cart);
@@ -71,7 +71,7 @@ export default function ProductSinglePage() {
         axios.defaults.withCredentials = true;
         axios
             .post(
-                `https://roshan-api.liara.run/api/products/${product.slug}/add_cart/`
+                `https://abazarak.ir/api/products/${product.slug}/add_cart/`
             )
             .then((response) => {
                 toast.success("این محصول به سبد خرید شما اضافه شد");
@@ -94,7 +94,7 @@ export default function ProductSinglePage() {
         axios.defaults.withCredentials = true;
         axios
             .post(
-                `https://roshan-api.liara.run/api/products/${product.slug}/remove_cart/`
+                `https://abazarak.ir/api/products/${product.slug}/remove_cart/`
             )
             .then((response) => {
                 toast.success("این محصول از سبد خرید شما حذف شد");

@@ -17,7 +17,7 @@ export default function AuthCode() {
     const sendCode = (code) => {
         axios.defaults.withCredentials = true;
         axios
-            .post("https://roshan-api.liara.run/api/auth/register/verify/", {
+            .post("https://abazarak.ir/api/auth/register/verify/", {
                 "number": `${localStorage.getItem("number")}`,
                 "otp": `${code}`,
             })

@@ -23,7 +23,7 @@ export default function SignIn() {
     const signInFunction = (num, pas) => {
         axios.defaults.withCredentials = true;
         axios
-            .post("https://roshan-api.liara.run/api/auth/login/", {
+            .post("https://abazarak.ir/api/auth/login/", {
                 "number": `${num}`,
                 "password": `${pas}`,
             })

@@ -56,7 +56,7 @@ export default function PurchaseInformation() {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://roshan-api.liara.run/api/ordering/preview/")
+            .get("https://abazarak.ir/api/ordering/preview/")
             .then((response) => {
                 setProducts(response.data.items);
 
@@ -88,7 +88,7 @@ export default function PurchaseInformation() {
     const createAddress = () => {
         axios.defaults.withCredentials = true;
         axios
-            .post("https://roshan-api.liara.run/api/ordering/addresses/", {
+            .post("https://abazarak.ir/api/ordering/addresses/", {
                 province: provinceId,
                 city: cityId,
                 address: address,

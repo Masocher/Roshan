@@ -33,7 +33,7 @@ export default function FilterBox({
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://roshan-api.liara.run/api/categories/")
+            .get("https://abazarak.ir/api/categories/")
             .then((response) => {
                 setCategories(response.data);
             })
@@ -43,7 +43,7 @@ export default function FilterBox({
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://roshan-api.liara.run/api/brands/")
+            .get("https://abazarak.ir/api/brands/")
             .then((response) => {
                 setBrands(response.data);
             })

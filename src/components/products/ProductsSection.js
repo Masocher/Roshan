@@ -34,7 +34,7 @@ export default function ProductsSection() {
         axios.defaults.withCredentials = true;
         axios
             .get(
-                `https://roshan-api.liara.run/api/products/${
+                `https://abazarak.ir/api/products/${
                     ordering === "" ? "" : `?ordering=${ordering}`
                 }${
                     filters.categName === ""
