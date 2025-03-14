@@ -27,7 +27,7 @@ export default function SignUp() {
     const signUpFunction = (nam, num, pas1, pas2) => {
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/register/", {
+            .post("http://abazarak.ir/api/auth/register/", {
                 "full_name": `${nam}`,
                 "number": `${num}`,
                 "password": `${pas1}`,
