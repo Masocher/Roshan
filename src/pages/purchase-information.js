@@ -7,11 +7,9 @@ import {
     faEarthAmericas,
     faTruck,
     faPlus,
-    faMinus,
-    faTrashCan,
     faUser,
+    faAddressCard,
     faClose,
-    faMobile,
     faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -26,7 +24,6 @@ export default function PurchaseInformation() {
     const [addressBoxStatus, setAddressBoxStatus] = useState(false);
 
     const [bankStatus, setBankStatus] = useState(false);
-    const [addressStatus, setAddressStatus] = useState(false);
     const [createAddressStatus, setCreateAddressStatus] = useState(false);
 
     const [provinceSelected, setProvinceSelected] = useState("");
@@ -61,6 +58,7 @@ export default function PurchaseInformation() {
                 setProducts(response.data.items);
 
                 setAddresses(response.data.addresses);
+                console.log(response.data.addresses);
 
                 setProductsPrice({
                     base_price: response.data.base_price,
@@ -97,6 +95,11 @@ export default function PurchaseInformation() {
             })
             .then((response) => {
                 setCreateAddressStatus(false);
+                setProvinceId("");
+                setCityId("");
+                setAddress("");
+                setPelak("");
+                setPostalCode("");
                 toast.success("آدرس شما با موفقیت ایجاد شد");
             })
             .catch((err) => {
@@ -106,6 +109,8 @@ export default function PurchaseInformation() {
                     toast.error("استان : " + err.response.data.province);
                 } else if (err.response.data.city) {
                     toast.error("شهر : " + err.response.data.city);
+                } else if (err.response.data.postal_code) {
+                    toast.error("کد پستی : " + err.response.data.postal_code);
                 } else if (err.response.data.pelak) {
                     toast.error("پلاک : " + err.response.data.pelak);
                 } else if (err.response.data.address) {
@@ -194,69 +199,37 @@ export default function PurchaseInformation() {
                     </div>
 
                     <div className={styles.addresses}>
-                        <div
-                            className={`${styles.address} ${
-                                addressStatus ? "" : styles.show
-                            }`}
-                            onClick={() => setAddressStatus(false)}
-                        >
-                            <div className={styles.address_title}>
-                                <div
-                                    className={`${styles.check_box} ${
-                                        addressStatus ? "" : styles.show
-                                    }`}
-                                >
-                                    <span></span>
+                        {addresses.map((address) => (
+                            <div
+                                className={`${styles.address} // address.id === 0 ? "" : styles.show`}
+                                key={address.id}
+                                // onClick={() => setAddressStatus(false)}
+                            >
+                                <div className={styles.address_title}>
+                                    <div
+                                        className={`${styles.check_box} // address.id === 0 ? "" : styles.show`}
+                                    >
+                                        <span></span>
+                                    </div>
+
+                                    {address.address}
                                 </div>
-                                لرستان - دورود - دانشجو
-                            </div>
 
-                            <div className={styles.address_inf}>
-                                <span>
-                                    <FontAwesomeIcon icon={faUser} />
-                                </span>
-                                امیر مسعود چراغی
-                            </div>
-
-                            <div className={styles.address_inf}>
-                                <span>
-                                    <FontAwesomeIcon icon={faMobile} />
-                                </span>
-                                09054182307
-                            </div>
-                        </div>
-
-                        <div
-                            className={`${styles.address} ${
-                                addressStatus ? styles.show : ""
-                            }`}
-                            onClick={() => setAddressStatus(true)}
-                        >
-                            <div className={styles.address_title}>
-                                <div
-                                    className={`${styles.check_box} ${
-                                        addressStatus ? styles.show : ""
-                                    }`}
-                                >
-                                    <span></span>
+                                <div className={styles.address_inf}>
+                                    <span>
+                                        <FontAwesomeIcon icon={faAddressCard} />
+                                    </span>
+                                    {address.postal_code}
                                 </div>
-                                لرستان - دورود - دانشجو
-                            </div>
 
-                            <div className={styles.address_inf}>
-                                <span>
-                                    <FontAwesomeIcon icon={faUser} />
-                                </span>
-                                امیر مسعود چراغی
+                                <div className={styles.address_inf}>
+                                    <span>
+                                        <FontAwesomeIcon icon={faLocationDot} />
+                                    </span>
+                                    {address.city_name}
+                                </div>
                             </div>
-
-                            <div className={styles.address_inf}>
-                                <span>
-                                    <FontAwesomeIcon icon={faMobile} />
-                                </span>
-                                09054182307
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
                     <div className={styles.new_address}>
@@ -372,7 +345,7 @@ export default function PurchaseInformation() {
                             <input
                                 type="text"
                                 placeholder="کد پستی تحویل گیرنده"
-                                // onChange={(e) => setPostalCode(e.target.value)}
+                                onChange={(e) => setPostalCode(e.target.value)}
                             />
 
                             <input
@@ -469,7 +442,7 @@ export default function PurchaseInformation() {
                                 <span>
                                     <FontAwesomeIcon icon={faLocationDot} />
                                 </span>
-                                لرستان - دورود - دانشجو
+                                {addresses[0].address}
                             </div>
                         )}
                     </div>
@@ -484,7 +457,7 @@ export default function PurchaseInformation() {
 
                 <div className={styles.products}>
                     {products.map((product) => (
-                        <div className={styles.product_box}>
+                        <div className={styles.product_box} key={product.id}>
                             <div className={styles.product_right_content}>
                                 <Image
                                     className={styles.cart_product_img}
@@ -501,57 +474,16 @@ export default function PurchaseInformation() {
                                     </div>
 
                                     <div className={styles.cart_product_value}>
-                                        <span>
-                                            <FontAwesomeIcon
-                                                icon={faPlus}
-                                                onClick={() =>
-                                                    changeProduct(
-                                                        product.id,
-                                                        "inc"
-                                                    )
-                                                }
-                                            />
-                                        </span>
-
                                         <div
                                             className={styles.cart_product_num}
                                         >
-                                            {product.quantity}
+                                            {product.quantity} <span>عدد</span>
                                         </div>
-
-                                        <span>
-                                            <FontAwesomeIcon
-                                                icon={faMinus}
-                                                onClick={() => {
-                                                    if (product.quantity > 1) {
-                                                        changeProduct(
-                                                            product.id,
-                                                            "dec"
-                                                        );
-                                                    } else {
-                                                        toast.error(
-                                                            "کمتر از این مقدار مجاز نیست"
-                                                        );
-                                                    }
-                                                }}
-                                            />
-                                        </span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className={styles.product_left_content}>
-                                <span
-                                    onClick={() => {
-                                        changeProduct(product.id, "del");
-                                        toast.success(
-                                            "محصول مورد نظر با موفقیت حذف شد"
-                                        );
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </span>
-
                                 <div className={styles.cart_product_price}>
                                     {product.price}
                                     <div className={styles.toman}>تومان</div>

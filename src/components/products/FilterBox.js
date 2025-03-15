@@ -112,6 +112,7 @@ export default function FilterBox({
                         {categories.map((categ) => (
                             <div
                                 className={styles.option}
+                                key={categ.id}
                                 onClick={() => {
                                     if (categ.name === categName) {
                                         setFilters({
@@ -125,7 +126,6 @@ export default function FilterBox({
                                         });
                                     }
                                 }}
-                                key={categ.id}
                             >
                                 <span>
                                     <div
