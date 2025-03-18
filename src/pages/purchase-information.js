@@ -61,6 +61,8 @@ export default function PurchaseInformation() {
 
     const [loading, setLoading] = useState(false);
 
+    const [changeAddress, setChangeAddress] = useState(true);
+
     const selectAddress = () => {
         addresses.filter((ad) => {
             ad.id === selectedAddressId ? setSelectedAddress(ad) : null;
@@ -69,6 +71,7 @@ export default function PurchaseInformation() {
 
     const createAddress = () => {
         setLoading(true);
+        setChangeAddress(!changeAddress);
         axios.defaults.withCredentials = true;
         axios
             .post("https://abazarak.ir/api/ordering/addresses/", {
@@ -119,14 +122,12 @@ export default function PurchaseInformation() {
             .then((response) => {
                 setProducts(response.data.items);
 
-                setAddresses(response.data.addresses);
-
-                console.log(response.data.addresses);
-
                 if (response.data.items.length === 0) {
                     router.push("/shopping-cart");
                     toast.error("ابتدا محصولاتی برای سفارش انتخاب کنید");
                 }
+
+                setAddresses(response.data.addresses);
 
                 setProductsPrice({
                     base_price: response.data.base_price,
@@ -150,7 +151,28 @@ export default function PurchaseInformation() {
                 }
             });
         setLoading(false);
-    }, [address]);
+    }, []);
+
+    useEffect(() => {
+        setLoading(true);
+        axios.defaults.withCredentials = true;
+        axios
+            .get("https://abazarak.ir/api/ordering/preview/")
+            .then((response) => {
+                setAddresses(response.data.addresses);
+            })
+            .catch((err) => {
+                if (err.status === 401) {
+                    toast.error(
+                        "برای ورود به صفحه ثبت سفارش ابتدا وارد حساب خود شوید"
+                    );
+                    router.push("/sign-in");
+                } else {
+                    console.log(err);
+                }
+            });
+        setLoading(false);
+    }, [changeAddress]);
 
     const [fullName, setFullName] = useState("");
     const [fullNameError, setFullNameError] = useState(false);
@@ -246,7 +268,7 @@ export default function PurchaseInformation() {
             setLoading(true);
             const timer = setTimeout(() => {
                 router.push("/user-orders");
-            }, 2000);
+            }, 1000);
             setLoading(false);
 
             return () => clearTimeout(timer);
@@ -275,12 +297,15 @@ export default function PurchaseInformation() {
                 <div className={styles.payment_gateway}>
                     <div className={styles.gateway_main_title}>
                         انتخاب درگاه پرداخت
-                        <div
-                            className={styles.close_btn}
-                            onClick={() => setGatewayStatus(false)}
+                        <Link
+                            href={"/user-orders"}
+                            className={styles.show_order}
                         >
-                            <FontAwesomeIcon icon={faClose} />
-                        </div>
+                            نمایش سفارش
+                            <span>
+                                <FontAwesomeIcon icon={faAngleLeft} />
+                            </span>
+                        </Link>
                     </div>
 
                     <div
