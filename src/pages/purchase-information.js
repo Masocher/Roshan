@@ -11,19 +11,25 @@ import {
     faAddressCard,
     faClose,
     faAngleLeft,
+    faCheckCircle,
+    faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import img1 from "../../public/images/12.png";
+import loadingSvg from "../../public/images/loading.svg";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function PurchaseInformation() {
+    const router = useRouter();
+
     const [gatewayStatus, setGatewayStatus] = useState(false);
     const [addressBoxStatus, setAddressBoxStatus] = useState(false);
 
-    const [bankStatus, setBankStatus] = useState(false);
+    const [bankStatus, setBankStatus] = useState(true);
     const [createAddressStatus, setCreateAddressStatus] = useState(false);
 
     const [provinceSelected, setProvinceSelected] = useState("");
@@ -50,7 +56,63 @@ export default function PurchaseInformation() {
     const [pelak, setPelak] = useState("");
     const [postalCode, setPostalCode] = useState("3513987658");
 
+    const [selectedAddressId, setSelectedAddressId] = useState(null);
+    const [selectedAddress, setSelectedAddress] = useState("");
+
+    const [loading, setLoading] = useState(false);
+
+    const selectAddress = () => {
+        addresses.filter((ad) => {
+            ad.id === selectedAddressId ? setSelectedAddress(ad) : null;
+        });
+    };
+
+    const createAddress = () => {
+        setLoading(true);
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://abazarak.ir/api/ordering/addresses/", {
+                province: provinceId,
+                city: cityId,
+                address: address,
+                pelak: pelak,
+                postal_code: postalCode,
+            })
+            .then((response) => {
+                setCreateAddressStatus(false);
+                setProvinceId("");
+                setCityId("");
+                setAddress("");
+                setPelak("");
+                setPostalCode("");
+                toast.success("آدرس شما با موفقیت ایجاد شد");
+                setProvinceSelected("");
+                setCitySelected("");
+                setProvinceStatus(false);
+                setCityStatus(false);
+                setAddressBoxStatus(true);
+                setSelectedAddressId(response.data.id);
+            })
+            .catch((err) => {
+                console.log(err);
+
+                if (err.response.data.province) {
+                    toast.error("استان : " + err.response.data.province);
+                } else if (err.response.data.city) {
+                    toast.error("شهر : " + err.response.data.city);
+                } else if (err.response.data.postal_code) {
+                    toast.error("کد پستی : " + err.response.data.postal_code);
+                } else if (err.response.data.pelak) {
+                    toast.error("پلاک : " + err.response.data.pelak);
+                } else if (err.response.data.address) {
+                    toast.error("آدرس : " + err.response.data.address);
+                }
+            });
+        setLoading(false);
+    };
+
     useEffect(() => {
+        setLoading(true);
         axios.defaults.withCredentials = true;
         axios
             .get("https://abazarak.ir/api/ordering/preview/")
@@ -58,7 +120,13 @@ export default function PurchaseInformation() {
                 setProducts(response.data.items);
 
                 setAddresses(response.data.addresses);
+
                 console.log(response.data.addresses);
+
+                if (response.data.items.length === 0) {
+                    router.push("/shopping-cart");
+                    toast.error("ابتدا محصولاتی برای سفارش انتخاب کنید");
+                }
 
                 setProductsPrice({
                     base_price: response.data.base_price,
@@ -81,47 +149,123 @@ export default function PurchaseInformation() {
                     console.log(err);
                 }
             });
-    }, []);
+        setLoading(false);
+    }, [address]);
 
-    const createAddress = () => {
+    const [fullName, setFullName] = useState("");
+    const [fullNameError, setFullNameError] = useState(false);
+
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneNumberError, setPhoneNumberErrorr] = useState(false);
+
+    const [orderId, setOrderId] = useState(null);
+
+    const checkout = () => {
+        setLoading(true);
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/ordering/addresses/", {
-                province: provinceId,
-                city: cityId,
-                address: address,
-                pelak: pelak,
-                postal_code: postalCode,
+            .post("https://abazarak.ir/api/ordering/checkout/", {
+                full_name: fullName,
+                number: phoneNumber,
+                address: selectedAddressId,
             })
             .then((response) => {
-                setCreateAddressStatus(false);
-                setProvinceId("");
-                setCityId("");
-                setAddress("");
-                setPelak("");
-                setPostalCode("");
-                toast.success("آدرس شما با موفقیت ایجاد شد");
+                setOrderId(response.data.order_id);
+                toast.success(response.data.detail);
+                setGatewayStatus(true);
             })
             .catch((err) => {
-                console.log(err);
-
-                if (err.response.data.province) {
-                    toast.error("استان : " + err.response.data.province);
-                } else if (err.response.data.city) {
-                    toast.error("شهر : " + err.response.data.city);
-                } else if (err.response.data.postal_code) {
-                    toast.error("کد پستی : " + err.response.data.postal_code);
-                } else if (err.response.data.pelak) {
-                    toast.error("پلاک : " + err.response.data.pelak);
+                if (err.response.data.full_name) {
+                    toast.error(
+                        "نام و نام خانوادگی : " + err.response.data.full_name
+                    );
+                    setFullNameError(true);
+                } else if (err.response.data.number) {
+                    toast.error("شماره تلفن : " + err.response.data.number);
+                    setPhoneNumberErrorr(true);
                 } else if (err.response.data.address) {
-                    toast.error("آدرس : " + err.response.data.address);
+                    toast.error("آدرس : یک آدرس معتبر وارد کنید");
+                } else if (err.status == 403) {
+                    toast.error(err.response.data.detail);
+                    router.push("/shopping-cart");
+                } else {
+                    toast.error(err.response.data.detail);
                 }
             });
+        setLoading(false);
     };
+
+    const [backStatus, setBackStatus] = useState(false);
+
+    const completeOrder = () => {
+        axios.defaults.withCredentials = true;
+        axios
+            .get("https://abazarak.ir/api/ordering/preview/")
+            .then((response) => {
+                if (response.data.items.length === 0) {
+                    router.push("/user-orders");
+                }
+            })
+            .catch((err) => {
+                if (err.status === 401) {
+                    toast.error(
+                        "برای ورود به صفحه ثبت سفارش ابتدا وارد حساب خود شوید"
+                    );
+                    router.push("/sign-in");
+                } else {
+                    console.log(err);
+                }
+            });
+
+        axios.defaults.withCredentials = true;
+        axios
+            .post(
+                `https://abazarak.ir/api/ordering/history/${orderId}/payment_gateway/`
+            )
+            .then((response) => {
+                router.push(response.data.gateway_url);
+                setBackStatus(true);
+            })
+            .catch((err) => console.log(err));
+    };
+
+    useEffect(() => {
+        if (backStatus) {
+            const handleBeforeUnload = (event) => {};
+
+            window.addEventListener("beforeunload", handleBeforeUnload);
+
+            return () => {
+                window.removeEventListener("beforeunload", handleBeforeUnload);
+            };
+        }
+    }, []);
+
+    useEffect(() => {
+        if (backStatus) {
+            setLoading(true);
+            const timer = setTimeout(() => {
+                router.push("/user-orders");
+            }, 2000);
+            setLoading(false);
+
+            return () => clearTimeout(timer);
+        }
+    }, [router]);
 
     return (
         <div className={styles.container}>
             <Toaster position="bottom-left" reverseOrder={true} />
+
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.wrapper}>
+                    <Image
+                        className={styles.loading_box}
+                        src={loadingSvg}
+                        alt="لودینگ"
+                    />
+                </div>
+            </div>
 
             <div
                 className={`${styles.gateway_container} ${
@@ -143,7 +287,6 @@ export default function PurchaseInformation() {
                         className={`${styles.gateway} ${
                             bankStatus ? styles.show : ""
                         }`}
-                        onClick={() => setBankStatus(!bankStatus)}
                     >
                         <div className={styles.title}>
                             <div
@@ -153,7 +296,7 @@ export default function PurchaseInformation() {
                             >
                                 <span></span>
                             </div>
-                            بانک صادرات
+                            زرین پال
                         </div>
 
                         <Image
@@ -176,6 +319,7 @@ export default function PurchaseInformation() {
                         className={`${styles.complete_btn} ${
                             bankStatus ? styles.show : ""
                         }`}
+                        onClick={() => completeOrder()}
                     >
                         تکمیل سفارش
                     </div>
@@ -188,26 +332,26 @@ export default function PurchaseInformation() {
                 }`}
             >
                 <div className={styles.select_address}>
-                    <div className={styles.address_main_title}>
-                        انتخاب آدرس
-                        <div
-                            className={styles.close_btn}
-                            onClick={() => setAddressBoxStatus(false)}
-                        >
-                            <FontAwesomeIcon icon={faClose} />
-                        </div>
-                    </div>
+                    <div className={styles.address_main_title}>انتخاب آدرس</div>
 
                     <div className={styles.addresses}>
                         {addresses.map((address) => (
                             <div
-                                className={`${styles.address} // address.id === 0 ? "" : styles.show`}
+                                className={`${styles.address} ${
+                                    address.id === selectedAddressId
+                                        ? styles.show
+                                        : ""
+                                }`}
                                 key={address.id}
-                                // onClick={() => setAddressStatus(false)}
+                                onClick={() => setSelectedAddressId(address.id)}
                             >
                                 <div className={styles.address_title}>
                                     <div
-                                        className={`${styles.check_box} // address.id === 0 ? "" : styles.show`}
+                                        className={`${styles.check_box}  ${
+                                            address.id === selectedAddressId
+                                                ? styles.show
+                                                : ""
+                                        }`}
                                     >
                                         <span></span>
                                     </div>
@@ -232,11 +376,32 @@ export default function PurchaseInformation() {
                         ))}
                     </div>
 
-                    <div className={styles.new_address}>
-                        <span>
-                            <FontAwesomeIcon icon={faPlus} />
-                        </span>
-                        افزودن آدرس جدید
+                    <div className={styles.select_address_buttons}>
+                        <div
+                            className={`${styles.new_address} ${styles.new_address_2}`}
+                            onClick={() => {
+                                setAddressBoxStatus(false);
+                                selectAddress();
+                            }}
+                        >
+                            <span>
+                                <FontAwesomeIcon icon={faCheckCircle} />
+                            </span>
+                            انتخاب
+                        </div>
+
+                        <div
+                            className={styles.new_address}
+                            onClick={() => {
+                                setAddressBoxStatus(false);
+                                setCreateAddressStatus(true);
+                            }}
+                        >
+                            <span>
+                                <FontAwesomeIcon icon={faPlus} />
+                            </span>
+                            افزودن آدرس جدید
+                        </div>
                     </div>
                 </div>
             </div>
@@ -346,18 +511,21 @@ export default function PurchaseInformation() {
                                 type="text"
                                 placeholder="کد پستی تحویل گیرنده"
                                 onChange={(e) => setPostalCode(e.target.value)}
+                                value={postalCode}
                             />
 
                             <input
                                 type="text"
                                 placeholder="پلاک تحویل گیرنده"
                                 onChange={(e) => setPelak(e.target.value)}
+                                value={pelak}
                             />
                         </div>
 
                         <textarea
                             placeholder="آدرس تحویل گیرنده"
                             onChange={(e) => setAddress(e.target.value)}
+                            value={address}
                         />
 
                         <div
@@ -384,7 +552,9 @@ export default function PurchaseInformation() {
             <div className={styles.right_section}>
                 <form
                     onSubmit={(e) => e.preventDefault()}
-                    className={styles.user_inf_form}
+                    className={`${styles.user_inf_form} ${
+                        fullNameError ? styles.name_error : ""
+                    } ${phoneNumberError ? styles.number_error : ""}`}
                 >
                     <div className={styles.title}>
                         <span>
@@ -393,9 +563,23 @@ export default function PurchaseInformation() {
                         اطلاعات دریافت کننده
                     </div>
 
-                    <input type="text" placeholder="نام و نام خانوادگی" />
+                    <input
+                        type="text"
+                        placeholder="نام و نام خانوادگی"
+                        onChange={(e) => {
+                            setFullName(e.target.value);
+                            setFullNameError(false);
+                        }}
+                    />
 
-                    <input type="text" placeholder="شماره تلفن" />
+                    <input
+                        type="text"
+                        placeholder="شماره تلفن"
+                        onChange={(e) => {
+                            setPhoneNumber(e.target.value);
+                            setPhoneNumberErrorr(false);
+                        }}
+                    />
                 </form>
 
                 <div className={styles.location_box}>
@@ -427,7 +611,9 @@ export default function PurchaseInformation() {
                                     className={styles.select_address_btn}
                                     onClick={() => setAddressBoxStatus(true)}
                                 >
-                                    تغییر آدرس
+                                    {selectedAddress === ""
+                                        ? "انتخاب آدرس"
+                                        : "تغییر آدرس"}
                                     <span>
                                         <FontAwesomeIcon icon={faArrowLeft} />
                                     </span>
@@ -435,14 +621,21 @@ export default function PurchaseInformation() {
                             )}
                         </div>
 
-                        {addresses.length === 0 ? (
-                            ""
+                        {selectedAddress === "" ? (
+                            <div className={styles.please_select_address}>
+                                <span>
+                                    <FontAwesomeIcon
+                                        icon={faExclamationCircle}
+                                    />
+                                </span>
+                                لطفا یک آدرس انتخاب کنید
+                            </div>
                         ) : (
                             <div className={styles.selected_address}>
                                 <span>
                                     <FontAwesomeIcon icon={faLocationDot} />
                                 </span>
-                                {addresses[0].address}
+                                {selectedAddress.address}
                             </div>
                         )}
                     </div>
@@ -540,10 +733,7 @@ export default function PurchaseInformation() {
                     </div>
                 </div>
 
-                <div
-                    className={styles.buy_btn}
-                    onClick={() => setGatewayStatus(true)}
-                >
+                <div className={styles.buy_btn} onClick={() => checkout()}>
                     ثبت سفارش
                 </div>
             </div>
