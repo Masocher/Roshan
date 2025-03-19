@@ -10,13 +10,33 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Header({ status, setStatus }) {
     const location = useRouter();
     const matches2 = useMediaQuery(1200);
-    const [authStatus, setAuthStatus] = useState(true);
+    const [authStatus, setAuthStatus] = useState(false);
     const [menuStatus, setMenuStatus] = useState(false);
+
+    const [userName, setUserName] = useState("");
+    const [userNumber, setUserNumber] = useState("");
+
+    useEffect(() => {
+        axios.defaults.withCredentials = true;
+        axios
+            .get("https://abazarak.ir/api/auth/me")
+            .then((response) => {
+                setUserName(response.data.full_name);
+                setUserNumber(response.data.number);
+                setAuthStatus(true);
+            })
+            .catch((err) => {
+                if (err.status === 401) {
+                    setAuthStatus(false);
+                }
+            });
+    }, []);
 
     return (
         <div className={styles.header_container}>
@@ -47,10 +67,10 @@ export default function Header({ status, setStatus }) {
                         <span>
                             <FontAwesomeIcon icon={faUser} />
                         </span>
-                        امیر مسعود چراغی
+                        {userName}
                     </div>
 
-                    <div className={styles.user_inf_number}>09054182307</div>
+                    <div className={styles.user_inf_number}>{userNumber}</div>
                 </div>
 
                 <div className={styles.menu_sections}>
@@ -166,17 +186,17 @@ export default function Header({ status, setStatus }) {
                     </Link>
                 </div>
 
-                {authStatus ? (
+                {authStatus === false ? (
+                    <Link href={"/sign-in"} className={styles.auth_btn}>
+                        ورود | ثبت نام
+                    </Link>
+                ) : (
                     <div
                         className={styles.user_icon}
                         onClick={() => setMenuStatus(true)}
                     >
                         <FontAwesomeIcon icon={faUser} />
                     </div>
-                ) : (
-                    <Link href={"/sign-in"} className={styles.auth_btn}>
-                        ورود | ثبت نام
-                    </Link>
                 )}
             </div>
 
