@@ -12,11 +12,13 @@ import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function Header({ status, setStatus }) {
     const location = useRouter();
+
     const matches2 = useMediaQuery(1200);
-    const [authStatus, setAuthStatus] = useState(false);
+    const [authStatus, setAuthStatus] = useState(true);
     const [menuStatus, setMenuStatus] = useState(false);
 
     const [userName, setUserName] = useState("");
@@ -38,8 +40,20 @@ export default function Header({ status, setStatus }) {
             });
     }, []);
 
+    const logOut = () => {
+        axios
+            .post("https://abazarak.ir/api/auth/logout/")
+            .then((response) => {
+                window.location.href = "/";
+                toast.success(response.data.detail);
+            })
+            .catch((err) => console.log(err));
+    };
+
     return (
         <div className={styles.header_container}>
+            <Toaster position="bottom-left" reverseOrder={true} />
+
             <div
                 className={`${styles.black_back_2} ${
                     menuStatus ? styles.show : ""
@@ -107,16 +121,18 @@ export default function Header({ status, setStatus }) {
                         کامنت ها
                     </Link> */}
 
-                    <Link
+                    <div
                         className={styles.menu_sec}
-                        href={"/user-orders"}
-                        onClick={() => setMenuStatus(false)}
+                        onClick={() => {
+                            logOut();
+                            setMenuStatus(false);
+                        }}
                     >
                         <span>
                             <FontAwesomeIcon icon={faRightToBracket} />
                         </span>
                         خروج از حساب
-                    </Link>
+                    </div>
                 </div>
             </div>
 
