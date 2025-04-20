@@ -17,11 +17,11 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import img1 from "../../public/images/12.png";
 import loadingSvg from "../../public/images/loading.svg";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
+import Gateway from "./gateway";
 
 export default function PurchaseInformation() {
     const router = useRouter();
@@ -29,7 +29,6 @@ export default function PurchaseInformation() {
     const [gatewayStatus, setGatewayStatus] = useState(false);
     const [addressBoxStatus, setAddressBoxStatus] = useState(false);
 
-    const [bankStatus, setBankStatus] = useState(true);
     const [createAddressStatus, setCreateAddressStatus] = useState(false);
 
     const [provinceSelected, setProvinceSelected] = useState("");
@@ -193,8 +192,8 @@ export default function PurchaseInformation() {
             })
             .then((response) => {
                 setOrderId(response.data.order_id);
-                toast.success(response.data.detail);
                 setGatewayStatus(true);
+                toast.success(response.data.detail);
             })
             .catch((err) => {
                 if (err.response.data.full_name) {
@@ -218,38 +217,6 @@ export default function PurchaseInformation() {
     };
 
     const [backStatus, setBackStatus] = useState(false);
-
-    const completeOrder = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .get("https://abazarak.ir/api/ordering/preview/")
-            .then((response) => {
-                if (response.data.items.length === 0) {
-                    router.push("/user-orders");
-                }
-            })
-            .catch((err) => {
-                if (err.status === 401) {
-                    toast.error(
-                        "برای ورود به صفحه ثبت سفارش ابتدا وارد حساب خود شوید"
-                    );
-                    router.push("/sign-in");
-                } else {
-                    console.log(err);
-                }
-            });
-
-        axios.defaults.withCredentials = true;
-        axios
-            .post(
-                `https://abazarak.ir/api/ordering/history/${orderId}/payment_gateway/`
-            )
-            .then((response) => {
-                router.push(response.data.gateway_url);
-                setBackStatus(true);
-            })
-            .catch((err) => console.log(err));
-    };
 
     useEffect(() => {
         if (backStatus) {
@@ -289,67 +256,12 @@ export default function PurchaseInformation() {
                 </div>
             </div>
 
-            <div
-                className={`${styles.gateway_container} ${
-                    gatewayStatus ? styles.show : ""
-                }`}
-            >
-                <div className={styles.payment_gateway}>
-                    <div className={styles.gateway_main_title}>
-                        انتخاب درگاه پرداخت
-                        <Link
-                            href={"/user-orders"}
-                            className={styles.show_order}
-                        >
-                            نمایش سفارش
-                            <span>
-                                <FontAwesomeIcon icon={faAngleLeft} />
-                            </span>
-                        </Link>
-                    </div>
-
-                    <div
-                        className={`${styles.gateway} ${
-                            bankStatus ? styles.show : ""
-                        }`}
-                    >
-                        <div className={styles.title}>
-                            <div
-                                className={`${styles.check_box} ${
-                                    bankStatus ? styles.show : ""
-                                }`}
-                            >
-                                <span></span>
-                            </div>
-                            زرین پال
-                        </div>
-
-                        <Image
-                            src={img1}
-                            className={styles.gateway_image}
-                            alt="لوگوی بانک"
-                        />
-                    </div>
-
-                    <div className={styles.value_box}>
-                        <div className={styles.title}>مقدار قابل پرداخت</div>
-
-                        <div className={styles.value}>
-                            {productsPrice.pay_price}
-                            <div className={styles.toman}>تومان</div>
-                        </div>
-                    </div>
-
-                    <div
-                        className={`${styles.complete_btn} ${
-                            bankStatus ? styles.show : ""
-                        }`}
-                        onClick={() => completeOrder()}
-                    >
-                        تکمیل سفارش
-                    </div>
-                </div>
-            </div>
+            <Gateway
+                gatewayStatus={gatewayStatus}
+                productsPrice={productsPrice}
+                setBackStatus={setBackStatus}
+                orderId={orderId}
+            />
 
             <div
                 className={`${styles.address_container} ${

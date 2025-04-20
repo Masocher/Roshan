@@ -78,8 +78,20 @@ export default function ShoppingCart() {
                 });
 
                 setBonusStatus(response.data.cupon);
+
+                if (type === "inc") {
+                    toast.success("تعداد انتخاب شده محصول اضافه شد");
+                } else if (type === "dec") {
+                    toast.success("تعداد انتخاب شده محصول کم شد");
+                } else if (type === "del") {
+                    toast.success("محصول با موفقیت حذف شد");
+                }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                
+                toast.error(err.response.data.detail);
+            });
     };
 
     const [bonusCode, setBonusCode] = useState("");

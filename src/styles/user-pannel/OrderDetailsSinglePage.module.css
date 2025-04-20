@@ -1,0 +1,203 @@
+.orders_container {
+    padding: 50px;
+    width: calc(100% - 100px);
+}
+
+.user_orders_main_title {
+    width: calc(100% - 60px);
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.user_orders_main_title .title {
+    font-size: 18px;
+    font-family: KalamehM;
+    display: flex;
+    align-items: center;
+}
+.user_orders_main_title .title span {
+    margin: 5px 0 0 15px;
+    cursor: pointer;
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+}
+
+.first_section {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.payment_status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    width: calc(100% / 6);
+    height: 50px;
+    margin: 20px 0 0 20px;
+}
+
+.payment_status .title {
+    font-size: 12px;
+    color: #777;
+}
+
+.payment_status .content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.payment_status .content span {
+    margin: 0 0 0 10px;
+    color: #fff;
+    background-color: #f93827;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+.payment_status .content span.show {
+    background-color: #f93827;
+}
+
+.address {
+    margin-top: 20px;
+    width: calc(100% - 40px);
+    padding: 20px;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.address .title {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.third_section {
+    width: calc(100% - 40px);
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.third_section .title {
+    font-size: 12px;
+    color: #777;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    margin: 30px 0 0 20px;
+}
+
+.product_img {
+    width: 73px;
+    height: fit-content;
+    object-fit: contain;
+}
+
+.product_inf {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.cart_product_num {
+    margin: 5px 0;
+    color: #12a386;
+}
+
+.section_title {
+    color: #999;
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-family: KalamehM;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #999;
+}
+
+@media (max-width: 1899px) {
+    .payment_status {
+        width: calc(100% / 5);
+    }
+}
+
+@media (max-width: 1299px) {
+    .payment_status {
+        width: calc(100% / 4);
+    }
+}
+
+@media (max-width: 950px) {
+    .orders_container {
+        padding: 0;
+        width: 100%;
+        margin-top: 83px;
+    }   
+
+    .user_orders_main_title {
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+
+    .first_section {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 819px) {
+    .first_section {
+        justify-content: space-between;
+    }
+
+    .payment_status {
+        width: calc(100% / 2 - 50px);
+        margin: 20px 0 0 0;
+    }
+}
+
+@media (max-width: 580px) {
+    .payment_status {
+        width: calc(50% - 20px);
+        padding: 20px 10px;
+        margin: 0 0 0 0;
+    }
+
+    .address {
+        margin-top: 0;
+        border-top: 1px solid #e8eef2;
+        border-bottom: 1px solid #e8eef2;
+    }
+
+    .third_section {
+        margin: 0;
+        padding: 30px 20px 50px 20px;
+    }
+}

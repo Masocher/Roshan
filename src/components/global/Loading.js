@@ -12,6 +12,7 @@ export default function Loading() {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#fff",
+        userSelect: "none",
     };
 
     return (
