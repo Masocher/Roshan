@@ -178,7 +178,13 @@ export default function UserOrders() {
                                         )}
 
                                         <Link
-                                            href={`/order-detail/${order.id}?id=${order.id}`}
+                                            onClick={() =>
+                                                localStorage.setItem(
+                                                    "orderId",
+                                                    order.id
+                                                )
+                                            }
+                                            href={`/order-detail/${order.id}`}
                                             className={styles.show_details_btn}
                                             style={
                                                 order.paid
