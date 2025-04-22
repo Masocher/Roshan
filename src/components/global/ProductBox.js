@@ -32,6 +32,7 @@ export default function ProductBox({
                 width={100}
                 height={100}
                 quality={100}
+                priority
             />
 
             <div className={styles.product_informations}>

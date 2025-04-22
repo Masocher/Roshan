@@ -99,28 +99,6 @@ export default function Header({ status, setStatus }) {
                         تاریخچه سفارشات
                     </Link>
 
-                    {/* <Link
-                        className={styles.menu_sec}
-                        href={"/user-orders"}
-                        onClick={() => setMenuStatus(false)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faMap} />
-                        </span>
-                        آدرس ها
-                    </Link>
-
-                    <Link
-                        className={styles.menu_sec}
-                        href={"/user-comments"}
-                        onClick={() => setMenuStatus(false)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faComments} />
-                        </span>
-                        کامنت ها
-                    </Link> */}
-
                     <div
                         className={styles.menu_sec}
                         onClick={() => {

@@ -36,6 +36,7 @@ export default function HomeSlider() {
                         src={img}
                         alt="عکس پس زمینه"
                         className={styles.top_image}
+                        priority
                     />
                 </SwiperSlide>
 
@@ -55,6 +56,7 @@ export default function HomeSlider() {
                         src={img}
                         alt="عکس پس زمینه"
                         className={styles.top_image}
+                        priority
                     />
                 </SwiperSlide>
 
@@ -74,6 +76,7 @@ export default function HomeSlider() {
                         src={img}
                         alt="عکس پس زمینه"
                         className={styles.top_image}
+                        priority
                     />
                 </SwiperSlide>
             </Swiper>
