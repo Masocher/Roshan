@@ -8,9 +8,10 @@ import {
     faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "@/store/Actions";
 import axios from "axios";
+import Loading from "../global/Loading";
 
 export default function ProductsSection() {
     const dispatch = useDispatch();
@@ -72,97 +73,107 @@ export default function ProductsSection() {
         selectFilter();
     }, [ordering, filters, priceRange]);
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.f_boxes}>
-                <div className={styles.title}>
-                    <span>
-                        <FontAwesomeIcon icon={faSort} />
-                    </span>
-                    مرتب سازی :
+    const products = useSelector((rootReducer) => rootReducer.productsReducer);
+
+    if (products.length === 0) {
+        return (
+            <div className={styles.loading_wrapper}>
+                <Loading />
+            </div>
+        );
+    } else {
+        return (
+            <div className={styles.container}>
+                <div className={styles.f_boxes}>
+                    <div className={styles.title}>
+                        <span>
+                            <FontAwesomeIcon icon={faSort} />
+                        </span>
+                        مرتب سازی :
+                    </div>
+
+                    <div
+                        className={`${styles.f_box} ${
+                            ordering === "" ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setOrdering("");
+                        }}
+                    >
+                        جدید ترین
+                    </div>
+
+                    <div
+                        className={`${styles.f_box} ${
+                            ordering === "hits_count" ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setOrdering("hits_count");
+                        }}
+                    >
+                        پر فروش ترین
+                    </div>
+
+                    <div
+                        className={`${styles.f_box} ${
+                            ordering === "price" ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setOrdering("price");
+                        }}
+                    >
+                        ارزان ترین
+                    </div>
+
+                    <div
+                        className={`${styles.f_box} ${
+                            ordering === "-price" ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setOrdering("-price");
+                        }}
+                    >
+                        گران ترین
+                    </div>
                 </div>
 
-                <div
-                    className={`${styles.f_box} ${
-                        ordering === "" ? styles.show : ""
-                    }`}
-                    onClick={() => {
-                        setOrdering("");
-                    }}
-                >
-                    جدید ترین
+                <div className={styles.products_container}>
+                    <FilterBox
+                        filters={filters}
+                        setFilters={setFilters}
+                        categName={filters.categName}
+                        brandName={filters.brandName}
+                        setPriceRange={setPriceRange}
+                        min_price={priceRange.min_price}
+                        max_price={priceRange.max_price}
+                        minPriceText={minPriceText}
+                        maxPriceText={maxPriceText}
+                        setMinPriceText={setMinPriceText}
+                        setMaxPriceText={setMaxPriceText}
+                    />
+                    <ProductsAll />
                 </div>
 
-                <div
-                    className={`${styles.f_box} ${
-                        ordering === "hits_count" ? styles.show : ""
-                    }`}
-                    onClick={() => {
-                        setOrdering("hits_count");
-                    }}
-                >
-                    پر فروش ترین
-                </div>
-
-                <div
-                    className={`${styles.f_box} ${
-                        ordering === "price" ? styles.show : ""
-                    }`}
-                    onClick={() => {
-                        setOrdering("price");
-                    }}
-                >
-                    ارزان ترین
-                </div>
-
-                <div
-                    className={`${styles.f_box} ${
-                        ordering === "-price" ? styles.show : ""
-                    }`}
-                    onClick={() => {
-                        setOrdering("-price");
-                    }}
-                >
-                    گران ترین
+                <div className={styles.pagination}>
+                    <div className={styles.perv_btn}>
+                        <span>
+                            <FontAwesomeIcon icon={faAngleLeft} />
+                        </span>
+                        قبلی
+                    </div>
+                    <div className={`${styles.page_btn} ${styles.show}`}>1</div>
+                    <div className={`${styles.page_btn} ${""}`}>2</div>
+                    <div className={`${styles.page_btn} ${""}`}>3</div>
+                    <div className={`${styles.page_btn} ${""}`}>4</div>
+                    <div className={`${styles.page_btn} ${""}`}>5</div>
+                    <div className={styles.next_btn}>
+                        بعدی
+                        <span>
+                            <FontAwesomeIcon icon={faAngleRight} />
+                        </span>
+                    </div>
                 </div>
             </div>
-
-            <div className={styles.products_container}>
-                <FilterBox
-                    filters={filters}
-                    setFilters={setFilters}
-                    categName={filters.categName}
-                    brandName={filters.brandName}
-                    setPriceRange={setPriceRange}
-                    min_price={priceRange.min_price}
-                    max_price={priceRange.max_price}
-                    minPriceText={minPriceText}
-                    maxPriceText={maxPriceText}
-                    setMinPriceText={setMinPriceText}
-                    setMaxPriceText={setMaxPriceText}
-                />
-                <ProductsAll />
-            </div>
-
-            <div className={styles.pagination}>
-                <div className={styles.perv_btn}>
-                    <span>
-                        <FontAwesomeIcon icon={faAngleLeft} />
-                    </span>
-                    قبلی
-                </div>
-                <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-                <div className={`${styles.page_btn} ${""}`}>2</div>
-                <div className={`${styles.page_btn} ${""}`}>3</div>
-                <div className={`${styles.page_btn} ${""}`}>4</div>
-                <div className={`${styles.page_btn} ${""}`}>5</div>
-                <div className={styles.next_btn}>
-                    بعدی
-                    <span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                    </span>
-                </div>
-            </div>
-        </div>
-    );
+        );
+    }
 }

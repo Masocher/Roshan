@@ -20,15 +20,11 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import ProductBox from "@/components/global/ProductBox";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useSelector } from "react-redux";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { changeSlug } from "@/store/Actions";
 import { Toaster, toast } from "react-hot-toast";
+import Loading from "@/components/global/Loading";
 
 export default function ProductSinglePage() {
-    const dispatch = useDispatch();
-
     const [deleteStatus, setDeleteStatus] = useState();
 
     let [categoriesStatus, setCategoriesStatus] = useState(false);
@@ -39,40 +35,39 @@ export default function ProductSinglePage() {
     const matches3 = useMediaQuery(950);
     const matches4 = useMediaQuery(580);
 
-    const slug = useSelector((rootReducer) => rootReducer.slugReducer);
-
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get(`https://abazarak.ir/api/products/${slug}/`)
+            .get(
+                `https://abazarak.ir/api/products/${localStorage.getItem(
+                    "productSlug"
+                )}/`
+            )
             .then((response) => {
                 setProduct(response.data);
                 setDeleteStatus(product.in_cart);
             })
             .catch((err) => console.log(err));
-    }, [slug]);
+    }, []);
 
     useEffect(() => {
         if (product) {
             if (product.in_cart === null) {
-                console.log("trying");
+                null;
             } else {
                 setDeleteStatus(product.in_cart);
-                console.log("success");
             }
         } else {
-            console.log("getting product inf ...");
+            null;
         }
     }, [product]);
 
     const addToCart = () => {
         axios.defaults.withCredentials = true;
         axios
-            .post(
-                `https://abazarak.ir/api/products/${product.slug}/add_cart/`
-            )
+            .post(`https://abazarak.ir/api/products/${product.slug}/add_cart/`)
             .then((response) => {
                 toast.success("این محصول به سبد خرید شما اضافه شد");
                 setDeleteStatus(true);
@@ -104,7 +99,7 @@ export default function ProductSinglePage() {
     };
 
     if (product === null || product.in_cart === null) {
-        <div className={styles.loading}>Loading ...</div>;
+        return <Loading />;
     } else {
         return (
             <div>
@@ -183,7 +178,7 @@ export default function ProductSinglePage() {
                                 {product.specifications.map((spec) => (
                                     <div
                                         className={styles.feature_box}
-                                        key={spec.id}
+                                        key={spec.key}
                                     >
                                         <div className={styles.feature_title}>
                                             {spec.key}
@@ -365,7 +360,10 @@ export default function ProductSinglePage() {
                                     key={prd.id}
                                     className={styles.product}
                                     onClick={() =>
-                                        dispatch(changeSlug(prd.slug))
+                                        localStorage.setItem(
+                                            "productSlug",
+                                            prd.slug
+                                        )
                                     }
                                 >
                                     <ProductBox
@@ -416,7 +414,7 @@ export default function ProductSinglePage() {
                                     product.comments.map((com) => (
                                         <div
                                             className={styles.comment_box}
-                                            key={com.id}
+                                            key={com.content}
                                         >
                                             <Comment
                                                 content={com.content}

@@ -112,7 +112,7 @@ export default function FilterBox({
                         {categories.map((categ) => (
                             <div
                                 className={styles.option}
-                                key={categ.id}
+                                key={categ.slug}
                                 onClick={() => {
                                     if (categ.name === categName) {
                                         setFilters({
@@ -202,7 +202,7 @@ export default function FilterBox({
                                         });
                                     }
                                 }}
-                                key={brand.id}
+                                key={brand.slug}
                             >
                                 <span>
                                     <div

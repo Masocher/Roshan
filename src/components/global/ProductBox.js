@@ -12,7 +12,11 @@ export default function ProductBox({
     discount,
 }) {
     return (
-        <Link className={styles.product} href={`/product/${slug}`}>
+        <Link
+            className={styles.product}
+            onClick={() => localStorage.setItem("productSlug", slug)}
+            href={`/product/${slug}`}
+        >
             <div
                 className={`${styles.amazing_box} ${
                     amazing ? styles.show : ""

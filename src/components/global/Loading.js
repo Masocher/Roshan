@@ -13,6 +13,7 @@ export default function Loading() {
         alignItems: "center",
         backgroundColor: "#fff",
         userSelect: "none",
+        zIndex: "1000",
     };
 
     return (
