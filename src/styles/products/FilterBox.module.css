@@ -238,6 +238,19 @@
 
     .filters {
         display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .reset_btn {
+        width: fit-content;
+        margin: 0;
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+
+    .filter_boxes {
+        display: flex;
     }
 
     .filter_box {
@@ -245,6 +258,8 @@
         padding: 5px 20px;
         border-radius: 30px;
         font-size: 14px;
+        width: fit-content;
+        height: fit-content;
     }
 
     .filter_box_inf span {
@@ -295,11 +310,15 @@
         padding: 20px;
         width: calc(100% - 40px);
         top: 160px;
+        right: 0;
     }
 
     .filters {
-        width: 100%;
-        display: flex;
+        flex-direction: column;
+    }
+
+    .reset_btn.show {
+        display: none;
     }
 
     .filter_box {

@@ -125,6 +125,30 @@
     color: #fff;
 }
 
+.reset_btn_2 {
+    width: calc(100% - 20px);
+    background-color: #f93827;
+    color: #fff;
+    border: 1px solid #f93827;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+    transition: .2s;
+    cursor: pointer;
+    display: none;
+    text-align: center;
+}
+.reset_btn_2.show {
+    display: none;
+}
+.reset_btn_2 span {
+    margin-left: 10px;
+}
+.reset_btn_2:hover {
+    background: none;
+    color: #f93827;
+}
+
 @media (max-width: 950px) {
     .container {
         width: 100%;
@@ -144,6 +168,10 @@
 }
 
 @media (max-width: 580px) {
+    .reset_btn_2.show {
+        display: block;
+    }
+
     .container {
         margin-top: 140px;
     }

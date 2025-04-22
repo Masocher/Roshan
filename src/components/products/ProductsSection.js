@@ -6,12 +6,12 @@ import {
     faSort,
     faAngleRight,
     faAngleLeft,
+    faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProducts } from "@/store/Actions";
 import axios from "axios";
-import Loading from "../global/Loading";
 
 export default function ProductsSection() {
     const dispatch = useDispatch();
@@ -31,7 +31,10 @@ export default function ProductsSection() {
 
     const [ordering, setOrdering] = useState("");
 
+    const [loading, setLoading] = useState(false);
+
     const selectFilter = () => {
+        setLoading(true);
         axios.defaults.withCredentials = true;
         axios
             .get(
@@ -65,115 +68,152 @@ export default function ProductsSection() {
                           }`
                 }`
             )
-            .then((response) => dispatch(getProducts(response.data.results)))
-            .catch((err) => console.log(err));
+            .then((response) => {
+                dispatch(getProducts(response.data.results));
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
     };
 
     useEffect(() => {
         selectFilter();
     }, [ordering, filters, priceRange]);
 
-    const products = useSelector((rootReducer) => rootReducer.productsReducer);
+    const [option1, setOption1] = useState(false);
+    const [option2, setOption2] = useState(false);
+    const [option3, setOption3] = useState(false);
 
-    if (products.length === 0) {
-        return (
-            <div className={styles.loading_wrapper}>
-                <Loading />
+    return (
+        <div className={styles.container}>
+            <div
+                className={`${styles.reset_btn_2} ${
+                    priceRange.min_price === "" &&
+                    priceRange.max_price === "" &&
+                    filters.categName === "" &&
+                    filters.brandName === ""
+                        ? ""
+                        : styles.show
+                }`}
+                onClick={() => {
+                    setOption1(false);
+                    setOption2(false);
+                    setOption3(false);
+
+                    setPriceRange({
+                        min_price: "",
+                        max_price: "",
+                    });
+
+                    setFilters({
+                        categName: "",
+                        brandName: "",
+                    });
+                }}
+            >
+                <span>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                </span>
+                حذف فیلتر ها
             </div>
-        );
-    } else {
-        return (
-            <div className={styles.container}>
-                <div className={styles.f_boxes}>
-                    <div className={styles.title}>
-                        <span>
-                            <FontAwesomeIcon icon={faSort} />
-                        </span>
-                        مرتب سازی :
-                    </div>
 
-                    <div
-                        className={`${styles.f_box} ${
-                            ordering === "" ? styles.show : ""
-                        }`}
-                        onClick={() => {
-                            setOrdering("");
-                        }}
-                    >
-                        جدید ترین
-                    </div>
-
-                    <div
-                        className={`${styles.f_box} ${
-                            ordering === "hits_count" ? styles.show : ""
-                        }`}
-                        onClick={() => {
-                            setOrdering("hits_count");
-                        }}
-                    >
-                        پر فروش ترین
-                    </div>
-
-                    <div
-                        className={`${styles.f_box} ${
-                            ordering === "price" ? styles.show : ""
-                        }`}
-                        onClick={() => {
-                            setOrdering("price");
-                        }}
-                    >
-                        ارزان ترین
-                    </div>
-
-                    <div
-                        className={`${styles.f_box} ${
-                            ordering === "-price" ? styles.show : ""
-                        }`}
-                        onClick={() => {
-                            setOrdering("-price");
-                        }}
-                    >
-                        گران ترین
-                    </div>
+            <div className={styles.f_boxes}>
+                <div className={styles.title}>
+                    <span>
+                        <FontAwesomeIcon icon={faSort} />
+                    </span>
+                    مرتب سازی :
                 </div>
 
-                <div className={styles.products_container}>
-                    <FilterBox
-                        filters={filters}
-                        setFilters={setFilters}
-                        categName={filters.categName}
-                        brandName={filters.brandName}
-                        setPriceRange={setPriceRange}
-                        min_price={priceRange.min_price}
-                        max_price={priceRange.max_price}
-                        minPriceText={minPriceText}
-                        maxPriceText={maxPriceText}
-                        setMinPriceText={setMinPriceText}
-                        setMaxPriceText={setMaxPriceText}
-                    />
-                    <ProductsAll />
+                <div
+                    className={`${styles.f_box} ${
+                        ordering === "" ? styles.show : ""
+                    }`}
+                    onClick={() => {
+                        setOrdering("");
+                    }}
+                >
+                    جدید ترین
                 </div>
 
-                <div className={styles.pagination}>
-                    <div className={styles.perv_btn}>
-                        <span>
-                            <FontAwesomeIcon icon={faAngleLeft} />
-                        </span>
-                        قبلی
-                    </div>
-                    <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-                    <div className={`${styles.page_btn} ${""}`}>2</div>
-                    <div className={`${styles.page_btn} ${""}`}>3</div>
-                    <div className={`${styles.page_btn} ${""}`}>4</div>
-                    <div className={`${styles.page_btn} ${""}`}>5</div>
-                    <div className={styles.next_btn}>
-                        بعدی
-                        <span>
-                            <FontAwesomeIcon icon={faAngleRight} />
-                        </span>
-                    </div>
+                <div
+                    className={`${styles.f_box} ${
+                        ordering === "hits_count" ? styles.show : ""
+                    }`}
+                    onClick={() => {
+                        setOrdering("hits_count");
+                    }}
+                >
+                    پر فروش ترین
+                </div>
+
+                <div
+                    className={`${styles.f_box} ${
+                        ordering === "price" ? styles.show : ""
+                    }`}
+                    onClick={() => {
+                        setOrdering("price");
+                    }}
+                >
+                    ارزان ترین
+                </div>
+
+                <div
+                    className={`${styles.f_box} ${
+                        ordering === "-price" ? styles.show : ""
+                    }`}
+                    onClick={() => {
+                        setOrdering("-price");
+                    }}
+                >
+                    گران ترین
                 </div>
             </div>
-        );
-    }
+
+            <div className={styles.products_container}>
+                <FilterBox
+                    filters={filters}
+                    setFilters={setFilters}
+                    categName={filters.categName}
+                    brandName={filters.brandName}
+                    setPriceRange={setPriceRange}
+                    min_price={priceRange.min_price}
+                    max_price={priceRange.max_price}
+                    minPriceText={minPriceText}
+                    maxPriceText={maxPriceText}
+                    setMinPriceText={setMinPriceText}
+                    setMaxPriceText={setMaxPriceText}
+                    option1={option1}
+                    option2={option2}
+                    option3={option3}
+                    setOption1={setOption1}
+                    setOption2={setOption2}
+                    setOption3={setOption3}
+                />
+                <ProductsAll loading={loading} />
+            </div>
+
+            <div className={styles.pagination}>
+                <div className={styles.perv_btn}>
+                    <span>
+                        <FontAwesomeIcon icon={faAngleLeft} />
+                    </span>
+                    قبلی
+                </div>
+                <div className={`${styles.page_btn} ${styles.show}`}>1</div>
+                <div className={`${styles.page_btn} ${""}`}>2</div>
+                <div className={`${styles.page_btn} ${""}`}>3</div>
+                <div className={`${styles.page_btn} ${""}`}>4</div>
+                <div className={`${styles.page_btn} ${""}`}>5</div>
+                <div className={styles.next_btn}>
+                    بعدی
+                    <span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
 }

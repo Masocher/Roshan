@@ -41,7 +41,7 @@ export default function OrderDetailsSinglePage() {
 
     {
         if (loading) {
-            <Loading />;
+            return <Loading />;
         } else {
             return (
                 <div className={styles.container}>

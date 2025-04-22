@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { changeSlug } from "@/store/Actions";
+import Loading from "@/components/global/Loading";
 
 export default function ShoppingCart() {
     const dispatch = useDispatch();
@@ -89,7 +90,7 @@ export default function ShoppingCart() {
             })
             .catch((err) => {
                 console.log(err);
-                
+
                 toast.error(err.response.data.detail);
             });
     };
@@ -145,229 +146,262 @@ export default function ShoppingCart() {
             .catch((err) => console.log(err));
     };
 
-    return (
-        <div className={styles.container}>
-            <Toaster position="bottom-left" reverseOrder={true} />
+    if (products.length === 0) {
+        return <Loading />;
+    } else {
+        return (
+            <div className={styles.container}>
+                <Toaster position="bottom-left" reverseOrder={true} />
 
-            <BlackBackground
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
-            <MiniMenu
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
-            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+                <BlackBackground
+                    status={categoriesStatus}
+                    setStatus={setCategoriesStatus}
+                />
+                <MiniMenu
+                    status={categoriesStatus}
+                    setStatus={setCategoriesStatus}
+                />
+                <Header
+                    status={categoriesStatus}
+                    setStatus={setCategoriesStatus}
+                />
 
-            <div className={styles.cart_wrapper}>
-                {products.length === 0 ? (
-                    <div className={styles.no_product}>
-                        <span>
-                            <FontAwesomeIcon icon={faCartPlus} />
-                        </span>
-                        سبد خرید شما خالی است
-                        <Link
-                            href={"/products"}
-                            className={styles.show_products_btn}
-                        >
-                            مشاهده محصولات
-                        </Link>
-                    </div>
-                ) : (
-                    <div className={styles.right_section}>
-                        {products.map((product) => (
-                            <div
-                                className={styles.cart_product}
-                                key={product.product.id}
+                <div className={styles.cart_wrapper}>
+                    {products.length === 0 ? (
+                        <div className={styles.no_product}>
+                            <span>
+                                <FontAwesomeIcon icon={faCartPlus} />
+                            </span>
+                            سبد خرید شما خالی است
+                            <Link
+                                href={"/products"}
+                                className={styles.show_products_btn}
                             >
-                                <div className={styles.product_right_content}>
-                                    <Link href={`${product.product.slug}`}>
-                                        <Image
-                                            className={styles.cart_product_img}
-                                            src={product.product.image}
-                                            alt="عکس محصول"
-                                            width={100}
-                                            height={100}
-                                            quality={100}
-                                        />
-                                    </Link>
-
-                                    <div className={styles.cart_product_inf}>
-                                        <Link
-                                            href={`${product.product.slug}`}
-                                            className={styles.product_title}
-                                            onClick={() =>
-                                                dispatch(
-                                                    changeSlug(
-                                                        product.product.slug
-                                                    )
-                                                )
-                                            }
-                                        >
-                                            {product.product.name}
+                                مشاهده محصولات
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className={styles.right_section}>
+                            {products.map((product) => (
+                                <div
+                                    className={styles.cart_product}
+                                    key={product.product.id}
+                                >
+                                    <div
+                                        className={styles.product_right_content}
+                                    >
+                                        <Link href={`${product.product.slug}`}>
+                                            <Image
+                                                className={
+                                                    styles.cart_product_img
+                                                }
+                                                src={product.product.image}
+                                                alt="عکس محصول"
+                                                width={100}
+                                                height={100}
+                                                quality={100}
+                                            />
                                         </Link>
 
                                         <div
-                                            className={
-                                                styles.cart_product_value
-                                            }
+                                            className={styles.cart_product_inf}
                                         >
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faPlus}
-                                                    onClick={() =>
-                                                        changeProduct(
-                                                            product.id,
-                                                            "inc"
+                                            <Link
+                                                href={`${product.product.slug}`}
+                                                className={styles.product_title}
+                                                onClick={() =>
+                                                    dispatch(
+                                                        changeSlug(
+                                                            product.product.slug
                                                         )
-                                                    }
-                                                />
-                                            </span>
+                                                    )
+                                                }
+                                            >
+                                                {product.product.name}
+                                            </Link>
 
                                             <div
                                                 className={
-                                                    styles.cart_product_num
+                                                    styles.cart_product_value
                                                 }
                                             >
-                                                {product.quantity}
-                                            </div>
-
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faMinus}
-                                                    onClick={() => {
-                                                        if (
-                                                            product.quantity > 1
-                                                        ) {
+                                                <span>
+                                                    <FontAwesomeIcon
+                                                        icon={faPlus}
+                                                        onClick={() =>
                                                             changeProduct(
                                                                 product.id,
-                                                                "dec"
-                                                            );
-                                                        } else {
-                                                            toast.error(
-                                                                "کمتر از این مقدار مجاز نیست"
-                                                            );
+                                                                "inc"
+                                                            )
                                                         }
-                                                    }}
-                                                />
-                                            </span>
+                                                    />
+                                                </span>
+
+                                                <div
+                                                    className={
+                                                        styles.cart_product_num
+                                                    }
+                                                >
+                                                    {product.quantity}
+                                                </div>
+
+                                                <span>
+                                                    <FontAwesomeIcon
+                                                        icon={faMinus}
+                                                        onClick={() => {
+                                                            if (
+                                                                product.quantity >
+                                                                1
+                                                            ) {
+                                                                changeProduct(
+                                                                    product.id,
+                                                                    "dec"
+                                                                );
+                                                            } else {
+                                                                toast.error(
+                                                                    "کمتر از این مقدار مجاز نیست"
+                                                                );
+                                                            }
+                                                        }}
+                                                    />
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className={styles.product_left_content}>
-                                    <span
-                                        onClick={() => {
-                                            changeProduct(product.id, "del");
-                                            toast.success(
-                                                "محصول مورد نظر با موفقیت حذف شد"
-                                            );
-                                        }}
+                                    <div
+                                        className={styles.product_left_content}
                                     >
-                                        <FontAwesomeIcon icon={faTrashCan} />
-                                    </span>
+                                        <span
+                                            onClick={() => {
+                                                changeProduct(
+                                                    product.id,
+                                                    "del"
+                                                );
+                                                toast.success(
+                                                    "محصول مورد نظر با موفقیت حذف شد"
+                                                );
+                                            }}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faTrashCan}
+                                            />
+                                        </span>
 
-                                    <div className={styles.cart_product_price}>
-                                        {product.product.final_price}
-                                        <div className={styles.toman}>
-                                            تومان
+                                        <div
+                                            className={
+                                                styles.cart_product_price
+                                            }
+                                        >
+                                            {product.product.final_price}
+                                            <div className={styles.toman}>
+                                                تومان
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                <div
-                    className={`${styles.left_section} ${
-                        products.length === 0 ? styles.show : ""
-                    }`}
-                >
-                    <div className={styles.title}>اطلاعات پرداخت</div>
-
-                    {bonusStatus === null ? (
-                        <form
-                            className={styles.bonus_code_box}
-                            onSubmit={(e) => e.preventDefault()}
-                        >
-                            <input
-                                type="text"
-                                placeholder="کد تخفیف را وارد کنید"
-                                onChange={(e) => {
-                                    setBonusCode(e.target.value);
-                                }}
-                                value={bonusCode}
-                            />
-
-                            <button
-                                type="submit"
-                                onClick={() => setBonus(bonusCode)}
-                            >
-                                اعمال تخفیف
-                            </button>
-                        </form>
-                    ) : (
-                        <div className={styles.bonus_box}>
-                            <div className={styles.bonus_title}>کد تخفیف</div>
-
-                            <div className={styles.bottom_content}>
-                                <div className={styles.bonus_code}>
-                                    {bonusStatus.code}
-                                </div>
-
-                                <div
-                                    className={styles.delete_bonus}
-                                    onClick={() => removeBonus()}
-                                >
-                                    <span>
-                                        <FontAwesomeIcon icon={faTrashCan} />
-                                    </span>
-                                    حذف کردن
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     )}
 
-                    <div className={styles.value_box}>
-                        <div className={styles.value_title}>جمع کل</div>
-
-                        <div className={styles.value}>
-                            {productsPrice.base_price}
-                            <div className={styles.toman}>تومان</div>
-                        </div>
-                    </div>
-
-                    <div className={styles.value_box}>
-                        <div className={styles.value_title}>تخفیف</div>
-
-                        <div className={`${styles.value} ${styles.off_value}`}>
-                            {productsPrice.discount_amount}
-                            <div className={styles.toman}>تومان</div>
-                        </div>
-                    </div>
-
-                    <div className={`${styles.value_box} ${styles.buy_value}`}>
-                        <div className={styles.value_title}>
-                            مبلغ قابل پرداخت
-                        </div>
-
-                        <div className={styles.value}>
-                            {productsPrice.final_price}
-                            <div className={styles.toman}>تومان</div>
-                        </div>
-                    </div>
-
-                    <Link
-                        href={"/purchase-information"}
-                        className={styles.buy_btn}
+                    <div
+                        className={`${styles.left_section} ${
+                            products.length === 0 ? styles.show : ""
+                        }`}
                     >
-                        تایید و تکمیل سفارش
-                    </Link>
-                </div>
-            </div>
+                        <div className={styles.title}>اطلاعات پرداخت</div>
 
-            <Footer />
-        </div>
-    );
+                        {bonusStatus === null ? (
+                            <form
+                                className={styles.bonus_code_box}
+                                onSubmit={(e) => e.preventDefault()}
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="کد تخفیف را وارد کنید"
+                                    onChange={(e) => {
+                                        setBonusCode(e.target.value);
+                                    }}
+                                    value={bonusCode}
+                                />
+
+                                <button
+                                    type="submit"
+                                    onClick={() => setBonus(bonusCode)}
+                                >
+                                    اعمال تخفیف
+                                </button>
+                            </form>
+                        ) : (
+                            <div className={styles.bonus_box}>
+                                <div className={styles.bonus_title}>
+                                    کد تخفیف
+                                </div>
+
+                                <div className={styles.bottom_content}>
+                                    <div className={styles.bonus_code}>
+                                        {bonusStatus.code}
+                                    </div>
+
+                                    <div
+                                        className={styles.delete_bonus}
+                                        onClick={() => removeBonus()}
+                                    >
+                                        <span>
+                                            <FontAwesomeIcon
+                                                icon={faTrashCan}
+                                            />
+                                        </span>
+                                        حذف کردن
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className={styles.value_box}>
+                            <div className={styles.value_title}>جمع کل</div>
+
+                            <div className={styles.value}>
+                                {productsPrice.base_price}
+                                <div className={styles.toman}>تومان</div>
+                            </div>
+                        </div>
+
+                        <div className={styles.value_box}>
+                            <div className={styles.value_title}>تخفیف</div>
+
+                            <div
+                                className={`${styles.value} ${styles.off_value}`}
+                            >
+                                {productsPrice.discount_amount}
+                                <div className={styles.toman}>تومان</div>
+                            </div>
+                        </div>
+
+                        <div
+                            className={`${styles.value_box} ${styles.buy_value}`}
+                        >
+                            <div className={styles.value_title}>
+                                مبلغ قابل پرداخت
+                            </div>
+
+                            <div className={styles.value}>
+                                {productsPrice.final_price}
+                                <div className={styles.toman}>تومان</div>
+                            </div>
+                        </div>
+
+                        <Link
+                            href={"/purchase-information"}
+                            className={styles.buy_btn}
+                        >
+                            تایید و تکمیل سفارش
+                        </Link>
+                    </div>
+                </div>
+
+                <Footer />
+            </div>
+        );
+    }
 }

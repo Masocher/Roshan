@@ -22,11 +22,13 @@ export default function FilterBox({
     maxPriceText,
     setMinPriceText,
     setMaxPriceText,
+    option1,
+    option2,
+    option3,
+    setOption1,
+    setOption2,
+    setOption3,
 }) {
-    const [option1, setOption1] = useState(false);
-    const [option2, setOption2] = useState(false);
-    const [option3, setOption3] = useState(false);
-
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
 
@@ -66,249 +68,263 @@ export default function FilterBox({
             <div className={styles.title_box}>فیلتر ها</div>
 
             <div className={styles.filters}>
-                <div
-                    className={`${styles.filter_box} ${
-                        option1 ? styles.show : ""
-                    }`}
-                >
-                    <div className={styles.filter_box_inf}>
-                        <div
-                            onClick={() => {
-                                setOption1(!option1);
-                                setOption2(false);
-                                setOption3(false);
-                            }}
-                        >
-                            دسته بندی
-                        </div>
-
-                        <span
-                            onClick={() => {
-                                setOption1(!option1);
-                                setOption2(false);
-                                setOption3(false);
-                            }}
-                        >
-                            <FontAwesomeIcon
-                                icon={option1 ? faAngleDown : faAngleLeft}
-                            />
-                        </span>
-                    </div>
-
-                    <div className={styles.options}>
-                        <div className={styles.hidden_title}>
-                            دسته بندی
-                            <span
+                <div className={styles.filter_boxes}>
+                    <div
+                        className={`${styles.filter_box} ${
+                            option1 ? styles.show : ""
+                        }`}
+                    >
+                        <div className={styles.filter_box_inf}>
+                            <div
                                 onClick={() => {
-                                    setOption1(false);
+                                    setOption1(!option1);
                                     setOption2(false);
                                     setOption3(false);
                                 }}
                             >
-                                <FontAwesomeIcon icon={faClose} />
+                                دسته بندی
+                            </div>
+
+                            <span
+                                onClick={() => {
+                                    setOption1(!option1);
+                                    setOption2(false);
+                                    setOption3(false);
+                                }}
+                            >
+                                <FontAwesomeIcon
+                                    icon={option1 ? faAngleDown : faAngleLeft}
+                                />
                             </span>
                         </div>
 
-                        {categories.map((categ) => (
-                            <div
-                                className={styles.option}
-                                key={categ.slug}
-                                onClick={() => {
-                                    if (categ.name === categName) {
-                                        setFilters({
-                                            ...filters,
-                                            categName: "",
-                                        });
-                                    } else {
-                                        setFilters({
-                                            ...filters,
-                                            categName: categ.name,
-                                        });
-                                    }
-                                }}
-                            >
-                                <span>
-                                    <div
-                                        className={
-                                            categ.name === categName
-                                                ? styles.show
-                                                : ""
-                                        }
-                                    >
-                                        <FontAwesomeIcon icon={faCheck} />
-                                    </div>
+                        <div className={styles.options}>
+                            <div className={styles.hidden_title}>
+                                دسته بندی
+                                <span
+                                    onClick={() => {
+                                        setOption1(false);
+                                        setOption2(false);
+                                        setOption3(false);
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faClose} />
                                 </span>
-                                {categ.name}
                             </div>
-                        ))}
+
+                            {categories.map((categ) => (
+                                <div
+                                    className={styles.option}
+                                    key={categ.slug}
+                                    onClick={() => {
+                                        if (categ.name === categName) {
+                                            setFilters({
+                                                ...filters,
+                                                categName: "",
+                                            });
+                                        } else {
+                                            setFilters({
+                                                ...filters,
+                                                categName: categ.name,
+                                            });
+                                        }
+
+                                        setOption1(false);
+                                        setOption2(false);
+                                        setOption3(false);
+                                    }}
+                                >
+                                    <span>
+                                        <div
+                                            className={
+                                                categ.name === categName
+                                                    ? styles.show
+                                                    : ""
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={faCheck} />
+                                        </div>
+                                    </span>
+                                    {categ.name}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
 
-                <div
-                    className={`${styles.filter_box} ${
-                        option2 ? styles.show : ""
-                    }`}
-                >
                     <div
-                        className={styles.filter_box_inf}
-                        onClick={() => {
-                            setOption1(false);
-                            setOption2(!option2);
-                            setOption3(false);
-                        }}
+                        className={`${styles.filter_box} ${
+                            option2 ? styles.show : ""
+                        }`}
                     >
-                        <div>برند</div>
-
-                        <span
+                        <div
+                            className={styles.filter_box_inf}
                             onClick={() => {
                                 setOption1(false);
                                 setOption2(!option2);
                                 setOption3(false);
                             }}
                         >
-                            <FontAwesomeIcon
-                                icon={option2 ? faAngleDown : faAngleLeft}
-                            />
-                        </span>
-                    </div>
+                            <div>برند</div>
 
-                    <div className={styles.options}>
-                        <div className={styles.hidden_title}>
-                            برند
                             <span
                                 onClick={() => {
                                     setOption1(false);
-                                    setOption2(false);
+                                    setOption2(!option2);
                                     setOption3(false);
                                 }}
                             >
-                                <FontAwesomeIcon icon={faClose} />
+                                <FontAwesomeIcon
+                                    icon={option2 ? faAngleDown : faAngleLeft}
+                                />
                             </span>
                         </div>
 
-                        {brands.map((brand) => (
-                            <div
-                                className={styles.option}
-                                onClick={() => {
-                                    if (brand.name === brandName) {
-                                        setFilters({
-                                            ...filters,
-                                            brandName: "",
-                                        });
-                                    } else {
-                                        setFilters({
-                                            ...filters,
-                                            brandName: brand.name,
-                                        });
-                                    }
-                                }}
-                                key={brand.slug}
-                            >
-                                <span>
-                                    <div
-                                        className={
-                                            brand.name === brandName
-                                                ? styles.show
-                                                : ""
-                                        }
-                                    >
-                                        <FontAwesomeIcon icon={faCheck} />
-                                    </div>
+                        <div className={styles.options}>
+                            <div className={styles.hidden_title}>
+                                برند
+                                <span
+                                    onClick={() => {
+                                        setOption1(false);
+                                        setOption2(false);
+                                        setOption3(false);
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faClose} />
                                 </span>
-                                {brand.name}
                             </div>
-                        ))}
+
+                            {brands.map((brand) => (
+                                <div
+                                    className={styles.option}
+                                    onClick={() => {
+                                        if (brand.name === brandName) {
+                                            setFilters({
+                                                ...filters,
+                                                brandName: "",
+                                            });
+                                        } else {
+                                            setFilters({
+                                                ...filters,
+                                                brandName: brand.name,
+                                            });
+                                        }
+
+                                        setOption1(false);
+                                        setOption2(false);
+                                        setOption3(false);
+                                    }}
+                                    key={brand.slug}
+                                >
+                                    <span>
+                                        <div
+                                            className={
+                                                brand.name === brandName
+                                                    ? styles.show
+                                                    : ""
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={faCheck} />
+                                        </div>
+                                    </span>
+                                    {brand.name}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
 
-                <div
-                    className={`${styles.filter_box} ${
-                        option3 ? styles.show : ""
-                    }`}
-                >
                     <div
-                        className={styles.filter_box_inf}
-                        onClick={() => {
-                            setOption1(false);
-                            setOption2(false);
-                            setOption3(!option3);
-                        }}
+                        className={`${styles.filter_box} ${
+                            option3 ? styles.show : ""
+                        }`}
                     >
-                        <div>محدوده قیمت</div>
-
-                        <span
+                        <div
+                            className={styles.filter_box_inf}
                             onClick={() => {
                                 setOption1(false);
                                 setOption2(false);
                                 setOption3(!option3);
                             }}
                         >
-                            <FontAwesomeIcon
-                                icon={option3 ? faAngleDown : faAngleLeft}
-                            />
-                        </span>
-                    </div>
+                            <div>محدوده قیمت</div>
 
-                    <div className={styles.options}>
-                        <div className={styles.hidden_title}>
-                            محدوده قیمت
                             <span
                                 onClick={() => {
                                     setOption1(false);
                                     setOption2(false);
-                                    setOption3(false);
+                                    setOption3(!option3);
                                 }}
                             >
-                                <FontAwesomeIcon icon={faClose} />
+                                <FontAwesomeIcon
+                                    icon={option3 ? faAngleDown : faAngleLeft}
+                                />
                             </span>
                         </div>
 
-                        <form
-                            className={styles.price_range}
-                            onSubmit={(e) => e.preventDefault()}
-                        >
-                            <div className={styles.input_box}>
-                                <div className={styles.title}>از</div>
-
-                                <input
-                                    className={styles.price_input}
-                                    type="number"
-                                    placeholder="کف قیمت"
-                                    onChange={(e) => {
-                                        setMinPriceText(e.target.value);
+                        <div className={styles.options}>
+                            <div className={styles.hidden_title}>
+                                محدوده قیمت
+                                <span
+                                    onClick={() => {
+                                        setOption1(false);
+                                        setOption2(false);
+                                        setOption3(false);
                                     }}
-                                />
-
-                                <div className={styles.toman}>تومان</div>
+                                >
+                                    <FontAwesomeIcon icon={faClose} />
+                                </span>
                             </div>
 
-                            <div className={styles.input_box}>
-                                <div className={styles.title}>تا</div>
-
-                                <input
-                                    className={styles.price_input}
-                                    type="number"
-                                    placeholder="سقف قیمت"
-                                    onChange={(e) => {
-                                        setMaxPriceText(e.target.value);
-                                    }}
-                                />
-
-                                <div className={styles.toman}>تومان</div>
-                            </div>
-
-                            <button
-                                className={styles.price_btn}
-                                onClick={() =>
-                                    setPriceRange({
-                                        min_price: minPriceText,
-                                        max_price: maxPriceText,
-                                    })
-                                }
+                            <form
+                                className={styles.price_range}
+                                onSubmit={(e) => e.preventDefault()}
                             >
-                                اعمال
-                            </button>
-                        </form>
+                                <div className={styles.input_box}>
+                                    <div className={styles.title}>از</div>
+
+                                    <input
+                                        className={styles.price_input}
+                                        type="number"
+                                        placeholder="کف قیمت"
+                                        onChange={(e) => {
+                                            setMinPriceText(e.target.value);
+                                        }}
+                                    />
+
+                                    <div className={styles.toman}>تومان</div>
+                                </div>
+
+                                <div className={styles.input_box}>
+                                    <div className={styles.title}>تا</div>
+
+                                    <input
+                                        className={styles.price_input}
+                                        type="number"
+                                        placeholder="سقف قیمت"
+                                        onChange={(e) => {
+                                            setMaxPriceText(e.target.value);
+                                        }}
+                                    />
+
+                                    <div className={styles.toman}>تومان</div>
+                                </div>
+
+                                <button
+                                    className={styles.price_btn}
+                                    onClick={() => {
+                                        setPriceRange({
+                                            min_price: minPriceText,
+                                            max_price: maxPriceText,
+                                        });
+
+                                        setOption1(false);
+                                        setOption2(false);
+                                        setOption3(false);
+                                    }}
+                                >
+                                    اعمال
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
