@@ -140,6 +140,9 @@ export default function PurchaseInformation() {
                         "برای ورود به صفحه ثبت سفارش ابتدا وارد حساب خود شوید"
                     );
                     router.push("/sign-in");
+                } else if (err.status === 403) {
+                    toast.error("شماره تلفن تایید نشده است !");
+                    router.push("/phone-number-verification");
                 } else {
                     console.log(err);
                 }

@@ -3,35 +3,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faRotate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
-import spiner from "../../public/images/loading.svg"
+import spiner from "../../public/images/loading.svg";
 
-export default function AuthCode() {
+export default function PhoneNumberVerification() {
     const router = useRouter();
 
     const [code, setCode] = useState("");
 
     const [err1, setErr1] = useState(false);
 
+    const [number, setNumber] = useState("");
+
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://abazarak.ir/api/auth/activation/")
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+        axios.defaults.withCredentials = true;
+        axios
+            .get("https://abazarak.ir/api/auth/me")
+            .then((response) => setNumber(response.data.number))
+            .catch((err) => console.log(err));
+    }, []);
 
     const sendCode = (code) => {
         setLoading(true);
 
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/register/verify/", {
-                number: `${localStorage.getItem("number")}`,
+            .post("https://abazarak.ir/api/auth/activation/verify/", {
                 otp: `${code}`,
             })
             .then((response) => {
-                localStorage.removeItem("number");
-                router.push("/sign-in");
                 toast.success(response.data.detail);
                 setLoading(false);
+                router.push("/purchase-information");
             })
             .catch((err) => {
                 if (err.response.data.detail) {
@@ -68,25 +84,18 @@ export default function AuthCode() {
             </Link>
 
             <div className={styles.auth_form}>
-                <div
-                    onClick={() => router.back()}
-                    href={"/sign-in"}
-                    className={styles.back_btn}
-                >
-                    <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                    </span>
-                    بازگشت
+                <div className={styles.title} style={{ marginTop: "0" }}>
+                    کد تایید را وارد کنید
                 </div>
-
-                <div className={styles.title}>کد تایید را وارد کنید</div>
 
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div
                         className={`${styles.input_box} ${styles.code_input_box}`}
                     >
                         <div className={styles.input_title}>
-                            کد تایید به شماره 09054182307 ارسال شد
+                            کد تایید به شماره
+                            <div>{number}</div>
+                            ارسال شد
                         </div>
 
                         <input

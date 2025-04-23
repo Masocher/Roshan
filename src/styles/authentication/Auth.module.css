@@ -92,6 +92,12 @@
     font-size: 12px;
     margin-bottom: 5px;
     color: #95a0b1;
+    display: flex;
+}
+.input_title div {
+    direction: ltr;
+    margin: 0 5px;
+    color: #12a386;
 }
 
 .input_box input {
