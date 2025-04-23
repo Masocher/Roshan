@@ -1,3 +1,25 @@
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+}
+.loading.show {
+    display: flex;
+}
+
+.loading_wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -103,6 +125,10 @@
     font-family: KalamehM;
     border-radius: 8px;
     margin-top: 24px;
+}
+.submit_btn:hover {
+    background: none;
+    color: #12a386;
 }
 
 .back_btn,

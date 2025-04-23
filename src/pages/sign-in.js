@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import Image from "next/image";
+import spiner from "../../public/images/loading.svg"
 
 export default function SignIn() {
     const router = useRouter();
@@ -20,17 +22,21 @@ export default function SignIn() {
     const [err1, setErr1] = useState(false);
     const [err2, setErr2] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
     const signInFunction = (num, pas) => {
+        setLoading(true);
+
         axios.defaults.withCredentials = true;
         axios
             .post("https://abazarak.ir/api/auth/login/", {
-                "number": `${num}`,
-                "password": `${pas}`,
+                number: `${num}`,
+                password: `${pas}`,
             })
             .then((response) => {
-                toast.success(response.data.detail);
-                console.log(response.data.detail);
                 router.push("/");
+                setLoading(false);
+                toast.success(response.data.detail);
             })
             .catch((err) => {
                 if (err.response.data.detail) {
@@ -42,6 +48,8 @@ export default function SignIn() {
                 } else if (err.response.data.password) {
                     toast.error("رمز عبور : " + err.response.data.password);
                 }
+
+                setLoading(false);
             });
     };
 
@@ -63,6 +71,12 @@ export default function SignIn() {
 
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
             <Toaster position="bottom-left" reverseOrder={true} />
 
             <Link href={"/"} className={styles.logo}>

@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
-import Loading from "../global/Loading";
 
 export default function ProductsAll({ loading }) {
     const products = useSelector((rootReducer) => rootReducer.productsReducer);
@@ -18,7 +17,6 @@ export default function ProductsAll({ loading }) {
         alignItems: "center",
         backgroundColor: "#fff",
         userSelect: "none",
-        zIndex: "1000",
         padding: "50px 0",
         borderRight: "1px solid #eee",
         borderBottom: "1px solid #eee",

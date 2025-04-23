@@ -20,13 +20,22 @@ export default function UserOrders() {
 
     const [orders, setOrders] = useState([]);
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
+        setLoading(true);
+
+        axios.defaults.withCredentials = true;
         axios
             .get("https://abazarak.ir/api/ordering/history/")
             .then((response) => {
                 setOrders(response.data);
+                setLoading(false);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
     }, []);
 
     const [gatewayStatus, setGatewayStatus] = useState(false);
@@ -35,7 +44,7 @@ export default function UserOrders() {
         pay_price: "",
     });
 
-    if (orders.length === 0) {
+    if (loading) {
         return <Loading />;
     } else {
         return (

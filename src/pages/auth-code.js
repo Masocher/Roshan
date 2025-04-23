@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import Image from "next/image";
+import spiner from "../../public/images/loading.svg"
 
 export default function AuthCode() {
     const router = useRouter();
@@ -14,17 +16,22 @@ export default function AuthCode() {
 
     const [err1, setErr1] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
     const sendCode = (code) => {
+        setLoading(true);
+
         axios.defaults.withCredentials = true;
         axios
             .post("https://abazarak.ir/api/auth/register/verify/", {
-                "number": `${localStorage.getItem("number")}`,
-                "otp": `${code}`,
+                number: `${localStorage.getItem("number")}`,
+                otp: `${code}`,
             })
             .then((response) => {
-                toast.success(response.data.detail);
                 localStorage.removeItem("number");
                 router.push("/sign-in");
+                toast.success(response.data.detail);
+                setLoading(false);
             })
             .catch((err) => {
                 if (err.response.data.detail) {
@@ -34,6 +41,7 @@ export default function AuthCode() {
                 if (err.response.data.otp) {
                     toast.error("کد تایید : " + err.response.data.otp);
                 }
+                setLoading(false);
             });
     };
 
@@ -47,6 +55,12 @@ export default function AuthCode() {
 
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
             <Toaster position="top-left" reverseOrder={true} />
 
             <Link href={"/"} className={styles.logo}>

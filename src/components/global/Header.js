@@ -24,7 +24,11 @@ export default function Header({ status, setStatus }) {
     const [userName, setUserName] = useState("");
     const [userNumber, setUserNumber] = useState("");
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
+        setLoading(true);
+
         axios.defaults.withCredentials = true;
         axios
             .get("https://abazarak.ir/api/auth/me")
@@ -32,11 +36,13 @@ export default function Header({ status, setStatus }) {
                 setUserName(response.data.full_name);
                 setUserNumber(response.data.number);
                 setAuthStatus(true);
+                setLoading(false);
             })
             .catch((err) => {
                 if (err.status === 401) {
                     setAuthStatus(false);
                 }
+                setLoading(false);
             });
     }, []);
 
@@ -180,7 +186,11 @@ export default function Header({ status, setStatus }) {
                     </Link>
                 </div>
 
-                {authStatus === false ? (
+                {loading ? (
+                    <Link href={"/sign-in"} className={styles.auth_btn}>
+                        ورود | ثبت نام
+                    </Link>
+                ) : authStatus === false ? (
                     <Link href={"/sign-in"} className={styles.auth_btn}>
                         ورود | ثبت نام
                     </Link>

@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import Image from "next/image";
+import spiner from "../../public/images/loading.svg"
 
 export default function SignUp() {
     const router = useRouter();
@@ -24,19 +26,24 @@ export default function SignUp() {
     const [err3, setErr3] = useState(false);
     const [err4, setErr4] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
     const signUpFunction = (nam, num, pas1, pas2) => {
+        setLoading(true);
+
         axios.defaults.withCredentials = true;
         axios
             .post("https://abazarak.ir/api/auth/register/", {
-                "full_name": `${nam}`,
-                "number": `${num}`,
-                "password": `${pas1}`,
-                "password2": `${pas2}`,
+                full_name: `${nam}`,
+                number: `${num}`,
+                password: `${pas1}`,
+                password2: `${pas2}`,
             })
             .then((response) => {
-                toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
                 localStorage.setItem("number", num);
                 router.push("/auth-code");
+                setLoading(false);
+                toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
             })
             .catch((err) => {
                 if (err.response.data.detail) {
@@ -56,6 +63,7 @@ export default function SignUp() {
                         "تکرار رمز عبور : " + err.response.data.password2
                     );
                 }
+                setLoading(false);
             });
     };
 
@@ -93,6 +101,12 @@ export default function SignUp() {
 
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
             <Toaster position="bottom-left" reverseOrder={true} />
 
             <Link href={"/"} className={styles.logo}>

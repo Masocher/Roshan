@@ -19,6 +19,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { changeSlug } from "@/store/Actions";
 import Loading from "@/components/global/Loading";
+import spiner from "../../public/images/loading.svg";
 
 export default function ShoppingCart() {
     const dispatch = useDispatch();
@@ -35,7 +36,11 @@ export default function ShoppingCart() {
     });
     const [bonusStatus, setBonusStatus] = useState(null);
 
+    const [loading, setLoading] = useState(false);
+    const [loading2, setLoading2] = useState(false);
+
     useEffect(() => {
+        setLoading(true);
         axios.defaults.withCredentials = true;
         axios
             .get("https://abazarak.ir/api/ordering/cart/")
@@ -49,6 +54,7 @@ export default function ShoppingCart() {
                 });
 
                 setBonusStatus(response.data.cupon);
+                setLoading(false);
             })
             .catch((err) => {
                 if (err.status === 401) {
@@ -59,10 +65,12 @@ export default function ShoppingCart() {
                 } else {
                     console.log(err);
                 }
+                setLoading(false);
             });
     }, []);
 
     const changeProduct = (id, type) => {
+        setLoading2(true);
         axios.defaults.withCredentials = true;
         axios
             .post("https://abazarak.ir/api/ordering/cart/change-item/", {
@@ -87,19 +95,27 @@ export default function ShoppingCart() {
                 } else if (type === "del") {
                     toast.success("محصول با موفقیت حذف شد");
                 }
+
+                setLoading2(false);
             })
             .catch((err) => {
                 console.log(err);
 
                 toast.error(err.response.data.detail);
+
+                setLoading2(false);
             });
     };
 
     const [bonusCode, setBonusCode] = useState("");
 
     const setBonus = (code) => {
+        setLoading2(true);
+
         if (code.length === 0) {
             toast.error("یک مقدار معتبر وارد کنید");
+
+            setLoading2(false);
         } else {
             axios.defaults.withCredentials = true;
             axios
@@ -118,12 +134,16 @@ export default function ShoppingCart() {
                     setBonusCode("");
 
                     setBonusStatus(response.data.cupon);
+
+                    setLoading2(false);
                 })
                 .catch((err) => {
                     if (err.status === 400) {
                         toast.error("کد تخفیف وارد شده صحیح نیست");
                     }
                     setBonusCode("");
+
+                    setLoading2(false);
                 });
         }
     };
@@ -146,11 +166,26 @@ export default function ShoppingCart() {
             .catch((err) => console.log(err));
     };
 
-    if (products.length === 0) {
+    if (loading) {
         return <Loading />;
     } else {
         return (
             <div className={styles.container}>
+                <div
+                    className={`${styles.loading} ${
+                        loading2 ? styles.show : ""
+                    }`}
+                >
+                    <div className={styles.loading_wrapper}>
+                        <Image
+                            src={spiner}
+                            width={80}
+                            height={80}
+                            alt="لودینگ"
+                        />
+                    </div>
+                </div>
+
                 <Toaster position="bottom-left" reverseOrder={true} />
 
                 <BlackBackground
