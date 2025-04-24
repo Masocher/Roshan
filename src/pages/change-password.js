@@ -1,6 +1,10 @@
+import axios from "axios";
 import styles from "../styles/authentication/ChangePassword.module.css";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import spiner from "../../public/images/loading.svg";
+import Image from "next/image";
 
 export default function ChangePassword() {
     const router = useRouter();
@@ -11,23 +15,37 @@ export default function ChangePassword() {
     const [code, setCode] = useState("");
     const [password, setPassword] = useState("");
 
-    let [number, setNumber] = useState("");
-
-    useEffect(() => {
-        setNumber(localStorage.getItem("number"));
-    }, []);
+    const [loading, setLoading] = useState(false);
 
     const changePasswordFunction = (code, pas) => {
-        // axios.post("/auth/reset_password/verify/", {
-        //     "number": `${localStorage.getItem("number")}`,
-        //     "otp": `${code}`,
-        //     "new_password": `${pas}`,
-        // });
-        console.log("number : " + number);
-        console.log("otp : " + code);
-        console.log("new password : " + pas);
-        router.push("/");
-        localStorage.removeItem("number");
+        setLoading(true);
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://abazarak.ir/api/auth/reset_password/verify/", {
+                number: localStorage.getItem("userNumber"),
+                otp: code,
+                new_password: pas,
+            })
+            .then((res) => {
+                localStorage.removeItem("userNumber");
+                toast.success("رمز عبور شما با موفقیت تغییر پیدا کرد.");
+                router.push("/");
+                setLoading(false);
+            })
+            .catch((err) => {
+                if (err.response.data.detail) {
+                    toast.error(err.response.data.detail);
+                }
+                if (err.response.data.otp) {
+                    toast.error("کد تایید : " + err.response.data.otp);
+                }
+                if (err.response.data.new_password) {
+                    toast.error(
+                        "رمز عبور جدید : " + err.response.data.new_password
+                    );
+                }
+                setLoading(false);
+            });
     };
 
     const checkCode = (code) => {
@@ -48,6 +66,14 @@ export default function ChangePassword() {
 
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
+            <Toaster position="bottom-left" reverseOrder={true} />
+
             <div className={styles.auth_form}>
                 <div className={styles.title_box}>تغییر رمز عبور</div>
 
@@ -57,7 +83,7 @@ export default function ChangePassword() {
                     >
                         <div className={styles.input_title}>
                             کد تایید ارسال شده به شماره
-                            <span>{number}</span>
+                            <span>{localStorage.getItem("userNumber")}</span>
                         </div>
 
                         <input

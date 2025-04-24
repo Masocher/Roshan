@@ -1,6 +1,13 @@
 import styles from "../styles/authentication/ChangePassword.module.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
+import spiner from "../../public/images/loading.svg";
+import Image from "next/image";
 
 export default function ChangePasswordCode() {
     const router = useRouter();
@@ -9,19 +16,32 @@ export default function ChangePasswordCode() {
 
     const [number, setNumber] = useState("");
 
-    const getCodeFunction = (num) => {
-        // axios.post("/auth/reset_password/", {
-        //     "number": `${num}`
-        // });
-        console.log("number : " + num);
+    const [loading, setLoading] = useState(false);
 
-        if (num) {
-            setErr1(false);
-            router.push("/change-password");
-            localStorage.setItem("number", num)
-        } else {
-            setErr1(true);
-        }
+    const getCodeFunction = () => {
+        setLoading(true);
+        axios.defaults.withCredentials = true;
+        axios
+            .post("https://abazarak.ir/api/auth/reset_password/", {
+                number: number,
+            })
+            .then((res) => {
+                localStorage.setItem("userNumber", number);
+                toast.success("کد فعالسازی به شماره تلفن شما ارسال شد.");
+                router.push("/change-password");
+                setLoading(false);
+            })
+            .catch((err) => {
+                if (err.response.data.detail) {
+                    toast.error(err.response.data.detail);
+                }
+                if (err.response.data.number) {
+                    toast.error("شماره تلفن : " + err.response.data.number);
+                }
+
+                localStorage.removeItem("userNumber");
+                setLoading(false);
+            });
     };
 
     const checkNumber = (number) => {
@@ -34,8 +54,25 @@ export default function ChangePasswordCode() {
 
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
+            <Toaster position="bottom-left" reverseOrder={true} />
+
+            <div className={styles.logo}>فراموشی رمز عبور</div>
+
             <div className={styles.auth_form}>
-                <div className={styles.title_box}>ارسال کد به شماره تلفن</div>
+                <Link href={"/"} className={styles.back_btn_2}>
+                    <span>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </span>
+                    بازگشت
+                </Link>
+
+                <div className={styles.title_box}>شماره تلفن را وارد کنید</div>
 
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className={styles.input_box}>
@@ -62,7 +99,7 @@ export default function ChangePasswordCode() {
                     <button
                         className={styles.submit_btn}
                         onClick={() => {
-                            getCodeFunction(number);
+                            getCodeFunction();
                         }}
                     >
                         دریافت کد

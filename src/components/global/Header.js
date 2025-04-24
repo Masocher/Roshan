@@ -2,6 +2,7 @@ import styles from "../../styles/global/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faClose,
+    faLock,
     faReceipt,
     faRightToBracket,
     faSearch,
@@ -94,6 +95,16 @@ export default function Header({ status, setStatus }) {
                 </div>
 
                 <div className={styles.menu_sections}>
+                    <Link
+                        className={styles.menu_sec}
+                        href={"/change-password-code"}
+                    >
+                        <span>
+                            <FontAwesomeIcon icon={faLock} />
+                        </span>
+                        تغییر رمز عبور
+                    </Link>
+
                     <Link
                         className={styles.menu_sec}
                         href={"/user-orders"}

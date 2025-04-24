@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
-import spiner from "../../public/images/loading.svg"
+import spiner from "../../public/images/loading.svg";
 
 export default function SignIn() {
     const router = useRouter();
@@ -84,12 +84,15 @@ export default function SignIn() {
             </Link>
 
             <div className={styles.auth_form}>
-                <Link href={"/"} className={styles.back_btn_2}>
+                <div
+                    onClick={() => router.back()}
+                    className={styles.back_btn_2}
+                >
                     <span>
                         <FontAwesomeIcon icon={faArrowRight} />
                     </span>
                     بازگشت
-                </Link>
+                </div>
 
                 <div className={styles.top_titles}>
                     <Link
@@ -164,6 +167,13 @@ export default function SignIn() {
                     >
                         ورود به حساب
                     </button>
+
+                    <Link
+                        className={styles.forgot_password}
+                        href={"/change-password-code"}
+                    >
+                        رمز عبورم را فراموش کرده ام !
+                    </Link>
                 </form>
             </div>
         </div>
