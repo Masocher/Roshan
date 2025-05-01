@@ -6,14 +6,152 @@ import {
     faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
+import spiner from "../../../../public/images/loading.svg";
+import Image from "next/image";
 
 export default function CreateProduct() {
     const router = useRouter();
 
+    const [loading, setLoading] = useState(false);
+
+    const [image, setImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
+
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [supply, setSupply] = useState("");
+    const [category, setCategory] = useState("");
+    const [brand, setBrand] = useState("");
+    const [active, setActive] = useState(false);
+    const [specification, setSpecification] = useState([]);
+
+    const handleImageChange = (event) => {
+        setLoading(true);
+        if (event) {
+            const file = event.target.files[0];
+            setImage(file);
+            const imageUrl = URL.createObjectURL(file);
+            setPreviewImage(imageUrl);
+            setLoading(false);
+        } else {
+            setImage(null);
+            setPreviewImage(null);
+            setLoading(false);
+        }
+    };
+
+    const [specTitle, setSpecTitle] = useState("");
+    const [specDescription, setSpecDescription] = useState("");
+
+    const addSpecification = (tit, desc) => {
+        setLoading(true);
+        if (tit === "" || desc === "") {
+            toast.error("مقادیر ویژگی را کامل پر کنید");
+            setLoading(false);
+        } else {
+            setSpecification([...specification, { key: tit, value: desc }]);
+            toast.success("ویژگی با موفقیت اضافه شد");
+            setSpecTitle("");
+            setSpecDescription("");
+            setLoading(false);
+        }
+    };
+
+    const deleteSpecification = (tit) => {
+        setLoading(true);
+        const newSpecifications = specification.filter(
+            (spec) => spec.key !== tit
+        );
+        setSpecification(newSpecifications);
+        toast.success("ویژگی با موفقیت حذف شد");
+        setLoading(false);
+    };
+
+    const handleSubmit = async () => {
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("desc", description);
+        formData.append("image", image);
+        formData.append("price", price);
+        formData.append("supply", supply);
+        formData.append("category", category);
+        formData.append("brand", brand);
+        formData.append("active", active);
+        formData.append("specifications", JSON.stringify(specification));
+
+        try {
+            axios.defaults.withCredentials = true;
+            const response = await axios.post(
+                "https://abazarak.ir/api/admin/products/",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            console.log("Response:", response.data);
+
+            handleImageChange();
+            setName("");
+            setDescription("");
+            setPrice("");
+            setSupply("");
+            setBrand("");
+            setCategory("");
+            setActive(false);
+            setSpecification([]);
+
+            toast.success("محصول با موفقیت ایجاد شد !");
+
+            setLoading(false);
+        } catch (error) {
+            if (error.response && error.response.data) {
+                if (error.response.data.name) {
+                    toast.error("نام محصول : " + error.response.data.name);
+                } else if (error.response.data.desc) {
+                    toast.error("توضیحات محصول : " + error.response.data.desc);
+                } else if (error.response.data.image) {
+                    toast.error("عکس محصول : " + error.response.data.image);
+                } else if (error.response.data.price) {
+                    toast.error("قیمت محصول : " + error.response.data.price);
+                } else if (error.response.data.supply) {
+                    toast.error("موجودی محصول : " + error.response.data.supply);
+                } else if (error.response.data.category) {
+                    toast.error(
+                        "دسته بندی محصول : " + error.response.data.category
+                    );
+                } else if (error.response.data.brand) {
+                    toast.error("برند محصول : " + error.response.data.brand);
+                } else {
+                    console.log(error);
+                }
+            }
+
+            setLoading(false);
+        }
+    };
+
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
+            <Toaster position="bottom-left" reverseOrder={true} />
+
             <div className={styles.main_title}>
-                <div className={styles.back_btn} onClick={() => router.back()}>
+                <div
+                    className={styles.back_btn}
+                    onClick={() => router.push("/admin")}
+                >
                     <span>
                         <FontAwesomeIcon icon={faArrowRight} />
                     </span>
@@ -24,16 +162,44 @@ export default function CreateProduct() {
 
             <form
                 className={styles.create_product}
-                onSubmit={(e) => e.preventDefault}
+                onSubmit={(e) => e.preventDefault()}
             >
                 <div className={styles.first_section}>
                     <div className={styles.image}>
-                        <div className={styles.add_layer}>
-                            <span>
-                                <FontAwesomeIcon icon={faPlus} />
-                            </span>
-                            افزودن عکس
+                        <div
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                borderRadius: "8px",
+                                backgroundImage: previewImage
+                                    ? `url(${previewImage})`
+                                    : `url(${image})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                            }}
+                            onClick={() =>
+                                document.getElementById("fileInput").click()
+                            }
+                        >
+                            {!image && (
+                                <div className={styles.add_layer}>
+                                    <span>
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </span>
+                                    افزودن عکس
+                                </div>
+                            )}
                         </div>
+                        <input
+                            type="file"
+                            id="fileInput"
+                            style={{ display: "none" }}
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
                     </div>
 
                     <div className={styles.main_information}>
@@ -41,12 +207,17 @@ export default function CreateProduct() {
                             className={styles.name}
                             type="text"
                             placeholder="نام محصول"
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            maxLength={128}
                         />
 
                         <textarea
                             className={styles.about}
                             type="text"
                             placeholder="توضیحات محصول"
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
                         />
                     </div>
                 </div>
@@ -56,12 +227,17 @@ export default function CreateProduct() {
                         className={styles.price}
                         type="text"
                         placeholder="قیمت محصول"
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price}
+                        maxLength={9}
                     />
 
                     <input
                         className={styles.value}
                         type="text"
                         placeholder="تعداد موجودی محصول"
+                        onChange={(e) => setSupply(e.target.value)}
+                        value={supply}
                     />
                 </div>
 
@@ -70,12 +246,16 @@ export default function CreateProduct() {
                         className={styles.category}
                         type="text"
                         placeholder="دسته بندی محصول"
+                        onChange={(e) => setCategory(e.target.value)}
+                        value={category}
                     />
 
                     <input
                         className={styles.brand}
                         type="text"
                         placeholder="برند محصول"
+                        onChange={(e) => setBrand(e.target.value)}
+                        value={brand}
                     />
                 </div>
 
@@ -88,43 +268,58 @@ export default function CreateProduct() {
                                 type="text"
                                 placeholder="عنوان ویژگی"
                                 className={styles.feature_title}
+                                onChange={(e) => setSpecTitle(e.target.value)}
+                                value={specTitle}
                             />
                             <input
                                 type="text"
                                 placeholder="نوع ویژگی"
                                 className={styles.feature}
+                                onChange={(e) =>
+                                    setSpecDescription(e.target.value)
+                                }
+                                value={specDescription}
                             />
-                            <div className={styles.add_feature_btn}>افزودن</div>
+                            <div
+                                className={styles.add_feature_btn}
+                                onClick={() =>
+                                    addSpecification(specTitle, specDescription)
+                                }
+                            >
+                                افزودن
+                            </div>
                         </div>
 
                         <div className={styles.features}>
-                            <div className={styles.feature_box}>
-                                <div className={styles.title}>جنس</div>
-                                <div className={styles.desc}>فلزی</div>
-                                <div className={styles.close_btn}>
-                                    <FontAwesomeIcon icon={faClose} />
+                            {specification.map((spec, index) => (
+                                <div className={styles.feature_box} key={index}>
+                                    <div className={styles.title}>
+                                        {spec.key}
+                                    </div>
+                                    <div className={styles.desc}>
+                                        {spec.value}
+                                    </div>
+                                    <div
+                                        className={styles.close_btn}
+                                        onClick={() =>
+                                            deleteSpecification(spec.key)
+                                        }
+                                    >
+                                        <FontAwesomeIcon icon={faClose} />
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className={styles.feature_box}>
-                                <div className={styles.title}>جنس</div>
-                                <div className={styles.desc}>فلزی</div>
-                                <div className={styles.close_btn}>
-                                    <FontAwesomeIcon icon={faClose} />
-                                </div>
-                            </div>
-
-                            <div className={styles.feature_box}>
-                                <div className={styles.title}>جنس</div>
-                                <div className={styles.desc}>فلزی</div>
-                                <div className={styles.close_btn}>
-                                    <FontAwesomeIcon icon={faClose} />
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
 
-                    <div className={styles.inventory_button}>
+                    <div
+                        className={`${styles.inventory_button} ${
+                            active ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setActive(!active);
+                        }}
+                    >
                         <div>
                             <span></span>
                         </div>
@@ -132,7 +327,9 @@ export default function CreateProduct() {
                     </div>
                 </div>
 
-                <div className={styles.edit_btn}>افزودن محصول</div>
+                <div className={styles.edit_btn} onClick={() => handleSubmit()}>
+                    افزودن محصول
+                </div>
             </form>
         </div>
     );

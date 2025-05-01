@@ -25,7 +25,8 @@ import Codes from "@/components/admin/Codes";
 import Offers from "@/components/admin/Offers";
 import Discounts from "@/components/admin/Discounts";
 import Tickets from "@/components/admin/Tickets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Admin() {
     const [pageNum, setPageNum] = useState(1);

@@ -6,15 +6,91 @@ import {
     faAngleRight,
     faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import img from "../../../public/images/1.webp";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import spiner from "../../../public/images/loading.svg";
 
 export default function Products() {
+    const router = useRouter();
+
+    const [loading, setLoading] = useState(true);
+
+    const [products, setProducts] = useState([]);
+
+    const getProducts = async (url) => {
+        setLoading(true);
+        axios.defaults.withCredentials = true;
+        const response = await axios
+            .get(url)
+            .catch((err) => router.push("404"));
+
+        const result = await response.data.results;
+        setProducts(result);
+        setLoading(false);
+    };
+
+    const [buttonsStatus, setButtonsStatus] = useState(false);
+    const [inventory, setInventory] = useState(true);
+
+    const filter = () => {
+        if (!inventory) {
+            getProducts("https://abazarak.ir/api/admin/products/?supply=1");
+        } else {
+            getProducts("https://abazarak.ir/api/admin/products/");
+        }
+    };
+
+    const [activeProducts, setActiveProducts] = useState(true);
+
+    const filter2 = () => {
+        if (!activeProducts) {
+            getProducts("https://abazarak.ir/api/admin/products/?active=false");
+        } else {
+            getProducts("https://abazarak.ir/api/admin/products/");
+        }
+    };
+
+    useEffect(() => {
+        setInventory(!inventory);
+        setActiveProducts(!activeProducts);
+        filter();
+        filter2();
+    }, []);
+
+    const [searchText, setSearchText] = useState("");
+
+    const search = () => {
+        setButtonsStatus(true);
+        setLoading(true);
+        axios.defaults.withCredentials = true;
+        axios
+            .get(`https://abazarak.ir/api/admin/products/?search=${searchText}`)
+            .then((res) => {
+                setProducts(res.data.results);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
+    };
+
     return (
         <div className={styles.container}>
+            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+                <div className={styles.loading_wrapper}>
+                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
+                </div>
+            </div>
+
             <div className={styles.search_box}>
-                <Link className={styles.add_btn} href={"/admin/products/create"}>
+                <Link
+                    className={styles.add_btn}
+                    href={"/admin/products/create"}
+                >
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
@@ -22,18 +98,71 @@ export default function Products() {
                 </Link>
 
                 <form className={styles.products_search}>
-                    <input type="text" placeholder="جستجوی محصول ..." />
+                    <input
+                        type="text"
+                        placeholder="جستجوی محصول ..."
+                        onChange={(e) => {
+                            if (e.target.value === "") {
+                                setSearchText(e.target.value);
+                                setButtonsStatus(false);
+                                filter();
+                            } else {
+                                setSearchText(e.target.value);
+                            }
+                        }}
+                    />
 
-                    <span>
+                    <span
+                        onClick={() => search()}
+                        style={
+                            searchText === ""
+                                ? { display: "none" }
+                                : { display: "block" }
+                        }
+                    >
                         <FontAwesomeIcon icon={faSearch} />
                     </span>
                 </form>
 
-                <div className={styles.inventory_button}>
-                    <div>
-                        <span></span>
+                <div
+                    className={styles.search_buttons}
+                    style={
+                        buttonsStatus
+                            ? { display: "none" }
+                            : { display: "flex" }
+                    }
+                >
+                    <div
+                        className={`${styles.inventory_button} ${
+                            activeProducts ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setActiveProducts(!activeProducts);
+                            setInventory(false);
+                            filter2();
+                        }}
+                    >
+                        <div>
+                            <span></span>
+                        </div>
+                        غیر فعال ها
                     </div>
-                    موجودی ها
+
+                    <div
+                        className={`${styles.inventory_button} ${
+                            inventory ? styles.show : ""
+                        }`}
+                        onClick={() => {
+                            setInventory(!inventory);
+                            setActiveProducts(false);
+                            filter();
+                        }}
+                    >
+                        <div>
+                            <span></span>
+                        </div>
+                        موجودی ها
+                    </div>
                 </div>
             </div>
 
@@ -47,299 +176,43 @@ export default function Products() {
                     <div className={styles.products_title}>وضعیت</div>
                 </div>
 
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
+                {products.map((product, index) => (
+                    <Link
+                        onClick={() =>
+                            localStorage.setItem("productId", product.id)
+                        }
+                        href={`/admin/products/${product.id}`}
+                        className={styles.product}
+                        key={product.id}
+                    >
+                        <div className={styles.product_id}>{index + 1}</div>
 
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
+                        <Image
+                            className={styles.product_image}
+                            src={product.image}
+                            alt="عکس محصول"
+                            width={100}
+                            height={100}
+                            quality={100}
+                        />
 
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
+                        <div className={styles.product_name}>
+                            {product.name}
+                        </div>
 
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
+                        <div className={styles.product_price}>
+                            {product.price}
+                        </div>
 
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
+                        <div className={styles.product_date}>
+                            {product.date}
+                        </div>
 
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
-
-                <Link
-                    href={`/admin/products/${0}`}
-                    className={styles.product}
-                >
-                    <div className={styles.product_id}>1</div>
-
-                    <Image
-                        className={styles.product_image}
-                        src={img}
-                        alt="عکس محصول"
-                    />
-
-                    <div className={styles.product_name}>
-                        لورم ایپسوم یک متن سخاتگی است
-                    </div>
-
-                    <div className={styles.product_price}>1,500,000</div>
-                    <div className={styles.product_date}>1403/1/14</div>
-                    <div className={styles.product_active}>فعال</div>
-                </Link>
+                        <div className={styles.product_active}>
+                            {product.active ? "فعال" : "غیر فعال"}
+                        </div>
+                    </Link>
+                ))}
             </div>
 
             <div className={styles.pagination}>
