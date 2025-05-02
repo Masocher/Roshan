@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import spiner from "../../../public/images/loading.svg";
+import Loading from "../global/Loading";
 
 export default function Products() {
     const router = useRouter();
@@ -78,162 +78,160 @@ export default function Products() {
             });
     };
 
-    return (
-        <div className={styles.container}>
-            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
-                <div className={styles.loading_wrapper}>
-                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
-                </div>
-            </div>
-
-            <div className={styles.search_box}>
-                <Link
-                    className={styles.add_btn}
-                    href={"/admin/products/create"}
-                >
-                    <span>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </span>
-                    محصول جدید
-                </Link>
-
-                <form className={styles.products_search}>
-                    <input
-                        type="text"
-                        placeholder="جستجوی محصول ..."
-                        onChange={(e) => {
-                            if (e.target.value === "") {
-                                setSearchText(e.target.value);
-                                setButtonsStatus(false);
-                                filter();
-                            } else {
-                                setSearchText(e.target.value);
-                            }
-                        }}
-                    />
-
-                    <span
-                        onClick={() => search()}
-                        style={
-                            searchText === ""
-                                ? { display: "none" }
-                                : { display: "block" }
-                        }
-                    >
-                        <FontAwesomeIcon icon={faSearch} />
-                    </span>
-                </form>
-
-                <div
-                    className={styles.search_buttons}
-                    style={
-                        buttonsStatus
-                            ? { display: "none" }
-                            : { display: "flex" }
-                    }
-                >
-                    <div
-                        className={`${styles.inventory_button} ${
-                            activeProducts ? styles.show : ""
-                        }`}
-                        onClick={() => {
-                            setActiveProducts(!activeProducts);
-                            setInventory(false);
-                            filter2();
-                        }}
-                    >
-                        <div>
-                            <span></span>
-                        </div>
-                        غیر فعال ها
-                    </div>
-
-                    <div
-                        className={`${styles.inventory_button} ${
-                            inventory ? styles.show : ""
-                        }`}
-                        onClick={() => {
-                            setInventory(!inventory);
-                            setActiveProducts(false);
-                            filter();
-                        }}
-                    >
-                        <div>
-                            <span></span>
-                        </div>
-                        موجودی ها
-                    </div>
-                </div>
-            </div>
-
-            <div className={styles.products}>
-                <div className={styles.products_top}>
-                    <div className={styles.products_title}>شماره</div>
-                    <div className={styles.products_title}>عکس</div>
-                    <div className={styles.products_title}>نام</div>
-                    <div className={styles.products_title}>قیمت</div>
-                    <div className={styles.products_title}>تاریخ</div>
-                    <div className={styles.products_title}>وضعیت</div>
-                </div>
-
-                {products.map((product, index) => (
+    if (loading) {
+        return <Loading />;
+    } else {
+        return (
+            <div className={styles.container}>
+                <div className={styles.search_box}>
                     <Link
-                        onClick={() =>
-                            localStorage.setItem("productId", product.id)
-                        }
-                        href={`/admin/products/${product.id}`}
-                        className={styles.product}
-                        key={product.id}
+                        className={styles.add_btn}
+                        href={"/admin/products/create"}
                     >
-                        <div className={styles.product_id}>{index + 1}</div>
+                        <span>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </span>
+                        محصول جدید
+                    </Link>
 
-                        <Image
-                            className={styles.product_image}
-                            src={product.image}
-                            alt="عکس محصول"
-                            width={100}
-                            height={100}
-                            quality={100}
+                    <form className={styles.products_search}>
+                        <input
+                            type="text"
+                            placeholder="جستجوی محصول ..."
+                            onChange={(e) => {
+                                if (e.target.value === "") {
+                                    setSearchText(e.target.value);
+                                    setButtonsStatus(false);
+                                    filter();
+                                } else {
+                                    setSearchText(e.target.value);
+                                }
+                            }}
                         />
 
-                        <div className={styles.product_name}>
-                            {product.name}
+                        <span
+                            onClick={() => search()}
+                            style={
+                                searchText === ""
+                                    ? { display: "none" }
+                                    : { display: "block" }
+                            }
+                        >
+                            <FontAwesomeIcon icon={faSearch} />
+                        </span>
+                    </form>
+
+                    <div
+                        className={styles.search_buttons}
+                        style={
+                            buttonsStatus
+                                ? { display: "none" }
+                                : { display: "flex" }
+                        }
+                    >
+                        <div
+                            className={`${styles.inventory_button} ${
+                                activeProducts ? styles.show : ""
+                            }`}
+                            onClick={() => {
+                                setActiveProducts(!activeProducts);
+                                setInventory(false);
+                                filter2();
+                            }}
+                        >
+                            <div>
+                                <span></span>
+                            </div>
+                            غیر فعال ها
                         </div>
 
-                        <div className={styles.product_price}>
-                            {product.price}
+                        <div
+                            className={`${styles.inventory_button} ${
+                                inventory ? styles.show : ""
+                            }`}
+                            onClick={() => {
+                                setInventory(!inventory);
+                                setActiveProducts(false);
+                                filter();
+                            }}
+                        >
+                            <div>
+                                <span></span>
+                            </div>
+                            موجودی ها
                         </div>
-
-                        <div className={styles.product_date}>
-                            {product.date}
-                        </div>
-
-                        <div className={styles.product_active}>
-                            {product.active ? "فعال" : "غیر فعال"}
-                        </div>
-                    </Link>
-                ))}
-            </div>
-
-            <div className={styles.pagination}>
-                <div className={styles.perv_btn}>
-                    <span>
-                        <FontAwesomeIcon icon={faAngleLeft} />
-                    </span>
-                    قبلی
+                    </div>
                 </div>
-                <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-                <div className={`${styles.page_btn} ${""}`}>2</div>
-                <div className={`${styles.page_btn} ${""}`}>3</div>
-                <div className={`${styles.page_btn} ${""}`}>4</div>
-                <div className={`${styles.page_btn} ${""}`}>5</div>
-                <div className={styles.next_btn}>
-                    بعدی
-                    <span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                    </span>
+
+                <div className={styles.products}>
+                    <div className={styles.products_top}>
+                        <div className={styles.products_title}>شماره</div>
+                        <div className={styles.products_title}>عکس</div>
+                        <div className={styles.products_title}>نام</div>
+                        <div className={styles.products_title}>قیمت</div>
+                        <div className={styles.products_title}>تاریخ</div>
+                        <div className={styles.products_title}>وضعیت</div>
+                    </div>
+
+                    {products.map((product, index) => (
+                        <Link
+                            onClick={() =>
+                                localStorage.setItem("productId", product.id)
+                            }
+                            href={`/admin/products/${product.id}`}
+                            className={styles.product}
+                            key={product.id}
+                        >
+                            <div className={styles.product_id}>{index + 1}</div>
+
+                            <Image
+                                className={styles.product_image}
+                                src={product.image}
+                                alt="عکس محصول"
+                                width={100}
+                                height={100}
+                                quality={100}
+                            />
+
+                            <div className={styles.product_name}>
+                                {product.name}
+                            </div>
+
+                            <div className={styles.product_price}>
+                                {product.price}
+                            </div>
+
+                            <div className={styles.product_date}>
+                                {product.date}
+                            </div>
+
+                            <div className={styles.product_active}>
+                                {product.active ? "فعال" : "غیر فعال"}
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+
+                <div className={styles.pagination}>
+                    <div className={styles.perv_btn}>
+                        <span>
+                            <FontAwesomeIcon icon={faAngleLeft} />
+                        </span>
+                        قبلی
+                    </div>
+                    <div className={`${styles.page_btn} ${styles.show}`}>1</div>
+                    <div className={`${styles.page_btn} ${""}`}>2</div>
+                    <div className={`${styles.page_btn} ${""}`}>3</div>
+                    <div className={`${styles.page_btn} ${""}`}>4</div>
+                    <div className={`${styles.page_btn} ${""}`}>5</div>
+                    <div className={styles.next_btn}>
+                        بعدی
+                        <span>
+                            <FontAwesomeIcon icon={faAngleRight} />
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
