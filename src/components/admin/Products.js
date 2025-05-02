@@ -54,10 +54,12 @@ export default function Products() {
     };
 
     useEffect(() => {
+        setLoading(true);
         setInventory(!inventory);
         setActiveProducts(!activeProducts);
         filter();
         filter2();
+        setLoading(false);
     }, []);
 
     const [searchText, setSearchText] = useState("");

@@ -1,3 +1,25 @@
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+}
+.loading.show {
+    display: flex;
+}
+
+.loading_wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
 .brands {
     width: 100%;
     background-color: #fff;
@@ -58,29 +80,7 @@
 }
 
 .brand_delete {
-    color: #F93827;
-    margin-bottom: 15px;
-}
-
-.brand_edit {
-    color: #12a386;
-}
-
-.top_box {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: fit-content;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #e8eef2;
-    border-left: 1px solid #e8eef2;
-    border-right: 1px solid #e8eef2;
-    position: sticky;
-    top: -30px;
-    margin-bottom: 30px;
-    margin: 0 0 20px 0;
-    box-shadow: 0 0 30px #00000017;
+    color: #f93827;
 }
 
 .add_btn {
@@ -94,6 +94,8 @@
     cursor: pointer;
     border: 1px solid #12a386;
     transition: 0.2s;
+    width: fit-content;
+    margin-bottom: 20px;
 }
 .add_btn:hover {
     background-color: #fff;
@@ -101,6 +103,88 @@
 }
 .add_btn span {
     margin: 5px 0 0 5px;
+}
+
+.add_brand_pop_up {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #0000004d;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.add_brand_pop_up.show {
+    display: flex;
+}
+
+.main_title {
+    font-size: 18px;
+    font-family: KalamehM;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main_title span {
+    background-color: #12a386;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 14px;
+    margin-left: 15px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add_brand_pop_up form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.add_brand_pop_up form .inputs {
+    display: flex;
+}
+
+.add_brand_pop_up form input {
+    font-family: Kalameh;
+    outline: 0;
+    border: 1px solid #e8eef2;
+    background-color: #e8eef2;
+    padding: 10px 20px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+.add_brand_pop_up form input:focus {
+    border-color: #12a386;
+}
+
+.add_brand_btn {
+    background-color: #12a386;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid #12a386;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.add_brand_btn:hover {
+    background: none;
+    color: #12a386;
 }
 
 @media (max-width: 1300px) {
