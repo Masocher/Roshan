@@ -1,7 +1,7 @@
 .container {
     background-color: #12a386;
     width: calc(100% - 60px);
-    padding: 40px 60px 40px 0;
+    padding: 15px 60px 15px 0;
     color: #fff;
     display: flex;
     align-items: center;

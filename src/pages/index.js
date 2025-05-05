@@ -29,7 +29,6 @@ export default function Home() {
             <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
             <HomeSlider />
             <AmazingOffer />
-            <Alert />
             <BestSellers />
             <Categories />
             <Affordables />
