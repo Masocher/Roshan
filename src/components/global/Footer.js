@@ -166,21 +166,6 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-
-                <div className={`${styles.center_section} ${styles.cs2}`}>
-                    <div className={styles.title_box}>
-                        از آخرین تخفیف های روشن مارکت باخبر شوید
-                    </div>
-
-                    <form action={"#"}>
-                        <input
-                            type="text"
-                            placeholder="شماره تلفن خودرا وارد کنید"
-                        />
-
-                        <button type="sebmit">ثبت</button>
-                    </form>
-                </div>
             </div>
 
             <div className={styles.bottom_section}>

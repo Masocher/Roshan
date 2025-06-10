@@ -1,5 +1,5 @@
 import styles from "../../styles/home/Categories.module.css";
-import img from "../../../public/images/11.jpg";
+import img from "../../../public/images/slider-1.jpg"
 import Image from "next/image";
 
 export default function Categories() {

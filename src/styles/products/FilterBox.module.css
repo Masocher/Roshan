@@ -222,14 +222,15 @@
 @media (max-width: 950px) {
     .container {
         width: calc(100% - 40px);
-        padding: 20px;
+        padding: 0 20px 15px 20px;
         position: fixed;
         left: 0;
-        top: 168px;
+        top: 147px;
         display: flex;
         align-items: center;
         flex-direction: row;
-        z-index: 8;
+        z-index: 9;
+        border: none;
     }
 
     .title_box {
@@ -257,7 +258,7 @@
         background-color: #e8eef2;
         padding: 5px 20px;
         border-radius: 30px;
-        font-size: 14px;
+        font-size: 12px;
         width: fit-content;
         height: fit-content;
     }
@@ -309,7 +310,7 @@
     .container {
         padding: 20px;
         width: calc(100% - 40px);
-        top: 160px;
+        top: 140px;
         right: 0;
     }
 
@@ -323,7 +324,6 @@
 
     .filter_box {
         padding: 5px 15px;
-        font-size: 12px;
     }
 
     .filter_box:nth-child(2) {

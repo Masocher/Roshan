@@ -72,6 +72,10 @@
 }
 
 @media (max-width: 580px) {
+    .products_container {
+        height: 240px;
+    }
+
     .title_box {
         font-size: 30px;
     }
