@@ -40,6 +40,9 @@ export default function HomeSlider() {
             src={slide_1}
             alt="عکس پس زمینه"
             className={styles.top_image}
+            width={100}
+            height={100}
+            quality={100}
             priority
           />
         </SwiperSlide>
@@ -60,6 +63,9 @@ export default function HomeSlider() {
             src={slide_2}
             alt="عکس پس زمینه"
             className={styles.top_image}
+            width={100}
+            height={100}
+            quality={100}
             priority
           />
         </SwiperSlide>
@@ -80,6 +86,9 @@ export default function HomeSlider() {
             src={slide_3}
             alt="عکس پس زمینه"
             className={styles.top_image}
+            width={100}
+            height={100}
+            quality={100}
             priority
           />
         </SwiperSlide>
@@ -100,6 +109,9 @@ export default function HomeSlider() {
             src={slide_4}
             alt="عکس پس زمینه"
             className={styles.top_image}
+            width={100}
+            height={100}
+            quality={100}
             priority
           />
         </SwiperSlide>
@@ -120,6 +132,9 @@ export default function HomeSlider() {
             src={slide_5}
             alt="عکس پس زمینه"
             className={styles.top_image}
+            width={100}
+            height={100}
+            quality={100}
             priority
           />
         </SwiperSlide>
