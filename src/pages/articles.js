@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import Image from "next/image";
-import img from "../../public/images/11.jpg";
+import img from "../../public/images/slider-1.jpg";
 import Link from "next/link";
 import Header from "@/components/global/Header";
 import BlackBackground from "@/components/global/BlacKBackground";

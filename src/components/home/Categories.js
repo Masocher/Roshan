@@ -10,6 +10,10 @@ export default function Categories() {
                     className={styles.category_img}
                     src={img}
                     alt="دسته بندی"
+                    width={100}
+                    height={100}
+                    quality={100}
+                    priority
                 />
 
                 <div className={styles.category_title}>
@@ -23,6 +27,10 @@ export default function Categories() {
                     className={styles.category_img}
                     src={img}
                     alt="دسته بندی"
+                    width={100}
+                    height={100}
+                    quality={100}
+                    priority
                 />
 
                 <div className={styles.category_title}>
@@ -36,6 +44,10 @@ export default function Categories() {
                     className={styles.category_img}
                     src={img}
                     alt="دسته بندی"
+                    width={100}
+                    height={100}
+                    quality={100}
+                    priority
                 />
 
                 <div className={styles.category_title}>
@@ -49,6 +61,10 @@ export default function Categories() {
                     className={styles.category_img}
                     src={img}
                     alt="دسته بندی"
+                    width={100}
+                    height={100}
+                    quality={100}
+                    priority
                 />
 
                 <div className={styles.category_title}>
