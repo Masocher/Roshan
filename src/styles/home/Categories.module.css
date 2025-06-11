@@ -22,11 +22,11 @@
     top: 0;
     right: 0;
     border-radius: 10px;
-    filter: brightness(0.4);
+    filter: brightness(0.8);
     transition: .2s;
 }
 .category_box:hover .category_img {
-    filter: brightness(0.2);
+    filter: brightness(0.4);
 }
 
 .category_title {

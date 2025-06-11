@@ -160,16 +160,17 @@
     padding: 20px;
     width: calc(100% - 40px);
     background-color: #fff;
+    max-height: 20px;
     overflow: hidden;
-    height: 20px;
     cursor: pointer;
+    transition: .4s ease;
 }
 .hcb:nth-child(2) {
     border-top: 1px solid #f3f4f6;
     border-bottom: 1px solid #f3f4f6;
 }
 .hcb.show {
-    height: fit-content;
+    max-height: 300px;
 }
 
 .hcb .title {

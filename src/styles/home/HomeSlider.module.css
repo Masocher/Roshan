@@ -77,11 +77,12 @@
     }
 
     .title_box {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .show_btn {
         font-size: 12px;
+        padding: 5px 10px;
     }
     .show_btn span {
         font-size: 10px;

@@ -348,7 +348,7 @@
     }
     .categories_menu.show {
         left: 0;
-        top: calc(50% + 25px);
+        top: calc(50% + 35px);
     }
 
     .main_title {
@@ -388,7 +388,6 @@
         position: absolute;
         left: 0;
         top: 85px;
-        box-shadow: 0 20px 20px #00000009;
     }
 
     .logo_wrapper {
@@ -405,7 +404,7 @@
         padding: 20px;
     }
     .categories_menu.show {
-        top: calc(50% + 45px);
+        top: calc(50% + 55px);
     }
 
     .categ_item {
@@ -437,8 +436,9 @@
     }
 
     .categories_menu {
-        height: calc(100% - 100px) !important;
-        top: 100%;
+        width: calc(100% - 40px);
+        height: 100% !important;
+        position: fixed;
         z-index: 9;
     }
     .categories_menu.show {

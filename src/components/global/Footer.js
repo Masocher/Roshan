@@ -105,7 +105,11 @@ export default function Footer() {
                     <div className={`${styles.hcb} ${hcb1 ? styles.show : ""}`}>
                         <div
                             className={styles.title}
-                            onClick={() => setHcb1(!hcb1)}
+                            onClick={() => {
+                                setHcb1(!hcb1)
+                                setHcb2(false)
+                                setHcb3(false)
+                            }}
                         >
                             راهنمای مشتریان
                             <span>
@@ -127,7 +131,11 @@ export default function Footer() {
                     <div className={`${styles.hcb} ${hcb2 ? styles.show : ""}`}>
                         <div
                             className={styles.title}
-                            onClick={() => setHcb2(!hcb2)}
+                            onClick={() => {
+                                setHcb1(false)
+                                setHcb2(!hcb2)
+                                setHcb3(false)
+                            }}
                         >
                             همراه با روشن مارکت
                             <span>
@@ -149,7 +157,11 @@ export default function Footer() {
                     <div className={`${styles.hcb} ${hcb3 ? styles.show : ""}`}>
                         <div
                             className={styles.title}
-                            onClick={() => setHcb3(!hcb3)}
+                            onClick={() => {
+                                setHcb1(false)
+                                setHcb2(false)
+                                setHcb3(!hcb3)
+                            }}
                         >
                             راهنمای خرید از روشن مارکت
                             <span>

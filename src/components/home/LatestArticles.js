@@ -3,7 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import Image from "next/image";
-import img from "../../../public/images/slider-1.jpg";
+import img_1 from "../../../public/images/slider-1.jpg";
+import img_2 from "../../../public/images/slider-2.jpg";
+import img_3 from "../../../public/images/slider-3.jpg";
+import img_4 from "../../../public/images/slider-4.jpg";
+import img_5 from "../../../public/images/slider-5.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -42,8 +46,13 @@ export default function LatestArticles() {
                     >
                         <Image
                             className={styles.article_cover}
-                            src={img}
+                            src={img_1}
                             alt="عکس مقاله"
+                            width={100}
+                            height={100}
+                            quality={100}
+                            priority
+                            unoptimized
                         />
 
                         <div className={styles.article_information}>
@@ -76,8 +85,13 @@ export default function LatestArticles() {
                     >
                         <Image
                             className={styles.article_cover}
-                            src={img}
+                            src={img_2}
                             alt="عکس مقاله"
+                            width={100}
+                            height={100}
+                            quality={100}
+                            priority
+                            unoptimized
                         />
 
                         <div className={styles.article_information}>
@@ -110,8 +124,13 @@ export default function LatestArticles() {
                     >
                         <Image
                             className={styles.article_cover}
-                            src={img}
+                            src={img_3}
                             alt="عکس مقاله"
+                            width={100}
+                            height={100}
+                            quality={100}
+                            priority
+                            unoptimized
                         />
 
                         <div className={styles.article_information}>
@@ -144,8 +163,13 @@ export default function LatestArticles() {
                     >
                         <Image
                             className={styles.article_cover}
-                            src={img}
+                            src={img_4}
                             alt="عکس مقاله"
+                            width={100}
+                            height={100}
+                            quality={100}
+                            priority
+                            unoptimized
                         />
 
                         <div className={styles.article_information}>
@@ -178,8 +202,13 @@ export default function LatestArticles() {
                     >
                         <Image
                             className={styles.article_cover}
-                            src={img}
+                            src={img_5}
                             alt="عکس مقاله"
+                            width={100}
+                            height={100}
+                            quality={100}
+                            priority
+                            unoptimized
                         />
 
                         <div className={styles.article_information}>

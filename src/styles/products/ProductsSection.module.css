@@ -153,7 +153,11 @@
     .container {
         width: 100%;
         padding: 0;
-        margin-top: 104px;
+        margin-top: 45px;
+    }
+
+    .products_container {
+        flex-direction: column;
     }
 
     .pagination {
@@ -162,18 +166,15 @@
 
     .f_boxes {
         width: calc(100% - 40px);
-        padding: 0 20px 15px 20px;
+        padding: 15px 20px 15px 20px;
         font-size: 14px;
+        border: none;
     }
 }
 
 @media (max-width: 580px) {
     .reset_btn_2.show {
         display: block;
-    }
-
-    .container {
-        margin-top: 119px;
     }
 
     .f_boxes {

@@ -44,6 +44,7 @@ export default function HomeSlider() {
             height={100}
             quality={100}
             priority
+            unoptimized
           />
         </SwiperSlide>
 
@@ -67,6 +68,7 @@ export default function HomeSlider() {
             height={100}
             quality={100}
             priority
+            unoptimized
           />
         </SwiperSlide>
 
@@ -90,6 +92,7 @@ export default function HomeSlider() {
             height={100}
             quality={100}
             priority
+            unoptimized
           />
         </SwiperSlide>
 
@@ -113,6 +116,7 @@ export default function HomeSlider() {
             height={100}
             quality={100}
             priority
+            unoptimized
           />
         </SwiperSlide>
 
@@ -136,6 +140,7 @@ export default function HomeSlider() {
             height={100}
             quality={100}
             priority
+            unoptimized
           />
         </SwiperSlide>
       </Swiper>

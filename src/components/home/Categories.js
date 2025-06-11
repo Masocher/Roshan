@@ -17,6 +17,7 @@ export default function Categories() {
                     height={100}
                     quality={100}
                     priority
+                    unoptimized
                 />
 
                 <div className={styles.category_title}>
@@ -34,6 +35,7 @@ export default function Categories() {
                     height={100}
                     quality={100}
                     priority
+                    unoptimized
                 />
 
                 <div className={styles.category_title}>
@@ -51,6 +53,7 @@ export default function Categories() {
                     height={100}
                     quality={100}
                     priority
+                    unoptimized
                 />
 
                 <div className={styles.category_title}>
@@ -68,6 +71,7 @@ export default function Categories() {
                     height={100}
                     quality={100}
                     priority
+                    unoptimized
                 />
 
                 <div className={styles.category_title}>
