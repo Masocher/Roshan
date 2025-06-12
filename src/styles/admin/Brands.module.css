@@ -186,9 +186,3 @@
     background: none;
     color: #12a386;
 }
-
-@media (max-width: 1300px) {
-    .top_box {
-        top: 0;
-    }
-}
