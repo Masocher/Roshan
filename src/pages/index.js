@@ -7,7 +7,6 @@ import AmazingOffer from "@/components/home/AmazingOffer";
 import BestSellers from "@/components/home/BestSellers";
 import Categories from "@/components/home/Categories";
 import Affordables from "@/components/home/Affordables";
-import LatestArticles from "@/components/home/LatestArticles";
 import BrandsSlider from "@/components/global/BrandsSlider";
 import Footer from "@/components/global/Footer";
 import { useState } from "react";
@@ -32,7 +31,6 @@ export default function Home() {
             <BestSellers />
             <Categories />
             <Affordables />
-            <LatestArticles />
             <BrandsSlider />
             <Footer />
         </div>

@@ -29,7 +29,7 @@ export default function HomeSlider() {
             <div>بهترین های جوشکاری !</div>
 
             <div className={styles.show_btn}>
-              مشاهده
+              مشاهده محصولات
               <span>
                 <FontAwesomeIcon icon={faAngleLeft} />
               </span>
@@ -53,7 +53,7 @@ export default function HomeSlider() {
             <div>دنیای آچار</div>
 
             <div className={styles.show_btn}>
-              مشاهده
+              مشاهده محصولات
               <span>
                 <FontAwesomeIcon icon={faAngleLeft} />
               </span>
@@ -77,7 +77,7 @@ export default function HomeSlider() {
             <div>اوستای خودت باش !</div>
 
             <div className={styles.show_btn}>
-              مشاهده
+              مشاهده محصولات
               <span>
                 <FontAwesomeIcon icon={faAngleLeft} />
               </span>
@@ -101,7 +101,7 @@ export default function HomeSlider() {
             <div>ابزار های مکانیکی</div>
 
             <div className={styles.show_btn}>
-              مشاهده
+              مشاهده محصولات
               <span>
                 <FontAwesomeIcon icon={faAngleLeft} />
               </span>
@@ -125,7 +125,7 @@ export default function HomeSlider() {
             <div>هرچی لازم داری اینجاست</div>
 
             <div className={styles.show_btn}>
-              مشاهده
+              مشاهده محصولات
               <span>
                 <FontAwesomeIcon icon={faAngleLeft} />
               </span>

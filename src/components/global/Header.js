@@ -133,7 +133,7 @@ export default function Header({ status, setStatus }) {
 
             <div className={styles.right_section}>
                 <Link href={"/"} className={styles.logo_wrapper}>
-                    روشن مارکت
+                    روشن ابزار
                 </Link>
 
                 <div className={styles.search_box_wrapper}>

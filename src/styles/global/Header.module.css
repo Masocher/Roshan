@@ -7,7 +7,7 @@
     padding: 0 30px;
     position: sticky;
     top: 0;
-    z-index: 9;
+    z-index: 10;
     border-bottom: 1px solid #e8eef2;
     user-select: none;
     height: 85px;
@@ -106,7 +106,7 @@
     left: 0;
     background-color: #00000078;
     display: none;
-    z-index: 9;
+    z-index: 10;
 }
 .black_back.show,
 .black_back_2.show {
@@ -343,12 +343,12 @@
         background-color: #fff;
         opacity: 1;
         border-radius: 0;
-        border-bottom: 1px solid #e8eef2;
+        border: none;
         height: 325px !important;
     }
     .categories_menu.show {
         left: 0;
-        top: calc(50% + 35px);
+        top: calc(50% + 87px);
     }
 
     .main_title {
@@ -404,7 +404,7 @@
         padding: 20px;
     }
     .categories_menu.show {
-        top: calc(50% + 55px);
+        top: calc(50% + 107px);
     }
 
     .categ_item {

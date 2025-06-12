@@ -22,7 +22,7 @@ export default function Footer() {
         <div className={styles.footer_container}>
             <div className={styles.top_section}>
                 <div className={styles.section}>
-                    <div className={styles.logo}>فروشگاه اینترنتی روشن</div>
+                    <div className={styles.logo}>فروشگاه اینترنتی روشن ابزار</div>
 
                     <div className={styles.contact_information}>
                         تلفن پشتیبانی - 09166991715
