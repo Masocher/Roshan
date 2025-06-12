@@ -11,28 +11,62 @@ import BrandsSlider from "@/components/global/BrandsSlider";
 import Footer from "@/components/global/Footer";
 import { useState } from "react";
 
-export default function Home() {
-    let [categoriesStatus, setCategoriesStatus] = useState(false);
+// export async function getServerSideProps(context) {
+//   const { req } = context;
 
-    return (
-        <div>
-            <BlackBackground
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
-            <Alert />
-            <MiniMenu
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
-            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
-            <HomeSlider />
-            <AmazingOffer />
-            <BestSellers />
-            <Categories />
-            <Affordables />
-            <BrandsSlider />
-            <Footer />
-        </div>
-    );
+//   const cookie = req.headers.cookie || "";
+
+//   console.log(cookie.access_token);
+
+//   let authStatus = false;
+//   let userName = null;
+//   let userNumber = null;
+
+//   try {
+//     const res = await fetch("https://abazarak.ir/api/auth/me", {
+//       method: "GET",
+//       headers: {
+//         Cookie: cookie,
+//       },
+//     });
+
+//     if (res.ok) {
+//       const data = await res.json();
+//       authStatus = true;
+//       userName = data.full_name;
+//       userNumber = data.number;
+//       cookie = cookie;
+//     }
+//   } catch (err) {}
+
+//   return {
+//     props: {
+//       authStatus,
+//       userName,
+//       userNumber,
+//     },
+//   };
+// }
+
+export default function Home(props) {
+  let [categoriesStatus, setCategoriesStatus] = useState(false);
+
+  return (
+    <div>
+      <BlackBackground
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+      />
+      <Alert />
+      <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <HomeSlider />
+      <AmazingOffer />
+      <BestSellers />
+      <Categories />
+      <Affordables />
+      <BrandsSlider />
+      <Footer />
+    </div>
+  );
 }

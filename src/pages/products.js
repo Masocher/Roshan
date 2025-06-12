@@ -5,22 +5,40 @@ import MiniMenu from "@/components/global/MiniMenu";
 import Footer from "@/components/global/Footer";
 import { useState } from "react";
 
-export default function Products() {
-    let [categoriesStatus, setCategoriesStatus] = useState(false);
+export async function getServerSideProps(context) {
+  let products = [];
 
-    return (
-        <div>
-            <BlackBackground
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
-            <MiniMenu
-                status={categoriesStatus}
-                setStatus={setCategoriesStatus}
-            />
-            <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
-            <ProductsSection />
-            <Footer />
-        </div>
-    );
+  try {
+    const res = await fetch("/api/products/");
+
+    if (res.ok) {
+      const data = await res.json();
+      products = data.results;
+    }
+  } catch (error) {
+    console.error("خطا در دریافت محصولات:", error);
+  }
+
+  return {
+    props: {
+      products,
+    },
+  };
+}
+
+export default function Products({ products }) {
+  let [categoriesStatus, setCategoriesStatus] = useState(false);
+
+  return (
+    <div>
+      <BlackBackground
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+      />
+      <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <ProductsSection initialProducts={products} />
+      <Footer />
+    </div>
+  );
 }

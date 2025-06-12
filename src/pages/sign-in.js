@@ -1,9 +1,9 @@
 import styles from "../styles/authentication/Auth.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faUserPlus,
-    faUnlockKeyhole,
-    faArrowRight,
+  faUserPlus,
+  faUnlockKeyhole,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useState } from "react";
@@ -14,168 +14,154 @@ import Image from "next/image";
 import spiner from "../../public/images/loading.svg";
 
 export default function SignIn() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const [number, setNumber] = useState("");
-    const [password, setPassword] = useState("");
+  const [number, setNumber] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [err1, setErr1] = useState(false);
-    const [err2, setErr2] = useState(false);
+  const [err1, setErr1] = useState(false);
+  const [err2, setErr2] = useState(false);
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const signInFunction = (num, pas) => {
-        setLoading(true);
+  const signInFunction = (num, pas) => {
+    setLoading(true);
 
-        axios.defaults.withCredentials = true;
-        axios
-            .post("https://abazarak.ir/api/auth/login/", {
-                number: `${num}`,
-                password: `${pas}`,
-            })
-            .then((response) => {
-                router.push("/");
-                setLoading(false);
-                toast.success(response.data.detail);
-            })
-            .catch((err) => {
-                if (err.response.data.detail) {
-                    toast.error(err.response.data.detail);
-                }
-
-                if (err.response.data.number) {
-                    toast.error("شماره تلفن : " + err.response.data.number);
-                } else if (err.response.data.password) {
-                    toast.error("رمز عبور : " + err.response.data.password);
-                }
-
-                setLoading(false);
-            });
-    };
-
-    const checkNumber = (number) => {
-        if (number.length > 0) {
-            setErr1(false);
-        } else {
-            setErr1(true);
+    axios.defaults.withCredentials = true;
+    axios
+      .post("/api/auth/login/", {
+        number: `${num}`,
+        password: `${pas}`,
+      })
+      .then((response) => {
+        setLoading(false);
+        toast.success(response.data.detail);
+        router.push("/");
+      })
+      .catch((err) => {
+        if (err.response.data.detail) {
+          toast.error(err.response.data.detail);
         }
-    };
 
-    const checkPassword = (password) => {
-        if (password.length > 0) {
-            setErr2(false);
-        } else {
-            setErr2(true);
+        if (err.response.data.number) {
+          toast.error("شماره تلفن : " + err.response.data.number);
+        } else if (err.response.data.password) {
+          toast.error("رمز عبور : " + err.response.data.password);
         }
-    };
 
-    return (
-        <div className={styles.container}>
-            <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
-                <div className={styles.loading_wrapper}>
-                    <Image src={spiner} width={80} height={80} alt="لودینگ" />
-                </div>
-            </div>
+        setLoading(false);
+      });
+  };
 
-            <Toaster position="bottom-left" reverseOrder={true} />
+  const checkNumber = (number) => {
+    if (number.length > 0) {
+      setErr1(false);
+    } else {
+      setErr1(true);
+    }
+  };
 
-            <Link href={"/"} className={styles.logo}>
-                روشن مارکت
-            </Link>
+  const checkPassword = (password) => {
+    if (password.length > 0) {
+      setErr2(false);
+    } else {
+      setErr2(true);
+    }
+  };
 
-            <div className={styles.auth_form}>
-                <div
-                    onClick={() => router.back()}
-                    className={styles.back_btn_2}
-                >
-                    <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                    </span>
-                    بازگشت
-                </div>
-
-                <div className={styles.top_titles}>
-                    <Link
-                        href={"/sign-up"}
-                        className={`${styles.main_title} ${""}`}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faUserPlus} />
-                        </span>
-                        ثبت نام
-                    </Link>
-
-                    <Link
-                        href={"/sign-in"}
-                        className={`${styles.main_title} ${styles.show}`}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faUnlockKeyhole} />
-                        </span>
-                        ورود
-                    </Link>
-                </div>
-
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <div className={styles.input_box}>
-                        <div className={styles.input_title}>شماره موبایل</div>
-
-                        <input
-                            type="text"
-                            onChange={(e) => {
-                                setNumber(e.target.value);
-                                checkNumber(e.target.value);
-                            }}
-                            className={`${err1 ? styles.error : ""}`}
-                        />
-
-                        <div
-                            className={`${styles.error_box} ${
-                                err1 ? styles.show : ""
-                            }`}
-                        >
-                            شماره تلفن اجباری است !
-                        </div>
-                    </div>
-
-                    <div className={styles.input_box}>
-                        <div className={styles.input_title}>رمز عبور</div>
-
-                        <input
-                            type="password"
-                            onChange={(e) => {
-                                setPassword(e.target.value);
-                                checkPassword(e.target.value);
-                            }}
-                            className={`${err2 ? styles.error : ""}`}
-                        />
-
-                        <div
-                            className={`${styles.error_box} ${
-                                err2 ? styles.show : ""
-                            }`}
-                        >
-                            رمز عبور اجباری است !
-                        </div>
-                    </div>
-
-                    <button
-                        className={styles.submit_btn}
-                        onClick={() => {
-                            signInFunction(number, password);
-                        }}
-                    >
-                        ورود به حساب
-                    </button>
-
-                    <Link
-                        className={styles.forgot_password}
-                        href={"/change-password-code"}
-                    >
-                        رمز عبورم را فراموش کرده ام !
-                    </Link>
-                </form>
-            </div>
+  return (
+    <div className={styles.container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
         </div>
-    );
+      </div>
+
+      <Toaster position="bottom-left" reverseOrder={true} />
+
+      <Link href={"/"} className={styles.logo}>
+        روشن مارکت
+      </Link>
+
+      <div className={styles.auth_form}>
+        <div onClick={() => router.back()} className={styles.back_btn_2}>
+          <span>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </span>
+          بازگشت
+        </div>
+
+        <div className={styles.top_titles}>
+          <Link href={"/sign-up"} className={`${styles.main_title} ${""}`}>
+            <span>
+              <FontAwesomeIcon icon={faUserPlus} />
+            </span>
+            ثبت نام
+          </Link>
+
+          <Link
+            href={"/sign-in"}
+            className={`${styles.main_title} ${styles.show}`}
+          >
+            <span>
+              <FontAwesomeIcon icon={faUnlockKeyhole} />
+            </span>
+            ورود
+          </Link>
+        </div>
+
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className={styles.input_box}>
+            <div className={styles.input_title}>شماره موبایل</div>
+
+            <input
+              type="text"
+              onChange={(e) => {
+                setNumber(e.target.value);
+                checkNumber(e.target.value);
+              }}
+              className={`${err1 ? styles.error : ""}`}
+            />
+
+            <div className={`${styles.error_box} ${err1 ? styles.show : ""}`}>
+              شماره تلفن اجباری است !
+            </div>
+          </div>
+
+          <div className={styles.input_box}>
+            <div className={styles.input_title}>رمز عبور</div>
+
+            <input
+              type="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                checkPassword(e.target.value);
+              }}
+              className={`${err2 ? styles.error : ""}`}
+            />
+
+            <div className={`${styles.error_box} ${err2 ? styles.show : ""}`}>
+              رمز عبور اجباری است !
+            </div>
+          </div>
+
+          <button
+            className={styles.submit_btn}
+            onClick={() => {
+              signInFunction(number, password);
+            }}
+          >
+            ورود به حساب
+          </button>
+
+          <Link
+            className={styles.forgot_password}
+            href={"/change-password-code"}
+          >
+            رمز عبورم را فراموش کرده ام !
+          </Link>
+        </form>
+      </div>
+    </div>
+  );
 }

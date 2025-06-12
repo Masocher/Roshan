@@ -1,5 +1,3 @@
-// pages/user-orders.js
-
 import styles from "../styles/user-pannel/UserOrders.module.css";
 import Header from "@/components/global/Header";
 import MiniMenu from "@/components/global/MiniMenu";
@@ -14,39 +12,50 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Gateway from "./gateway";
 import Link from "next/link";
-import Loading from "@/components/global/Loading";
 
-// ✅ دریافت اطلاعات از سرور در زمان رندر
 export async function getServerSideProps(context) {
+  const { req } = context;
+
+  const cookie = req.headers.cookie || "";
+
+  console.log("cookie : " + cookie.access_token);
+
+  let initialOrders = [];
+
   try {
     const res = await fetch("https://abazarak.ir/api/ordering/history/", {
       headers: {
-        cookie: context.req.headers.cookie || "", // برای احراز هویت
+        Cookie: cookie,
       },
     });
 
-    if (!res.ok) throw new Error("خطا در دریافت سفارشات");
+    if (res.status === 401) {
+      return {
+        redirect: {
+          destination: "/sign-in",
+          permanent: false,
+        },
+      };
+    }
 
     const data = await res.json();
-
-    return {
-      props: {
-        initialOrders: data,
-      },
-    };
+    initialOrders = data.results;
   } catch (error) {
-    console.error("error fetching orders:", error);
-    return {
-      props: {
-        initialOrders: [],
-      },
-    };
+    console.error("خطا در دریافت سفارش ها", error);
   }
+
+  return {
+    props: {
+      initialOrders,
+    },
+  };
 }
 
 export default function UserOrders({ initialOrders }) {
   let [categoriesStatus, setCategoriesStatus] = useState(false);
   const [orders, setOrders] = useState(initialOrders);
+  console.log(orders);
+
   const [gatewayStatus, setGatewayStatus] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const [productsPrice, setProductsPrice] = useState({
