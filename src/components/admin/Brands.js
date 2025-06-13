@@ -15,7 +15,7 @@ export default function Brands() {
     const getBrands = () => {
         setLoading(true);
         axios
-            .get("https://abazarak.ir/api/admin/brands/")
+            .get("/api/admin/brands/")
             .then((res) => {
                 setBrands(res.data);
                 setLoading(false);
@@ -36,7 +36,7 @@ export default function Brands() {
 
     const addBrand = () => {
         axios
-            .post("https://abazarak.ir/api/admin/brands/", {
+            .post("/api/admin/brands/", {
                 name: name,
             })
             .then((res) => {
@@ -58,7 +58,7 @@ export default function Brands() {
 
     const deleteBrand = (slug) => {
         axios
-            .delete(`https://abazarak.ir/api/admin/brands/${slug}/`)
+            .delete(`/api/admin/brands/${slug}/`)
             .then((res) => {
                 getBrands();
                 toast.success("برند با موفقیت حذف شد");

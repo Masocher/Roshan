@@ -20,7 +20,7 @@ export default function Categories() {
     const getCategories = () => {
         setLoading(true);
         axios
-            .get("https://abazarak.ir/api/admin/categories/")
+            .get("/api/admin/categories/")
             .then((res) => {
                 setCategories(res.data);
                 setLoading(false);
@@ -42,7 +42,7 @@ export default function Categories() {
 
     const addCategory = () => {
         axios
-            .post("https://abazarak.ir/api/admin/categories/", {
+            .post("/api/admin/categories/", {
                 name: name,
                 parent: parent,
             })
@@ -68,7 +68,7 @@ export default function Categories() {
 
     const deleteCategory = (slug) => {
         axios
-            .delete(`https://abazarak.ir/api/admin/categories/${slug}/`)
+            .delete(`/api/admin/categories/${slug}/`)
             .then((res) => {
                 getCategories();
                 toast.success("دسته بندی با موفقیت حذف شد");

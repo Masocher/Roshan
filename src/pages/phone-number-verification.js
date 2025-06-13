@@ -23,7 +23,7 @@ export default function PhoneNumberVerification() {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/activation/")
+            .post("/api/auth/activation/")
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
     }, []);
@@ -31,7 +31,7 @@ export default function PhoneNumberVerification() {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://abazarak.ir/api/auth/me")
+            .get("/api/auth/me")
             .then((response) => setNumber(response.data.number))
             .catch((err) => console.log(err));
     }, []);
@@ -41,7 +41,7 @@ export default function PhoneNumberVerification() {
 
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/activation/verify/", {
+            .post("/api/auth/activation/verify/", {
                 otp: `${code}`,
             })
             .then((response) => {

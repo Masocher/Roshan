@@ -70,7 +70,7 @@ export default function PurchaseInformation() {
         setChangeAddress(!changeAddress);
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/ordering/addresses/", {
+            .post("/api/ordering/addresses/", {
                 province: provinceId,
                 city: cityId,
                 address: address,
@@ -112,7 +112,7 @@ export default function PurchaseInformation() {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://abazarak.ir/api/ordering/preview/")
+            .get("/api/ordering/preview/")
             .then((response) => {
                 setProducts(response.data.items);
 
@@ -152,7 +152,7 @@ export default function PurchaseInformation() {
     useEffect(() => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://abazarak.ir/api/ordering/preview/")
+            .get("/api/ordering/preview/")
             .then((response) => {
                 setAddresses(response.data.addresses);
             })
@@ -179,7 +179,7 @@ export default function PurchaseInformation() {
     const checkout = () => {
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/ordering/checkout/", {
+            .post("/api/ordering/checkout/", {
                 full_name: fullName,
                 number: phoneNumber,
                 address: selectedAddressId,

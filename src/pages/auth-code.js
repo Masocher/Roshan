@@ -23,7 +23,7 @@ export default function AuthCode() {
 
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/register/verify/", {
+            .post("/api/auth/register/verify/", {
                 number: `${localStorage.getItem("number")}`,
                 otp: `${code}`,
             })

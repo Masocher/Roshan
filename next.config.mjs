@@ -12,6 +12,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://abazarak.ir/api/:path*/",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

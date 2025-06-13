@@ -22,7 +22,7 @@ export default function ChangePasswordCode() {
         setLoading(true);
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/reset_password/", {
+            .post("/api/auth/reset_password/", {
                 number: number,
             })
             .then((res) => {

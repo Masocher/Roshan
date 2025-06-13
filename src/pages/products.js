@@ -9,7 +9,7 @@ export async function getServerSideProps(context) {
   let products = [];
 
   try {
-    const res = await fetch("https://abazarak.ir/api/products/");
+    const res = await fetch("/api/products/");
 
     if (res.ok) {
       const data = await res.json();

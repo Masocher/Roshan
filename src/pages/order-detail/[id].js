@@ -27,7 +27,7 @@ export default function OrderDetailsSinglePage() {
         axios.defaults.withCredentials = true;
         const fetchData = async () => {
             const response = await axios.get(
-                `https://abazarak.ir/api/ordering/history/${localStorage.getItem(
+                `/api/ordering/history/${localStorage.getItem(
                     "orderId"
                 )}/`
             );

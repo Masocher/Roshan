@@ -39,7 +39,7 @@ export default function ShoppingCart() {
     setLoading(true);
     axios.defaults.withCredentials = true;
     axios
-      .get("https://abazarak.ir/api/ordering/cart/")
+      .get("/api/ordering/cart/")
       .then((response) => {
         setProducts(response.data.items);
 
@@ -67,7 +67,7 @@ export default function ShoppingCart() {
     setLoading2(true);
     axios.defaults.withCredentials = true;
     axios
-      .post("https://abazarak.ir/api/ordering/cart/change-item/", {
+      .post("/api/ordering/cart/change-item/", {
         item_id: `${id}`,
         action: type,
       })
@@ -113,7 +113,7 @@ export default function ShoppingCart() {
     } else {
       axios.defaults.withCredentials = true;
       axios
-        .post("https://abazarak.ir/api/ordering/cart/apply-cupon/", {
+        .post("/api/ordering/cart/apply-cupon/", {
           code: `${code}`,
         })
         .then((response) => {
@@ -145,7 +145,7 @@ export default function ShoppingCart() {
   const removeBonus = () => {
     axios.defaults.withCredentials = true;
     axios
-      .post("https://abazarak.ir/api/ordering/cart/remove-cupon/")
+      .post("/api/ordering/cart/remove-cupon/")
       .then((response) => {
         toast.success("کد تخفیف با موفقیت حذف شد");
 

@@ -32,7 +32,7 @@ export default function Header({ status, setStatus }) {
 
     axios.defaults.withCredentials = true;
     axios
-      .get("https://abazarak.ir/api/auth/me")
+      .get("/api/auth/me")
       .then((response) => {
         setUserName(response.data.full_name);
         setUserNumber(response.data.number);
@@ -49,7 +49,7 @@ export default function Header({ status, setStatus }) {
 
   const logOut = () => {
     axios
-      .post("https://abazarak.ir/api/auth/logout/")
+      .post("/api/auth/logout/")
       .then((response) => {
         window.location.href = "/";
         toast.success(response.data.detail);

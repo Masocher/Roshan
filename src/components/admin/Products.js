@@ -37,9 +37,9 @@ export default function Products() {
 
     const filter = () => {
         if (!inventory) {
-            getProducts("https://abazarak.ir/api/admin/products/?supply=1");
+            getProducts("/api/admin/products/?supply=1");
         } else {
-            getProducts("https://abazarak.ir/api/admin/products/");
+            getProducts("/api/admin/products/");
         }
     };
 
@@ -47,9 +47,9 @@ export default function Products() {
 
     const filter2 = () => {
         if (!activeProducts) {
-            getProducts("https://abazarak.ir/api/admin/products/?active=false");
+            getProducts("/api/admin/products/?active=false");
         } else {
-            getProducts("https://abazarak.ir/api/admin/products/");
+            getProducts("/api/admin/products/");
         }
     };
 
@@ -69,7 +69,7 @@ export default function Products() {
         setLoading(true);
         axios.defaults.withCredentials = true;
         axios
-            .get(`https://abazarak.ir/api/admin/products/?search=${searchText}`)
+            .get(`/api/admin/products/?search=${searchText}`)
             .then((res) => {
                 setProducts(res.data.results);
                 setLoading(false);

@@ -21,7 +21,7 @@ export default function ChangePassword() {
         setLoading(true);
         axios.defaults.withCredentials = true;
         axios
-            .post("https://abazarak.ir/api/auth/reset_password/verify/", {
+            .post("/api/auth/reset_password/verify/", {
                 number: localStorage.getItem("userNumber"),
                 otp: code,
                 new_password: pas,

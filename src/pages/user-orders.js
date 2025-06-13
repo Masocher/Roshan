@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
   let initialOrders = [];
 
   try {
-    const res = await fetch("https://abazarak.ir/api/ordering/history/", {
+    const res = await fetch("/api/ordering/history/", {
       headers: {
         Cookie: cookie,
       },

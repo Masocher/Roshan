@@ -21,7 +21,7 @@ export default function LeaveComment({
         axios.defaults.withCredentials = true;
         axios
             .post(
-                `https://abazarak.ir/api/products/${product_slug}/add_comment/`,
+                `/api/products/${product_slug}/add_comment/`,
                 {
                     "content": content,
                     "score": starNum,

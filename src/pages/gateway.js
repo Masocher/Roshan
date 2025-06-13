@@ -16,7 +16,7 @@ export default function Gateway({ gatewayStatus, productsPrice, orderId }) {
     const completeOrder = () => {
         axios.defaults.withCredentials = true;
         axios
-            .get("https://abazarak.ir/api/ordering/preview/")
+            .get("/api/ordering/preview/")
             .then((response) => {
                 if (response.data.items.length === 0) {
                     router.push("/user-orders");
@@ -36,7 +36,7 @@ export default function Gateway({ gatewayStatus, productsPrice, orderId }) {
         axios.defaults.withCredentials = true;
         axios
             .post(
-                `https://abazarak.ir/api/ordering/history/${orderId}/payment_gateway/`
+                `/api/ordering/history/${orderId}/payment_gateway/`
             )
             .then((response) => {
                 router.push(response.data.gateway_url);
