@@ -29,7 +29,7 @@ export default function SignIn() {
 
     axios.defaults.withCredentials = true;
     axios
-      .post("/api/auth/login/", {
+      .post("https://abazarak.ir/api/auth/login/", {
         number: `${num}`,
         password: `${pas}`,
       })

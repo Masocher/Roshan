@@ -41,7 +41,7 @@ export default function ProductSinglePage() {
         axios.defaults.withCredentials = true;
         axios
             .get(
-                `/api/products/${localStorage.getItem(
+                `https://abazarak.ir/api/products/${localStorage.getItem(
                     "productSlug"
                 )}/`
             )

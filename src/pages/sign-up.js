@@ -33,7 +33,7 @@ export default function SignUp() {
 
         axios.defaults.withCredentials = true;
         axios
-            .post("/api/auth/register/", {
+            .post("https://abazarak.ir/api/auth/register/", {
                 full_name: `${nam}`,
                 number: `${num}`,
                 password: `${pas1}`,
