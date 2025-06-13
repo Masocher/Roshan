@@ -35,7 +35,7 @@ export default function FilterBox({
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios
-      .get("https://abazarak.ir/api/categories/")
+      .get("/api/categories/")
       .then((response) => {
         setCategories(response.data);
       })
@@ -45,7 +45,7 @@ export default function FilterBox({
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios
-      .get("https://abazarak.ir/api/brands/")
+      .get("/api/brands/")
       .then((response) => {
         setBrands(response.data);
       })

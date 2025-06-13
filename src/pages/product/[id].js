@@ -41,7 +41,7 @@ export default function ProductSinglePage() {
         axios.defaults.withCredentials = true;
         axios
             .get(
-                `https://abazarak.ir/api/products/${localStorage.getItem(
+                `/api/products/${localStorage.getItem(
                     "productSlug"
                 )}/`
             )
@@ -67,7 +67,7 @@ export default function ProductSinglePage() {
     const addToCart = () => {
         axios.defaults.withCredentials = true;
         axios
-            .post(`https://abazarak.ir/api/products/${product.slug}/add_cart/`)
+            .post(`/api/products/${product.slug}/add_cart/`)
             .then((response) => {
                 toast.success("این محصول به سبد خرید شما اضافه شد");
                 setDeleteStatus(true);
@@ -89,7 +89,7 @@ export default function ProductSinglePage() {
         axios.defaults.withCredentials = true;
         axios
             .post(
-                `https://abazarak.ir/api/products/${product.slug}/remove_cart/`
+                `/api/products/${product.slug}/remove_cart/`
             )
             .then((response) => {
                 toast.success("این محصول از سبد خرید شما حذف شد");

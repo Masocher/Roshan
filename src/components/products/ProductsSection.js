@@ -36,7 +36,7 @@ export default function ProductsSection({ initialProducts }) {
     axios.defaults.withCredentials = true;
     axios
       .get(
-        `https://abazarak.ir/api/products/${
+        `/api/products/${
           ordering === "" ? "" : `?ordering=${ordering}`
         }${
           filters.categName === ""
