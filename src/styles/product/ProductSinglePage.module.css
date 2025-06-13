@@ -652,7 +652,7 @@
 
 @media (max-width: 950px) {
     .container {
-        margin-top: 80px;
+        margin-top: 60px;
         width: 100%;
         padding: 0;
     }
@@ -677,11 +677,11 @@
 
     .product_category,
     .product_brand {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .product_name {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .about {
@@ -704,7 +704,7 @@
         width: calc(100% - 20px);
         margin-top: 10px;
         padding: 10px;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .pricing {
@@ -721,7 +721,7 @@
     }
 
     .features_title {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .feature_about {
@@ -812,5 +812,10 @@
     .product_views {
         width: calc(100% - 40px);
         margin: 0;
+        font-size: 14px;
+    }
+
+    .product_price {
+        font-size: 26px;
     }
 }
