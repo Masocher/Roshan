@@ -680,6 +680,11 @@
         font-size: 12px;
     }
 
+    .product_category {
+        background-color: #12a386;
+        color: #fff;
+    }
+
     .product_name {
         font-size: 16px;
     }
@@ -751,8 +756,8 @@
         width: calc(100% - 60px);
         border-radius: 20px 20px 0 0;
         z-index: 2;
-        margin-top: 280px;
-        border-top: 1px solid #e8eef2;
+        margin-top: 285px;
+        box-shadow: 0 0 100px #00000017;
     }
 
     .left_section,
