@@ -11,21 +11,29 @@ import {
   faTrashCan,
   faCartPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
 import Loading from "@/components/global/Loading";
 import spiner from "../../public/images/loading.svg";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   let user = null;
+  let initialData = {
+    items: [],
+    base_price: 0,
+    discount_amount: 0,
+    final_price: 0,
+    cupon: null,
+  };
 
   try {
     const res = await fetch("https://abazarak.ir/api/auth/me/", {
       headers: {
-        Cookie: context.req.headers.cookie || "",
+        cookie: context.req.headers.cookie || "",
       },
     });
 
@@ -36,341 +44,347 @@ export async function getServerSideProps(context) {
     console.error("خطا در دریافت اطلاعات کاربر:", err);
   }
 
+  try {
+    const res = await fetch("https://abazarak.ir/api/ordering/cart/", {
+      headers: {
+        cookie: context.req.headers.cookie || "",
+      },
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      initialData = data;
+    } else if (res.status === 401) {
+      return {
+        redirect: {
+          destination: "/sign-in",
+          permanent: false,
+        },
+      };
+    } else {
+      console.error("خطا در دریافت سبد خرید:", res.status, res.statusText);
+    }
+  } catch (err) {
+    console.error("خطا در دریافت سبد خرید:", err);
+  }
+
   return {
     props: {
       user,
+      initialData,
     },
   };
 }
 
-export default function ShoppingCart({ user }) {
-  const router = useRouter();
-
-  let [categoriesStatus, setCategoriesStatus] = useState(false);
-
-  const [products, setProducts] = useState([]);
+export default function ShoppingCart({ user, initialData }) {
+  const [categoriesStatus, setCategoriesStatus] = useState(false);
+  const [products, setProducts] = useState(initialData.items);
   const [productsPrice, setProductsPrice] = useState({
-    base_price: "",
-    discount_amount: "",
-    final_price: "",
+    base_price: initialData.base_price,
+    discount_amount: initialData.discount_amount,
+    final_price: initialData.final_price,
   });
-  const [bonusStatus, setBonusStatus] = useState(null);
-
-  const [loading, setLoading] = useState(false);
+  const [bonusStatus, setBonusStatus] = useState(initialData.cupon);
   const [loading2, setLoading2] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    axios.defaults.withCredentials = true;
-    axios
-      .get("/api/ordering/cart/")
-      .then((response) => {
-        setProducts(response.data.items);
-
-        setProductsPrice({
-          base_price: response.data.base_price,
-          discount_amount: response.data.discount_amount,
-          final_price: response.data.final_price,
-        });
-
-        setBonusStatus(response.data.cupon);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.status === 401) {
-          toast.error("برای ورود به سبد خرید ابتدا وارد حساب خود شوید");
-          router.push("/sign-in");
-        } else {
-          console.log(err);
-        }
-        setLoading(false);
-      });
-  }, []);
-
-  const changeProduct = (id, type) => {
-    setLoading2(true);
-    axios.defaults.withCredentials = true;
-    axios
-      .post("/api/ordering/cart/change-item/", {
-        item_id: `${id}`,
-        action: type,
-      })
-      .then((response) => {
-        setProducts(response.data.items);
-
-        setProductsPrice({
-          base_price: response.data.base_price,
-          discount_amount: response.data.discount_amount,
-          final_price: response.data.final_price,
-        });
-
-        setBonusStatus(response.data.cupon);
-
-        if (type === "inc") {
-          toast.success("تعداد انتخاب شده محصول اضافه شد");
-        } else if (type === "dec") {
-          toast.success("تعداد انتخاب شده محصول کم شد");
-        } else if (type === "del") {
-          toast.success("محصول با موفقیت حذف شد");
-        }
-
-        setLoading2(false);
-      })
-      .catch((err) => {
-        console.log(err);
-
-        toast.error(err.response.data.detail);
-
-        setLoading2(false);
-      });
-  };
-
   const [bonusCode, setBonusCode] = useState("");
 
-  const setBonus = (code) => {
-    setLoading2(true);
+  const changeProduct = useCallback(
+    (id, actionType) => {
+      if (loading2) return;
+      setLoading2(true);
 
-    if (code.length === 0) {
-      toast.error("یک مقدار معتبر وارد کنید");
-
-      setLoading2(false);
-    } else {
-      axios.defaults.withCredentials = true;
       axios
-        .post("/api/ordering/cart/apply-cupon/", {
-          code: `${code}`,
+        .post("/api/ordering/cart/change-item/", {
+          item_id: id,
+          action: actionType,
         })
         .then((response) => {
-          toast.success("کد تخفیف روی سبد خرید شما اعمال شد");
-
+          setProducts(response.data.items);
           setProductsPrice({
             base_price: response.data.base_price,
             discount_amount: response.data.discount_amount,
             final_price: response.data.final_price,
           });
-
-          setBonusCode("");
-
           setBonusStatus(response.data.cupon);
 
-          setLoading2(false);
+          if (actionType === "inc") {
+            toast.success("تعداد انتخاب شده محصول اضافه شد");
+          } else if (actionType === "dec") {
+            toast.success("تعداد انتخاب شده محصول کم شد");
+          } else if (actionType === "del") {
+            toast.success("محصول با موفقیت حذف شد");
+          }
         })
         .catch((err) => {
-          if (err.status === 400) {
-            toast.error("کد تخفیف وارد شده صحیح نیست");
-          }
-          setBonusCode("");
-
+          console.log(err);
+          const message =
+            err.response?.data?.detail || "خطایی در درخواست رخ داد";
+          toast.error(message);
+        })
+        .finally(() => {
           setLoading2(false);
         });
+    },
+    [loading2]
+  );
+
+  const setBonus = useCallback(() => {
+    if (loading2) return;
+
+    if (bonusCode.trim().length === 0) {
+      toast.error("یک مقدار معتبر وارد کنید");
+      return;
     }
-  };
 
-  const removeBonus = () => {
-    axios.defaults.withCredentials = true;
+    setLoading2(true);
+
     axios
-      .post("/api/ordering/cart/remove-cupon/")
+      .post("/api/ordering/cart/apply-cupon/", {
+        code: bonusCode.trim(),
+      })
       .then((response) => {
-        toast.success("کد تخفیف با موفقیت حذف شد");
-
+        toast.success("کد تخفیف روی سبد خرید شما اعمال شد");
         setProductsPrice({
           base_price: response.data.base_price,
           discount_amount: response.data.discount_amount,
           final_price: response.data.final_price,
         });
-
+        setBonusCode("");
         setBonusStatus(response.data.cupon);
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => {
+        if (err.response?.status === 400) {
+          toast.error("کد تخفیف وارد شده صحیح نیست");
+        } else {
+          toast.error("خطا در اعمال کد تخفیف");
+        }
+        setBonusCode("");
+      })
+      .finally(() => setLoading2(false));
+  }, [bonusCode, loading2]);
 
-  if (loading) {
+  const removeBonus = useCallback(() => {
+    if (loading2) return;
+
+    setLoading2(true);
+
+    axios
+      .post("/api/ordering/cart/remove-cupon/")
+      .then((response) => {
+        toast.success("کد تخفیف با موفقیت حذف شد");
+        setProductsPrice({
+          base_price: response.data.base_price,
+          discount_amount: response.data.discount_amount,
+          final_price: response.data.final_price,
+        });
+        setBonusStatus(response.data.cupon);
+      })
+      .catch((err) => {
+        toast.error("خطا در حذف کد تخفیف");
+        console.log(err);
+      })
+      .finally(() => setLoading2(false));
+  }, [loading2]);
+
+  if (!products) {
     return <Loading />;
-  } else {
-    return (
-      <div className={styles.container}>
-        <div className={`${styles.loading} ${loading2 ? styles.show : ""}`}>
-          <div className={styles.loading_wrapper}>
-            <Image src={spiner} width={80} height={80} alt="لودینگ" />
-          </div>
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={`${styles.loading} ${loading2 ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
         </div>
+      </div>
 
-        <Toaster position="bottom-left" reverseOrder={true} />
+      <Toaster position="bottom-left" reverseOrder={true} />
 
-        <BlackBackground
-          status={categoriesStatus}
-          setStatus={setCategoriesStatus}
-        />
-        <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
-        <Header
-          status={categoriesStatus}
-          setStatus={setCategoriesStatus}
-          user={user}
-        />
+      <BlackBackground
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+      />
+      <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <Header
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+        user={user}
+      />
 
-        <div className={styles.cart_wrapper}>
-          {products.length === 0 ? (
-            <div className={styles.no_product}>
-              <span>
-                <FontAwesomeIcon icon={faCartPlus} />
-              </span>
-              سبد خرید شما خالی است
-              <Link href={"/products"} className={styles.show_products_btn}>
-                مشاهده محصولات
-              </Link>
-            </div>
-          ) : (
-            <div className={styles.right_section}>
-              {products.map((product) => (
-                <div className={styles.cart_product} key={product.product.id}>
-                  <div className={styles.product_right_content}>
-                    <Link href={`${product.product.slug}`}>
-                      <Image
-                        className={styles.cart_product_img}
-                        src={product.product.image}
-                        alt="عکس محصول"
-                        width={100}
-                        height={100}
-                        quality={100}
-                      />
+      <div className={styles.cart_wrapper}>
+        {products.length === 0 ? (
+          <div className={styles.no_product}>
+            <span>
+              <FontAwesomeIcon icon={faCartPlus} />
+            </span>
+            سبد خرید شما خالی است
+            <Link href={"/products"} className={styles.show_products_btn}>
+              مشاهده محصولات
+            </Link>
+          </div>
+        ) : (
+          <div className={styles.right_section}>
+            {products.map((product) => (
+              <div className={styles.cart_product} key={product.id}>
+                <div className={styles.product_right_content}>
+                  <Link href={`${product.product.slug}`}>
+                    <Image
+                      className={styles.cart_product_img}
+                      src={product.product.image}
+                      alt="عکس محصول"
+                      width={100}
+                      height={100}
+                      quality={100}
+                    />
+                  </Link>
+
+                  <div className={styles.cart_product_inf}>
+                    <Link
+                      href={`${product.product.slug}`}
+                      className={styles.product_title}
+                    >
+                      {product.product.name}
                     </Link>
 
-                    <div className={styles.cart_product_inf}>
-                      <Link
-                        href={`${product.product.slug}`}
-                        className={styles.product_title}
-                      >
-                        {product.product.name}
-                      </Link>
+                    <div className={styles.cart_product_value}>
+                      <span>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          onClick={() => changeProduct(product.id, "inc")}
+                          style={{
+                            cursor: loading2 ? "not-allowed" : "pointer",
+                          }}
+                        />
+                      </span>
 
-                      <div className={styles.cart_product_value}>
-                        <span>
-                          <FontAwesomeIcon
-                            icon={faPlus}
-                            onClick={() => changeProduct(product.id, "inc")}
-                          />
-                        </span>
-
-                        <div className={styles.cart_product_num}>
-                          {product.quantity}
-                        </div>
-
-                        <span>
-                          <FontAwesomeIcon
-                            icon={faMinus}
-                            onClick={() => {
-                              if (product.quantity > 1) {
-                                changeProduct(product.id, "dec");
-                              } else {
-                                toast.error("کمتر از این مقدار مجاز نیست");
-                              }
-                            }}
-                          />
-                        </span>
+                      <div className={styles.cart_product_num}>
+                        {product.quantity}
                       </div>
-                    </div>
-                  </div>
 
-                  <div className={styles.product_left_content}>
-                    <span
-                      onClick={() => {
-                        changeProduct(product.id, "del");
-                        toast.success("محصول مورد نظر با موفقیت حذف شد");
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </span>
-
-                    <div className={styles.cart_product_price}>
-                      {product.product.final_price}
-                      <div className={styles.toman}>تومان</div>
+                      <span>
+                        <FontAwesomeIcon
+                          icon={faMinus}
+                          onClick={() => {
+                            if (loading2) return;
+                            if (product.quantity > 1) {
+                              changeProduct(product.id, "dec");
+                            } else {
+                              toast.error("کمتر از این مقدار مجاز نیست");
+                            }
+                          }}
+                          style={{
+                            cursor: loading2 ? "not-allowed" : "pointer",
+                          }}
+                        />
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))}
+
+                <div className={styles.product_left_content}>
+                  <span
+                    onClick={() => {
+                      if (!loading2) changeProduct(product.id, "del");
+                    }}
+                    style={{ cursor: loading2 ? "not-allowed" : "pointer" }}
+                  >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </span>
+
+                  <div className={styles.cart_product_price}>
+                    {product.product.final_price}
+                    <div className={styles.toman}>تومان</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div
+          className={`${styles.left_section} ${
+            products.length === 0 ? styles.show : ""
+          }`}
+        >
+          <div className={styles.title}>اطلاعات پرداخت</div>
+
+          {bonusStatus === null ? (
+            <form
+              className={styles.bonus_code_box}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (!loading2) setBonus();
+              }}
+            >
+              <input
+                type="text"
+                placeholder="کد تخفیف را وارد کنید"
+                onChange={(e) => setBonusCode(e.target.value)}
+                value={bonusCode}
+                disabled={loading2}
+              />
+
+              <button type="submit" disabled={loading2}>
+                اعمال تخفیف
+              </button>
+            </form>
+          ) : (
+            <div className={styles.bonus_box}>
+              <div className={styles.bonus_title}>کد تخفیف</div>
+
+              <div className={styles.bottom_content}>
+                <div className={styles.bonus_code}>{bonusStatus.code}</div>
+
+                <div
+                  className={styles.delete_bonus}
+                  onClick={() => {
+                    if (!loading2) removeBonus();
+                  }}
+                  style={{ cursor: loading2 ? "not-allowed" : "pointer" }}
+                >
+                  <span>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </span>
+                  حذف کردن
+                </div>
+              </div>
             </div>
           )}
 
-          <div
-            className={`${styles.left_section} ${
-              products.length === 0 ? styles.show : ""
-            }`}
-          >
-            <div className={styles.title}>اطلاعات پرداخت</div>
+          <div className={styles.value_box}>
+            <div className={styles.value_title}>جمع کل</div>
 
-            {bonusStatus === null ? (
-              <form
-                className={styles.bonus_code_box}
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <input
-                  type="text"
-                  placeholder="کد تخفیف را وارد کنید"
-                  onChange={(e) => {
-                    setBonusCode(e.target.value);
-                  }}
-                  value={bonusCode}
-                />
-
-                <button type="submit" onClick={() => setBonus(bonusCode)}>
-                  اعمال تخفیف
-                </button>
-              </form>
-            ) : (
-              <div className={styles.bonus_box}>
-                <div className={styles.bonus_title}>کد تخفیف</div>
-
-                <div className={styles.bottom_content}>
-                  <div className={styles.bonus_code}>{bonusStatus.code}</div>
-
-                  <div
-                    className={styles.delete_bonus}
-                    onClick={() => removeBonus()}
-                  >
-                    <span>
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </span>
-                    حذف کردن
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className={styles.value_box}>
-              <div className={styles.value_title}>جمع کل</div>
-
-              <div className={styles.value}>
-                {productsPrice.base_price}
-                <div className={styles.toman}>تومان</div>
-              </div>
+            <div className={styles.value}>
+              {productsPrice.base_price}
+              <div className={styles.toman}>تومان</div>
             </div>
-
-            <div className={styles.value_box}>
-              <div className={styles.value_title}>تخفیف</div>
-
-              <div className={`${styles.value} ${styles.off_value}`}>
-                {productsPrice.discount_amount}
-                <div className={styles.toman}>تومان</div>
-              </div>
-            </div>
-
-            <div className={`${styles.value_box} ${styles.buy_value}`}>
-              <div className={styles.value_title}>مبلغ قابل پرداخت</div>
-
-              <div className={styles.value}>
-                {productsPrice.final_price}
-                <div className={styles.toman}>تومان</div>
-              </div>
-            </div>
-
-            <Link href={"/purchase-information"} className={styles.buy_btn}>
-              تایید و تکمیل سفارش
-            </Link>
           </div>
-        </div>
 
-        <Footer />
+          <div className={styles.value_box}>
+            <div className={styles.value_title}>تخفیف</div>
+
+            <div className={`${styles.value} ${styles.off_value}`}>
+              {productsPrice.discount_amount}
+              <div className={styles.toman}>تومان</div>
+            </div>
+          </div>
+
+          <div className={`${styles.value_box} ${styles.buy_value}`}>
+            <div className={styles.value_title}>مبلغ قابل پرداخت</div>
+
+            <div className={styles.value}>
+              {productsPrice.final_price}
+              <div className={styles.toman}>تومان</div>
+            </div>
+          </div>
+
+          <Link href={"/purchase-information"} className={styles.buy_btn}>
+            تایید و تکمیل سفارش
+          </Link>
+        </div>
       </div>
-    );
-  }
+
+      <Footer />
+    </div>
+  );
 }
