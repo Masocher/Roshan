@@ -11,43 +11,6 @@ import BrandsSlider from "@/components/global/BrandsSlider";
 import Footer from "@/components/global/Footer";
 import { useState } from "react";
 
-// export async function getServerSideProps(context) {
-//   const { req } = context;
-
-//   const cookie = req.headers.cookie || "";
-
-//   console.log(cookie.access_token);
-
-//   let authStatus = false;
-//   let userName = null;
-//   let userNumber = null;
-
-//   try {
-//     const res = await fetch("https://abazarak.ir/api/auth/me", {
-//       method: "GET",
-//       headers: {
-//         Cookie: cookie,
-//       },
-//     });
-
-//     if (res.ok) {
-//       const data = await res.json();
-//       authStatus = true;
-//       userName = data.full_name;
-//       userNumber = data.number;
-//       cookie = cookie;
-//     }
-//   } catch (err) {}
-
-//   return {
-//     props: {
-//       authStatus,
-//       userName,
-//       userNumber,
-//     },
-//   };
-// }
-
 export async function getServerSideProps(context) {
   let user = null;
 

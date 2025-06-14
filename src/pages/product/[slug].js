@@ -41,15 +41,22 @@ export async function getServerSideProps(context) {
     console.error("خطا در دریافت اطلاعات کاربر:", err);
   }
 
+  const { slug } = context.params;
+
+  const res = await fetch(`https://abazarak.ir/api/products/${slug}/`);
+
+  const product = await res.json();
+
   return {
     props: {
       user,
+      productSingle: product,
     },
   };
 }
 
-export default function ProductSinglePage({ user }) {
-  const [deleteStatus, setDeleteStatus] = useState();
+export default function ProductSinglePage({ user, productSingle }) {
+  const [deleteStatus, setDeleteStatus] = useState(productSingle.in_cart);
 
   let [categoriesStatus, setCategoriesStatus] = useState(false);
   const [commentFormStatus, setCommentFormStatus] = useState(false);
@@ -59,28 +66,11 @@ export default function ProductSinglePage({ user }) {
   const matches3 = useMediaQuery(950);
   const matches4 = useMediaQuery(580);
 
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(productSingle);
 
   useEffect(() => {
-    axios.defaults.withCredentials = true;
-    axios
-      .get(`/api/products/${localStorage.getItem("productSlug")}/`)
-      .then((response) => {
-        setProduct(response.data);
-        setDeleteStatus(product.in_cart);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    if (product) {
-      if (product.in_cart === null) {
-        null;
-      } else {
-        setDeleteStatus(product.in_cart);
-      }
-    } else {
-      null;
+    if (product && product.in_cart !== null) {
+      setDeleteStatus(product.in_cart);
     }
   }, [product]);
 
@@ -336,11 +326,7 @@ export default function ProductSinglePage({ user }) {
               }
             >
               {product.related_products.map((prd) => (
-                <SwiperSlide
-                  key={prd.id}
-                  className={styles.product}
-                  onClick={() => localStorage.setItem("productSlug", prd.slug)}
-                >
+                <SwiperSlide key={prd.id} className={styles.product}>
                   <ProductBox
                     slug={prd.slug}
                     image={prd.image}

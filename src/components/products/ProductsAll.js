@@ -40,7 +40,6 @@ export default function ProductsAll({ loading, productsList }) {
             <div
               className={styles.product_box}
               key={product.id}
-              onClick={() => localStorage.setItem("productSlug", product.slug)}
             >
               <ProductBox
                 slug={product.slug}
