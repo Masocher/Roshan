@@ -11,7 +11,11 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function ProductsSection({ initialProducts }) {
+export default function ProductsSection({
+  initialProducts,
+  categoriesList,
+  brandsList,
+}) {
   const [products, setProducts] = useState(initialProducts || []);
 
   const [filters, setFilters] = useState({
@@ -36,9 +40,7 @@ export default function ProductsSection({ initialProducts }) {
     axios.defaults.withCredentials = true;
     axios
       .get(
-        `/api/products/${
-          ordering === "" ? "" : `?ordering=${ordering}`
-        }${
+        `/api/products/${ordering === "" ? "" : `?ordering=${ordering}`}${
           filters.categName === ""
             ? ""
             : `${ordering === "" ? "?" : "&"}category__name=${
@@ -67,6 +69,7 @@ export default function ProductsSection({ initialProducts }) {
       .then((response) => {
         setProducts(response.data.results);
         setLoading(false);
+        console.log("محصولات از کلاینت رندر شدن");
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +77,13 @@ export default function ProductsSection({ initialProducts }) {
       });
   };
 
+  const [filtersStatus, setFiltersStatus] = useState(false);
+
   useEffect(() => {
+    if (filtersStatus === false) {
+      return;
+    }
+
     selectFilter();
   }, [ordering, filters, priceRange]);
 
@@ -127,6 +136,7 @@ export default function ProductsSection({ initialProducts }) {
           className={`${styles.f_box} ${ordering === "" ? styles.show : ""}`}
           onClick={() => {
             setOrdering("");
+            setFiltersStatus(true);
           }}
         >
           جدید ترین
@@ -138,6 +148,7 @@ export default function ProductsSection({ initialProducts }) {
           }`}
           onClick={() => {
             setOrdering("hits_count");
+            setFiltersStatus(true);
           }}
         >
           پر فروش ترین
@@ -149,6 +160,7 @@ export default function ProductsSection({ initialProducts }) {
           }`}
           onClick={() => {
             setOrdering("price");
+            setFiltersStatus(true);
           }}
         >
           ارزان ترین
@@ -160,6 +172,7 @@ export default function ProductsSection({ initialProducts }) {
           }`}
           onClick={() => {
             setOrdering("-price");
+            setFiltersStatus(true);
           }}
         >
           گران ترین
@@ -185,6 +198,9 @@ export default function ProductsSection({ initialProducts }) {
           setOption1={setOption1}
           setOption2={setOption2}
           setOption3={setOption3}
+          setFiltersStatus={setFiltersStatus}
+          categoriesList={categoriesList}
+          brandsList={brandsList}
         />
         <ProductsAll loading={loading} productsList={products} />
       </div>

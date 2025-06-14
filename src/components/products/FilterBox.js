@@ -6,8 +6,7 @@ import {
   faCheck,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 export default function FilterBox({
@@ -28,29 +27,12 @@ export default function FilterBox({
   setOption1,
   setOption2,
   setOption3,
+  setFiltersStatus,
+  categoriesList,
+  brandsList,
 }) {
-  const [categories, setCategories] = useState([]);
-  const [brands, setBrands] = useState([]);
-
-  useEffect(() => {
-    axios.defaults.withCredentials = true;
-    axios
-      .get("/api/categories/")
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    axios.defaults.withCredentials = true;
-    axios
-      .get("/api/brands/")
-      .then((response) => {
-        setBrands(response.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const [categories, setCategories] = useState(categoriesList || []);
+  const [brands, setBrands] = useState(brandsList || []);
 
   return (
     <div className={styles.container}>
@@ -126,6 +108,8 @@ export default function FilterBox({
                     setOption1(false);
                     setOption2(false);
                     setOption3(false);
+
+                    setFiltersStatus(true);
                   }}
                 >
                   <span>
@@ -196,6 +180,8 @@ export default function FilterBox({
                     setOption1(false);
                     setOption2(false);
                     setOption3(false);
+
+                    setFiltersStatus(true);
                   }}
                   key={brand.slug}
                 >
@@ -293,6 +279,8 @@ export default function FilterBox({
                     setOption1(false);
                     setOption2(false);
                     setOption3(false);
+
+                    setFiltersStatus(true);
                   }}
                 >
                   اعمال
@@ -325,6 +313,8 @@ export default function FilterBox({
               categName: "",
               brandName: "",
             });
+
+            setFiltersStatus(true);
           }}
         >
           <span>

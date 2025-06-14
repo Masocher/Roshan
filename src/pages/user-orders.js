@@ -12,20 +12,31 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Gateway from "./gateway";
 import Link from "next/link";
+import axios from "axios";
 
 export async function getServerSideProps(context) {
-  const { req } = context;
-
-  const cookie = req.headers.cookie || "";
-
-  console.log("cookie : " + cookie.access_token);
-
   let initialOrders = [];
 
+  let user = null;
+
   try {
-    const res = await fetch("/api/ordering/history/", {
+    const res = await fetch("https://abazarak.ir/api/auth/me/", {
       headers: {
-        Cookie: cookie,
+        Cookie: context.req.headers.cookie || "",
+      },
+    });
+
+    if (res.ok) {
+      user = await res.json();
+    }
+  } catch (err) {
+    console.error("خطا در دریافت اطلاعات کاربر:", err);
+  }
+
+  try {
+    const res = await axios.get("https://abazarak.ir/api/ordering/history/", {
+      headers: {
+        Cookie: context.req.headers.cookie || "",
       },
     });
 
@@ -38,23 +49,22 @@ export async function getServerSideProps(context) {
       };
     }
 
-    const data = await res.json();
-    initialOrders = data.results;
+    initialOrders = res.data;
   } catch (error) {
     console.error("خطا در دریافت سفارش ها", error);
   }
 
   return {
     props: {
+      user,
       initialOrders,
     },
   };
 }
 
-export default function UserOrders({ initialOrders }) {
+export default function UserOrders({ user, initialOrders }) {
   let [categoriesStatus, setCategoriesStatus] = useState(false);
   const [orders, setOrders] = useState(initialOrders);
-  console.log(orders);
 
   const [gatewayStatus, setGatewayStatus] = useState(false);
   const [orderId, setOrderId] = useState(null);
@@ -69,7 +79,11 @@ export default function UserOrders({ initialOrders }) {
         setStatus={setCategoriesStatus}
       />
       <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
-      <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <Header
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+        user={user}
+      />
 
       <Gateway
         gatewayStatus={gatewayStatus}

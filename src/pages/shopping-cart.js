@@ -19,7 +19,31 @@ import { toast, Toaster } from "react-hot-toast";
 import Loading from "@/components/global/Loading";
 import spiner from "../../public/images/loading.svg";
 
-export default function ShoppingCart() {
+export async function getServerSideProps(context) {
+  let user = null;
+
+  try {
+    const res = await fetch("https://abazarak.ir/api/auth/me/", {
+      headers: {
+        Cookie: context.req.headers.cookie || "",
+      },
+    });
+
+    if (res.ok) {
+      user = await res.json();
+    }
+  } catch (err) {
+    console.error("خطا در دریافت اطلاعات کاربر:", err);
+  }
+
+  return {
+    props: {
+      user,
+    },
+  };
+}
+
+export default function ShoppingCart({ user }) {
   const router = useRouter();
 
   let [categoriesStatus, setCategoriesStatus] = useState(false);
@@ -178,7 +202,11 @@ export default function ShoppingCart() {
           setStatus={setCategoriesStatus}
         />
         <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
-        <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+        <Header
+          status={categoriesStatus}
+          setStatus={setCategoriesStatus}
+          user={user}
+        />
 
         <div className={styles.cart_wrapper}>
           {products.length === 0 ? (

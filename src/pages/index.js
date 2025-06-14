@@ -48,7 +48,31 @@ import { useState } from "react";
 //   };
 // }
 
-export default function Home(props) {
+export async function getServerSideProps(context) {
+  let user = null;
+
+  try {
+    const res = await fetch("https://abazarak.ir/api/auth/me/", {
+      headers: {
+        Cookie: context.req.headers.cookie || "",
+      },
+    });
+
+    if (res.ok) {
+      user = await res.json();
+    }
+  } catch (err) {
+    console.error("خطا در دریافت اطلاعات کاربر:", err);
+  }
+
+  return {
+    props: {
+      user,
+    },
+  };
+}
+
+export default function Home({ user }) {
   let [categoriesStatus, setCategoriesStatus] = useState(false);
 
   return (
@@ -59,7 +83,11 @@ export default function Home(props) {
       />
       <Alert />
       <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
-      <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
+      <Header
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+        user={user}
+      />
       <HomeSlider />
       <AmazingOffer />
       <BestSellers />

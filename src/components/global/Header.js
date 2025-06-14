@@ -11,41 +11,23 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
-export default function Header({ status, setStatus }) {
+export default function Header({ status, setStatus, user }) {
   const location = useRouter();
 
   const matches2 = useMediaQuery(1200);
 
   const [menuStatus, setMenuStatus] = useState(false);
 
-  const [userName, setUserName] = useState("");
-  const [userNumber, setUserNumber] = useState("");
-  const [authStatus, setAuthStatus] = useState(false);
+  const [userName, setUserName] = useState(user.full_name);
+  const [userNumber, setUserNumber] = useState(user.number);
+  const [authStatus, setAuthStatus] = useState(
+    user.full_name && user.number ? true : false
+  );
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-
-    axios.defaults.withCredentials = true;
-    axios
-      .get("/api/auth/me")
-      .then((response) => {
-        setUserName(response.data.full_name);
-        setUserNumber(response.data.number);
-        setAuthStatus(true);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.status === 401) {
-          setAuthStatus(false);
-        }
-        setLoading(false);
-      });
-  }, []);
 
   const logOut = () => {
     axios

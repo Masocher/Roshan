@@ -7,27 +7,67 @@ import { useState } from "react";
 
 export async function getServerSideProps(context) {
   let products = [];
+  let categoriesList = [];
+  let brandsList = [];
+  let user = null;
 
   try {
-    const res = await fetch("/api/products/");
+    const res = await fetch("https://abazarak.ir/api/auth/me/", {
+      headers: {
+        Cookie: context.req.headers.cookie || "",
+      },
+    });
 
     if (res.ok) {
-      const data = await res.json();
+      user = await res.json();
+    }
+  } catch (err) {
+    console.error("خطا در دریافت اطلاعات کاربر:", err);
+  }
+
+  try {
+    const [productsRes, categoriesRes, brandsRes] = await Promise.all([
+      fetch("https://abazarak.ir/api/products/"),
+      fetch("https://abazarak.ir/api/categories/"),
+      fetch("https://abazarak.ir/api/brands/"),
+    ]);
+
+    if (productsRes.ok) {
+      const data = await productsRes.json();
       products = data.results;
     }
+
+    if (categoriesRes.ok) {
+      const data = await categoriesRes.json();
+      categoriesList = data;
+    }
+
+    if (brandsRes.ok) {
+      const data = await brandsRes.json();
+      brandsList = data;
+    }
   } catch (error) {
-    console.error("خطا در دریافت محصولات:", error);
+    console.error("خطا در دریافت اطلاعات", error);
   }
 
   return {
     props: {
+      user,
       products,
+      categoriesList,
+      brandsList,
     },
   };
 }
 
-export default function Products({ products }) {
+export default function Products({
+  user,
+  products,
+  categoriesList,
+  brandsList,
+}) {
   let [categoriesStatus, setCategoriesStatus] = useState(false);
+  const [productsList, setProductsList] = useState(products);
 
   return (
     <div>
@@ -36,8 +76,16 @@ export default function Products({ products }) {
         setStatus={setCategoriesStatus}
       />
       <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
-      <Header status={categoriesStatus} setStatus={setCategoriesStatus} />
-      <ProductsSection initialProducts={products} />
+      <Header
+        status={categoriesStatus}
+        setStatus={setCategoriesStatus}
+        user={user}
+      />
+      <ProductsSection
+        initialProducts={productsList}
+        categoriesList={categoriesList}
+        brandsList={brandsList}
+      />
       <Footer />
     </div>
   );
