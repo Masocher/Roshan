@@ -49,8 +49,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Admin({ productsList }) {
-  console.log(productsList);
-
   const [pageNum, setPageNum] = useState(1);
 
   return (

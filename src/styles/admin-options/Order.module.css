@@ -64,7 +64,8 @@
 }
 
 .phone {
-    letter-spacing: 1px;
+    letter-spacing: .5px;
+    direction: ltr;
 }
 
 .payment_status {
@@ -96,7 +97,7 @@
 .payment_status .content span {
     margin: 0 0 0 10px;
     color: #fff;
-    background-color: #12a386;
+    background-color: #f93827;
     width: 17px;
     height: 17px;
     border-radius: 50%;
@@ -106,7 +107,7 @@
     font-size: 12px;
 }
 .payment_status .content.show span {
-    background-color: #f93827;
+    background-color: #12a386;
 }
 
 .second_section {
