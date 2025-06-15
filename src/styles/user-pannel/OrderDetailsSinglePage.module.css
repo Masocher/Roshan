@@ -18,10 +18,6 @@
     display: flex;
     align-items: center;
 }
-.user_orders_main_title .title span {
-    margin: 5px 0 0 15px;
-    cursor: pointer;
-}
 
 .order {
     display: flex;
@@ -73,7 +69,7 @@
     font-size: 12px;
 }
 .payment_status .content span.show {
-    background-color: #f93827;
+    background-color: #12a386;
 }
 
 .address {

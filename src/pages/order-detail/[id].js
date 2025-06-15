@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import img from "../../../public/images/1.webp";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   let user = null;
@@ -69,6 +70,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function OrderDetailsSinglePage({ user, orderList }) {
+  console.log(orderList);
+
   let [categoriesStatus, setCategoriesStatus] = useState(false);
 
   const router = useRouter();
@@ -91,9 +94,12 @@ export default function OrderDetailsSinglePage({ user, orderList }) {
       <div className={styles.orders_container}>
         <div className={styles.user_orders_main_title}>
           <div className={styles.title}>
-            <span onClick={() => router.back()}>
+            <Link
+              href={"/user-orders"}
+              style={{ color: "#000", marginTop: "5px", marginLeft: "15px" }}
+            >
               <FontAwesomeIcon icon={faArrowRight} />
-            </span>
+            </Link>
             جزئیات سفارش {order.id}
           </div>
         </div>
@@ -112,7 +118,7 @@ export default function OrderDetailsSinglePage({ user, orderList }) {
               <div className={styles.title}>وضعیت ارسال</div>
 
               <div className={styles.content}>
-                <span className={`${order.paid ? styles.show : ""}`}>
+                <span className={`${order.shipped ? styles.show : ""}`}>
                   <FontAwesomeIcon icon={order.shipped ? faCheck : faClose} />
                 </span>
                 <div>{order.shipped ? "ارسال شده" : "ارسال نشده"}</div>

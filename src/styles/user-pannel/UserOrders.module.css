@@ -105,7 +105,7 @@
     border-radius: 50%;
     font-size: 12px;
 }
-.status_box.show {
+.status_box_show {
     background-color: #12a386;
 }
 

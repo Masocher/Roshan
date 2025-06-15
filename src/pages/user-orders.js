@@ -12,7 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Gateway from "./gateway";
 import Link from "next/link";
-import axios from "axios";
 
 export async function getServerSideProps(context) {
   let initialOrders = [];
@@ -63,6 +62,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function UserOrders({ user, initialOrders }) {
+  console.log(initialOrders);
+
   let [categoriesStatus, setCategoriesStatus] = useState(false);
   const [orders, setOrders] = useState(initialOrders);
 
@@ -142,7 +143,9 @@ export default function UserOrders({ user, initialOrders }) {
 
                   <div className={styles.tracking_code}>
                     <span>کد رهگیری : </span>
-                    {order.shipped === false
+                    {order.paid === false
+                      ? "در انتظار پرداخت"
+                      : order.shipped === false
                       ? "در انتظار تحویل مرسوله به پست"
                       : order.shipping.tracking_code}
                   </div>
@@ -153,7 +156,7 @@ export default function UserOrders({ user, initialOrders }) {
                     <div className={styles.order_status}>
                       <div
                         className={`${styles.status_box} ${
-                          order.paid ? "show" : ""
+                          order.paid ? styles.status_box_show : ""
                         }`}
                       >
                         <FontAwesomeIcon
