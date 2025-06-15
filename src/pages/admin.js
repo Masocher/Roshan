@@ -1,18 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/admin/Admin.module.css";
 import {
-    faArrowRightToBracket,
-    faBoxOpen,
-    faComments,
-    faCopyright,
-    faList,
-    faSackDollar,
-    faTruckRampBox,
-    faUsers,
-    faMessage,
-    faCubes,
-    faPercent,
-    faGear,
+  faArrowRightToBracket,
+  faBoxOpen,
+  faComments,
+  faCopyright,
+  faList,
+  faSackDollar,
+  faTruckRampBox,
+  faUsers,
+  faMessage,
+  faCubes,
+  faPercent,
+  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Products from "@/components/admin/Products";
@@ -25,183 +25,205 @@ import Codes from "@/components/admin/Codes";
 import Offers from "@/components/admin/Offers";
 import Discounts from "@/components/admin/Discounts";
 import Tickets from "@/components/admin/Tickets";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
-export default function Admin() {
-    const [pageNum, setPageNum] = useState(1);
+export async function getServerSideProps(context) {
+  const res = await fetch("https://abazarak.ir/api/admin/products/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.admin_menu}>
-                <div className={styles.main_title}>
-                    <div>پنل ادمین</div>
+  const data = await res.json();
+  const productsList = data.results;
 
-                    <span>فرشاد چراغی</span>
-                </div>
+  if (!res.ok) {
+    return { notFound: true };
+  }
 
-                <div className={styles.menu_items}>
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 1 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(1)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faBoxOpen} />
-                        </span>
-                        <div>محصولات</div>
-                    </div>
+  return {
+    props: {
+      productsList,
+    },
+  };
+}
 
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 2 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(2)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faTruckRampBox} />
-                        </span>
-                        <div>سفارشات</div>
-                    </div>
+export default function Admin({ productsList }) {
+  console.log(productsList);
 
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 3 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(3)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faList} />
-                        </span>
-                        <div>دسته بندی ها</div>
-                    </div>
+  const [pageNum, setPageNum] = useState(1);
 
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 4 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(4)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faCopyright} />
-                        </span>
-                        <div>برند ها</div>
-                    </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.admin_menu}>
+        <div className={styles.main_title}>
+          <div>پنل ادمین</div>
 
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 5 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(5)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faComments} />
-                        </span>
-                        <div>نظرات</div>
-                    </div>
-
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 6 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(6)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faUsers} />
-                        </span>
-                        <div>کاربران</div>
-                    </div>
-
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 7 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(7)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faSackDollar} />
-                        </span>
-                        <div>کد های تخفیف</div>
-                    </div>
-
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 8 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(8)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faCubes} />
-                        </span>
-                        <div>آفر ها</div>
-                    </div>
-
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 9 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(9)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faPercent} />
-                        </span>
-                        <div>تخفیف ها</div>
-                    </div>
-
-                    <div
-                        className={`${styles.menu_item} ${
-                            pageNum === 10 ? styles.show : ""
-                        }`}
-                        onClick={() => setPageNum(10)}
-                    >
-                        <span>
-                            <FontAwesomeIcon icon={faMessage} />
-                        </span>
-                        <div>تیکت ها</div>
-                    </div>
-
-                    <Link href={"/admin/settings"} className={styles.menu_item}>
-                        <span>
-                            <FontAwesomeIcon icon={faGear} />
-                        </span>
-                        <div>تنظیمات کلی</div>
-                    </Link>
-                </div>
-
-                <Link href={"/"} className={styles.back_to_home_btn}>
-                    <span>
-                        <FontAwesomeIcon icon={faArrowRightToBracket} />
-                    </span>
-                    <div>برگشت به فروشگاه</div>
-                </Link>
-            </div>
-
-            <div className={styles.admin_content}>
-                {pageNum === 1 ? (
-                    <Products />
-                ) : pageNum === 2 ? (
-                    <Orders />
-                ) : pageNum === 3 ? (
-                    <Categories />
-                ) : pageNum === 4 ? (
-                    <Brands />
-                ) : pageNum === 5 ? (
-                    <Comments />
-                ) : pageNum === 6 ? (
-                    <Users />
-                ) : pageNum === 7 ? (
-                    <Codes />
-                ) : pageNum === 8 ? (
-                    <Offers />
-                ) : pageNum === 9 ? (
-                    <Discounts />
-                ) : pageNum === 10 ? (
-                    <Tickets />
-                ) : (
-                    <div>چنین اطلاعاتی یافت نشد !</div>
-                )}
-            </div>
+          <span>فرشاد چراغی</span>
         </div>
-    );
+
+        <div className={styles.menu_items}>
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 1 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(1)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faBoxOpen} />
+            </span>
+            <div>محصولات</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 2 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(2)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faTruckRampBox} />
+            </span>
+            <div>سفارشات</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 3 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(3)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faList} />
+            </span>
+            <div>دسته بندی ها</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 4 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(4)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faCopyright} />
+            </span>
+            <div>برند ها</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 5 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(5)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faComments} />
+            </span>
+            <div>نظرات</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 6 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(6)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faUsers} />
+            </span>
+            <div>کاربران</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 7 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(7)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faSackDollar} />
+            </span>
+            <div>کد های تخفیف</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 8 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(8)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faCubes} />
+            </span>
+            <div>آفر ها</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 9 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(9)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faPercent} />
+            </span>
+            <div>تخفیف ها</div>
+          </div>
+
+          <div
+            className={`${styles.menu_item} ${
+              pageNum === 10 ? styles.show : ""
+            }`}
+            onClick={() => setPageNum(10)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faMessage} />
+            </span>
+            <div>تیکت ها</div>
+          </div>
+
+          <Link href={"/admin/settings"} className={styles.menu_item}>
+            <span>
+              <FontAwesomeIcon icon={faGear} />
+            </span>
+            <div>تنظیمات کلی</div>
+          </Link>
+        </div>
+
+        <Link href={"/"} className={styles.back_to_home_btn}>
+          <span>
+            <FontAwesomeIcon icon={faArrowRightToBracket} />
+          </span>
+          <div>برگشت به فروشگاه</div>
+        </Link>
+      </div>
+
+      <div className={styles.admin_content}>
+        {pageNum === 1 ? (
+          <Products productsList={productsList} />
+        ) : pageNum === 2 ? (
+          <Orders />
+        ) : pageNum === 3 ? (
+          <Categories />
+        ) : pageNum === 4 ? (
+          <Brands />
+        ) : pageNum === 5 ? (
+          <Comments />
+        ) : pageNum === 6 ? (
+          <Users />
+        ) : pageNum === 7 ? (
+          <Codes />
+        ) : pageNum === 8 ? (
+          <Offers />
+        ) : pageNum === 9 ? (
+          <Discounts />
+        ) : pageNum === 10 ? (
+          <Tickets />
+        ) : (
+          <div>چنین اطلاعاتی یافت نشد !</div>
+        )}
+      </div>
+    </div>
+  );
 }
