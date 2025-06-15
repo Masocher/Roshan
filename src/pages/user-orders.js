@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
       };
     }
 
-    initialOrders = await res.json().data;
+    initialOrders = await res.json();
   } catch (error) {
     console.error("خطا در دریافت سفارش ها", error);
   }
