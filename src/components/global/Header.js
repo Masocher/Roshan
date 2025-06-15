@@ -22,14 +22,15 @@ export default function Header({ status, setStatus, user }) {
 
   const [menuStatus, setMenuStatus] = useState(false);
 
-  const [userName, setUserName] = useState(user.full_name);
-  const [userNumber, setUserNumber] = useState(user.number);
+  const [userName, setUserName] = useState(user ? user.full_name : "");
+  const [userNumber, setUserNumber] = useState(user ? user.number : "");
   const [authStatus, setAuthStatus] = useState(
-    user.full_name && user.number ? true : false
+    user ? (user.full_name && user.number ? true : false) : false
   );
   const [loading, setLoading] = useState(false);
 
   const logOut = () => {
+    axios.defaults.withCredentials = true;
     axios
       .post("/api/auth/logout/")
       .then((response) => {

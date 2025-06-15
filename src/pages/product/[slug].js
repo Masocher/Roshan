@@ -43,16 +43,29 @@ export async function getServerSideProps(context) {
 
   const { slug } = context.params;
 
-  const res = await fetch(`https://abazarak.ir/api/products/${slug}/`);
+  try {
+    const res = await fetch(`https://abazarak.ir/api/products/${slug}/`);
 
-  const product = await res.json();
+    if (!res.ok) {
+      return {
+        notFound: true,
+      };
+    }
 
-  return {
-    props: {
-      user,
-      productSingle: product,
-    },
-  };
+    const product = await res.json();
+
+    return {
+      props: {
+        user,
+        productSingle: product,
+      },
+    };
+  } catch (error) {
+    console.error("خطا در دریافت اطلاعات محصول:", error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default function ProductSinglePage({ user, productSingle }) {

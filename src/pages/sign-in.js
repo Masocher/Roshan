@@ -34,8 +34,8 @@ export default function SignIn() {
         password: `${pas}`,
       })
       .then((response) => {
-        setLoading(false);
         toast.success(response.data.detail);
+        setLoading(false);
         router.push("/");
       })
       .catch((err) => {

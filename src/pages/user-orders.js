@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
   }
 
   try {
-    const res = await axios.get("https://abazarak.ir/api/ordering/history/", {
+    const res = await fetch("https://abazarak.ir/api/ordering/history/", {
       headers: {
         Cookie: context.req.headers.cookie || "",
       },
@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
       };
     }
 
-    initialOrders = res.data;
+    initialOrders = await res.json().data;
   } catch (error) {
     console.error("خطا در دریافت سفارش ها", error);
   }
