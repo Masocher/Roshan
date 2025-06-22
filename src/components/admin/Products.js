@@ -10,60 +10,41 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
-import Loading from "../global/Loading";
+import spiner from "../../../public/images/loading.svg";
 
-export default function Products({ productsList }) {
-  const router = useRouter();
+export default function Products() {
+  const [loading, setLoading] = useState(false);
 
-  const [loading, setLoading] = useState(true);
-
-  const [products, setProducts] = useState(productsList);
-
-  const getProducts = async (url) => {
-    setLoading(true);
-    axios.defaults.withCredentials = true;
-    const response = await axios.get(url).catch((err) => router.push("404"));
-
-    const result = await response.data.results;
-    setProducts(result);
-    setLoading(false);
-  };
+  const [products, setProducts] = useState([]);
 
   const [buttonsStatus, setButtonsStatus] = useState(false);
-  const [inventory, setInventory] = useState(true);
+  const [searchText, setSearchText] = useState("");
 
-  const filter = () => {
-    if (!inventory) {
-      getProducts("/api/admin/products/?supply=1");
-    } else {
-      getProducts("/api/admin/products/");
-    }
-  };
+  const [notActiveFilter, setNotActiveFilter] = useState("");
+  const [notSupplyFilter, setNotSupplyFilter] = useState("");
 
-  const [activeProducts, setActiveProducts] = useState(true);
-
-  const filter2 = () => {
-    if (!activeProducts) {
-      getProducts("/api/admin/products/?active=false");
-    } else {
-      getProducts("/api/admin/products/");
-    }
+  const getProducts = () => {
+    setLoading(true);
+    axios.defaults.withCredentials = true;
+    axios
+      .get(
+        `/api/admin/products/?active=${notActiveFilter}&supply=${notSupplyFilter}`
+      )
+      .then((response) => {
+        setProducts(response.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
-    setLoading(true);
-    setInventory(!inventory);
-    setActiveProducts(!activeProducts);
-    filter();
-    filter2();
-    setLoading(false);
-  }, []);
-
-  const [searchText, setSearchText] = useState("");
+    getProducts();
+  }, [notActiveFilter, notSupplyFilter]);
 
   const search = () => {
-    setButtonsStatus(true);
     setLoading(true);
     axios.defaults.withCredentials = true;
     axios
@@ -78,93 +59,97 @@ export default function Products({ productsList }) {
       });
   };
 
-  if (loading) {
-    return <Loading />;
-  } else {
-    return (
-      <div className={styles.container}>
-        <div className={styles.search_box}>
-          <Link className={styles.add_btn} href={"/admin/products/create"}>
-            <span>
-              <FontAwesomeIcon icon={faPlus} />
-            </span>
-            محصول جدید
-          </Link>
+  return (
+    <div className={styles.container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+        </div>
+      </div>
 
-          <form className={styles.products_search}>
-            <input
-              type="text"
-              placeholder="جستجوی محصول ..."
-              onChange={(e) => {
-                if (e.target.value === "") {
-                  setSearchText(e.target.value);
-                  setButtonsStatus(false);
-                  filter();
-                } else {
-                  setSearchText(e.target.value);
-                }
-              }}
-            />
+      <div className={styles.search_box}>
+        <Link className={styles.add_btn} href={"/admin/products/create"}>
+          <span>
+            <FontAwesomeIcon icon={faPlus} />
+          </span>
+          محصول جدید
+        </Link>
 
-            <span
-              onClick={() => search()}
-              style={
-                searchText === "" ? { display: "none" } : { display: "block" }
+        <form
+          className={styles.products_search}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            type="text"
+            placeholder="جستجوی محصول ..."
+            onChange={(e) => {
+              if (e.target.value === "") {
+                setSearchText(e.target.value);
+                setButtonsStatus(false);
+                getProducts();
+              } else {
+                setSearchText(e.target.value);
               }
-            >
-              <FontAwesomeIcon icon={faSearch} />
-            </span>
-          </form>
+            }}
+          />
+
+          <span
+            onClick={() => search()}
+            style={
+              searchText === "" ? { display: "none" } : { display: "block" }
+            }
+          >
+            <FontAwesomeIcon icon={faSearch} />
+          </span>
+        </form>
+
+        <div className={styles.search_buttons}>
+          <div
+            className={`${styles.inventory_button} ${
+              notActiveFilter === false ? styles.show : ""
+            }`}
+            onClick={() => {
+              setNotActiveFilter(notActiveFilter === "" ? false : "");
+              setNotSupplyFilter("");
+            }}
+          >
+            <div>
+              <span></span>
+            </div>
+            محصولات غیر فعال
+          </div>
 
           <div
-            className={styles.search_buttons}
-            style={buttonsStatus ? { display: "none" } : { display: "flex" }}
+            className={`${styles.inventory_button} ${
+              notSupplyFilter === 0 ? styles.show : ""
+            }`}
+            onClick={() => {
+              setNotSupplyFilter(notSupplyFilter === "" ? 0 : "");
+              setNotActiveFilter("");
+            }}
           >
-            <div
-              className={`${styles.inventory_button} ${
-                activeProducts ? styles.show : ""
-              }`}
-              onClick={() => {
-                setActiveProducts(!activeProducts);
-                setInventory(false);
-                filter2();
-              }}
-            >
-              <div>
-                <span></span>
-              </div>
-              غیر فعال ها
+            <div>
+              <span></span>
             </div>
-
-            <div
-              className={`${styles.inventory_button} ${
-                inventory ? styles.show : ""
-              }`}
-              onClick={() => {
-                setInventory(!inventory);
-                setActiveProducts(false);
-                filter();
-              }}
-            >
-              <div>
-                <span></span>
-              </div>
-              موجودی ها
-            </div>
+            اتمام موجودی ها
           </div>
         </div>
+      </div>
 
-        <div className={styles.products}>
-          <div className={styles.products_top}>
-            <div className={styles.products_title}>شماره</div>
-            <div className={styles.products_title}>عکس</div>
-            <div className={styles.products_title}>نام</div>
-            <div className={styles.products_title}>قیمت</div>
-            <div className={styles.products_title}>تاریخ</div>
-            <div className={styles.products_title}>وضعیت</div>
-          </div>
+      <div className={styles.products}>
+        <div className={styles.products_top}>
+          <div className={styles.products_title}>شماره</div>
+          <div className={styles.products_title}>عکس</div>
+          <div className={styles.products_title}>نام</div>
+          <div className={styles.products_title}>قیمت</div>
+          <div className={styles.products_title}>تاریخ</div>
+          <div className={styles.products_title}>وضعیت</div>
+        </div>
 
-          {products.map((product, index) => (
+        {products.length === 0 ? (
+          <div className={styles.no_product}>محصولی یافت نشد !</div>
+        ) : (
+          products.map((product, index) => (
             <Link
               href={`/admin/products/${product.id}`}
               className={styles.product}
@@ -191,29 +176,29 @@ export default function Products({ productsList }) {
                 {product.active ? "فعال" : "غیر فعال"}
               </div>
             </Link>
-          ))}
-        </div>
+          ))
+        )}
+      </div>
 
-        <div className={styles.pagination}>
-          <div className={styles.perv_btn}>
-            <span>
-              <FontAwesomeIcon icon={faAngleLeft} />
-            </span>
-            قبلی
-          </div>
-          <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-          <div className={`${styles.page_btn} ${""}`}>2</div>
-          <div className={`${styles.page_btn} ${""}`}>3</div>
-          <div className={`${styles.page_btn} ${""}`}>4</div>
-          <div className={`${styles.page_btn} ${""}`}>5</div>
-          <div className={styles.next_btn}>
-            بعدی
-            <span>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </span>
-          </div>
+      <div className={styles.pagination}>
+        <div className={styles.perv_btn}>
+          <span>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </span>
+          قبلی
+        </div>
+        <div className={`${styles.page_btn} ${styles.show}`}>1</div>
+        <div className={`${styles.page_btn} ${""}`}>2</div>
+        <div className={`${styles.page_btn} ${""}`}>3</div>
+        <div className={`${styles.page_btn} ${""}`}>4</div>
+        <div className={`${styles.page_btn} ${""}`}>5</div>
+        <div className={styles.next_btn}>
+          بعدی
+          <span>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </span>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }

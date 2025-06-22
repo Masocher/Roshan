@@ -1,3 +1,25 @@
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+}
+.loading.show {
+    display: flex;
+}
+
+.loading_wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
 .products {
     width: 100%;
     background-color: #fff;
@@ -251,6 +273,11 @@
 }
 .add_btn span {
     margin: 5px 0 0 5px;
+}
+
+.no_product {
+    font-size: 16px;
+    padding: 50px 0;
 }
 
 @media (max-width: 1300px) {

@@ -28,14 +28,11 @@ import Tickets from "@/components/admin/Tickets";
 import { useState } from "react";
 
 export async function getServerSideProps(context) {
-  const res = await fetch("https://abazarak.ir/api/admin/products/", {
+  const res = await fetch("https://abazarak.ir//api/admin/check/", {
     headers: {
       Cookie: context.req.headers.cookie || "",
     },
   });
-
-  const data = await res.json();
-  const productsList = data.results;
 
   if (!res.ok) {
     return { notFound: true };
@@ -43,12 +40,12 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      productsList,
+      status: true,
     },
   };
 }
 
-export default function Admin({ productsList }) {
+export default function Admin() {
   const [pageNum, setPageNum] = useState(1);
 
   return (
@@ -199,7 +196,7 @@ export default function Admin({ productsList }) {
 
       <div className={styles.admin_content}>
         {pageNum === 1 ? (
-          <Products productsList={productsList} />
+          <Products />
         ) : pageNum === 2 ? (
           <Orders />
         ) : pageNum === 3 ? (
