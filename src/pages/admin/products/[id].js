@@ -6,7 +6,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";

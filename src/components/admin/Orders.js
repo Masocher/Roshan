@@ -87,7 +87,9 @@ export default function Orders() {
                 {order.paid ? "پرداخت شده" : "پرداخت نشده"}
               </div>
               <div className={styles.order_date}>{order.created_at}</div>
-              <div className={styles.order_active}>ارسال شده</div>
+              <div className={styles.order_active}>
+                {order.shipped ? "ارسال شده" : "ارسال نشده"}
+              </div>
             </Link>
           ))}
         </div>

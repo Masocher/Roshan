@@ -1,3 +1,25 @@
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+}
+.loading.show {
+    display: flex;
+}
+
+.loading_wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
 .container {
     width: 100%;
 }
@@ -61,6 +83,10 @@
     align-items: center;
     justify-content: space-between;
     height: 50px;
+}
+
+.user_address {
+    width: 100% !important;
 }
 
 .phone {
@@ -248,15 +274,6 @@
     margin: 5px 0;
 }
 
-.error {
-    display: flex;
-    color: #f93827;
-    margin-top: 10px;
-}
-.error div {
-    margin-right: 10px;
-}
-
 .fifth_section {
     width: 870px;
 }
@@ -316,6 +333,23 @@
     width: calc(100% / 3 - (40px + (40px / 3)));
 }
 
+.order_details div {
+    width: calc(100% / 3 - (40px + (40px / 3)));
+    position: relative;
+}
+
+.order_details div input {
+    width: calc(100% - 40px);
+}
+
+.order_details div span {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    color: #999;
+    font-size: 14px;
+}
+
 .submit_btn {
     margin: 20px 0 50px 0;
     background-color: #12a386;
@@ -330,4 +364,13 @@
 .submit_btn:hover {
     background: none;
     color: #12a386;
+}
+
+.waiting_for_paying {
+    color: #000;
+    background-color: #ffb30021;
+    width: calc(100% - 40px);
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
 }

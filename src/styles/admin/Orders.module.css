@@ -38,6 +38,7 @@
 }
 .phone_number {
     width: calc(100% / 6);
+    direction: ltr;
 }
 .order_value {
     width: calc(100% / 6);
