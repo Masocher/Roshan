@@ -16,6 +16,7 @@ export default function Orders() {
 
   useEffect(() => {
     setLoading(true);
+    axios.defaults.withCredentials = true;
     axios
       .get("/api/admin/orders/")
       .then((response) => {
@@ -28,6 +29,25 @@ export default function Orders() {
       });
   }, []);
 
+  const [paidFilter, setPaidFilter] = useState("");
+  const [shippedFilter, setShippedFilter] = useState("");
+  const [searchContent, setSearchContent] = useState("");
+
+  const getOrders = () => {
+    axios.defaults.withCredentials = true;
+
+    axios
+      .get(
+        `/api/admin/orders/?paid=${paidFilter}&shipped=${shippedFilter}&id=${searchContent}`
+      )
+      .then((response) => setOrders(response.data.results))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, [paidFilter, shippedFilter, searchContent]);
+
   if (loading) {
     return <Loading />;
   } else {
@@ -35,7 +55,15 @@ export default function Orders() {
       <div className={styles.container}>
         <div className={styles.search_box}>
           <form className={styles.products_search}>
-            <input type="text" placeholder="جستجوی محصول ..." />
+            <input
+              type="text"
+              placeholder="جستجوی کد سفارش ..."
+              onChange={(e) => {
+                setPaidFilter("");
+                setShippedFilter("");
+                setSearchContent(e.target.value);
+              }}
+            />
 
             <span>
               <FontAwesomeIcon icon={faSearch} />
@@ -43,18 +71,34 @@ export default function Orders() {
           </form>
 
           <div className={styles.search_buttons}>
-            <div className={styles.inventory_button}>
+            <div
+              className={`${styles.inventory_button} ${
+                paidFilter === false ? styles.show : ""
+              }`}
+              onClick={() => {
+                setPaidFilter(paidFilter === "" ? false : "");
+                setShippedFilter("");
+              }}
+            >
               <div>
                 <span></span>
               </div>
-              پرداخت شده ها
+              پرداخت نشده ها
             </div>
 
-            <div className={styles.inventory_button}>
+            <div
+              className={`${styles.inventory_button} ${
+                shippedFilter === false ? styles.show : ""
+              }`}
+              onClick={() => {
+                setPaidFilter("");
+                setShippedFilter(shippedFilter === "" ? false : "");
+              }}
+            >
               <div>
                 <span></span>
               </div>
-              ارسال شده ها
+              ارسال نشده ها
             </div>
           </div>
         </div>
@@ -69,29 +113,33 @@ export default function Orders() {
             <div className={styles.orders_title}>وضعیت ارسال</div>
           </div>
 
-          {orders.map((order, index) => (
-            <Link
-              key={order.id}
-              className={styles.order}
-              href={`/admin/orders/${order.id}`}
-            >
-              <div className={styles.order_id}>{index + 1}</div>
+          {orders.length === 0 ? (
+            <div className={styles.no_order}>سفارشی یافت نشد !</div>
+          ) : (
+            orders.map((order, index) => (
+              <Link
+                key={order.id}
+                className={styles.order}
+                href={`/admin/orders/${order.id}`}
+              >
+                <div className={styles.order_id}>{index + 1}</div>
 
-              <div className={styles.phone_number}>{order.number}</div>
+                <div className={styles.phone_number}>{order.number}</div>
 
-              <div className={styles.order_value}>
-                {order.total_price} تومان
-              </div>
+                <div className={styles.order_value}>
+                  {order.total_price} تومان
+                </div>
 
-              <div className={styles.order_price}>
-                {order.paid ? "پرداخت شده" : "پرداخت نشده"}
-              </div>
-              <div className={styles.order_date}>{order.created_at}</div>
-              <div className={styles.order_active}>
-                {order.shipped ? "ارسال شده" : "ارسال نشده"}
-              </div>
-            </Link>
-          ))}
+                <div className={styles.order_price}>
+                  {order.paid ? "پرداخت شده" : "پرداخت نشده"}
+                </div>
+                <div className={styles.order_date}>{order.created_at}</div>
+                <div className={styles.order_active}>
+                  {order.shipped ? "ارسال شده" : "ارسال نشده"}
+                </div>
+              </Link>
+            ))
+          )}
         </div>
 
         <div className={styles.pagination}>
