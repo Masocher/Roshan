@@ -1,3 +1,26 @@
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+}
+.loading.show {
+    display: flex;
+}
+
+.loading_wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+
 .container {
     width: 100%;
 }
@@ -65,6 +88,7 @@
 
 .phone {
     letter-spacing: 1px;
+    direction: ltr;
 }
 
 .rate,
@@ -91,11 +115,14 @@
 }
 
 .stars {
-    color: #ffb200;
     font-size: 12px;
 }
 .stars span {
     margin: 0 0.5px;
+    color: #ccc;
+}
+.stars span.show {
+    color: #ffb200;
 }
 
 .comment_btn {
@@ -174,6 +201,8 @@
     flex-direction: column;
     align-items: center;
     font-size: 12px;
+    text-decoration: none;
+    color: #000;
 }
 
 .product_image {

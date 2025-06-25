@@ -31,8 +31,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Order({ order }) {
-  console.log(order);
-
   const [loading, setLoading] = useState(false);
 
   const [postedAt, setPostedAt] = useState(

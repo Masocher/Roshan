@@ -19,6 +19,7 @@ export default function Comments() {
 
   const getComments = () => {
     setLoading(true);
+    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/comments/?accepted=${accepted}`)
       .then((response) => {
@@ -97,7 +98,7 @@ export default function Comments() {
           comments.map((comment, index) => (
             <Link
               className={styles.comment}
-              href={`/admin/comments/${0}`}
+              href={`/admin/comments/${comment.id}`}
               key={comment.id}
             >
               <div className={styles.comment_id}>{index + 1}</div>
