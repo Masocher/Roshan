@@ -23,8 +23,6 @@ export default function Comments() {
     axios
       .get(`/api/admin/comments/?accepted=${accepted}`)
       .then((response) => {
-        console.log(response.data.results);
-
         setComments(response.data.results);
         setLoading(false);
       })

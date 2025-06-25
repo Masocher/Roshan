@@ -19,6 +19,7 @@ export default function Categories() {
 
     const getCategories = () => {
         setLoading(true);
+        axios.defaults.withCredentials = true;
         axios
             .get("/api/admin/categories/")
             .then((res) => {

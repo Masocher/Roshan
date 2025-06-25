@@ -14,6 +14,7 @@ export default function Brands() {
 
     const getBrands = () => {
         setLoading(true);
+        axios.defaults.withCredentials = true;
         axios
             .get("/api/admin/brands/")
             .then((res) => {

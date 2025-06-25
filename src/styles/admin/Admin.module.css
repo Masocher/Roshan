@@ -6,7 +6,6 @@
     user-select: none;
     font-size: 14px;
     position: relative;
-    background-color: #e8eef2;
 }
 
 .admin_menu {
@@ -113,7 +112,6 @@
     width: calc(75% - 60px);
     height: calc(100% - 60px);
     overflow-y: auto;
-    background-color: #e8eef2;
 }
 .admin_content::-webkit-scrollbar {
     width: 0;
