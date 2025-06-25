@@ -22,7 +22,6 @@ export default function Orders() {
   const getOrders = () => {
     setLoading(true);
     axios.defaults.withCredentials = true;
-
     axios
       .get(
         `/api/admin/orders/?paid=${paidFilter}&shipped=${shippedFilter}&id=${searchContent}`
