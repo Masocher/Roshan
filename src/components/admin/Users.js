@@ -27,7 +27,6 @@ export default function Users() {
       )
       .then((response) => {
         setUsers(response.data.results);
-        console.log(response.data.results);
         setLoading(false);
       })
       .catch((err) => {
