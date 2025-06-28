@@ -1,7 +1,7 @@
 import styles from "../../../styles/admin-options/EditCode.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import spiner from "../../../../public/images/loading.svg";
@@ -126,6 +126,18 @@ export default function CreateCode({ categoriesList }) {
         products: selectedProductsIdList,
       })
       .then((res) => {
+        setStartDate("");
+        setEndDate("");
+        setAllFilter(false);
+        setCode("");
+        setPercentFilter(false);
+        setTomanFilter(true);
+        setValue("");
+        setSelectedCategories([]);
+        setSelectedCategoriesIdList([]);
+        setSelectedproducts([]);
+        setSelectedproductsIdList([]);
+
         setLoading(false);
         toast.success("کد تخفیف با موفقیت ایجاد شد");
       })

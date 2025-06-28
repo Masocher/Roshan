@@ -70,6 +70,9 @@
 .offer_value {
     width: calc(90% / 3);
 }
+.hidden_title {
+    width: 5%;
+}
 
 .top_box {
     display: flex;
@@ -86,6 +89,20 @@
     margin-bottom: 30px;
     margin: 0 0 20px 0;
     box-shadow: 0 0 30px #00000017;
+}
+
+.code_buttons {
+    width: 5%;
+}
+
+.code_buttons div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code_delete {
+    color: #f93827;
 }
 
 .add_btn {
