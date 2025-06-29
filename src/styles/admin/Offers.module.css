@@ -90,6 +90,11 @@
     margin: 5px 0 0 5px;
 }
 
+.no_offer {
+    font-size: 16px;
+    padding: 50px 0;
+}
+
 @media (max-width: 1300px) {
     .top_box {
         top: 0;
