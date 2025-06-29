@@ -59,7 +59,7 @@ export default function Offers() {
             >
               <div className={styles.offer_id}>{index + 1}</div>
 
-              <div className={styles.offer_product}>{offer.products}</div>
+              <div className={styles.offer_product}>{offer.products_count}</div>
 
               <div className={styles.offer_num}>{offer.at_least}</div>
 
