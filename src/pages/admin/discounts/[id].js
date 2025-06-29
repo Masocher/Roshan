@@ -1,4 +1,4 @@
-import styles from "../../../styles/admin-options/EditDiscount.module.css";
+import styles from "../../../styles/admin-options/CreateOffer.module.css";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
