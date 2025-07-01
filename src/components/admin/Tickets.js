@@ -82,7 +82,7 @@ export default function Tickets() {
             </Link>
           ))
         ) : (
-          <div className={styles.no_ticket}></div>
+          <div className={styles.no_ticket}>تیکتی یافت نشد !</div>
         )}
       </div>
     </div>

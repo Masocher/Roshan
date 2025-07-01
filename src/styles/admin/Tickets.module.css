@@ -132,6 +132,11 @@
     width: calc(90% / 3);
 }
 
+.no_ticket {
+    font-size: 16px;
+    padding: 50px 0;
+}
+
 @media (max-width: 1300px) {
     .top_box {
         top: 0;
