@@ -1,71 +1,384 @@
 import styles from "../../../styles/admin-options/CreateOffer.module.css";
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import spiner from "../../../../public/images/loading.svg";
+import { toast, Toaster } from "react-hot-toast";
+import Link from "next/link";
+import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-export default function EditDiscount() {
-    const router = useRouter();
+export async function getServerSideProps(context) {
+  const { id } = context.params;
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.main_title}>
-                <div className={styles.back_btn} onClick={() => router.back()}>
-                    <span>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                    </span>
-                    بازگشت
-                </div>
-                ویرایش تخفیف
-            </div>
+  const res = await fetch("https://abazarak.ir/api/categories/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
 
-            <div className={styles.code}>
-                <div className={styles.first_section}>
-                    <div className={styles.inputs}>
-                        <input type="text" placeholder="مقدار تخفیف" />
-                    </div>
+  if (!res.ok) {
+    return {
+      notFound: true,
+    };
+  }
 
-                    <div className={styles.feature_box}>
-                        <div className={styles.title}>تخفیف تومانی</div>
+  const data = await res.json();
+  const categories = data;
 
-                        <div className={styles.inventory_button}>
-                            <div>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
+  const res_2 = await fetch(`https://abazarak.ir/api/admin/discounts/${id}`, {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
 
-                    <div className={styles.feature_box}>
-                        <div className={styles.title}>تخفیف درصدی</div>
+  if (!res_2.ok) {
+    return {
+      notFound: true,
+    };
+  }
 
-                        <div className={styles.inventory_button}>
-                            <div>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  const data_2 = await res_2.json();
+  const discountData = data_2;
 
-                <div className={styles.third_section}>
-                    <div className={styles.title}>انتخاب محصولات</div>
+  return {
+    props: {
+      categoriesList: categories,
+      discountData,
+    },
+  };
+}
 
-                    <div className={styles.select_category}>
-                        <input placeholder="نام محصول" type="text" />
+export default function EditDiscount({ categoriesList, discountData }) {
+  const router = useRouter();
 
-                        <div className={styles.submit_btn}>ثبت</div>
-                    </div>
+  const [loading, setLoading] = useState(false);
+  const [loading_2, setLoading_2] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false);
 
-                    <div className={styles.products}>
-                        <div className={styles.product}>
-                            <span>
-                                <FontAwesomeIcon icon={faClose} />
-                            </span>
-                            هود آشپزی مدل سیمرغ
-                        </div>
-                    </div>
-                </div>
+  const [value, setValue] = useState(discountData.discount_value || "");
+  const [status, setStatus] = useState(discountData.is_active);
 
-                <div className={styles.edit_btn}>ویرایش تخفیف</div>
-            </div>
-        </div>
+  const [categories, setCategories] = useState(categoriesList || []);
+  const [selectedCategories, setSelectedCategories] = useState(
+    discountData.categories_data || []
+  );
+  const [selectedCategoriesIdList, setSelectedCategoriesIdList] = useState(
+    discountData.categories || []
+  );
+
+  const selectCategory = (category) => {
+    const status = selectedCategories.includes(category);
+
+    if (status) {
+      toast.error("دسته بندی در لیست وجود دارد");
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+      setSelectedCategoriesIdList([...selectedCategoriesIdList, category.id]);
+      toast.success("دسته بندی به لیست اضافه شد");
+    }
+  };
+
+  const unSelectCategory = (id) => {
+    setSelectedCategories(selectedCategories.filter((c) => c.id !== id));
+    setSelectedCategoriesIdList(
+      selectedCategoriesIdList.filter((c) => c !== id)
     );
+    toast.success("دسته بندی از لیست حذف شد");
+  };
+
+  const [searchedProducts, setSearchedProducts] = useState([]);
+  const [text, setText] = useState("");
+
+  const searchProduct = () => {
+    if (text === "") {
+      return toast.error("حداقل یک کاراکتر وارد کنید");
+    }
+    setLoading_2(true);
+    axios.defaults.withCredentials = true;
+    axios
+      .get(`/api/admin/products/fetch/?search=${text}`)
+      .then((response) => {
+        setSearchedProducts(response.data);
+        setLoading_2(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading_2(false);
+      });
+  };
+
+  const [selectedProducts, setSelectedproducts] = useState(
+    discountData.products_data || []
+  );
+  const [selectedProductsIdList, setSelectedproductsIdList] = useState(
+    discountData.products || []
+  );
+
+  const selectProducts = (product) => {
+    const status = selectedProducts.filter((p) => p.id === product.id);
+
+    if (status.length > 0) {
+      toast.error("محصول در لیست وجود دارد !");
+    } else {
+      setSelectedproducts([...selectedProducts, product]);
+      setSelectedproductsIdList([...selectedProductsIdList, product.id]);
+      toast.success("محصول به لیست اضافه شد");
+    }
+  };
+
+  const unSelectProduct = (id) => {
+    setSelectedproducts(selectedProducts.filter((p) => p.id !== id));
+    setSelectedproductsIdList(selectedProductsIdList.filter((p) => p !== id));
+    toast.success("محصول از لیست حذف شد");
+  };
+
+  const editDiscount = () => {
+    setLoading(true);
+    axios.defaults.withCredentials = true;
+    axios
+      .put(`/api/admin/discounts/${discountData.id}`, {
+        is_active: status,
+        discount_value: value,
+        products: selectedProductsIdList,
+        categories: selectedCategoriesIdList,
+      })
+      .then(() => {
+        toast.success("تخفیف با موفقیت ویرایش شد");
+        setLoading(false);
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          if (error.response.data.discount_value) {
+            toast.error("مقدار تخفیف : " + error.response.data.discount_value);
+          } else if (error.response.data.non_field_errors) {
+            error.response.data.non_field_errors.map((err) => toast.error(err));
+          } else {
+            console.log(error);
+          }
+        }
+
+        setLoading(false);
+      });
+  };
+
+  const deleteDiscount = () => {
+    setLoading(true);
+    axios.defaults.withCredentials = true;
+    axios
+      .delete(`/api/admin/discounts/${discountData.id}`)
+      .then(() => {
+        toast.success("تخفیف با موفقیت حذف شد");
+        setLoading(false);
+        router.push("/admin");
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+        </div>
+      </div>
+
+      <Toaster position="bottom-left" reverseOrder={true} />
+
+      <div
+        onClick={() => setInputFocus(false)}
+        className={`${styles.dark_background} ${inputFocus ? styles.show : ""}`}
+      ></div>
+
+      <div className={styles.main_title}>
+        <Link href={"/admin"} className={styles.back_btn}>
+          <span>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </span>
+          بازگشت
+        </Link>
+        ویرایش تخفیف
+      </div>
+
+      <div className={styles.code}>
+        <div className={styles.second_section}>
+          <div className={styles.feature_box}>
+            <div className={styles.title}>فعال کردن</div>
+
+            <div
+              className={`${styles.inventory_button} ${
+                status ? styles.show : ""
+              }`}
+              onClick={() => {
+                setStatus(!status);
+              }}
+            >
+              <div>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <div className={`${styles.feature_box} ${styles.main_feature_2}`}>
+            <div className={styles.title}>مقدار تخفیف ( به درصد )</div>
+
+            <input
+              type="text"
+              placeholder={`مقدار تخفیف را به درصد وارد کنید`}
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+            />
+          </div>
+        </div>
+
+        <div className={styles.third_section}>
+          <div className={styles.title}>انتخاب دسته بندی ها</div>
+
+          {selectedCategories.length > 0 ? (
+            <div className={styles.selected_categories}>
+              {selectedCategories.map((category) => (
+                <div
+                  className={styles.category}
+                  key={category.id}
+                  onClick={() => unSelectCategory(category.id)}
+                >
+                  <span>
+                    <FontAwesomeIcon icon={faClose} />
+                  </span>
+
+                  {category.name}
+                </div>
+              ))}
+            </div>
+          ) : (
+            ""
+          )}
+
+          <div className={styles.content}>
+            {categories.length > 0 ? (
+              categories.map((category) => (
+                <div
+                  className={styles.category}
+                  key={category.id}
+                  onClick={() => selectCategory(category)}
+                >
+                  {category.name} ( {category.products_count} )
+                </div>
+              ))
+            ) : (
+              <div>دسته بندی یافت نشد !</div>
+            )}
+          </div>
+        </div>
+
+        <div className={`${styles.third_section} ${styles.third_section_2}`}>
+          <div className={styles.title}>انتخاب محصولات</div>
+
+          <form
+            className={styles.select_category}
+            onSubmit={(e) => {
+              e.preventDefault();
+              searchProduct();
+            }}
+          >
+            <input
+              placeholder="نام محصول"
+              type="text"
+              onClick={() => setInputFocus(true)}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              value={text}
+            />
+
+            <button className={styles.submit_btn} type="submit">
+              جستجو
+            </button>
+          </form>
+
+          <div className={styles.selected_products}>
+            {selectedProducts.length > 0
+              ? selectedProducts.map((p) => (
+                  <div
+                    className={styles.selected_product}
+                    key={p.id}
+                    onClick={() => unSelectProduct(p.id)}
+                  >
+                    <span>
+                      <FontAwesomeIcon icon={faClose} />
+                    </span>
+
+                    <Image
+                      src={p.image}
+                      alt="عکس محصول"
+                      className={styles.selected_product_image}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                ))
+              : ""}
+          </div>
+
+          {loading_2 ? (
+            <div className={styles.loading_wrapper_2}>
+              <Image src={spiner} width={80} height={80} alt="لودینگ" />
+            </div>
+          ) : (
+            <div
+              className={`${styles.products} ${inputFocus ? styles.show : ""}`}
+            >
+              {searchedProducts.length > 0 ? (
+                searchedProducts.map((product) => (
+                  <div
+                    className={`${styles.product} ${selectedProducts.forEach(
+                      (element) => {
+                        element.id === product.id ? styles.show : "";
+                      }
+                    )}`}
+                    key={product.id}
+                    onClick={() => selectProducts(product)}
+                  >
+                    <Image
+                      className={styles.product_image}
+                      src={product.image}
+                      alt="عکس محصول"
+                      width={100}
+                      height={100}
+                      quality={100}
+                    />
+
+                    <div className={styles.product_name}>{product.name}</div>
+
+                    <div className={styles.product_price}>
+                      {product.final_price} تومان
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className={styles.no_product}>محصولی یافت نشد !</div>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className={styles.buttons}>
+          <div className={styles.edit_btn} onClick={() => editDiscount()}>
+            ویرایش تخفیف
+          </div>
+
+          <div
+            className={`${styles.edit_btn} ${styles.show}`}
+            onClick={() => deleteDiscount()}
+          >
+            حذف آفر
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
