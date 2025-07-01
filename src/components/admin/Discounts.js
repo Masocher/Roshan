@@ -43,6 +43,7 @@ export default function Discounts() {
       <div className={styles.discounts}>
         <div className={styles.discounts_top}>
           <div className={styles.discounts_title}>شماره</div>
+          <div className={styles.discounts_title}>وضعیت</div>
           <div className={styles.discounts_title}>تعداد محصولات</div>
           <div className={styles.discounts_title}>مقدار تخفیف</div>
         </div>
@@ -55,6 +56,10 @@ export default function Discounts() {
               key={discount.id}
             >
               <div className={styles.discount_id}>{index + 1}</div>
+
+              <div className={styles.discount_num}>
+                {discount.is_active ? "فعال" : "غیر فعال"}
+              </div>
 
               <div className={styles.discount_num}>
                 {discount.products_count}
