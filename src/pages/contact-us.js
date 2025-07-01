@@ -10,6 +10,10 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import axios from "axios";
+import { toast, Toaster } from "react-hot-toast";
+import spiner from "../../public/images/loading.svg";
+import Image from "next/image";
 
 export async function getServerSideProps(context) {
   let user = null;
@@ -38,8 +42,59 @@ export async function getServerSideProps(context) {
 export default function ContactUs({ user }) {
   let [categoriesStatus, setCategoriesStatus] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [content, setContent] = useState("");
+
+  const sendTicket = () => {
+    setLoading(true);
+    axios.defaults.withCredentials = true;
+    axios
+      .post("/api/site/ticket/", {
+        full_name: name,
+        number,
+        content,
+      })
+      .then((response) => {
+        setName("");
+        setNumber("");
+        setContent("");
+
+        setLoading(false);
+
+        toast.success("پیام به مدیر فروشگاه ارسال شد");
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          if (error.response.data.full_name) {
+            toast.error(
+              "نام و نام خانوادگی : " + error.response.data.full_name
+            );
+          } else if (error.response.data.number) {
+            toast.error("شماره تلفن : " + error.response.data.number);
+          } else if (error.response.data.content) {
+            toast.error("متن پیام : " + error.response.data.content);
+          } else {
+            toast.error("مشکلی رخ داده است !");
+            console.log(error);
+          }
+        }
+        setLoading(false);
+      });
+  };
+
   return (
     <div className={styles.container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+        </div>
+      </div>
+
+      <Toaster position="bottom-left" reverseOrder={true} />
+
       <BlackBackground
         status={categoriesStatus}
         setStatus={setCategoriesStatus}
@@ -88,26 +143,29 @@ export default function ContactUs({ user }) {
             className={`${styles.inf_input} ${styles.input_box}`}
             type="text"
             placeholder="نام و نام خانوادگی"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
 
           <input
             className={`${styles.inf_input} ${styles.input_box}`}
             type="text"
-            placeholder="شماره موبایل"
-          />
-
-          <input
-            className={`${styles.title_input} ${styles.input_box}`}
-            type="text"
-            placeholder="عنوان پیام را وارد کنید"
+            placeholder="شماره تلفن"
+            onChange={(e) => setNumber(e.target.value)}
+            value={number}
           />
 
           <textarea
             className={`${styles.body_input} ${styles.input_box}`}
             placeholder="متن پیام را وارد کنید"
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
           />
 
-          <button className={styles.send_message_btn} type="submit">
+          <button
+            className={styles.send_message_btn}
+            onClick={() => sendTicket()}
+          >
             ارسال پیام
           </button>
         </form>
