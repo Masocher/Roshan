@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import spiner from "../../../public/images/loading.svg";
+import Image from "next/image";
 
 export default function Discounts() {
   const [loading, setLoading] = useState(false);
@@ -31,6 +33,12 @@ export default function Discounts() {
   }, []);
   return (
     <div className={styles.container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+        </div>
+      </div>
+
       <div className={styles.top_box}>
         <Link href={"/admin/discounts/create"} className={styles.add_btn}>
           <span>

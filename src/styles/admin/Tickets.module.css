@@ -1,3 +1,25 @@
+.loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000080;
+}
+.loading.show {
+    display: flex;
+}
+
+.loading_wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
 .tickets {
     width: 100%;
     background-color: #fff;
@@ -45,9 +67,10 @@
     align-items: center;
     font-size: 10px;
     color: #777;
+    transition: 0.2s;
 }
-.inventory_button:nth-child(2) {
-    margin: 0 50px;
+.inventory_button.show {
+    color: #12a386;
 }
 
 .inventory_button div {
@@ -58,6 +81,10 @@
     position: relative;
     margin-bottom: 10px;
     cursor: pointer;
+    transition: 0.2s;
+}
+.inventory_button.show div {
+    background-color: #12a386;
 }
 
 .inventory_button div span {
@@ -68,6 +95,11 @@
     left: 3px;
     top: 3px;
     background-color: #12a386;
+    transition: 0.4s;
+}
+.inventory_button.show div span {
+    background-color: #fff;
+    left: 22px;
 }
 
 .ticket {
@@ -93,6 +125,8 @@
 }
 .ticket_phone {
     width: calc(90% / 3);
+    direction: ltr;
+    letter-spacing: .5px;
 }
 .ticket_status {
     width: calc(90% / 3);
