@@ -20,7 +20,6 @@
 .product {
     background-color: #fff;
     border-right: 1px solid #e8eef2;
-    border-bottom: 1px solid #e8eef2;
 }
 
 @media (max-width: 580px) {

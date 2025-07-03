@@ -28,14 +28,29 @@ export async function getServerSideProps(context) {
     console.error("خطا در دریافت اطلاعات کاربر:", err);
   }
 
+  let siteData = null;
+
+  try {
+    const res = await fetch("https://abazarak.ir/api/site/");
+
+    if (res.ok) {
+      siteData = await res.json();
+    }
+  } catch (err) {
+    console.log("خطا در دریافت اطلاعات", err);
+  }
+
   return {
     props: {
       user,
+      siteData,
     },
   };
 }
 
-export default function Home({ user }) {
+export default function Home({ user, siteData }) {
+  console.log(siteData);
+
   let [categoriesStatus, setCategoriesStatus] = useState(false);
 
   return (
@@ -52,10 +67,10 @@ export default function Home({ user }) {
         user={user}
       />
       <HomeSlider />
-      <AmazingOffer />
-      <BestSellers />
+      <AmazingOffer data={siteData.amazing_discounts} />
+      <BestSellers data={siteData.best_sellers} />
       <Categories />
-      <Affordables />
+      <Affordables data={siteData.economic_products} />
       <BrandsSlider />
       <Footer />
     </div>
