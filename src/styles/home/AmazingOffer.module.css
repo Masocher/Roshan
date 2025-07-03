@@ -23,28 +23,6 @@
     font-family: KalamehB;
 }
 
-.timer {
-    display: flex;
-    align-items: center;
-}
-
-.timer_box {
-    background-color: #fff;
-    color: #000;
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-}
-
-.timer span {
-    font-size: 18px;
-    margin: 0 5px;
-}
-
 .left_section {
     width: calc(100% - 150px);
     border-radius: 0 8px 8px 0;
@@ -109,11 +87,8 @@
         font-size: 30px;
         margin: 0 0 0 20px;
     }
-    .right_section .title_box div:nth-child(1) {
-        display: none;
-    }
     .right_section .title_box div:nth-child(2) {
-        margin: 0 0 0 10px;
+        margin: 0 5px;
     }
 
     .left_section {

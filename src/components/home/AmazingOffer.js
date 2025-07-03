@@ -26,19 +26,8 @@ export default function AmazingOffer({ data }) {
               <div>شــــگفـت</div>
               <div>انـــــگـــــــیز</div>
             </div>
-
-            <div className={styles.timer}>
-              <div className={styles.timer_box}>10</div>
-
-              <span>:</span>
-
-              <div className={styles.timer_box}>30</div>
-
-              <span>:</span>
-
-              <div className={styles.timer_box}>06</div>
-            </div>
           </div>
+
           <div className={styles.left_section}>
             <Swiper
               className={styles.products}
