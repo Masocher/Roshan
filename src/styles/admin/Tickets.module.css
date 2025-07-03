@@ -31,7 +31,7 @@
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
     padding: 20px;
 }
 
@@ -50,9 +50,9 @@
     width: fit-content;
     padding: 20px;
     background-color: #fff;
-    border-bottom: 1px solid #e8eef2;
-    border-left: 1px solid #e8eef2;
-    border-right: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
+    border-left: 1px solid #f3f4f6;
+    border-right: 1px solid #f3f4f6;
     position: sticky;
     top: -30px;
     margin-bottom: 30px;
@@ -76,7 +76,7 @@
 .inventory_button div {
     width: 37px;
     height: 18px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     border-radius: 20px;
     position: relative;
     margin-bottom: 10px;
@@ -106,7 +106,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
     padding: 20px;
     width: calc(100% - 40px);
     font-size: 14px;

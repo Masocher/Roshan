@@ -74,8 +74,8 @@
 .brand, .feature_title {
     font-family: Kalameh;
     outline: 0;
-    border: 1px solid #e8eef2;
-    background-color: #e8eef2;
+    border: 1px solid #f3f4f6;
+    background-color: #f3f4f6;
     width: calc(100% - 40px);
     padding: 10px 20px;
     border-radius: 8px;
@@ -122,9 +122,9 @@
 }
 
 .feature_title {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     width: calc(90% / 3 - 60px);
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     margin: 0;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .feature_box {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     padding: 10px 20px;
     border-radius: 8px;
     display: flex;
@@ -227,8 +227,8 @@
 .feature_box input {
     font-family: Kalameh;
     outline: 0;
-    border: 1px solid #e8eef2;
-    background-color: #e8eef2;
+    border: 1px solid #f3f4f6;
+    background-color: #f3f4f6;
     width: calc(100% - 65px);
     padding: 10px 20px;
     border-radius: 8px;
@@ -271,7 +271,7 @@
 
 .category {
     margin-top: 10px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     padding: 10px;
     border-radius: 8px;
     margin-left: 10px;
@@ -279,7 +279,7 @@
     display: flex;
     align-items: center;
     user-select: none;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     font-size: 12px;
 }
 .category:hover {
@@ -294,13 +294,13 @@
 .product {
     margin-top: 10px;
     margin-left: 10px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     padding: 10px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     user-select: none;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     font-size: 12px;
 }
 .product:hover {
@@ -383,7 +383,7 @@
 }
 
 .products {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
@@ -409,7 +409,7 @@
     display: flex;
     flex-direction: column;
     user-select: none;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     font-size: 12px;
     width: 120px;
     padding: 15px;
@@ -452,7 +452,7 @@
     padding: 10px;
     position: relative;
     cursor: pointer;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     border-radius: 8px;
     transition: .05s;
 }

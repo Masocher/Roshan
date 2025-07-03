@@ -147,8 +147,8 @@
 .feature_box input {
     font-family: Kalameh;
     outline: 0;
-    border: 1px solid #e8eef2;
-    background-color: #e8eef2;
+    border: 1px solid #f3f4f6;
+    background-color: #f3f4f6;
     width: calc(100% - 65px);
     padding: 10px 20px;
     border-radius: 8px;
@@ -191,7 +191,7 @@
 
 .category {
     margin-top: 10px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     padding: 10px;
     border-radius: 8px;
     margin-left: 10px;
@@ -199,7 +199,7 @@
     display: flex;
     align-items: center;
     user-select: none;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     font-size: 12px;
     cursor: pointer;
 }
@@ -215,7 +215,7 @@
 .selected_categories {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
     padding-bottom: 20px;
     margin-top: 10px;
 }
@@ -259,7 +259,7 @@
 .inventory_button div {
     width: 37px;
     height: 18px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     border-radius: 20px;
     position: relative;
     margin-bottom: 10px;
@@ -289,7 +289,7 @@
     z-index: 2;
 }
 .third_section_2 input:focus {
-    border-color: #e8eef2;
+    border-color: #f3f4f6;
 }
 
 .dark_background {
@@ -307,7 +307,7 @@
 }
 
 .products {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
@@ -333,7 +333,7 @@
     display: flex;
     flex-direction: column;
     user-select: none;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     font-size: 12px;
     width: 120px;
     padding: 15px;
@@ -376,7 +376,7 @@
     padding: 10px;
     position: relative;
     cursor: pointer;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
     border-radius: 8px;
     transition: .05s;
 }

@@ -79,7 +79,7 @@
     cursor: pointer;
     border: 1px solid #fff;
     transition: 0.2s;
-    border: 2px dashed #e8eef2;
+    border: 2px dashed #f3f4f6;
 }
 .image:hover {
     border-color: #12a386;
@@ -190,9 +190,9 @@
 
 .feature_title,
 .feature {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     width: calc(45% - 60px);
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
 }
 
 .add_feature_btn {
@@ -218,7 +218,7 @@
 }
 
 .feature_box {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     padding: 10px 20px;
     border-radius: 8px;
     display: flex;
@@ -269,7 +269,7 @@
 .inventory_button div {
     width: 37px;
     height: 18px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     border-radius: 20px;
     position: relative;
     margin-bottom: 10px;

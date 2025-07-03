@@ -31,7 +31,7 @@
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
     padding: 20px;
 }
 
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
     padding: 20px;
     width: calc(100% - 40px);
     font-size: 14px;
@@ -82,7 +82,7 @@
     width: calc(100% - 40px);
     padding: 20px;
     background-color: #fff;
-    border-bottom: 1px solid #e8eef2;
+    border-bottom: 1px solid #f3f4f6;
     position: sticky;
     top: -30px;
     margin-bottom: 30px;
@@ -98,8 +98,8 @@
     width: calc(100% - 70px);
     font-family: Kalameh;
     outline: 0;
-    border: 1px solid #e8eef2;
-    background-color: #e8eef2;
+    border: 1px solid #f3f4f6;
+    background-color: #f3f4f6;
     border-radius: 8px;
 }
 .products_search input:focus {
@@ -141,7 +141,7 @@
 .inventory_button div {
     width: 37px;
     height: 18px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     border-radius: 20px;
     position: relative;
     margin-bottom: 10px;
@@ -221,7 +221,7 @@
     cursor: pointer;
     border-radius: 5px;
     margin: 0 3px;
-    border: 1px solid #e8eef2;
+    border: 1px solid #f3f4f6;
 }
 .page_btn.show {
     border-color: #12a386;

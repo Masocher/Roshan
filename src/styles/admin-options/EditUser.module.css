@@ -128,7 +128,7 @@
 .inventory_button div {
     width: 37px;
     height: 18px;
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
     border-radius: 20px;
     position: relative;
     margin-bottom: 10px;
@@ -187,7 +187,7 @@
     color: #000;
 }
 .order:hover {
-    background-color: #e8eef2;
+    background-color: #f3f4f6;
 }
 
 .order_num {
