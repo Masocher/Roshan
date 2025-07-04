@@ -91,7 +91,7 @@
     border-left: 1px solid #f3f4f6;
     border-right: 1px solid #f3f4f6;
     position: sticky;
-    top: -30px;
+    top: 0;
     margin-bottom: 30px;
     margin: 0 0 20px 0;
     box-shadow: 0 0 30px #00000017;
