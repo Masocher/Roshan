@@ -247,9 +247,9 @@
     border: 1px solid #f3f4f6;
 }
 .page_btn.show {
-    border-color: #12a386;
+    border-color: #000;
     color: #fff;
-    background-color: #12a386;
+    background-color: #000;
 }
 .page_btn:hover {
     border-color: #000;
