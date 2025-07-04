@@ -20,6 +20,11 @@
     background-color: #fff;
 }
 
+.container {
+    padding: 20px;
+    padding-bottom: 150px;
+}
+
 .products {
     width: 100%;
     background-color: #fff;
@@ -30,7 +35,8 @@
     width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #f3f4f6;
+    color: #fff;
+    background-color: #000;
     padding: 20px;
 }
 
@@ -187,7 +193,6 @@
 
 .pagination {
     display: flex;
-    justify-content: center;
     width: 100%;
     direction: ltr;
     margin-top: 50px;
@@ -196,7 +201,7 @@
 
 .perv_btn,
 .next_btn {
-    background-color: #12a386;
+    background-color: #000;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -204,13 +209,13 @@
     padding: 0 20px;
     border-radius: 5px;
     color: #fff;
-    border: 1px solid #12a386;
+    border: 1px solid #000;
     font-size: 14px;
 }
 .perv_btn:hover,
 .next_btn:hover {
     background-color: #fff;
-    color: #12a386;
+    color: #000;
 }
 
 .perv_btn {
@@ -247,8 +252,7 @@
     background-color: #12a386;
 }
 .page_btn:hover {
-    border-color: #12a386;
-    color: #12a386;
+    border-color: #000;
 }
 .page_btn.show:hover {
     color: #fff;

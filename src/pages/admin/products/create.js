@@ -5,16 +5,14 @@ import {
   faPlus,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 import { useState, useRef } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CreateProduct() {
-  const router = useRouter();
-
   const [loading, setLoading] = useState(false);
 
   const [image, setImage] = useState(null);
@@ -26,7 +24,7 @@ export default function CreateProduct() {
   const [supply, setSupply] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const [specification, setSpecification] = useState([]);
 
   const fileInputRef = useRef(null);
@@ -135,7 +133,7 @@ export default function CreateProduct() {
       setSupply("");
       setBrand("");
       setCategory("");
-      setActive(false);
+      setActive(true);
       setSpecification([]);
 
       toast.success("محصول با موفقیت ایجاد شد !");
@@ -173,12 +171,12 @@ export default function CreateProduct() {
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div className={styles.main_title}>
-        <div className={styles.back_btn} onClick={() => router.push("/admin")}>
+        <Link className={styles.back_btn} href={"/admin-panel/products"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
           بازگشت
-        </div>
+        </Link>
         افزودن محصول جدید
       </div>
 

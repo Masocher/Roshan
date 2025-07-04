@@ -182,7 +182,7 @@ export default function CreateCode({ categoriesList }) {
       ></div>
 
       <div className={styles.main_title}>
-        <Link className={styles.back_btn} href={"/admin"}>
+        <Link className={styles.back_btn} href={"/admin-panel/codes"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

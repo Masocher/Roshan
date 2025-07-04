@@ -11,6 +11,25 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import spiner from "../../../public/images/loading.svg";
+import AdminMenu from "@/components/admin/AdminMenu";
+
+export async function getServerSideProps(context) {
+  const res = await fetch("https://abazarak.ir//api/admin/check/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
+
+  if (!res.ok) {
+    return { notFound: true };
+  }
+
+  return {
+    props: {
+      status: true,
+    },
+  };
+}
 
 export default function Products() {
   const [loading, setLoading] = useState(false);
@@ -199,6 +218,8 @@ export default function Products() {
           </span>
         </div>
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
+import AdminMenu from "@/components/admin/AdminMenu";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -156,6 +157,8 @@ export default function Orders() {
           </span>
         </div>
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

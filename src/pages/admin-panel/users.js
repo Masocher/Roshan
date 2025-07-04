@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
+import AdminMenu from "@/components/admin/AdminMenu";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -149,6 +150,8 @@ export default function Users() {
           <div className={styles.no_user}>کاربری یافت نشد !</div>
         )}
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

@@ -2,33 +2,30 @@ import styles from "../../styles/admin/Offers.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import AdminMenu from "@/components/admin/AdminMenu";
 
-export default function Offers() {
-  const [loading, setLoading] = useState(false);
+export async function getServerSideProps(context) {
+  const res = await fetch("https://abazarak.ir/api/admin/discounts/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
 
-  const [offers, setOffers] = useState([]);
+  if (!res.ok) {
+    return { notFound: true };
+  }
 
-  const getOffers = () => {
-    setLoading(true);
-    axios.defaults.withCredentials = true;
-    axios
-      .get("/api/admin/offers/")
-      .then((response) => {
-        console.log(response);
-        setOffers(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
+  const data = await res.json();
+  const offersList = data;
+
+  return {
+    props: { offersList },
   };
+}
 
-  useEffect(() => {
-    getOffers();
-  }, []);
+export default function Offers({ offersList }) {
+  const [offers, setOffers] = useState(offersList || []);
 
   return (
     <div className={styles.container}>
@@ -77,6 +74,8 @@ export default function Offers() {
           <div className={styles.no_offer}>آفری یافت نشد !</div>
         )}
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

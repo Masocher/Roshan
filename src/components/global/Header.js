@@ -6,6 +6,7 @@ import {
   faReceipt,
   faRightToBracket,
   faSearch,
+  faUserLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
@@ -72,6 +73,21 @@ export default function Header({ status, setStatus, user }) {
         </div>
 
         <div className={styles.menu_sections}>
+          {user.role === "staff" ? (
+            <Link
+              className={styles.menu_sec}
+              href={"/admin-panel/products"}
+              onClick={() => setMenuStatus(false)}
+            >
+              <span>
+                <FontAwesomeIcon icon={faUserLock} />
+              </span>
+              پنل ادمین
+            </Link>
+          ) : (
+            ""
+          )}
+
           <Link className={styles.menu_sec} href={"/change-password-code"}>
             <span>
               <FontAwesomeIcon icon={faLock} />

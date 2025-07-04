@@ -94,7 +94,7 @@ export default function Order({ order }) {
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/orders"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

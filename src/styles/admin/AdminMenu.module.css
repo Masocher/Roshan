@@ -1,0 +1,107 @@
+.admin_menu {
+    height: 100px;
+    width: calc(100% - 60px);
+    padding: 0 30px;
+    background-color: #fff;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main_title {
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    font-family: KalamehB;
+    color: #12a386;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.main_title span {
+    font-size: 14px;
+    color: #777;
+    font-family: KalamehM;
+    border-right: 2px solid #12a386;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.menu_items {
+    display: flex;
+    height: 100%;
+}
+
+.menu_item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    height: 100%;
+    transition: .2s;
+    padding: 0 5px;
+    position: relative;
+    bottom: 0;
+    border-radius: 8px;
+}
+.menu_item:hover {
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    bottom: 10px;
+}
+.menu_item.show {
+    background-color: #12a386;
+    color: #fff;
+    font-size: 12px;
+    width: fit-content;
+    padding: 0 20px;
+    flex-direction: column;
+    position: relative;
+    bottom: 20px;
+    border-radius: 8px;
+    margin: 0 5px;
+}
+
+.menu_item div {
+    display: none;
+}
+.menu_item.show div {
+    display: block;
+}
+
+.menu_item.show span {
+    display: block;
+    font-size: 18px;
+}
+
+.back_to_home_btn {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    background-color: #12a386;
+    width: fit-content;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: .2s;
+    border: 1px solid #12a386;
+}
+.back_to_home_btn:hover {
+    background: none;
+    color: #000;
+    border-color: #000;
+}
+
+.back_to_home_btn span {
+    margin: 4px 8px 0 0;
+}

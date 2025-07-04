@@ -5,7 +5,6 @@ import {
   faCheck,
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";
@@ -37,8 +36,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function ShowTicket({ ticketData }) {
-  console.log(ticketData);
-
   const [loading, setLoading] = useState(false);
 
   const [seenStatus, setSeenStatus] = useState(ticketData.is_seen);
@@ -75,7 +72,7 @@ export default function ShowTicket({ ticketData }) {
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/tickets"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

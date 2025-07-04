@@ -144,9 +144,10 @@ export default function ProductSinglePage({ user, productSingle }) {
                 className={styles.product_image}
                 src={product.image}
                 alt="عکس محصول"
-                width={100}
-                height={100}
+                width={800}
+                height={800}
                 quality={100}
+                priority
               />
             </div>
 

@@ -155,7 +155,7 @@ export default function CreateDiscount({ categoriesList }) {
       ></div>
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/discounts"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

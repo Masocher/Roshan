@@ -2,10 +2,8 @@ import styles from "../../styles/admin-options/Settings.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
-  faPlus,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 import spiner from "../../../public/images/loading.svg";
@@ -36,8 +34,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Settings({ settings }) {
-  console.log(settings);
-
   const [shippingFee, setShippingFee] = useState(settings.shipping_price || "");
 
   const [loading, setLoading] = useState(false);
@@ -192,7 +188,7 @@ export default function Settings({ settings }) {
       ></div>
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/products"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

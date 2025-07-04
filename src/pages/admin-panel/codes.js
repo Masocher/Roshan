@@ -3,15 +3,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
 import { toast, Toaster } from "react-hot-toast";
+import AdminMenu from "@/components/admin/AdminMenu";
 
-export default function Codes() {
-  const [codes, setCodes] = useState([]);
+export async function getServerSideProps(context) {
+  const res = await fetch("https://abazarak.ir/api/admin/cupons/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
 
-  const [loading, setLoading] = useState(true);
+  if (!res.ok) {
+    return { notFound: true };
+  }
+
+  const data = await res.json();
+  const codesList = data;
+
+  return {
+    props: { codesList },
+  };
+}
+
+export default function Codes({ codesList }) {
+  const [codes, setCodes] = useState(codesList || []);
+
+  const [loading, setLoading] = useState(false);
 
   const getCodes = () => {
     setLoading(true);
@@ -27,10 +47,6 @@ export default function Codes() {
         setLoading(false);
       });
   };
-
-  useEffect(() => {
-    getCodes();
-  }, []);
 
   const deleteCode = (id) => {
     setLoading(true);
@@ -104,6 +120,8 @@ export default function Codes() {
           <div className={styles.no_code}>کد تخفیفی یافت نشد !</div>
         )}
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

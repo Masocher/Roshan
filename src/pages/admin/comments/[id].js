@@ -75,7 +75,7 @@ export default function EditComment({ singleComment }) {
         console.log(response);
         toast.success("کامنت با موفقیت حذف شد");
         setLoading(false);
-        router.push("/admin");
+        router.push("/admin-panel/comments");
       })
       .catch((err) => console.log(err));
   };
@@ -109,12 +109,12 @@ export default function EditComment({ singleComment }) {
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div className={styles.main_title}>
-        <div className={styles.back_btn} onClick={() => router.back()}>
+        <Link className={styles.back_btn} href={"/admin-panel/comments"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
           بازگشت
-        </div>
+        </Link>
         صفحه کامنت
       </div>
 

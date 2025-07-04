@@ -5,12 +5,12 @@ import {
   faClose,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
@@ -41,8 +41,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function EditProduct({ product }) {
-  const router = useRouter();
-
   const [loading2, setLoading2] = useState(false);
 
   const [image, setImage] = useState(product.image || null);
@@ -169,12 +167,12 @@ export default function EditProduct({ product }) {
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div className={styles.main_title}>
-        <div className={styles.back_btn} onClick={() => router.push("/admin")}>
+        <Link className={styles.back_btn} href={"/admin-panel/products"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
           بازگشت
-        </div>
+        </Link>
         ویرایش محصول
       </div>
 

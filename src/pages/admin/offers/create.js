@@ -1,5 +1,4 @@
 import styles from "../../../styles/admin-options/CreateOffer.module.css";
-import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -9,30 +8,7 @@ import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 
-export async function getServerSideProps(context) {
-  const res = await fetch("https://abazarak.ir/api/categories/", {
-    headers: {
-      Cookie: context.req.headers.cookie || "",
-    },
-  });
-
-  if (!res.ok) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const data = await res.json();
-  const categories = data;
-
-  return {
-    props: {
-      categoriesList: categories,
-    },
-  };
-}
-
-export default function CreateOffer({ categoriesList }) {
+export default function CreateOffer() {
   const [loading, setLoading] = useState(false);
   const [loading_2, setLoading_2] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
@@ -140,7 +116,7 @@ export default function CreateOffer({ categoriesList }) {
       ></div>
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/offers"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

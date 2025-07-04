@@ -6,7 +6,6 @@ import {
   faCreditCard,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
@@ -39,10 +38,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function EditUser({ userData }) {
-  console.log(userData);
-
-  const router = useRouter();
-
   const [user, setUser] = useState(userData || []);
 
   const [loading, setLoading] = useState(false);
@@ -58,8 +53,6 @@ export default function EditUser({ userData }) {
         is_active: !userActiveStatus,
       })
       .then((response) => {
-        console.log("active : " + response.data.is_active);
-
         setUserActiveStatus(response.data.is_active);
         toast.success("حالت کاربر با موفقیت تغییر کرد");
         setLoading(false);
@@ -78,8 +71,6 @@ export default function EditUser({ userData }) {
         is_staff: !userAdminStatus,
       })
       .then((response) => {
-        console.log("admin : " + response.data.is_staff);
-
         setUserAdminStatus(response.data.is_staff);
         toast.success("حالت ادمین با موفقیت تغییر کرد");
         setLoading(false);
@@ -101,12 +92,12 @@ export default function EditUser({ userData }) {
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div className={styles.main_title}>
-        <div className={styles.back_btn} onClick={() => router.back()}>
+        <Link className={styles.back_btn} href={"/admin-panel/users"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
           بازگشت
-        </div>
+        </Link>
         صفحه کاربر
       </div>
 

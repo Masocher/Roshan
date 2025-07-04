@@ -137,7 +137,7 @@ export default function CreateOffer({ offerData }) {
       .then(() => {
         toast.success("آفر با موفقیت حذف شد");
         setLoading(false);
-        router.push("/admin");
+        router.push("/admin-panel/offers");
       })
       .catch((err) => {
         console.log(err);
@@ -161,7 +161,7 @@ export default function CreateOffer({ offerData }) {
       ></div>
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/offers"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>

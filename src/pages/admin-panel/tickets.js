@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
+import AdminMenu from "@/components/admin/AdminMenu";
 
 export default function Tickets() {
   const [loading, setLoading] = useState(false);
@@ -85,6 +86,8 @@ export default function Tickets() {
           <div className={styles.no_ticket}>تیکتی یافت نشد !</div>
         )}
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

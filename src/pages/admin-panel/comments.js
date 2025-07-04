@@ -10,6 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
+import AdminMenu from "@/components/admin/AdminMenu";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
@@ -154,6 +155,8 @@ export default function Comments() {
           </span>
         </div>
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

@@ -2,43 +2,33 @@ import styles from "../../styles/admin/Discounts.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import spiner from "../../../public/images/loading.svg";
-import Image from "next/image";
+import { useState } from "react";
+import AdminMenu from "@/components/admin/AdminMenu";
 
-export default function Discounts() {
-  const [loading, setLoading] = useState(false);
+export async function getServerSideProps(context) {
+  const res = await fetch("https://abazarak.ir/api/admin/discounts/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
 
-  const [discounts, setDiscounts] = useState([]);
+  if (!res.ok) {
+    return { notFound: true };
+  }
 
-  const getDiscounts = () => {
-    setLoading(true);
-    axios.defaults.withCredentials = true;
-    axios
-      .get("/api/admin/discounts/")
-      .then((response) => {
-        setDiscounts(response.data);
-        console.log(response);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
+  const data = await res.json();
+  const discountsList = data;
+
+  return {
+    props: { discountsList },
   };
+}
 
-  useEffect(() => {
-    getDiscounts();
-  }, []);
+export default function Discounts({ discountsList }) {
+  const [discounts, setDiscounts] = useState(discountsList || []);
+
   return (
     <div className={styles.container}>
-      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
-        <div className={styles.loading_wrapper}>
-          <Image src={spiner} width={80} height={80} alt="لودینگ" />
-        </div>
-      </div>
-
       <div className={styles.top_box}>
         <Link href={"/admin/discounts/create"} className={styles.add_btn}>
           <span>
@@ -82,6 +72,8 @@ export default function Discounts() {
           <div className={styles.no_discount}>تخفیفی یافت نشد !</div>
         )}
       </div>
+
+      <AdminMenu />
     </div>
   );
 }

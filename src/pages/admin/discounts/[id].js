@@ -171,7 +171,7 @@ export default function EditDiscount({ categoriesList, discountData }) {
       .then(() => {
         toast.success("تخفیف با موفقیت حذف شد");
         setLoading(false);
-        router.push("/admin");
+        router.push("/admin-panel/discounts");
       })
       .catch((err) => {
         setLoading(false);
@@ -195,7 +195,7 @@ export default function EditDiscount({ categoriesList, discountData }) {
       ></div>
 
       <div className={styles.main_title}>
-        <Link href={"/admin"} className={styles.back_btn}>
+        <Link className={styles.back_btn} href={"/admin-panel/discounts"}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
