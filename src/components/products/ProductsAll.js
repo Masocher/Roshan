@@ -36,8 +36,8 @@ export default function ProductsAll({ loading, productsList }) {
             <Image src={spiner} width={80} height={80} alt="لودینگ" />
           </div>
         ) : (
-          products.map((product) => (
-            <div className={styles.product_box} key={product.id}>
+          products.map((product, index) => (
+            <div className={styles.product_box} key={index}>
               <ProductBox
                 slug={product.slug}
                 image={product.image}

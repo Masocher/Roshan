@@ -161,9 +161,9 @@ export default function ProductsSection({
 
         <div
           className={`${styles.f_box} ${
-            ordering === "hits_count" ? styles.show : ""
+            ordering === "-hits_count" ? styles.show : ""
           }`}
-          onClick={() => setOrdering("hits_count")}
+          onClick={() => setOrdering("-hits_count")}
         >
           پر فروش ترین
         </div>

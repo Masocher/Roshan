@@ -17,7 +17,7 @@ export default function Affordables({ data }) {
     <>
       {products.length > 0 ? (
         <div className={styles.container}>
-          <div className={styles.title}>پر فروش ترین ها</div>
+          <div className={styles.title}>کف قیمتی</div>
 
           <Swiper
             slidesPerView={
