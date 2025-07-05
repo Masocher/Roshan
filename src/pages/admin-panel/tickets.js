@@ -8,19 +8,21 @@ import AdminMenu from "@/components/admin/AdminMenu";
 
 export default function Tickets() {
   const [loading, setLoading] = useState(false);
-
   const [tickets, setTickets] = useState([]);
 
   const [unSeenFilter, setUnSeenFilter] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const getTickets = () => {
+  const getTickets = (pageNumber = 1) => {
     setLoading(true);
     axios.defaults.withCredentials = true;
     axios
-      .get(`/api/admin/tickets/?is_seen=${unSeenFilter}`)
+      .get(`/api/admin/tickets/?is_seen=${unSeenFilter}&page=${pageNumber}`)
       .then((response) => {
         setTickets(response.data.results);
-        console.log(response.data.results);
+        setTotalPages(response.data.total_pages || 1); // فرض بر اینکه API total_pages رو برمی‌گردونه
+        setPage(pageNumber);
         setLoading(false);
       })
       .catch((err) => {
@@ -30,8 +32,31 @@ export default function Tickets() {
   };
 
   useEffect(() => {
-    getTickets();
+    getTickets(1);
   }, [unSeenFilter]);
+
+  // تابع تولید آرایه صفحات برای نمایش در پیجینیشن
+  const getPageNumbers = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      // صفحات محدود: اول، آخر، فعلی، یک صفحه قبل و بعد
+      pages.push(1);
+      if (page > 3) pages.push("...");
+      const start = Math.max(2, page - 1);
+      const end = Math.min(totalPages - 1, page + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (page < totalPages - 2) pages.push("...");
+      pages.push(totalPages);
+    }
+    return pages;
+  };
+
+  const handlePageClick = (p) => {
+    if (p === "..." || p === page) return;
+    getTickets(p);
+  };
 
   return (
     <div className={styles.container}>
@@ -46,12 +71,9 @@ export default function Tickets() {
           className={`${styles.inventory_button} ${
             unSeenFilter === false ? styles.show : ""
           }`}
+          onClick={() => setUnSeenFilter(unSeenFilter === false ? "" : false)}
         >
-          <div
-            onClick={() => setUnSeenFilter(unSeenFilter === false ? "" : false)}
-          >
-            <span></span>
-          </div>
+          <span></span>
           مشاهده نشده ها
         </div>
       </div>
@@ -71,7 +93,9 @@ export default function Tickets() {
               className={styles.ticket}
               key={ticket.id}
             >
-              <div className={styles.ticket_id}>{index + 1}</div>
+              <div className={styles.ticket_id}>
+                {(page - 1) * 10 + index + 1}
+              </div>
 
               <div className={styles.ticket_name}>{ticket.full_name}</div>
 
@@ -85,6 +109,40 @@ export default function Tickets() {
         ) : (
           <div className={styles.no_ticket}>تیکتی یافت نشد !</div>
         )}
+      </div>
+
+      <div className={styles.pagination}>
+        <div
+          className={`${styles.perv_btn} ${page === 1 ? styles.disabled : ""}`}
+          onClick={() => page > 1 && getTickets(page - 1)}
+        >
+          <span>&lt;</span> قبلی
+        </div>
+
+        {getPageNumbers().map((p, i) =>
+          p === "..." ? (
+            <div key={i} className={styles.dots}>
+              ...
+            </div>
+          ) : (
+            <div
+              key={i}
+              className={`${styles.page_btn} ${p === page ? styles.show : ""}`}
+              onClick={() => handlePageClick(p)}
+            >
+              {p}
+            </div>
+          )
+        )}
+
+        <div
+          className={`${styles.next_btn} ${
+            page === totalPages ? styles.disabled : ""
+          }`}
+          onClick={() => page < totalPages && getTickets(page + 1)}
+        >
+          بعدی <span>&gt;</span>
+        </div>
       </div>
 
       <AdminMenu />

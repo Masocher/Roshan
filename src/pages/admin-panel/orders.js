@@ -20,15 +20,19 @@ export default function Orders() {
   const [shippedFilter, setShippedFilter] = useState("");
   const [searchContent, setSearchContent] = useState("");
 
-  const getOrders = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const getOrders = (page = 1) => {
     setLoading(true);
     axios.defaults.withCredentials = true;
     axios
       .get(
-        `/api/admin/orders/?paid=${paidFilter}&shipped=${shippedFilter}&id=${searchContent}`
+        `/api/admin/orders/?paid=${paidFilter}&shipped=${shippedFilter}&id=${searchContent}&page=${page}`
       )
       .then((response) => {
         setOrders(response.data.results);
+        setTotalPages(response.data.total_pages);
         setLoading(false);
       })
       .catch((err) => {
@@ -38,8 +42,61 @@ export default function Orders() {
   };
 
   useEffect(() => {
-    getOrders();
+    getOrders(1);
+    setCurrentPage(1);
   }, [paidFilter, shippedFilter, searchContent]);
+
+  const handlePageClick = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    getOrders(page);
+  };
+
+  const renderPageButtons = () => {
+    const pages = [];
+
+    if (totalPages <= 1) return null;
+
+    const addPage = (page) => {
+      pages.push(
+        <div
+          key={page}
+          className={`${styles.page_btn} ${
+            currentPage === page ? styles.show : ""
+          }`}
+          onClick={() => handlePageClick(page)}
+        >
+          {page}
+        </div>
+      );
+    };
+
+    addPage(1);
+
+    if (currentPage > 3) {
+      pages.push(
+        <div key="dots1" className={styles.dots}>
+          ...
+        </div>
+      );
+    }
+
+    if (currentPage - 1 > 1) addPage(currentPage - 1);
+    if (currentPage !== 1 && currentPage !== totalPages) addPage(currentPage);
+    if (currentPage + 1 < totalPages) addPage(currentPage + 1);
+
+    if (currentPage < totalPages - 2) {
+      pages.push(
+        <div key="dots2" className={styles.dots}>
+          ...
+        </div>
+      );
+    }
+
+    if (totalPages > 1) addPage(totalPages);
+
+    return pages;
+  };
 
   return (
     <div className={styles.container}>
@@ -117,13 +174,10 @@ export default function Orders() {
               href={`/admin/orders/${order.id}`}
             >
               <div className={styles.order_id}>{index + 1}</div>
-
               <div className={styles.phone_number}>{order.number}</div>
-
               <div className={styles.order_value}>
                 {order.total_price} تومان
               </div>
-
               <div className={styles.order_price}>
                 {order.paid ? "پرداخت شده" : "پرداخت نشده"}
               </div>
@@ -139,18 +193,22 @@ export default function Orders() {
       </div>
 
       <div className={styles.pagination}>
-        <div className={styles.perv_btn}>
+        <div
+          className={styles.perv_btn}
+          onClick={() => handlePageClick(currentPage - 1)}
+        >
           <span>
             <FontAwesomeIcon icon={faAngleLeft} />
           </span>
           قبلی
         </div>
-        <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-        <div className={`${styles.page_btn} ${""}`}>2</div>
-        <div className={`${styles.page_btn} ${""}`}>3</div>
-        <div className={`${styles.page_btn} ${""}`}>4</div>
-        <div className={`${styles.page_btn} ${""}`}>5</div>
-        <div className={styles.next_btn}>
+
+        {renderPageButtons()}
+
+        <div
+          className={styles.next_btn}
+          onClick={() => handlePageClick(currentPage + 1)}
+        >
           بعدی
           <span>
             <FontAwesomeIcon icon={faAngleRight} />

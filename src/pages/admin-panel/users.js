@@ -3,31 +3,42 @@ import styles from "../../styles/admin/Users.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faAngleLeft,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
 import AdminMenu from "@/components/admin/AdminMenu";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   const [numberFilter, setNumberFilter] = useState("");
   const [userFilter, setUserFilter] = useState("");
-  const [adminFilter, setAdminFilter] = useState("ّ");
+  const [adminFilter, setAdminFilter] = useState("");
 
   const [searchText, setSearchText] = useState("");
 
-  const getUsers = () => {
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const getUsers = (page = 1) => {
     setLoading(true);
     axios.defaults.withCredentials = true;
+
+    // پارامترهای فیلتر و صفحه
     axios
       .get(
-        `/api/admin/accounts/?number=${searchText}&is_active=${userFilter}&is_verified=${numberFilter}&is_staff=${adminFilter}`
+        `/api/admin/accounts/?number=${searchText}&is_active=${userFilter}&is_verified=${numberFilter}&is_staff=${adminFilter}&page=${page}`
       )
       .then((response) => {
         setUsers(response.data.results);
+        setTotalPages(response.data.total_pages || 1);
+        setCurrentPage(page);
         setLoading(false);
       })
       .catch((err) => {
@@ -37,8 +48,56 @@ export default function Users() {
   };
 
   useEffect(() => {
-    getUsers();
+    getUsers(1);
   }, [adminFilter, numberFilter, userFilter, searchText]);
+
+  // تابع تولید لیست صفحات پیجینیشن
+  const getPaginationButtons = () => {
+    const buttons = [];
+    if (totalPages <= 1) return buttons;
+
+    // همیشه صفحه اول
+    buttons.push(1);
+
+    // صفحه قبل از صفحه فعلی (اگر بیشتر از 1 باشد و فاصله از اول > 1)
+    if (currentPage - 1 > 1) buttons.push(currentPage - 1);
+
+    // صفحه فعلی اگر اولین یا آخرین نباشد
+    if (currentPage !== 1 && currentPage !== totalPages)
+      buttons.push(currentPage);
+
+    // صفحه بعد از صفحه فعلی (اگر کمتر از آخرین صفحه باشد)
+    if (currentPage + 1 < totalPages) buttons.push(currentPage + 1);
+
+    // همیشه صفحه آخر اگر آخرین صفحه با صفحه اول یکی نباشد
+    if (totalPages !== 1) buttons.push(totalPages);
+
+    // حذف تکراری‌ها و مرتب کردن
+    const uniqueButtons = [...new Set(buttons)].sort((a, b) => a - b);
+
+    return uniqueButtons;
+  };
+
+  // کلیک روی صفحه
+  const handlePageClick = (page) => {
+    if (page !== currentPage) {
+      getUsers(page);
+    }
+  };
+
+  // قبلی
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      getUsers(currentPage - 1);
+    }
+  };
+
+  // بعدی
+  const handleNextClick = () => {
+    if (currentPage < totalPages) {
+      getUsers(currentPage + 1);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -49,15 +108,16 @@ export default function Users() {
       </div>
 
       <div className={styles.search_box}>
-        <form className={styles.users_search}>
+        <form
+          className={styles.users_search}
+          onSubmit={(e) => e.preventDefault()}
+        >
           <input
             type="text"
             placeholder="جستجوی کاربر ..."
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
           />
-
           <span>
             <FontAwesomeIcon icon={faSearch} />
           </span>
@@ -131,7 +191,9 @@ export default function Users() {
               className={styles.user}
               href={`/admin/users/${user.id}`}
             >
-              <div className={styles.user_id}>{index + 1}</div>
+              <div className={styles.user_id}>
+                {index + 1 + (currentPage - 1) * 10}
+              </div>
 
               <div className={styles.user_name}>{user.get_full_name}</div>
 
@@ -149,6 +211,49 @@ export default function Users() {
         ) : (
           <div className={styles.no_user}>کاربری یافت نشد !</div>
         )}
+      </div>
+
+      {/* pagination */}
+      <div className={styles.pagination}>
+        <div
+          className={`${styles.perv_btn} ${
+            currentPage === 1 ? styles.disabled : ""
+          }`}
+          onClick={handlePrevClick}
+          style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
+        >
+          <span>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </span>
+          قبلی
+        </div>
+
+        {getPaginationButtons().map((page) => (
+          <div
+            key={page}
+            className={`${styles.page_btn} ${
+              page === currentPage ? styles.show : ""
+            }`}
+            onClick={() => handlePageClick(page)}
+          >
+            {page}
+          </div>
+        ))}
+
+        <div
+          className={`${styles.next_btn} ${
+            currentPage === totalPages ? styles.disabled : ""
+          }`}
+          onClick={handleNextClick}
+          style={{
+            cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+          }}
+        >
+          بعدی
+          <span>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </span>
+        </div>
       </div>
 
       <AdminMenu />

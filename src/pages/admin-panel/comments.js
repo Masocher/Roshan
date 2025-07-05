@@ -17,14 +17,17 @@ export default function Comments() {
   const [loading, setLoading] = useState(true);
 
   const [accepted, setAccepted] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const getComments = () => {
+  const getComments = (page = 1) => {
     setLoading(true);
     axios.defaults.withCredentials = true;
     axios
-      .get(`/api/admin/comments/?accepted=${accepted}`)
+      .get(`/api/admin/comments/?accepted=${accepted}&page=${page}`)
       .then((response) => {
         setComments(response.data.results);
+        setTotalPages(response.data.total_pages);
         setLoading(false);
       })
       .catch((err) => {
@@ -34,8 +37,55 @@ export default function Comments() {
   };
 
   useEffect(() => {
-    getComments();
-  }, [accepted]);
+    getComments(currentPage);
+  }, [accepted, currentPage]);
+
+  const renderPagination = () => {
+    let pages = [];
+    const start = Math.max(1, currentPage - 1);
+    const end = Math.min(totalPages, currentPage + 1);
+
+    if (currentPage > 2) {
+      pages.push(1);
+    }
+
+    if (start > 2) {
+      pages.push("...");
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (end < totalPages - 1) {
+      pages.push("...");
+    }
+
+    if (currentPage < totalPages - 1) {
+      pages.push(totalPages);
+    }
+
+    return pages.map((page, index) => {
+      if (page === "...") {
+        return (
+          <div key={index} className={styles.page_btn}>
+            ...
+          </div>
+        );
+      }
+      return (
+        <div
+          key={index}
+          className={`${styles.page_btn} ${
+            page === currentPage ? styles.show : ""
+          }`}
+          onClick={() => setCurrentPage(page)}
+        >
+          {page}
+        </div>
+      );
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -51,11 +101,8 @@ export default function Comments() {
             accepted === false ? styles.show : ""
           }`}
           onClick={() => {
-            if (accepted === false) {
-              setAccepted("");
-            } else {
-              setAccepted(false);
-            }
+            setCurrentPage(1);
+            setAccepted(accepted === false ? "" : false);
           }}
         >
           <div>
@@ -69,11 +116,8 @@ export default function Comments() {
             accepted === true ? styles.show : ""
           }`}
           onClick={() => {
-            if (accepted === true) {
-              setAccepted("");
-            } else {
-              setAccepted(true);
-            }
+            setCurrentPage(1);
+            setAccepted(accepted === true ? "" : true);
           }}
         >
           <div>
@@ -107,21 +151,14 @@ export default function Comments() {
               <div className={styles.comment_name}>{comment.product_name}</div>
 
               <div className={styles.comment_stars}>
-                <div className={`${comment.score >= 1 ? styles.show : ""}`}>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
-                <div className={`${comment.score >= 2 ? styles.show : ""}`}>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
-                <div className={`${comment.score >= 3 ? styles.show : ""}`}>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
-                <div className={`${comment.score >= 4 ? styles.show : ""}`}>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
-                <div className={`${comment.score >= 5 ? styles.show : ""}`}>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <div
+                    key={star}
+                    className={`${comment.score >= star ? styles.show : ""}`}
+                  >
+                    <FontAwesomeIcon icon={faStar} />
+                  </div>
+                ))}
               </div>
 
               <div className={styles.comment_date}>{comment.created_at}</div>
@@ -137,18 +174,22 @@ export default function Comments() {
       </div>
 
       <div className={styles.pagination}>
-        <div className={styles.perv_btn}>
+        <div
+          className={styles.perv_btn}
+          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+        >
           <span>
             <FontAwesomeIcon icon={faAngleLeft} />
           </span>
           قبلی
         </div>
-        <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-        <div className={`${styles.page_btn} ${""}`}>2</div>
-        <div className={`${styles.page_btn} ${""}`}>3</div>
-        <div className={`${styles.page_btn} ${""}`}>4</div>
-        <div className={`${styles.page_btn} ${""}`}>5</div>
-        <div className={styles.next_btn}>
+        {renderPagination()}
+        <div
+          className={styles.next_btn}
+          onClick={() =>
+            currentPage < totalPages && setCurrentPage(currentPage + 1)
+          }
+        >
           بعدی
           <span>
             <FontAwesomeIcon icon={faAngleRight} />

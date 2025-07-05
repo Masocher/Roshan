@@ -33,24 +33,27 @@ export async function getServerSideProps(context) {
 
 export default function Products() {
   const [loading, setLoading] = useState(false);
-
   const [products, setProducts] = useState([]);
-
   const [buttonsStatus, setButtonsStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
-
   const [notActiveFilter, setNotActiveFilter] = useState("");
   const [notSupplyFilter, setNotSupplyFilter] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const getProducts = () => {
+  const fetchProducts = (page = 1) => {
     setLoading(true);
     axios.defaults.withCredentials = true;
+
+    // آدرس API با پارامترهای فیلتر و صفحه
+    const url = `/api/admin/products/?active=${notActiveFilter}&supply=${notSupplyFilter}&page=${page}&search=${searchText}`;
+
     axios
-      .get(
-        `/api/admin/products/?active=${notActiveFilter}&supply=${notSupplyFilter}`
-      )
+      .get(url)
       .then((response) => {
         setProducts(response.data.results);
+        setTotalPages(response.data.total_pages || 1);
+        setCurrentPage(page);
         setLoading(false);
       })
       .catch((err) => {
@@ -60,22 +63,11 @@ export default function Products() {
   };
 
   useEffect(() => {
-    getProducts();
+    fetchProducts(1);
   }, [notActiveFilter, notSupplyFilter]);
 
   const search = () => {
-    setLoading(true);
-    axios.defaults.withCredentials = true;
-    axios
-      .get(`/api/admin/products/?search=${searchText}`)
-      .then((res) => {
-        setProducts(res.data.results);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
+    fetchProducts(1);
   };
 
   return (
@@ -101,13 +93,12 @@ export default function Products() {
           <input
             type="text"
             placeholder="جستجوی محصول ..."
+            value={searchText}
             onChange={(e) => {
+              setSearchText(e.target.value);
               if (e.target.value === "") {
-                setSearchText(e.target.value);
+                fetchProducts(1);
                 setButtonsStatus(false);
-                getProducts();
-              } else {
-                setSearchText(e.target.value);
               }
             }}
           />
@@ -174,7 +165,9 @@ export default function Products() {
               className={styles.product}
               key={product.id}
             >
-              <div className={styles.product_id}>{index + 1}</div>
+              <div className={styles.product_id}>
+                {(currentPage - 1) * 10 + index + 1}
+              </div>
 
               <Image
                 className={styles.product_image}
@@ -200,18 +193,73 @@ export default function Products() {
       </div>
 
       <div className={styles.pagination}>
-        <div className={styles.perv_btn}>
+        <div
+          className={styles.perv_btn}
+          onClick={() => {
+            if (currentPage > 1) fetchProducts(currentPage - 1);
+          }}
+        >
           <span>
             <FontAwesomeIcon icon={faAngleLeft} />
           </span>
           قبلی
         </div>
-        <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-        <div className={`${styles.page_btn} ${""}`}>2</div>
-        <div className={`${styles.page_btn} ${""}`}>3</div>
-        <div className={`${styles.page_btn} ${""}`}>4</div>
-        <div className={`${styles.page_btn} ${""}`}>5</div>
-        <div className={styles.next_btn}>
+
+        {/* صفحه اول */}
+        <div
+          className={`${styles.page_btn} ${
+            currentPage === 1 ? styles.show : ""
+          }`}
+          onClick={() => fetchProducts(1)}
+        >
+          1
+        </div>
+
+        {/* صفحه قبل صفحه فعلی (اگر بزرگتر از 1 باشد) */}
+        {currentPage - 1 > 1 && (
+          <div
+            className={styles.page_btn}
+            onClick={() => fetchProducts(currentPage - 1)}
+          >
+            {currentPage - 1}
+          </div>
+        )}
+
+        {/* صفحه فعلی اگر نه اول باشه نه آخر */}
+        {currentPage !== 1 && currentPage !== totalPages && (
+          <div className={`${styles.page_btn} ${styles.show}`}>
+            {currentPage}
+          </div>
+        )}
+
+        {/* صفحه بعد صفحه فعلی (اگر کوچکتر از آخر باشد) */}
+        {currentPage + 1 < totalPages && (
+          <div
+            className={styles.page_btn}
+            onClick={() => fetchProducts(currentPage + 1)}
+          >
+            {currentPage + 1}
+          </div>
+        )}
+
+        {/* صفحه آخر اگر بیشتر از 1 باشد */}
+        {totalPages > 1 && (
+          <div
+            className={`${styles.page_btn} ${
+              currentPage === totalPages ? styles.show : ""
+            }`}
+            onClick={() => fetchProducts(totalPages)}
+          >
+            {totalPages}
+          </div>
+        )}
+
+        <div
+          className={styles.next_btn}
+          onClick={() => {
+            if (currentPage < totalPages) fetchProducts(currentPage + 1);
+          }}
+        >
           بعدی
           <span>
             <FontAwesomeIcon icon={faAngleRight} />

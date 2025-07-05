@@ -108,6 +108,73 @@
     left: 22px;
 }
 
+.pagination {
+    display: flex;
+    width: 100%;
+    direction: ltr;
+    margin-top: 50px;
+    font-size: 16px;
+}
+
+.perv_btn,
+.next_btn {
+    background-color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-radius: 5px;
+    color: #fff;
+    border: 1px solid #000;
+    font-size: 14px;
+}
+.perv_btn:hover,
+.next_btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.perv_btn {
+    margin-right: 10px;
+}
+.perv_btn span {
+    font-size: 12px;
+    margin: 5px 10px 0 0;
+}
+
+.next_btn {
+    margin-left: 10px;
+}
+.next_btn span {
+    font-size: 12px;
+    margin: 5px 0 0 10px;
+}
+
+.page_btn {
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 3px;
+    border: 1px solid #f3f4f6;
+}
+.page_btn.show {
+    border-color: #000;
+    color: #fff;
+    background-color: #000;
+}
+.page_btn:hover {
+    border-color: #000;
+}
+.page_btn.show:hover {
+    color: #fff;
+}
+
 .ticket {
     display: flex;
     align-items: center;
