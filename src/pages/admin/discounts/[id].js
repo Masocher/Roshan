@@ -375,7 +375,7 @@ export default function EditDiscount({ categoriesList, discountData }) {
             className={`${styles.edit_btn} ${styles.show}`}
             onClick={() => deleteDiscount()}
           >
-            حذف آفر
+            حذف تخفیف
           </div>
         </div>
       </div>

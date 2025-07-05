@@ -2,94 +2,115 @@ import styles from "../../styles/products/ProductsSection.module.css";
 import FilterBox from "./FilterBox";
 import ProductsAll from "./ProductsAll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSort,
-  faAngleRight,
-  faAngleLeft,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { faSort, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
+import spiner from "../../../public/images/loading.svg";
 
 export default function ProductsSection({
   initialProducts,
   categoriesList,
   brandsList,
+  nextPage,
 }) {
+  const spinerStyles2 = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    userSelect: "none",
+    height: "fit-content",
+    margin: "50px 0 0 0",
+  };
+
   const [products, setProducts] = useState(initialProducts || []);
-
-  const [filters, setFilters] = useState({
-    categName: "",
-    brandName: "",
-  });
-
+  const [filters, setFilters] = useState({ categName: "", brandName: "" });
   const [minPriceText, setMinPriceText] = useState("");
   const [maxPriceText, setMaxPriceText] = useState("");
-
   const [priceRange, setPriceRange] = useState({
     min_price: "",
     max_price: "",
   });
-
   const [ordering, setOrdering] = useState("");
-
   const [loading, setLoading] = useState(false);
-
-  const selectFilter = () => {
-    setLoading(true);
-    axios.defaults.withCredentials = true;
-    axios
-      .get(
-        `/api/products/${ordering === "" ? "" : `?ordering=${ordering}`}${
-          filters.categName === ""
-            ? ""
-            : `${ordering === "" ? "?" : "&"}category__name=${
-                filters.categName
-              }`
-        }${
-          filters.brandName === ""
-            ? ""
-            : `${
-                filters.categName === "" && ordering === "" ? "?" : "&"
-              }brand__name=${filters.brandName}`
-        }${
-          priceRange.max_price === "" && priceRange.min_price === ""
-            ? ""
-            : `${
-                filters.categName === "" &&
-                filters.brandName === "" &&
-                ordering === ""
-                  ? "?"
-                  : "&"
-              }min_price=${priceRange.min_price}&max_price=${
-                priceRange.max_price
-              }`
-        }`
-      )
-      .then((response) => {
-        setProducts(response.data.results);
-        setLoading(false);
-        console.log("محصولات از کلاینت رندر شدن");
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  };
-
-  const [filtersStatus, setFiltersStatus] = useState(false);
-
-  useEffect(() => {
-    if (filtersStatus === false) {
-      return;
-    }
-
-    selectFilter();
-  }, [ordering, filters, priceRange]);
-
   const [option1, setOption1] = useState(false);
   const [option2, setOption2] = useState(false);
   const [option3, setOption3] = useState(false);
+  const [next, setNext] = useState(nextPage || 1);
+  const [finished, setFinished] = useState(false);
+  const [loading_2, setLoading_2] = useState(false);
+
+  const loaderRef = useRef(null);
+  const loadingRef = useRef(false);
+
+  const fetchProducts = useCallback(
+    async (page = 1, reset = false) => {
+      if (loadingRef.current || (finished && !reset)) return;
+
+      loadingRef.current = true;
+      if (reset) setLoading(true);
+      else setLoading_2(true);
+
+      try {
+        let query = `?page=${page}`;
+        if (ordering) query += `&ordering=${ordering}`;
+        if (filters.categName) query += `&category__name=${filters.categName}`;
+        if (filters.brandName) query += `&brand__name=${filters.brandName}`;
+        if (priceRange.min_price) query += `&min_price=${priceRange.min_price}`;
+        if (priceRange.max_price) query += `&max_price=${priceRange.max_price}`;
+
+        const res = await fetch(`/api/products/${query}`);
+        const data = await res.json();
+
+        if (reset) {
+          setProducts(data.results);
+        } else {
+          setProducts((prev) => [...prev, ...data.results]);
+        }
+
+        setNext(data.next ? page + 1 : null);
+        setFinished(!data.next);
+      } catch (err) {
+        console.error("خطا در گرفتن محصولات:", err);
+      }
+
+      if (reset) setLoading(false);
+      else setLoading_2(false);
+
+      loadingRef.current = false;
+    },
+    [ordering, filters, priceRange, finished]
+  );
+
+  useEffect(() => {
+    fetchProducts(1, true);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          fetchProducts(next);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    const el = loaderRef.current;
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, [fetchProducts, next]);
+
+  useEffect(() => {
+    setProducts([]);
+    setNext(1);
+    setFinished(false);
+    loadingRef.current = false;
+    fetchProducts(1, true);
+  }, [filters, priceRange, ordering]);
 
   return (
     <div className={styles.container}>
@@ -107,15 +128,14 @@ export default function ProductsSection({
           setOption2(false);
           setOption3(false);
 
-          setPriceRange({
-            min_price: "",
-            max_price: "",
-          });
-
-          setFilters({
-            categName: "",
-            brandName: "",
-          });
+          setPriceRange({ min_price: "", max_price: "" });
+          setFilters({ categName: "", brandName: "" });
+          setOrdering("");
+          setProducts([]);
+          setNext(1);
+          setFinished(false);
+          loadingRef.current = false;
+          fetchProducts(1, true);
         }}
       >
         <span>
@@ -134,10 +154,7 @@ export default function ProductsSection({
 
         <div
           className={`${styles.f_box} ${ordering === "" ? styles.show : ""}`}
-          onClick={() => {
-            setOrdering("");
-            setFiltersStatus(true);
-          }}
+          onClick={() => setOrdering("")}
         >
           جدید ترین
         </div>
@@ -146,10 +163,7 @@ export default function ProductsSection({
           className={`${styles.f_box} ${
             ordering === "hits_count" ? styles.show : ""
           }`}
-          onClick={() => {
-            setOrdering("hits_count");
-            setFiltersStatus(true);
-          }}
+          onClick={() => setOrdering("hits_count")}
         >
           پر فروش ترین
         </div>
@@ -158,10 +172,7 @@ export default function ProductsSection({
           className={`${styles.f_box} ${
             ordering === "price" ? styles.show : ""
           }`}
-          onClick={() => {
-            setOrdering("price");
-            setFiltersStatus(true);
-          }}
+          onClick={() => setOrdering("price")}
         >
           ارزان ترین
         </div>
@@ -170,10 +181,7 @@ export default function ProductsSection({
           className={`${styles.f_box} ${
             ordering === "-price" ? styles.show : ""
           }`}
-          onClick={() => {
-            setOrdering("-price");
-            setFiltersStatus(true);
-          }}
+          onClick={() => setOrdering("-price")}
         >
           گران ترین
         </div>
@@ -198,31 +206,19 @@ export default function ProductsSection({
           setOption1={setOption1}
           setOption2={setOption2}
           setOption3={setOption3}
-          setFiltersStatus={setFiltersStatus}
+          setFiltersStatus={() => {}}
           categoriesList={categoriesList}
           brandsList={brandsList}
         />
         <ProductsAll loading={loading} productsList={products} />
       </div>
 
-      <div className={styles.pagination}>
-        <div className={styles.perv_btn}>
-          <span>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </span>
-          قبلی
-        </div>
-        <div className={`${styles.page_btn} ${styles.show}`}>1</div>
-        <div className={`${styles.page_btn} ${""}`}>2</div>
-        <div className={`${styles.page_btn} ${""}`}>3</div>
-        <div className={`${styles.page_btn} ${""}`}>4</div>
-        <div className={`${styles.page_btn} ${""}`}>5</div>
-        <div className={styles.next_btn}>
-          بعدی
-          <span>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </span>
-        </div>
+      <div ref={loaderRef}>
+        {loading_2 && (
+          <div className="loader" style={spinerStyles2}>
+            <Image src={spiner} width={80} height={80} alt="لودینگ" />
+          </div>
+        )}
       </div>
     </div>
   );

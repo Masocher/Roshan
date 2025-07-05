@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
 
     if (productsRes.ok) {
       const data = await productsRes.json();
-      products = data.results;
+      products = data;
     }
 
     if (categoriesRes.ok) {
@@ -66,8 +66,10 @@ export default function Products({
   categoriesList,
   brandsList,
 }) {
+  console.log(products);
+
   let [categoriesStatus, setCategoriesStatus] = useState(false);
-  const [productsList, setProductsList] = useState(products);
+  const [productsList, setProductsList] = useState(products.results);
 
   return (
     <div>
@@ -85,6 +87,9 @@ export default function Products({
         initialProducts={productsList}
         categoriesList={categoriesList}
         brandsList={brandsList}
+        currentPage={products.current}
+        nextPage={products.next}
+        previousPage={products.previous}
       />
       <Footer />
     </div>

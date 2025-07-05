@@ -37,10 +37,7 @@ export default function ProductsAll({ loading, productsList }) {
           </div>
         ) : (
           products.map((product) => (
-            <div
-              className={styles.product_box}
-              key={product.id}
-            >
+            <div className={styles.product_box} key={product.id}>
               <ProductBox
                 slug={product.slug}
                 image={product.image}

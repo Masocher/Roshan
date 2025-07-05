@@ -49,8 +49,6 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ user, siteData }) {
-  console.log(siteData);
-
   let [categoriesStatus, setCategoriesStatus] = useState(false);
 
   return (
