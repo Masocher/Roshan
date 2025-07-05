@@ -45,7 +45,6 @@ export default function Products() {
     setLoading(true);
     axios.defaults.withCredentials = true;
 
-    // آدرس API با پارامترهای فیلتر و صفحه
     const url = `/api/admin/products/?active=${notActiveFilter}&supply=${notSupplyFilter}&page=${page}&search=${searchText}`;
 
     axios
@@ -205,7 +204,6 @@ export default function Products() {
           قبلی
         </div>
 
-        {/* صفحه اول */}
         <div
           className={`${styles.page_btn} ${
             currentPage === 1 ? styles.show : ""
@@ -215,7 +213,6 @@ export default function Products() {
           1
         </div>
 
-        {/* صفحه قبل صفحه فعلی (اگر بزرگتر از 1 باشد) */}
         {currentPage - 1 > 1 && (
           <div
             className={styles.page_btn}
@@ -225,14 +222,12 @@ export default function Products() {
           </div>
         )}
 
-        {/* صفحه فعلی اگر نه اول باشه نه آخر */}
         {currentPage !== 1 && currentPage !== totalPages && (
           <div className={`${styles.page_btn} ${styles.show}`}>
             {currentPage}
           </div>
         )}
 
-        {/* صفحه بعد صفحه فعلی (اگر کوچکتر از آخر باشد) */}
         {currentPage + 1 < totalPages && (
           <div
             className={styles.page_btn}
@@ -242,7 +237,6 @@ export default function Products() {
           </div>
         )}
 
-        {/* صفحه آخر اگر بیشتر از 1 باشد */}
         {totalPages > 1 && (
           <div
             className={`${styles.page_btn} ${

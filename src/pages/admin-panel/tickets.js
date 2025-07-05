@@ -21,7 +21,7 @@ export default function Tickets() {
       .get(`/api/admin/tickets/?is_seen=${unSeenFilter}&page=${pageNumber}`)
       .then((response) => {
         setTickets(response.data.results);
-        setTotalPages(response.data.total_pages || 1); // فرض بر اینکه API total_pages رو برمی‌گردونه
+        setTotalPages(response.data.total_pages || 1);
         setPage(pageNumber);
         setLoading(false);
       })
@@ -35,13 +35,11 @@ export default function Tickets() {
     getTickets(1);
   }, [unSeenFilter]);
 
-  // تابع تولید آرایه صفحات برای نمایش در پیجینیشن
   const getPageNumbers = () => {
     const pages = [];
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
-      // صفحات محدود: اول، آخر، فعلی، یک صفحه قبل و بعد
       pages.push(1);
       if (page > 3) pages.push("...");
       const start = Math.max(2, page - 1);

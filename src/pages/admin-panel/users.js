@@ -22,7 +22,6 @@ export default function Users() {
 
   const [searchText, setSearchText] = useState("");
 
-  // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -30,7 +29,6 @@ export default function Users() {
     setLoading(true);
     axios.defaults.withCredentials = true;
 
-    // پارامترهای فیلتر و صفحه
     axios
       .get(
         `/api/admin/accounts/?number=${searchText}&is_active=${userFilter}&is_verified=${numberFilter}&is_staff=${adminFilter}&page=${page}`
@@ -51,48 +49,38 @@ export default function Users() {
     getUsers(1);
   }, [adminFilter, numberFilter, userFilter, searchText]);
 
-  // تابع تولید لیست صفحات پیجینیشن
   const getPaginationButtons = () => {
     const buttons = [];
     if (totalPages <= 1) return buttons;
 
-    // همیشه صفحه اول
     buttons.push(1);
 
-    // صفحه قبل از صفحه فعلی (اگر بیشتر از 1 باشد و فاصله از اول > 1)
     if (currentPage - 1 > 1) buttons.push(currentPage - 1);
 
-    // صفحه فعلی اگر اولین یا آخرین نباشد
     if (currentPage !== 1 && currentPage !== totalPages)
       buttons.push(currentPage);
 
-    // صفحه بعد از صفحه فعلی (اگر کمتر از آخرین صفحه باشد)
     if (currentPage + 1 < totalPages) buttons.push(currentPage + 1);
 
-    // همیشه صفحه آخر اگر آخرین صفحه با صفحه اول یکی نباشد
     if (totalPages !== 1) buttons.push(totalPages);
 
-    // حذف تکراری‌ها و مرتب کردن
     const uniqueButtons = [...new Set(buttons)].sort((a, b) => a - b);
 
     return uniqueButtons;
   };
 
-  // کلیک روی صفحه
   const handlePageClick = (page) => {
     if (page !== currentPage) {
       getUsers(page);
     }
   };
 
-  // قبلی
   const handlePrevClick = () => {
     if (currentPage > 1) {
       getUsers(currentPage - 1);
     }
   };
 
-  // بعدی
   const handleNextClick = () => {
     if (currentPage < totalPages) {
       getUsers(currentPage + 1);
@@ -213,7 +201,6 @@ export default function Users() {
         )}
       </div>
 
-      {/* pagination */}
       <div className={styles.pagination}>
         <div
           className={`${styles.perv_btn} ${
