@@ -2,7 +2,7 @@ import styles from "../styles/user-pannel/UserOrders.module.css";
 import Header from "@/components/global/Header";
 import MiniMenu from "@/components/global/MiniMenu";
 import BlackBackground from "@/components/global/BlacKBackground";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -12,10 +12,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Gateway from "./gateway";
 import Link from "next/link";
+import Image from "next/image";
+import spiner from "../../public/images/loading.svg"; // آدرس مناسب بده
 
 export async function getServerSideProps(context) {
   let initialOrders = [];
-
+  let nextPage = null;
   let user = null;
 
   try {
@@ -24,10 +26,7 @@ export async function getServerSideProps(context) {
         Cookie: context.req.headers.cookie || "",
       },
     });
-
-    if (res.ok) {
-      user = await res.json();
-    }
+    if (res.ok) user = await res.json();
   } catch (err) {
     console.error("خطا در دریافت اطلاعات کاربر:", err);
   }
@@ -48,7 +47,9 @@ export async function getServerSideProps(context) {
       };
     }
 
-    initialOrders = await res.json();
+    const data = await res.json();
+    initialOrders = data.results || [];
+    nextPage = data.next || null;
   } catch (error) {
     console.error("خطا در دریافت سفارش ها", error);
   }
@@ -57,21 +58,76 @@ export async function getServerSideProps(context) {
     props: {
       user,
       initialOrders,
+      nextPage,
     },
   };
 }
 
-export default function UserOrders({ user, initialOrders }) {
-  console.log(initialOrders);
+export default function UserOrders({ user, initialOrders, nextPage }) {
+  const spinerStyles2 = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    userSelect: "none",
+    height: "fit-content",
+    margin: "50px 0 0 0",
+  };
 
-  let [categoriesStatus, setCategoriesStatus] = useState(false);
-  const [orders, setOrders] = useState(initialOrders);
+  const [categoriesStatus, setCategoriesStatus] = useState(false);
+  const [orders, setOrders] = useState(initialOrders || []);
+  const [next, setNext] = useState(nextPage);
+  const [loading, setLoading] = useState(false);
+  const [finished, setFinished] = useState(false);
 
+  const loaderRef = useRef(null);
+  const loadingRef = useRef(false);
+
+  const fetchOrders = useCallback(async () => {
+    if (loadingRef.current || !next || finished) return;
+
+    loadingRef.current = true;
+    setLoading(true);
+
+    try {
+      const res = await fetch(`/api/ordering/history/?page=${next}`, {
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data);
+
+      setOrders((prev) => [...prev, ...data.results]);
+      setNext(data.next);
+      if (data.next === null) setFinished(true);
+    } catch (err) {
+      console.error("خطا در دریافت سفارشات:", err);
+    }
+
+    setLoading(false);
+    loadingRef.current = false;
+  }, [next, finished]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          fetchOrders();
+        }
+      },
+      { threshold: 1 }
+    );
+
+    const el = loaderRef.current;
+    if (el) observer.observe(el);
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, [fetchOrders]);
+
+  // درگاه پرداخت
   const [gatewayStatus, setGatewayStatus] = useState(false);
   const [orderId, setOrderId] = useState(null);
-  const [productsPrice, setProductsPrice] = useState({
-    pay_price: "",
-  });
+  const [productsPrice, setProductsPrice] = useState({ pay_price: "" });
 
   return (
     <div className={styles.container}>
@@ -85,7 +141,6 @@ export default function UserOrders({ user, initialOrders }) {
         setStatus={setCategoriesStatus}
         user={user}
       />
-
       <Gateway
         gatewayStatus={gatewayStatus}
         productsPrice={productsPrice}
@@ -108,22 +163,19 @@ export default function UserOrders({ user, initialOrders }) {
           ) : (
             orders.map((order) => (
               <div className={styles.order} key={order.id}>
+                {/* اطلاعات سفارش */}
                 <div className={styles.order_informations}>
                   <div>
                     <span>تاریخ : </span>
                     {order.created_at}
                   </div>
-
                   <div>
-                    <span>هزینه ارسال : </span>
-                    50,000 تومان
+                    <span>هزینه ارسال : </span>50,000 تومان
                   </div>
-
                   <div>
                     <span>تخفیف : </span>
                     {order.discount_amount} تومان
                   </div>
-
                   <div>
                     <span>کل مبلغ : </span>
                     {order.total_price} تومان
@@ -140,7 +192,6 @@ export default function UserOrders({ user, initialOrders }) {
                     <span>کد سفارش : </span>
                     {order.id}
                   </div>
-
                   <div className={styles.tracking_code}>
                     <span>کد رهگیری : </span>
                     {order.paid === false
@@ -169,7 +220,7 @@ export default function UserOrders({ user, initialOrders }) {
                     <div className={styles.order_status}>
                       <div
                         className={`${styles.status_box} ${
-                          order.shipped ? "show" : ""
+                          order.shipped ? styles.status_box_show : ""
                         }`}
                       >
                         <FontAwesomeIcon
@@ -185,9 +236,7 @@ export default function UserOrders({ user, initialOrders }) {
                       <div
                         className={styles.show_details_btn}
                         onClick={() => {
-                          setProductsPrice({
-                            pay_price: order.total_price,
-                          });
+                          setProductsPrice({ pay_price: order.total_price });
                           setOrderId(order.id);
                           setGatewayStatus(true);
                         }}
@@ -197,13 +246,10 @@ export default function UserOrders({ user, initialOrders }) {
                     )}
 
                     <Link
-                      onClick={() => localStorage.setItem("orderId", order.id)}
                       href={`/order-detail/${order.id}`}
                       className={styles.show_details_btn}
-                      style={{
-                        margin: "0",
-                        textDecoration: "none",
-                      }}
+                      onClick={() => localStorage.setItem("orderId", order.id)}
+                      style={{ margin: "0", textDecoration: "none" }}
                     >
                       جزئیات سفارش
                       <span>
@@ -214,6 +260,14 @@ export default function UserOrders({ user, initialOrders }) {
                 </div>
               </div>
             ))
+          )}
+        </div>
+
+        <div ref={loaderRef}>
+          {loading && (
+            <div className="loader" style={spinerStyles2}>
+              <Image src={spiner} width={80} height={80} alt="لودینگ" />
+            </div>
           )}
         </div>
       </div>
