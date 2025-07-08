@@ -6,7 +6,7 @@ import { useState } from "react";
 import AdminMenu from "@/components/admin/AdminMenu";
 
 export async function getServerSideProps(context) {
-  const res = await fetch("https://abazarak.ir/api/admin/discounts/", {
+  const res = await fetch("https://abazarak.ir/api/admin/offers/", {
     headers: {
       Cookie: context.req.headers.cookie || "",
     },

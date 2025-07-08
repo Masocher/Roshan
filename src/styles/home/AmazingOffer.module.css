@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 0 0 20px 20px;
 }
 
 .right_section {
@@ -30,13 +29,9 @@
     overflow: hidden;
 }
 
-.products {
-    background-color: #fff;
-}
-
 .product {
     background-color: #fff;
-    border-right: 1px solid #e8eef2;
+    height: auto;
 }
 
 .last_product {
@@ -45,11 +40,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #12a386;
-    margin: auto 0;
-    background: none;
-    height: 365px;
     background-color: #12a386;
+    margin: auto 0;
 }
 
 .last_product div {

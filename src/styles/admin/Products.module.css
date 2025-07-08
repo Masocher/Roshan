@@ -130,15 +130,18 @@
     border-color: #ccc;
 }
 
-.products_search span {
+.products_search button {
     position: absolute;
     top: 15px;
     left: 15px;
     color: #777;
     font-size: 14px;
     cursor: pointer;
+    outline: 0;
+    padding: 0;
+    border: none;
 }
-.products_search span:hover {
+.products_search button:hover {
     color: #12a386;
 }
 

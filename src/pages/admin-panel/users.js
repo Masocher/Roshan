@@ -47,7 +47,7 @@ export default function Users() {
 
   useEffect(() => {
     getUsers(1);
-  }, [adminFilter, numberFilter, userFilter, searchText]);
+  }, [adminFilter, numberFilter, userFilter]);
 
   const getPaginationButtons = () => {
     const buttons = [];
@@ -98,7 +98,13 @@ export default function Users() {
       <div className={styles.search_box}>
         <form
           className={styles.users_search}
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setAdminFilter("");
+            setNumberFilter("");
+            setUserFilter("");
+            getUsers();
+          }}
         >
           <input
             type="text"
@@ -106,9 +112,10 @@ export default function Users() {
             onChange={(e) => setSearchText(e.target.value)}
             value={searchText}
           />
-          <span>
+
+          <button type="submit">
             <FontAwesomeIcon icon={faSearch} />
-          </span>
+          </button>
         </form>
 
         <div className={styles.search_buttons}>

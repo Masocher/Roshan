@@ -134,7 +134,7 @@ export default function Categories({ categoriesList }) {
             <input
               className={styles.name}
               type="text"
-              placeholder="مجموعه ( الزامی نیست )"
+              placeholder="زیردسته ( الزامی نیست )"
               onChange={(e) => setParent(e.target.value)}
               value={parent}
               maxLength={128}

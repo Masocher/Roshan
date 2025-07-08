@@ -100,7 +100,7 @@
 
 .feature_box {
     background-color: #fff;
-    width: 100px;
+    width: calc(100% / 4 - 55px);
     padding: 20px;
     border-radius: 8px;
     height: 60px;

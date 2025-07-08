@@ -213,9 +213,7 @@ export default function CreateOffer({ offerData }) {
 
             <input
               type="text"
-              placeholder={`مقدار تخفیف را به ${
-                tomanFilter ? "تومان" : "درصد"
-              } وارد کنید`}
+              placeholder={`مقدار تخفیف`}
               onChange={(e) => setValue(e.target.value)}
               value={value}
             />

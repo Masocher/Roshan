@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     background-color: #0000004d;
-    z-index: 9;
+    z-index: 10;
     display: none;
 }
 .black_back.show {
@@ -21,7 +21,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: 10;
 }
 .leave_comment_wrapper.show {
     display: flex;

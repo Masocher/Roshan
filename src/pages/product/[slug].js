@@ -69,6 +69,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function ProductSinglePage({ user, productSingle }) {
+  console.log(productSingle);
+
   const [deleteStatus, setDeleteStatus] = useState(productSingle.in_cart);
 
   let [categoriesStatus, setCategoriesStatus] = useState(false);
@@ -161,19 +163,27 @@ export default function ProductSinglePage({ user, productSingle }) {
               )}
 
               <div className={styles.product_category_section}>
-                <div className={styles.product_category}>
-                  <span>
-                    <FontAwesomeIcon icon={faAngleLeft} />
-                  </span>
-                  {product.category}
-                </div>
+                {product.category ? (
+                  <div className={styles.product_category}>
+                    <span>
+                      <FontAwesomeIcon icon={faAngleLeft} />
+                    </span>
+                    {product.category}
+                  </div>
+                ) : (
+                  ""
+                )}
 
-                <div className={styles.product_brand}>
-                  <span>
-                    <FontAwesomeIcon icon={faAward} />
-                  </span>
-                  {product.brand}
-                </div>
+                {product.brand ? (
+                  <div className={styles.product_brand}>
+                    <span>
+                      <FontAwesomeIcon icon={faAward} />
+                    </span>
+                    {product.brand}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className={styles.product_name}>{product.name}</div>
@@ -386,6 +396,7 @@ export default function ProductSinglePage({ user, productSingle }) {
                         content={com.content}
                         user={com.author}
                         date={com.created_at}
+                        score={com.score}
                       />
                     </div>
                   ))

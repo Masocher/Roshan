@@ -44,7 +44,7 @@ export default function Orders() {
   useEffect(() => {
     getOrders(1);
     setCurrentPage(1);
-  }, [paidFilter, shippedFilter, searchContent]);
+  }, [paidFilter, shippedFilter]);
 
   const handlePageClick = (page) => {
     if (page < 1 || page > totalPages || page === currentPage) return;
@@ -73,25 +73,9 @@ export default function Orders() {
 
     addPage(1);
 
-    if (currentPage > 3) {
-      pages.push(
-        <div key="dots1" className={styles.dots}>
-          ...
-        </div>
-      );
-    }
-
     if (currentPage - 1 > 1) addPage(currentPage - 1);
     if (currentPage !== 1 && currentPage !== totalPages) addPage(currentPage);
     if (currentPage + 1 < totalPages) addPage(currentPage + 1);
-
-    if (currentPage < totalPages - 2) {
-      pages.push(
-        <div key="dots2" className={styles.dots}>
-          ...
-        </div>
-      );
-    }
 
     if (totalPages > 1) addPage(totalPages);
 
@@ -107,20 +91,26 @@ export default function Orders() {
       </div>
 
       <div className={styles.search_box}>
-        <form className={styles.products_search}>
+        <form
+          className={styles.products_search}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setPaidFilter("");
+            setShippedFilter("");
+            getOrders();
+          }}
+        >
           <input
             type="text"
             placeholder="جستجوی کد سفارش ..."
             onChange={(e) => {
-              setPaidFilter("");
-              setShippedFilter("");
               setSearchContent(e.target.value);
             }}
           />
 
-          <span>
+          <button type="submit">
             <FontAwesomeIcon icon={faSearch} />
-          </span>
+          </button>
         </form>
 
         <div className={styles.search_buttons}>

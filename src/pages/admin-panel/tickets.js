@@ -71,7 +71,9 @@ export default function Tickets() {
           }`}
           onClick={() => setUnSeenFilter(unSeenFilter === false ? "" : false)}
         >
-          <span></span>
+          <div>
+            <span></span>
+          </div>
           مشاهده نشده ها
         </div>
       </div>

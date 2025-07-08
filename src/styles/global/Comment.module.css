@@ -50,6 +50,13 @@
     line-height: 30px;
 }
 
+.score span {
+    color: #ccc;
+}
+.score span.show {
+    color: #ffb200;
+}
+
 @media (max-width: 1500px) {
     .top_content {
         font-size: 14px;

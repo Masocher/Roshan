@@ -70,11 +70,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function OrderDetailsSinglePage({ user, orderList }) {
-  console.log(orderList);
-
   let [categoriesStatus, setCategoriesStatus] = useState(false);
-
-  const router = useRouter();
 
   const [order, setOrder] = useState(orderList);
 
@@ -147,13 +143,17 @@ export default function OrderDetailsSinglePage({ user, orderList }) {
             <div className={styles.payment_status}>
               <div className={styles.title}>هزینه ارسال</div>
 
-              <div className={styles.content}>50,000</div>
+              <div className={styles.content}>
+                {order.shipping
+                  ? order.shipping.shipping_fee
+                  : "در انتظار برای ارسال"}
+              </div>
             </div>
 
             <div className={styles.payment_status}>
               <div className={styles.title}>کد تخفیف</div>
 
-              <div className={styles.content}>yalda00</div>
+              <div className={styles.content}>بدون کد تخفیف</div>
             </div>
 
             <div className={styles.payment_status}>
@@ -179,7 +179,11 @@ export default function OrderDetailsSinglePage({ user, orderList }) {
             <div className={styles.payment_status}>
               <div className={styles.title}>کد رهگیری</div>
 
-              <div className={styles.content}>6533120</div>
+              <div className={styles.content}>
+                {order.shipping
+                  ? order.shipping.tracking_code
+                  : "در انتظار برای ارسال"}
+              </div>
             </div>
           </div>
 
@@ -193,39 +197,35 @@ export default function OrderDetailsSinglePage({ user, orderList }) {
             <div className={styles.title}>محصولات انتخاب شده</div>
 
             <div className={styles.products}>
-              <div className={styles.product}>
-                <Image
-                  src={img}
-                  alt="عکس محصول"
-                  className={styles.product_img}
-                />
+              {order.items.length > 0
+                ? order.items.map((item) => (
+                    <div className={styles.product} key={item.id}>
+                      <Image
+                        src={item.product.image}
+                        alt="عکس محصول"
+                        className={styles.product_img}
+                        width={800}
+                        height={800}
+                        quality={100}
+                        priority
+                      />
 
-                <div className={styles.product_inf}>
-                  <div className={styles.badge}>تعداد : 2</div>
+                      <div className={styles.product_inf}>
+                        <div className={styles.badge}>
+                          تعداد : {item.quantity}
+                        </div>
 
-                  <div className={styles.cart_product_num}>1,500,000</div>
+                        <div className={styles.cart_product_num}>
+                          {item.product.price}
+                        </div>
 
-                  <div className={styles.product_name}>هود آشپزی مدل سیمرغ</div>
-                </div>
-              </div>
-
-              <div className={styles.product}>
-                <Image
-                  src={img}
-                  alt="عکس محصول"
-                  className={styles.product_img}
-                />
-
-                <div className={styles.product_inf}>
-                  <div className={styles.badge}>تعداد : 2</div>
-
-                  <div className={styles.cart_product_num}>1,500,000</div>
-
-                  <div className={styles.product_name}>
-                    هود آشپزی مدل سیمرغهود آشپزی مدل سیمرغهود آشپزی مدل سیمرغ
-                  </div>
-                </div>
-              </div>
+                        <div className={styles.product_name}>
+                          {item.product.name}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                : ""}
             </div>
           </div>
         </div>

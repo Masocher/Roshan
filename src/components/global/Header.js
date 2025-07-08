@@ -73,17 +73,21 @@ export default function Header({ status, setStatus, user }) {
         </div>
 
         <div className={styles.menu_sections}>
-          {user.role === "staff" ? (
-            <Link
-              className={styles.menu_sec}
-              href={"/admin-panel/products"}
-              onClick={() => setMenuStatus(false)}
-            >
-              <span>
-                <FontAwesomeIcon icon={faUserLock} />
-              </span>
-              پنل ادمین
-            </Link>
+          {user ? (
+            user.role === "staff" ? (
+              <Link
+                className={styles.menu_sec}
+                href={"/admin-panel/products"}
+                onClick={() => setMenuStatus(false)}
+              >
+                <span>
+                  <FontAwesomeIcon icon={faUserLock} />
+                </span>
+                پنل ادمین
+              </Link>
+            ) : (
+              ""
+            )
           ) : (
             ""
           )}

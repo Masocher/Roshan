@@ -34,7 +34,6 @@ export async function getServerSideProps(context) {
 export default function Products() {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [buttonsStatus, setButtonsStatus] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [notActiveFilter, setNotActiveFilter] = useState("");
   const [notSupplyFilter, setNotSupplyFilter] = useState("");
@@ -95,21 +94,12 @@ export default function Products() {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
-              if (e.target.value === "") {
-                fetchProducts(1);
-                setButtonsStatus(false);
-              }
             }}
           />
 
-          <span
-            onClick={() => search()}
-            style={
-              searchText === "" ? { display: "none" } : { display: "block" }
-            }
-          >
+          <button type="submit" onClick={() => search()}>
             <FontAwesomeIcon icon={faSearch} />
-          </span>
+          </button>
         </form>
 
         <div className={styles.search_buttons}>
