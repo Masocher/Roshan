@@ -150,8 +150,12 @@
     margin: 10px 0;
 }
 
-.rated_stars span {
+.rated_stars div span {
     margin: 0 1px;
+    color: #ccc;
+}
+.rated_stars div span.show {
+    color: #ffb200;
 }
 
 .total_rate {

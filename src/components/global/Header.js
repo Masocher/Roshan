@@ -17,6 +17,8 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
 export default function Header({ status, setStatus, user }) {
+  const router = useRouter();
+
   const location = useRouter();
 
   const matches2 = useMediaQuery(1200);
@@ -39,6 +41,12 @@ export default function Header({ status, setStatus, user }) {
         toast.success(response.data.detail);
       })
       .catch((err) => console.log(err));
+  };
+
+  const [text, setText] = useState("");
+
+  const search = () => {
+    router.push(`/products/?search=${text}`);
   };
 
   return (
@@ -131,11 +139,23 @@ export default function Header({ status, setStatus, user }) {
         </Link>
 
         <div className={styles.search_box_wrapper}>
-          <form action={"#"} className={styles.search_box}>
-            <input type="text" placeholder="جستجو" />
-            <div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              search();
+            }}
+            className={styles.search_box}
+          >
+            <input
+              type="text"
+              placeholder="جستجو"
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+            />
+
+            <button type="submit">
               <FontAwesomeIcon icon={faSearch} />
-            </div>
+            </button>
           </form>
         </div>
       </div>

@@ -2,17 +2,15 @@ import styles from "../../styles/products/ProductsSection.module.css";
 import FilterBox from "./FilterBox";
 import ProductsAll from "./ProductsAll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faSort, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import spiner from "../../../public/images/loading.svg";
+import { useRouter } from "next/router";
 
-export default function ProductsSection({
-  initialProducts,
-  categoriesList,
-  brandsList,
-  nextPage,
-}) {
+export default function ProductsSection({ categoriesList, brandsList }) {
+  const router = useRouter();
+
   const spinerStyles2 = {
     display: "flex",
     justifyContent: "center",
@@ -22,7 +20,7 @@ export default function ProductsSection({
     margin: "50px 0 0 0",
   };
 
-  const [products, setProducts] = useState(initialProducts || []);
+  const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({ categName: "", brandName: "" });
   const [minPriceText, setMinPriceText] = useState("");
   const [maxPriceText, setMaxPriceText] = useState("");
@@ -35,9 +33,11 @@ export default function ProductsSection({
   const [option1, setOption1] = useState(false);
   const [option2, setOption2] = useState(false);
   const [option3, setOption3] = useState(false);
-  const [next, setNext] = useState(nextPage || 1);
+  const [next, setNext] = useState(1);
   const [finished, setFinished] = useState(false);
   const [loading_2, setLoading_2] = useState(false);
+
+  const [searchText, setSearchText] = useState(router.query.search || "");
 
   const loaderRef = useRef(null);
   const loadingRef = useRef(false);
@@ -57,6 +57,7 @@ export default function ProductsSection({
         if (filters.brandName) query += `&brand__name=${filters.brandName}`;
         if (priceRange.min_price) query += `&min_price=${priceRange.min_price}`;
         if (priceRange.max_price) query += `&max_price=${priceRange.max_price}`;
+        if (searchText) query += `&search=${encodeURIComponent(searchText)}`;
 
         const res = await fetch(`/api/products/${query}`);
         const data = await res.json();
@@ -78,8 +79,12 @@ export default function ProductsSection({
 
       loadingRef.current = false;
     },
-    [ordering, filters, priceRange, finished]
+    [ordering, filters, priceRange, finished, searchText]
   );
+
+  useEffect(() => {
+    setSearchText(router.query.search || "");
+  }, [router.query.search]);
 
   useEffect(() => {
     fetchProducts(1, true);
@@ -110,10 +115,35 @@ export default function ProductsSection({
     setFinished(false);
     loadingRef.current = false;
     fetchProducts(1, true);
-  }, [filters, priceRange, ordering]);
+  }, [filters, priceRange, ordering, searchText]);
 
   return (
     <div className={styles.container}>
+      {searchText && (
+        <div className={styles.searchTag}>
+          <span
+            onClick={() => {
+              const query = { ...router.query };
+              delete query.search;
+              router.push(
+                {
+                  pathname: router.pathname,
+                  query,
+                },
+                undefined,
+                { shallow: true }
+              );
+            }}
+          >
+            <FontAwesomeIcon icon={faClose} />
+          </span>
+          جستجوی شما :
+          <div className={styles.clearSearchBtn} aria-label="حذف سرچ">
+            <div>{searchText}</div>
+          </div>
+        </div>
+      )}
+
       <div
         className={`${styles.reset_btn_2} ${
           priceRange.min_price === "" &&
@@ -122,20 +152,18 @@ export default function ProductsSection({
           filters.brandName === ""
             ? ""
             : styles.show
-        }`}
+        } ${searchText ? "" : styles.show_2}`}
         onClick={() => {
           setOption1(false);
           setOption2(false);
           setOption3(false);
-
           setPriceRange({ min_price: "", max_price: "" });
           setFilters({ categName: "", brandName: "" });
           setOrdering("");
-          setProducts([]);
           setNext(1);
           setFinished(false);
           loadingRef.current = false;
-          fetchProducts(1, true);
+          fetchProducts(1, false);
         }}
       >
         <span>

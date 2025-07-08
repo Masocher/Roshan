@@ -14,6 +14,7 @@ import {
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import Image from "next/image";
 import Comment from "@/components/global/Comment";
+import ReplyComment from "@/components/global/ReplyComment";
 import LeaveComment from "@/components/product/LeaveComment";
 import { useEffect, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
@@ -238,24 +239,26 @@ export default function ProductSinglePage({ user, productSingle }) {
 
               <div className={styles.rated_stars}>
                 <div>
-                  <span>
+                  <span className={product.score_avg >= 1 ? styles.show : ""}>
                     <FontAwesomeIcon icon={faStar} />
                   </span>
-                  <span>
+                  <span className={product.score_avg >= 2 ? styles.show : ""}>
                     <FontAwesomeIcon icon={faStar} />
                   </span>
-                  <span>
+                  <span className={product.score_avg >= 3 ? styles.show : ""}>
                     <FontAwesomeIcon icon={faStar} />
                   </span>
-                  <span>
+                  <span className={product.score_avg >= 4 ? styles.show : ""}>
                     <FontAwesomeIcon icon={faStar} />
                   </span>
-                  <span>
+                  <span className={product.score_avg >= 5 ? styles.show : ""}>
                     <FontAwesomeIcon icon={faStar} />
                   </span>
                 </div>
 
-                <span className={styles.total_rate}>از مجموع 2 امتیاز</span>
+                <span className={styles.total_rate}>
+                  از مجموع {product.comments_count} امتیاز
+                </span>
               </div>
             </div>
 
@@ -397,7 +400,18 @@ export default function ProductSinglePage({ user, productSingle }) {
                         user={com.author}
                         date={com.created_at}
                         score={com.score}
+                        status={com.answers.length > 0 ? true : false}
                       />
+
+                      {com.answers
+                        ? com.answers.map((repCom) => (
+                            <ReplyComment
+                              content={repCom.content}
+                              date={repCom.created_at}
+                              user={repCom.author}
+                            />
+                          ))
+                        : ""}
                     </div>
                   ))
                 )}

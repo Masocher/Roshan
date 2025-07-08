@@ -6,7 +6,6 @@ import Footer from "@/components/global/Footer";
 import { useState } from "react";
 
 export async function getServerSideProps(context) {
-  let products = [];
   let categoriesList = [];
   let brandsList = [];
   let user = null;
@@ -26,16 +25,10 @@ export async function getServerSideProps(context) {
   }
 
   try {
-    const [productsRes, categoriesRes, brandsRes] = await Promise.all([
-      fetch("https://abazarak.ir/api/products/"),
+    const [categoriesRes, brandsRes] = await Promise.all([
       fetch("https://abazarak.ir/api/categories/"),
       fetch("https://abazarak.ir/api/brands/"),
     ]);
-
-    if (productsRes.ok) {
-      const data = await productsRes.json();
-      products = data;
-    }
 
     if (categoriesRes.ok) {
       const data = await categoriesRes.json();
@@ -53,23 +46,14 @@ export async function getServerSideProps(context) {
   return {
     props: {
       user,
-      products,
       categoriesList,
       brandsList,
     },
   };
 }
 
-export default function Products({
-  user,
-  products,
-  categoriesList,
-  brandsList,
-}) {
-  console.log(products);
-
+export default function Products({ user, categoriesList, brandsList }) {
   let [categoriesStatus, setCategoriesStatus] = useState(false);
-  const [productsList, setProductsList] = useState(products.results);
 
   return (
     <div>
@@ -84,12 +68,8 @@ export default function Products({
         user={user}
       />
       <ProductsSection
-        initialProducts={productsList}
         categoriesList={categoriesList}
         brandsList={brandsList}
-        currentPage={products.current}
-        nextPage={products.next}
-        previousPage={products.previous}
       />
       <Footer />
     </div>
