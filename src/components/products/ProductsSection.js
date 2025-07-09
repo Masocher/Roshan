@@ -7,6 +7,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import spiner from "../../../public/images/loading.svg";
 import { useRouter } from "next/router";
+import { toast, Toaster } from "react-hot-toast";
 
 export default function ProductsSection({ categoriesList, brandsList }) {
   const router = useRouter();
@@ -71,7 +72,7 @@ export default function ProductsSection({ categoriesList, brandsList }) {
         setNext(data.next ? page + 1 : null);
         setFinished(!data.next);
       } catch (err) {
-        console.error("خطا در گرفتن محصولات:", err);
+        toast.error("خطا در دریافت محصولات");
       }
 
       if (reset) setLoading(false);
@@ -119,6 +120,8 @@ export default function ProductsSection({ categoriesList, brandsList }) {
 
   return (
     <div className={styles.container}>
+      <Toaster position="bottom-left" reverseOrder={true} />
+
       {searchText && (
         <div className={styles.searchTag}>
           <span

@@ -12,6 +12,8 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -51,7 +53,6 @@ export default function Order({ order }) {
 
   const setShiping = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .post(`/api/admin/orders/${order.id}/set_shipping/`, {
         posted_at: postedAt,
@@ -60,7 +61,7 @@ export default function Order({ order }) {
         shipping_fee: shippingFee,
         extra_details: extraDetails,
       })
-      .then((res) => {
+      .then(() => {
         toast.success("تغییرات با موفقیت ثبت شد");
         setLoading(false);
       })
@@ -75,10 +76,9 @@ export default function Order({ order }) {
           } else if (error.response.data.posted_at) {
             toast.error("تاریخ : " + error.response.data.posted_at);
           } else {
-            console.log(error);
+            toast.error("خطایی رخ داد !");
           }
         }
-
         setLoading(false);
       });
   };

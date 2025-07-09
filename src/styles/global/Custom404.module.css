@@ -1,25 +1,25 @@
 .container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 14px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 14px;
 }
 
 .main_text {
-    font-family: KalamehB;
-    font-size: 70px;
-    color: #12a386;
+  font-family: KalamehB;
+  font-size: 70px;
+  color: #12a386;
 }
 
 .back_btn {
-    text-decoration: none;
-    color: #fff;
-    background-color: #12a386;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-top: 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #12a386;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
 }

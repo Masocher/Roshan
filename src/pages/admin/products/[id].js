@@ -12,6 +12,8 @@ import spiner from "../../../../public/images/loading.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -115,7 +117,6 @@ export default function EditProduct({ product }) {
     }
 
     try {
-      axios.defaults.withCredentials = true;
       const response = await axios.patch(
         `/api/admin/products/${product.id}/`,
         formData,
@@ -125,9 +126,7 @@ export default function EditProduct({ product }) {
           },
         }
       );
-
       toast.success("محصول با موفقیت ویرایش شد !");
-
       setLoading2(false);
     } catch (error) {
       if (error.response && error.response.data) {
@@ -148,10 +147,9 @@ export default function EditProduct({ product }) {
         } else if (error.response.data.brand) {
           toast.error("برند محصول : " + error.response.data.brand);
         } else {
-          console.log(error);
+          toast.error("خطایی رخ داد !");
         }
       }
-
       setLoading2(false);
     }
   };

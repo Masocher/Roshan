@@ -16,6 +16,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
+axios.defaults.withCredentials = true;
+
 export default function Header({ status, setStatus, user }) {
   const router = useRouter();
 
@@ -33,14 +35,13 @@ export default function Header({ status, setStatus, user }) {
   const [loading, setLoading] = useState(false);
 
   const logOut = () => {
-    axios.defaults.withCredentials = true;
     axios
       .post("/api/auth/logout/")
       .then((response) => {
         window.location.href = "/";
         toast.success(response.data.detail);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("خطایی رخ داد !"));
   };
 
   const [text, setText] = useState("");

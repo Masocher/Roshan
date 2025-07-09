@@ -8,6 +8,8 @@ import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 
+axios.defaults.withCredentials = true;
+
 export default function CreateOffer() {
   const [loading, setLoading] = useState(false);
   const [loading_2, setLoading_2] = useState(false);
@@ -27,15 +29,14 @@ export default function CreateOffer() {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_2(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${text}`)
       .then((response) => {
         setSearchedProducts(response.data);
         setLoading_2(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading_2(false);
       });
   };
@@ -63,7 +64,6 @@ export default function CreateOffer() {
 
   const sendData = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .post("/api/admin/offers/", {
         discount_type: percentFilter ? "percent" : "amount",
@@ -71,15 +71,15 @@ export default function CreateOffer() {
         products: selectedProductsIdList,
         at_least: atLeast,
       })
-      .then((res) => {
+      .then(() => {
         setPercentFilter(false);
         setTomanFilter(true);
         setValue("");
         setAtLeast("");
         setSelectedproducts([]);
         setSelectedproductsIdList([]);
-        setLoading(false);
         toast.success("کد تخفیف با موفقیت ایجاد شد");
+        setLoading(false);
       })
       .catch((error) => {
         if (error.response && error.response.data) {
@@ -92,10 +92,9 @@ export default function CreateOffer() {
           } else if (error.response.data.at_least) {
             toast.error("حداقل تعداد : " + error.response.data.at_least);
           } else {
-            console.log(error);
+            toast.error("خطایی رخ داد !");
           }
         }
-
         setLoading(false);
       });
   };

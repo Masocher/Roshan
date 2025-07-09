@@ -1,144 +1,144 @@
 .loading {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000080;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
 }
 .loading.show {
-    display: flex;
+  display: flex;
 }
 
 .loading_wrapper {
-    padding: 30px;
-    border-radius: 8px;
-    background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 .container {
-    padding: 20px;
-    padding-bottom: 150px;
+  padding: 20px;
+  padding-bottom: 150px;
 }
 
 .offers {
-    width: 100%;
-    background-color: #fff;
-    text-align: center;
-    font-size: 14px;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  font-size: 14px;
 }
 
 .offers_top {
-    width: calc(100% - 40px);
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-    background-color: #000;
-    padding: 20px;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  background-color: #000;
+  padding: 20px;
 }
 
 .offers_title {
-    font-family: KalamehM;
-    width: calc(90% / 3);
+  font-family: KalamehM;
+  width: calc(90% / 3);
 }
 .offers_title:nth-child(1) {
-    width: 10%;
+  width: 10%;
 }
 
 .offer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #f3f4f6;
-    padding: 20px;
-    width: calc(100% - 40px);
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: none;
-    color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f4f6;
+  padding: 20px;
+  width: calc(100% - 40px);
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 .offer:hover {
-    background-color: #12a38611;
+  background-color: #12a38611;
 }
 .offer_id {
-    width: 10%;
+  width: 10%;
 }
 .offer_date {
-    width: calc(90% / 3);
+  width: calc(90% / 3);
 }
 .offer_code {
-    width: calc(90% / 3);
+  width: calc(90% / 3);
 }
 .offer_value {
-    width: calc(90% / 3);
+  width: calc(90% / 3);
 }
 .hidden_title {
-    width: 5%;
+  width: 5%;
 }
 
 .top_box {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: fit-content;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #f3f4f6;
-    border-left: 1px solid #f3f4f6;
-    border-right: 1px solid #f3f4f6;
-    position: sticky;
-    top: 0;
-    margin-bottom: 30px;
-    margin: 0 0 20px 0;
-    box-shadow: 0 0 30px #00000017;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: fit-content;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #f3f4f6;
+  border-left: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+  position: sticky;
+  top: 0;
+  margin-bottom: 30px;
+  margin: 0 0 20px 0;
+  box-shadow: 0 0 30px #00000017;
 }
 
 .code_buttons {
-    width: 5%;
+  width: 5%;
 }
 
 .code_buttons div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .code_delete {
-    color: #f93827;
+  color: #f93827;
 }
 
 .add_btn {
-    background-color: #12a386;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border: 1px solid #12a386;
-    transition: 0.2s;
-    text-decoration: none;
+  background-color: #12a386;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #12a386;
+  transition: 0.2s;
+  text-decoration: none;
 }
 .add_btn:hover {
-    background-color: #fff;
-    color: #12a386;
+  background-color: #fff;
+  color: #12a386;
 }
 .add_btn span {
-    margin: 5px 0 0 5px;
+  margin: 5px 0 0 5px;
 }
 
 .no_code {
-    font-size: 16px;
-    padding: 50px 0;
+  font-size: 16px;
+  padding: 50px 0;
 }
 
 @media (max-width: 1300px) {
-    .top_box {
-        top: 0;
-    }
+  .top_box {
+    top: 0;
+  }
 }

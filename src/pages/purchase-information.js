@@ -22,6 +22,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 import Gateway from "./gateway";
 import Loading from "@/components/global/Loading";
+import cities from "../cities.json";
 
 export async function getServerSideProps(context) {
   const { req } = context;
@@ -71,7 +72,6 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (error) {
-    console.error("خطا در دریافت اطلاعات سبد خرید:", error);
     return { notFound: true };
   }
 }
@@ -99,8 +99,40 @@ export default function PurchaseInformation({ serverData }) {
     shipping_fee: serverData.shipping_fee || "",
     pay_price: serverData.pay_price || "",
   });
-  const [provinces, setProvinces] = useState(serverData.provinces);
-  const [cities, setCities] = useState(serverData.cities);
+
+  const [provinces, setProvinces] = useState([
+    { province_id: 1, name: "آذربایجان شرقی" },
+    { province_id: 2, name: "آذربایجان غربی" },
+    { province_id: 3, name: "اردبیل" },
+    { province_id: 4, name: "اصفهان" },
+    { province_id: 5, name: "البرز" },
+    { province_id: 6, name: "ایلام" },
+    { province_id: 7, name: "بوشهر" },
+    { province_id: 8, name: "تهران" },
+    { province_id: 9, name: "چهارمحال و بختیاری" },
+    { province_id: 10, name: "خراسان جنوبی" },
+    { province_id: 11, name: "خراسان رضوی" },
+    { province_id: 12, name: "خراسان شمالی" },
+    { province_id: 13, name: "خوزستان" },
+    { province_id: 14, name: "زنجان" },
+    { province_id: 15, name: "سمنان" },
+    { province_id: 16, name: "سیستان و بلوچستان" },
+    { province_id: 17, name: "فارس" },
+    { province_id: 18, name: "قزوین" },
+    { province_id: 19, name: "قم" },
+    { province_id: 20, name: "کردستان" },
+    { province_id: 21, name: "کرمان" },
+    { province_id: 22, name: "کرمانشاه" },
+    { province_id: 23, name: "کهگیلویه و بویراحمد" },
+    { province_id: 24, name: "گلستان" },
+    { province_id: 25, name: "لرستان" },
+    { province_id: 26, name: "گیلان" },
+    { province_id: 27, name: "مازندران" },
+    { province_id: 28, name: "مرکزی" },
+    { province_id: 29, name: "هرمزگان" },
+    { province_id: 30, name: "همدان" },
+    { province_id: 31, name: "یزد" },
+  ]);
 
   const [provinceId, setProvinceId] = useState();
   const [cityId, setCityId] = useState();
@@ -132,7 +164,6 @@ export default function PurchaseInformation({ serverData }) {
         postal_code: postalCode,
       })
       .then((response) => {
-        toast.success("آدرس شما با موفقیت ایجاد شد");
         setCreateAddressStatus(false);
         setProvinceId("");
         setCityId("");
@@ -145,6 +176,7 @@ export default function PurchaseInformation({ serverData }) {
         setCityStatus(false);
         setAddressBoxStatus(true);
         setSelectedAddressId(response.data.id);
+        toast.success("آدرس شما با موفقیت ایجاد شد");
       })
       .catch((err) => {
         if (err.response && err.response.data) {
@@ -160,7 +192,7 @@ export default function PurchaseInformation({ serverData }) {
             toast.error("آدرس : " + err.response.data.address);
           }
         } else {
-          toast.error("خطا در برقراری ارتباط");
+          toast.error("خطایی رخ داد !");
         }
       });
   };
@@ -185,10 +217,10 @@ export default function PurchaseInformation({ serverData }) {
             toast.error("برای ورود به صفحه ثبت سفارش ابتدا وارد حساب خود شوید");
             router.push("/sign-in");
           } else {
-            console.log(err);
+            toast.error("خطایی رخ داد !");
           }
         } else {
-          toast.error("خطا در برقراری ارتباط");
+          toast.error("خطایی رخ داد !");
         }
       });
   }, [changeAddress]);
@@ -236,7 +268,7 @@ export default function PurchaseInformation({ serverData }) {
             toast.error(err.response.data.detail);
           }
         } else {
-          toast.error("خطا در برقراری ارتباط");
+          toast.error("خطایی رخ داد !");
         }
       });
   };
@@ -438,7 +470,7 @@ export default function PurchaseInformation({ serverData }) {
                 }`}
               >
                 {cities
-                  .filter((city) => city.province == provinceId)
+                  .filter((city) => city.province_id == provinceId)
                   .map((c) => (
                     <div
                       className={styles.province}

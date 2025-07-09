@@ -8,6 +8,8 @@ import { toast, Toaster } from "react-hot-toast";
 import Link from "next/link";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const res = await fetch("https://abazarak.ir/api/categories/", {
     headers: {
@@ -71,15 +73,14 @@ export default function CreateDiscount({ categoriesList }) {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_2(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${text}`)
       .then((response) => {
         setSearchedProducts(response.data);
         setLoading_2(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading_2(false);
       });
   };
@@ -107,7 +108,6 @@ export default function CreateDiscount({ categoriesList }) {
 
   const sendData = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .post("/api/admin/discounts/", {
         is_active: status,
@@ -120,7 +120,6 @@ export default function CreateDiscount({ categoriesList }) {
         setValue("");
         setSelectedproducts([]);
         setSelectedproductsIdList([]);
-
         toast.success("تخفیف با موفقیت ایجاد شد");
         setLoading(false);
       })
@@ -131,10 +130,9 @@ export default function CreateDiscount({ categoriesList }) {
           } else if (error.response.data.non_field_errors) {
             error.response.data.non_field_errors.map((err) => toast.error(err));
           } else {
-            console.log(error);
+            toast.error("خطایی رخ داد !");
           }
         }
-
         setLoading(false);
       });
   };

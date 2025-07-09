@@ -9,6 +9,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -58,15 +60,14 @@ export default function CreateOffer({ offerData }) {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_2(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${text}`)
       .then((response) => {
         setSearchedProducts(response.data);
         setLoading_2(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading_2(false);
       });
   };
@@ -98,7 +99,6 @@ export default function CreateOffer({ offerData }) {
 
   const editOffer = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .put(`/api/admin/offers/${offerData.id}/`, {
         discount_type: percentFilter ? "percent" : "amount",
@@ -107,8 +107,8 @@ export default function CreateOffer({ offerData }) {
         at_least: atLeast,
       })
       .then((res) => {
-        setLoading(false);
         toast.success("کد تخفیف با موفقیت ویرایش شد");
+        setLoading(false);
       })
       .catch((error) => {
         if (error.response && error.response.data) {
@@ -121,17 +121,15 @@ export default function CreateOffer({ offerData }) {
           } else if (error.response.data.at_least) {
             toast.error("حداقل تعداد : " + error.response.data.at_least);
           } else {
-            console.log(error);
+            toast.error("خطایی رخ داد !");
           }
         }
-
         setLoading(false);
       });
   };
 
   const deleteOffer = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .delete(`/api/admin/offers/${offerData.id}/`)
       .then(() => {
@@ -139,8 +137,8 @@ export default function CreateOffer({ offerData }) {
         setLoading(false);
         router.push("/admin-panel/offers");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };

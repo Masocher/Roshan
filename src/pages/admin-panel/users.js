@@ -1,3 +1,4 @@
+import Head from "next/head";
 import axios from "axios";
 import styles from "../../styles/admin/Users.module.css";
 import Link from "next/link";
@@ -11,6 +12,8 @@ import {
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
 import AdminMenu from "@/components/admin/AdminMenu";
+
+axios.defaults.withCredentials = true;
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -27,8 +30,6 @@ export default function Users() {
 
   const getUsers = (page = 1) => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
-
     axios
       .get(
         `/api/admin/accounts/?number=${searchText}&is_active=${userFilter}&is_verified=${numberFilter}&is_staff=${adminFilter}&page=${page}`
@@ -39,8 +40,8 @@ export default function Users() {
         setCurrentPage(page);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };
@@ -88,169 +89,180 @@ export default function Users() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
-        <div className={styles.loading_wrapper}>
-          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+    <>
+      <Head>
+        <title>ابازارک | پنل مدیریت | کاربران</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta
+          name="description"
+          content={"پنل مدیریت سایت ابازارک | کاربران"}
+        />
+      </Head>
+
+      <div className={styles.container}>
+        <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+          <div className={styles.loading_wrapper}>
+            <Image src={spiner} width={80} height={80} alt="لودینگ" />
+          </div>
         </div>
-      </div>
 
-      <div className={styles.search_box}>
-        <form
-          className={styles.users_search}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setAdminFilter("");
-            setNumberFilter("");
-            setUserFilter("");
-            getUsers();
-          }}
-        >
-          <input
-            type="text"
-            placeholder="جستجوی کاربر ..."
-            onChange={(e) => setSearchText(e.target.value)}
-            value={searchText}
-          />
-
-          <button type="submit">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </form>
-
-        <div className={styles.search_buttons}>
-          <div
-            className={`${styles.inventory_button} ${
-              adminFilter === true ? styles.show : ""
-            }`}
-            onClick={() => {
+        <div className={styles.search_box}>
+          <form
+            className={styles.users_search}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setAdminFilter("");
               setNumberFilter("");
               setUserFilter("");
-              setAdminFilter(adminFilter === "" ? true : "");
+              getUsers();
             }}
           >
-            <div>
-              <span></span>
-            </div>
-            کاربران ادمین
-          </div>
+            <input
+              type="text"
+              placeholder="جستجوی کاربر ..."
+              onChange={(e) => setSearchText(e.target.value)}
+              value={searchText}
+            />
 
-          <div
-            className={`${styles.inventory_button} ${
-              userFilter === false ? styles.show : ""
-            }`}
-            onClick={() => {
-              setNumberFilter("");
-              setAdminFilter("");
-              setUserFilter(userFilter === "" ? false : "");
-            }}
-          >
-            <div>
-              <span></span>
-            </div>
-            کابران غیر فعال
-          </div>
+            <button type="submit">
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </form>
 
-          <div
-            className={`${styles.inventory_button} ${
-              numberFilter === false ? styles.show : ""
-            }`}
-            onClick={() => {
-              setUserFilter("");
-              setAdminFilter("");
-              setNumberFilter(numberFilter === "" ? false : "");
-            }}
-          >
-            <div>
-              <span></span>
-            </div>
-            تلفن های تایید نشده
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.users}>
-        <div className={styles.users_top}>
-          <div className={styles.users_title}>شماره</div>
-          <div className={styles.users_title}>نام</div>
-          <div className={styles.users_title}>تلفن</div>
-          <div className={styles.users_title}>وضعیت کاربر</div>
-          <div className={styles.users_title}>وضعیت تلفن</div>
-          <div className={styles.hidden_title}></div>
-        </div>
-
-        {users.length > 0 ? (
-          users.map((user, index) => (
-            <Link
-              key={user.id}
-              className={styles.user}
-              href={`/admin/users/${user.id}`}
+          <div className={styles.search_buttons}>
+            <div
+              className={`${styles.inventory_button} ${
+                adminFilter === true ? styles.show : ""
+              }`}
+              onClick={() => {
+                setNumberFilter("");
+                setUserFilter("");
+                setAdminFilter(adminFilter === "" ? true : "");
+              }}
             >
-              <div className={styles.user_id}>
-                {index + 1 + (currentPage - 1) * 10}
+              <div>
+                <span></span>
               </div>
+              کاربران ادمین
+            </div>
 
-              <div className={styles.user_name}>{user.get_full_name}</div>
-
-              <div className={styles.user_phone}>{user.number}</div>
-
-              <div className={styles.user_status}>
-                {user.is_active ? "فعال" : "غیر فعال"}
+            <div
+              className={`${styles.inventory_button} ${
+                userFilter === false ? styles.show : ""
+              }`}
+              onClick={() => {
+                setNumberFilter("");
+                setAdminFilter("");
+                setUserFilter(userFilter === "" ? false : "");
+              }}
+            >
+              <div>
+                <span></span>
               </div>
+              کابران غیر فعال
+            </div>
 
-              <div className={styles.user_phone_status}>
-                {user.is_verified ? "تایید شده" : "تایید نشده"}
+            <div
+              className={`${styles.inventory_button} ${
+                numberFilter === false ? styles.show : ""
+              }`}
+              onClick={() => {
+                setUserFilter("");
+                setAdminFilter("");
+                setNumberFilter(numberFilter === "" ? false : "");
+              }}
+            >
+              <div>
+                <span></span>
               </div>
-            </Link>
-          ))
-        ) : (
-          <div className={styles.no_user}>کاربری یافت نشد !</div>
-        )}
-      </div>
-
-      <div className={styles.pagination}>
-        <div
-          className={`${styles.perv_btn} ${
-            currentPage === 1 ? styles.disabled : ""
-          }`}
-          onClick={handlePrevClick}
-          style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
-        >
-          <span>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </span>
-          قبلی
-        </div>
-
-        {getPaginationButtons().map((page) => (
-          <div
-            key={page}
-            className={`${styles.page_btn} ${
-              page === currentPage ? styles.show : ""
-            }`}
-            onClick={() => handlePageClick(page)}
-          >
-            {page}
+              تلفن های تایید نشده
+            </div>
           </div>
-        ))}
-
-        <div
-          className={`${styles.next_btn} ${
-            currentPage === totalPages ? styles.disabled : ""
-          }`}
-          onClick={handleNextClick}
-          style={{
-            cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-          }}
-        >
-          بعدی
-          <span>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </span>
         </div>
-      </div>
 
-      <AdminMenu />
-    </div>
+        <div className={styles.users}>
+          <div className={styles.users_top}>
+            <div className={styles.users_title}>شماره</div>
+            <div className={styles.users_title}>نام</div>
+            <div className={styles.users_title}>تلفن</div>
+            <div className={styles.users_title}>وضعیت کاربر</div>
+            <div className={styles.users_title}>وضعیت تلفن</div>
+            <div className={styles.hidden_title}></div>
+          </div>
+
+          {users.length > 0 ? (
+            users.map((user, index) => (
+              <Link
+                key={user.id}
+                className={styles.user}
+                href={`/admin/users/${user.id}`}
+              >
+                <div className={styles.user_id}>
+                  {index + 1 + (currentPage - 1) * 10}
+                </div>
+
+                <div className={styles.user_name}>{user.get_full_name}</div>
+
+                <div className={styles.user_phone}>{user.number}</div>
+
+                <div className={styles.user_status}>
+                  {user.is_active ? "فعال" : "غیر فعال"}
+                </div>
+
+                <div className={styles.user_phone_status}>
+                  {user.is_verified ? "تایید شده" : "تایید نشده"}
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className={styles.no_user}>کاربری یافت نشد !</div>
+          )}
+        </div>
+
+        <div className={styles.pagination}>
+          <div
+            className={`${styles.perv_btn} ${
+              currentPage === 1 ? styles.disabled : ""
+            }`}
+            onClick={handlePrevClick}
+            style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
+          >
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+            قبلی
+          </div>
+
+          {getPaginationButtons().map((page) => (
+            <div
+              key={page}
+              className={`${styles.page_btn} ${
+                page === currentPage ? styles.show : ""
+              }`}
+              onClick={() => handlePageClick(page)}
+            >
+              {page}
+            </div>
+          ))}
+
+          <div
+            className={`${styles.next_btn} ${
+              currentPage === totalPages ? styles.disabled : ""
+            }`}
+            onClick={handleNextClick}
+            style={{
+              cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+            }}
+          >
+            بعدی
+            <span>
+              <FontAwesomeIcon icon={faAngleRight} />
+            </span>
+          </div>
+        </div>
+
+        <AdminMenu />
+      </div>
+    </>
   );
 }

@@ -1,83 +1,95 @@
 .container {
-    width: 84%;
-    position: relative;
+  width: 84%;
+  position: relative;
 }
 
 .products {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    direction: rtl;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  direction: rtl;
 }
 
 .product_box {
-    background-color: #fff;
-    width: calc((100% - 5px) / 5);
-    direction: rtl;
-    border-bottom: 1px solid #e8eef2;
-    border-right: 1px solid #e8eef2;
+  background-color: #fff;
+  width: calc(100% / 5);
+  direction: rtl;
+  border-bottom: 1px solid #e8eef2;
+  border-right: 1px solid #e8eef2;
+  border-left: 1px solid #fff;
+  border-top: 1px solid #fff;
+  box-sizing: border-box;
+}
+.product_box:hover {
+  filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2));
+  z-index: 9;
 }
 
 .not_found {
-    width: 100%;
-    color: #777;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 70px;
-    font-size: 14px;
+  width: 100%;
+  color: #777;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  font-size: 14px;
 }
 
 .not_found span {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .no_product {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 14px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #444;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #444;
 }
 .no_product span {
-    font-size: 26px;
+  font-size: 26px;
 }
 
 @media (max-width: 1500px) {
-    .product_box {
-        width: calc((100% - 4px) / 4);
-    }
+  .product_box {
+    width: calc((100% - 4px) / 4);
+  }
 
-    .container {
-        width: 75%;
-    }
+  .container {
+    width: 75%;
+  }
 }
 
 @media (max-width: 1200px) {
-    .product_box {
-        width: calc((100% - 2px) / 2);
-    }
+  .product_box {
+    width: calc((100% - 2px) / 2);
+  }
 
-    .container {
-        width: 70%;
-    }
+  .container {
+    width: 70%;
+  }
 }
 
 @media (max-width: 950px) {
-    .container {
-        width: 100%;
-    }
+  .container {
+    width: 100%;
+  }
 
-    .no_product {
-        position: relative;
-        font-size: 14px;
-        padding: 50px 0;
-    }
+  .no_product {
+    position: relative;
+    font-size: 14px;
+    padding: 50px 0;
+  }
+
+  .product_box:hover {
+    filter: none;
+    z-index: 1;
+  }
 }

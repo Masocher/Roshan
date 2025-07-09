@@ -1,296 +1,296 @@
 .footer_container {
-    height: fit-content;
-    width: calc(100% - 100px);
-    color: #000;
-    position: relative;
-    padding: 150px 50px 100px 50px;
-    z-index: 2;
-    background-color: #f3f4f6;
+  height: fit-content;
+  width: calc(100% - 100px);
+  color: #000;
+  position: relative;
+  padding: 150px 50px 100px 50px;
+  z-index: 2;
+  background-color: #f3f4f6;
 }
 
 .logo {
-    font-size: 40px;
-    font-family: KalamehB;
-    color: #12a386;
+  font-size: 40px;
+  font-family: KalamehB;
+  color: #12a386;
 }
 
 .top_section {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .contact_information {
-    font-size: 16px;
-    margin-top: 10px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
 .icons {
-    display: flex;
+  display: flex;
 }
 
 .icon_box {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    background-color: #12a386;
-    margin-right: 10px;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 5px;
-    transition: 0.2s;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #12a386;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.2s;
+  cursor: pointer;
 }
 .icon_box:hover {
-    background: none;
-    color: #12a386;
+  background: none;
+  color: #12a386;
 }
 
 .scroll_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #12a386;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 0 20px;
-    border-radius: 5px;
-    width: fit-content;
-    height: 40px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #12a386;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 20px;
+  border-radius: 5px;
+  width: fit-content;
+  height: 40px;
+  margin-bottom: 20px;
 }
 .scroll_btn span {
-    margin: 4px 10px 0 0;
+  margin: 4px 10px 0 0;
 }
 
 .left_section {
-    display: flex;
+  display: flex;
 }
 
 .bottom_section {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #12a386;
-    color: #fff;
-    margin: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #12a386;
+  color: #fff;
+  margin: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .center_sections {
-    display: flex;
-    justify-content: space-between;
-    margin: 50px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0 0 0;
 }
 
 .center_section {
-    width: 45%;
-    display: flex;
+  width: 45%;
+  display: flex;
 }
 
 .cs1 {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .cs2 {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
 }
 
 .cs2 form {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cs2 form input {
-    width: calc(75% - 40px);
-    font-family: Kalameh;
-    background-color: #0d7c6611;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    outline: 0;
+  width: calc(75% - 40px);
+  font-family: Kalameh;
+  background-color: #0d7c6611;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  outline: 0;
 }
 
 .cs2 form button {
-    border: none;
-    outline: 0;
-    background-color: #12a386;
-    color: #fff;
-    font-family: Kalameh;
-    cursor: pointer;
-    padding: 0 20px;
-    border-radius: 5px;
+  border: none;
+  outline: 0;
+  background-color: #12a386;
+  color: #fff;
+  font-family: Kalameh;
+  cursor: pointer;
+  padding: 0 20px;
+  border-radius: 5px;
 }
 
 .c_sec .title {
-    font-size: 18px;
-    margin-bottom: 20px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
 .section_options {
-    color: #999;
-    user-select: none;
+  color: #999;
+  user-select: none;
 }
 
 .section_options div {
-    cursor: pointer;
-    margin-bottom: 10px;
-    font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 .section_options div:hover {
-    color: #12a386;
+  color: #12a386;
 }
 
 .hidden_center_sections {
-    display: none;
-    flex-direction: column;
+  display: none;
+  flex-direction: column;
 }
 
 .hcb {
-    padding: 20px;
-    width: calc(100% - 40px);
-    background-color: #fff;
-    max-height: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: .4s ease;
+  padding: 20px;
+  width: calc(100% - 40px);
+  background-color: #fff;
+  max-height: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s ease;
 }
 .hcb:nth-child(2) {
-    border-top: 1px solid #f3f4f6;
-    border-bottom: 1px solid #f3f4f6;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
 }
 .hcb.show {
-    max-height: 300px;
+  max-height: 300px;
 }
 
 .hcb .title {
-    font-size: 16px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .hidden_section_options {
-    font-size: 14px;
-    color: #999;
-    transition: 0.2s;
-    margin-top: 20px;
+  font-size: 14px;
+  color: #999;
+  transition: 0.2s;
+  margin-top: 20px;
 }
 
 .hidden_section_options div {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .hidden_section_options div:hover {
-    color: #12a386;
+  color: #12a386;
 }
 
 @media (max-width: 1200px) {
-    .footer_container {
-        margin-bottom: 63px;
-    }
-    
-    .center_section {
-        width: 65%;
-    }
+  .footer_container {
+    margin-bottom: 63px;
+  }
 
-    .cs2 {
-        width: 30%;
-    }
+  .center_section {
+    width: 65%;
+  }
 
-    .c_sec .title {
-        font-size: 16px;
-    }
+  .cs2 {
+    width: 30%;
+  }
+
+  .c_sec .title {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 950px) {
-    .top_section {
-        flex-direction: column;
-        align-items: center;
-    }
+  .top_section {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .top_section .section {
-        text-align: center;
-    }
+  .top_section .section {
+    text-align: center;
+  }
 
-    .left_section {
-        margin: 30px 0;
-    }
+  .left_section {
+    margin: 30px 0;
+  }
 
-    .center_sections {
-        flex-direction: column;
-    }
+  .center_sections {
+    flex-direction: column;
+  }
 
-    .center_section {
-        width: 100%;
-    }
+  .center_section {
+    width: 100%;
+  }
 
-    .cs2 {
-        width: 50%;
-        margin-top: 50px;
-    }
+  .cs2 {
+    width: 50%;
+    margin-top: 50px;
+  }
 
-    .footer_container {
-        margin-bottom: 0;
-    }
+  .footer_container {
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 580px) {
-    .footer_container {
-        width: 100%;
-        padding: 100px 0 63px 0;
-    }
+  .footer_container {
+    width: 100%;
+    padding: 100px 0 63px 0;
+  }
 
-    .center_section {
-        display: none;
-    }
+  .center_section {
+    display: none;
+  }
 
-    .hidden_center_sections {
-        display: flex;
-    }
+  .hidden_center_sections {
+    display: flex;
+  }
 
-    .logo {
-        font-size: 22px;
-    }
+  .logo {
+    font-size: 22px;
+  }
 
-    .left_section {
-        flex-direction: column-reverse;
-    }
+  .left_section {
+    flex-direction: column-reverse;
+  }
 
-    .scroll_btn {
-        width: 160px;
-        margin: 20px 0 0 0;
-    }
+  .scroll_btn {
+    width: 160px;
+    margin: 20px 0 0 0;
+  }
 
-    .cs2 {
-        width: 100%;
-    }
+  .cs2 {
+    width: 100%;
+  }
 
-    .icons {
-        display: flex;
-        justify-content: space-between;
-        width: 200px;
-    }
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+  }
 
-    .icon_box {
-        margin: 0;
-    }
+  .icon_box {
+    margin: 0;
+  }
 
-    .hcb .title {
-        font-size: 14px;
-    }
+  .hcb .title {
+    font-size: 14px;
+  }
 
-    .bottom_section {
-        font-size: 14px;
-    }
+  .bottom_section {
+    font-size: 14px;
+  }
 }

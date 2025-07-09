@@ -12,6 +12,8 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -44,21 +46,20 @@ export default function ShowTicket({ ticketData }) {
 
   const seen = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .post(`/api/admin/tickets/${ticketData.id}/toggle_seen/`)
-      .then((response) => {
+      .then(() => {
         toast.success("وضعیت تیکت تغییر کرد");
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };
 
   const toAnswer = () => {
-    console.log("پاسخ داده شد");
+    toast.success("پاسخ داده شد");
   };
 
   return (

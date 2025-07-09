@@ -1,15 +1,14 @@
 import styles from "../../styles/admin-options/Settings.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faClose,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faClose } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useState } from "react";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
 import { toast, Toaster } from "react-hot-toast";
 import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 export async function getServerSideProps(context) {
   const res = await fetch("https://abazarak.ir/api/admin/settings/", {
@@ -55,15 +54,14 @@ export default function Settings({ settings }) {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_2(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${theText}`)
       .then((response) => {
         setSearchedProducts(response.data);
         setLoading_2(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading_2(false);
       });
   };
@@ -73,7 +71,6 @@ export default function Settings({ settings }) {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_3(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${theText}`)
       .then((response) => {
@@ -81,7 +78,7 @@ export default function Settings({ settings }) {
         setLoading_3(false);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("خطایی رخ داد !");
         setLoading_3(false);
       });
   };
@@ -140,19 +137,18 @@ export default function Settings({ settings }) {
 
   const editSettings = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .put("/api/admin/settings/", {
         amazing_discounts: selectedProductsIdList_2,
         economic_products: selectedProductsIdList,
         shipping_price: shippingFee,
       })
-      .then((response) => {
+      .then(() => {
         toast.success("تنظیمات با موفقیت تغییر کرد");
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };

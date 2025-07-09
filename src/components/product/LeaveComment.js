@@ -6,6 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+axios.defaults.withCredentials = true;
+
 export default function LeaveComment({
   status,
   setStatus,
@@ -18,13 +20,12 @@ export default function LeaveComment({
   const [content, setContent] = useState("");
 
   const addComment = () => {
-    axios.defaults.withCredentials = true;
     axios
       .post(`/api/products/${product_slug}/add_comment/`, {
         content: content,
         score: starNum,
       })
-      .then((response) => {
+      .then(() => {
         setStarNum(1);
         setContent("");
         toast.success("دیدگاه شما بعد از تایید مدیر ثبت خواهد شد !");

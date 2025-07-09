@@ -1,322 +1,322 @@
 .container {
-    background-color: #fff;
-    width: calc(16% - 60px);
-    height: fit-content;
-    padding: 30px;
-    font-size: 16px;
-    position: sticky;
-    top: 86px;
-    border-bottom: 1px solid #e8eef2;
-    z-index: 9;
+  background-color: #fff;
+  width: calc(16% - 60px);
+  height: fit-content;
+  padding: 30px;
+  font-size: 16px;
+  position: sticky;
+  top: 86px;
+  border-bottom: 1px solid #e8eef2;
+  z-index: 9;
 }
 
 .title_box {
-    font-family: KalamehM;
-    font-size: 20px;
-    margin-bottom: 30px;
+  font-family: KalamehM;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
 .filter_box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px 0;
-    user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+  user-select: none;
 }
 .filter_box:nth-child(2) {
-    border-bottom: 1px solid #e8eef2;
-    border-top: 1px solid #e8eef2;
+  border-bottom: 1px solid #e8eef2;
+  border-top: 1px solid #e8eef2;
 }
 
 .filter_box_inf {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 .filter_box_inf div {
-    width: 100%;
+  width: 100%;
 }
 
 .filter_box span {
-    color: #777;
+  color: #777;
 }
 
 .options {
-    flex-direction: column;
-    margin-top: 20px;
-    display: none;
-    width: 100%;
+  flex-direction: column;
+  margin-top: 20px;
+  display: none;
+  width: 100%;
 }
 .filter_box.show .options {
-    display: flex;
+  display: flex;
 }
 
 .options .option {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px 20px 10px 0;
-    margin: 5px 0;
-    width: fit-content;
-    font-size: 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 20px 10px 0;
+  margin: 5px 0;
+  width: fit-content;
+  font-size: 14px;
 }
 .options .option:nth-child(1) {
-    border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 .options .option:nth-child(3) {
-    border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 .option span {
-    color: #000 !important;
-    margin: 0 0 0 10px;
-    font-size: 12px;
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e8eef2;
+  color: #000 !important;
+  margin: 0 0 0 10px;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8eef2;
 }
 
 .option span div {
-    display: none;
-    width: 100%;
-    height: 100%;
-    background-color: #12a386;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #12a386;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
 .option span div.show {
-    display: flex;
+  display: flex;
 }
 
 .price_range {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .input_box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .input_box .title {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .price_input {
-    font-family: Kalameh;
-    background-color: #e8eef2;
-    outline: none;
-    border: none;
-    padding: 10px 10px 10px 50px;
-    border-radius: 10px;
-    border: 1px solid #e8eef2;
-    width: calc(100% - 60px);
+  font-family: Kalameh;
+  background-color: #e8eef2;
+  outline: none;
+  border: none;
+  padding: 10px 10px 10px 50px;
+  border-radius: 10px;
+  border: 1px solid #e8eef2;
+  width: calc(100% - 60px);
 }
 .price_input:focus {
-    border-color: #12a386;
+  border-color: #12a386;
 }
 
 .price_btn {
-    outline: 0;
-    border: 1px solid #12a386;
-    color: #fff;
-    background-color: #12a386;
-    padding: 5px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: Kalameh;
+  outline: 0;
+  border: 1px solid #12a386;
+  color: #fff;
+  background-color: #12a386;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Kalameh;
 }
 .price_btn:hover {
-    background: none;
-    color: #12a386;
+  background: none;
+  color: #12a386;
 }
 
 .toman {
-    position: absolute;
-    left: 15px;
-    font-size: 10px;
-    color: #777;
+  position: absolute;
+  left: 15px;
+  font-size: 10px;
+  color: #777;
 }
 
 .black_box {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #0000004d;
-    display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000004d;
+  display: none;
 }
 
 .hidden_title {
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 30px;
-    font-size: 18px;
-    font-family: KalamehM;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-family: KalamehM;
 }
 .hidden_title span {
-    color: #000;
-    font-size: 14px;
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #12a386;
-    border-radius: 50%;
-    color: #fff;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #12a386;
+  border-radius: 50%;
+  color: #fff;
 }
 
 .reset_btn {
-    width: calc(100% - 20px);
-    background-color: #f93827;
-    color: #fff;
-    border: 1px solid #f93827;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    margin-top: 10px;
-    transition: .2s;
-    cursor: pointer;
-    display: none;
-    text-align: center;
+  width: calc(100% - 20px);
+  background-color: #f93827;
+  color: #fff;
+  border: 1px solid #f93827;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: 0.2s;
+  cursor: pointer;
+  display: none;
+  text-align: center;
 }
 .reset_btn.show {
-    display: block;
+  display: block;
 }
 .reset_btn span {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .reset_btn:hover {
-    background: none;
-    color: #f93827;
+  background: none;
+  color: #f93827;
 }
 
 @media (max-width: 1500px) {
-    .container {
-        width: calc(25% - 60px);
-    }
+  .container {
+    width: calc(25% - 60px);
+  }
 }
 
 @media (max-width: 1200px) {
-    .container {
-        width: calc(30% - 60px);
-    }
+  .container {
+    width: calc(30% - 60px);
+  }
 }
 
 @media (max-width: 950px) {
-    .container {
-        width: calc(100% - 40px);
-        padding: 0 20px 15px 20px;
-        top: 0;
-        position: relative;
-        border: none;
-    }
+  .container {
+    width: calc(100% - 40px);
+    padding: 0 20px 15px 20px;
+    top: 0;
+    position: relative;
+    border: none;
+  }
 
-    .title_box {
-        display: none;
-    }
+  .title_box {
+    display: none;
+  }
 
-    .filters {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
+  .filters {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
 
-    .reset_btn {
-        width: fit-content;
-        margin: 0;
-        padding: 5px 15px;
-        font-size: 12px;
-    }
+  .reset_btn {
+    width: fit-content;
+    margin: 0;
+    padding: 5px 15px;
+    font-size: 12px;
+  }
 
-    .filter_boxes {
-        display: flex;
-    }
+  .filter_boxes {
+    display: flex;
+  }
 
-    .filter_box {
-        background-color: #e8eef2;
-        padding: 5px 20px;
-        border-radius: 30px;
-        font-size: 12px;
-        width: fit-content;
-        height: fit-content;
-    }
+  .filter_box {
+    background-color: #e8eef2;
+    padding: 5px 20px;
+    border-radius: 30px;
+    font-size: 12px;
+    width: fit-content;
+    height: fit-content;
+  }
 
-    .filter_box_inf span {
-        display: none;
-    }
+  .filter_box_inf span {
+    display: none;
+  }
 
-    .filter_box:nth-child(2) {
-        border: none;
-        margin: 0 20px;
-    }
+  .filter_box:nth-child(2) {
+    border: none;
+    margin: 0 20px;
+  }
 
-    .options {
-        position: fixed;
-        right: 0;
-        bottom: -50%;
-        background-color: #fff;
-        width: calc(100% - 100px);
-        height: fit-content;
-        padding: 50px;
-        transition: 0.5s ease;
-        display: block;
-        border-radius: 10px 10px 0 0;
-        z-index: 3;
-    }
-    .filter_box.show .options {
-        transition: 0.5s;
-        bottom: 0;
-    }
+  .options {
+    position: fixed;
+    right: 0;
+    bottom: -50%;
+    background-color: #fff;
+    width: calc(100% - 100px);
+    height: fit-content;
+    padding: 50px;
+    transition: 0.5s ease;
+    display: block;
+    border-radius: 10px 10px 0 0;
+    z-index: 3;
+  }
+  .filter_box.show .options {
+    transition: 0.5s;
+    bottom: 0;
+  }
 
-    .price_range {
-        width: 100%;
-    }
+  .price_range {
+    width: 100%;
+  }
 
-    .input_box {
-        width: 100%;
-    }
+  .input_box {
+    width: 100%;
+  }
 
-    .black_box.show {
-        display: block;
-    }
+  .black_box.show {
+    display: block;
+  }
 
-    .hidden_title {
-        display: flex;
-    }
+  .hidden_title {
+    display: flex;
+  }
 }
 
 @media (max-width: 580px) {
-    .filters {
-        flex-direction: column;
-    }
+  .filters {
+    flex-direction: column;
+  }
 
-    .reset_btn.show {
-        display: none;
-    }
+  .reset_btn.show {
+    display: none;
+  }
 
-    .filter_box {
-        padding: 5px 15px;
-    }
+  .filter_box {
+    padding: 5px 15px;
+  }
 
-    .filter_box:nth-child(2) {
-        margin: 0 10px;
-    }
+  .filter_box:nth-child(2) {
+    margin: 0 10px;
+  }
 }

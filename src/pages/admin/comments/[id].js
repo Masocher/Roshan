@@ -15,6 +15,8 @@ import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -49,18 +51,17 @@ export default function EditComment({ singleComment }) {
       toast.error("حداقل یک کاراکتر وارد کنید !");
     } else {
       setLoading(true);
-      axios.defaults.withCredentials = true;
       axios
         .post(`/api/admin/comments/${comment.id}/answer_comment/`, {
           content: answer,
         })
-        .then((response) => {
+        .then(() => {
           toast.success("پاسخ با موفقیت ثبت شد");
           setAnswer("");
           setLoading(false);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          toast.error("خطایی رخ داد !");
           setLoading(false);
         });
     }
@@ -68,21 +69,18 @@ export default function EditComment({ singleComment }) {
 
   const deleteComment = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .delete(`/api/admin/comments/${comment.id}`)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         toast.success("کامنت با موفقیت حذف شد");
         setLoading(false);
         router.push("/admin-panel/comments");
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("خطایی رخ داد !"));
   };
 
   const acceptComment = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .patch(`/api/admin/comments/${comment.id}/`, {
         accepted: !status,
@@ -92,8 +90,8 @@ export default function EditComment({ singleComment }) {
         setLoading(false);
         toast.success("وضعیت کامنت با موفقیت تغییر کرد");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };

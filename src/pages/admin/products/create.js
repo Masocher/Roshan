@@ -12,6 +12,8 @@ import spiner from "../../../../public/images/loading.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+axios.defaults.withCredentials = true;
+
 export default function CreateProduct() {
   const [loading, setLoading] = useState(false);
 
@@ -118,7 +120,6 @@ export default function CreateProduct() {
     formData.append("specifications", JSON.stringify(specification));
 
     try {
-      axios.defaults.withCredentials = true;
       const response = await axios.post("/api/admin/products/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -149,8 +150,7 @@ export default function CreateProduct() {
           toast.error("دسته بندی محصول : " + data.category);
         else if (data.brand) toast.error("برند محصول : " + data.brand);
         else {
-          console.log(error);
-          toast.error("خطای نامشخص رخ داد");
+          toast.error("خطایی رخ داد !");
         }
       } else {
         toast.error("خطا در ارسال درخواست");

@@ -9,6 +9,8 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -96,15 +98,14 @@ export default function EditDiscount({ categoriesList, discountData }) {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_2(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${text}`)
       .then((response) => {
         setSearchedProducts(response.data);
         setLoading_2(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading_2(false);
       });
   };
@@ -136,7 +137,6 @@ export default function EditDiscount({ categoriesList, discountData }) {
 
   const editDiscount = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .put(`/api/admin/discounts/${discountData.id}`, {
         is_active: status,
@@ -155,17 +155,15 @@ export default function EditDiscount({ categoriesList, discountData }) {
           } else if (error.response.data.non_field_errors) {
             error.response.data.non_field_errors.map((err) => toast.error(err));
           } else {
-            console.log(error);
+            toast.error("خطایی رخ داد !");
           }
         }
-
         setLoading(false);
       });
   };
 
   const deleteDiscount = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .delete(`/api/admin/discounts/${discountData.id}`)
       .then(() => {
@@ -173,9 +171,9 @@ export default function EditDiscount({ categoriesList, discountData }) {
         setLoading(false);
         router.push("/admin-panel/discounts");
       })
-      .catch((err) => {
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
-        console.log(err);
       });
   };
 

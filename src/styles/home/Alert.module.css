@@ -1,40 +1,40 @@
 .alert_container {
-    width: 100%;
-    background-color: #e8eef2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
+  width: 100%;
+  background-color: #e8eef2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
 }
 
 .alert_link {
-    background-color: #12a386;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 5px;
-    margin-right: 20px;
-    border: 1px solid #12a386;
-    cursor: pointer;
-    transition: 0.2s;
+  background-color: #12a386;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+  border: 1px solid #12a386;
+  cursor: pointer;
+  transition: 0.2s;
 }
 .alert_link:hover {
-    background-color: #fff;
-    color: #12a386;
+  background-color: #fff;
+  color: #12a386;
 }
 
 .alert_link div {
-    margin: 3px 5px 0 0;
+  margin: 3px 5px 0 0;
 }
 
 @media (max-width: 580px) {
-    .alert_container {
-        font-size: 12px;
-    }
+  .alert_container {
+    font-size: 12px;
+  }
 
-    .alert_link {
-        font-size: 10px;
-    }
+  .alert_link {
+    font-size: 10px;
+  }
 }

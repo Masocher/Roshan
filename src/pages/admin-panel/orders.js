@@ -1,3 +1,4 @@
+import Head from "next/head";
 import styles from "../../styles/admin/Orders.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +13,8 @@ import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
 import AdminMenu from "@/components/admin/AdminMenu";
 
+axios.defaults.withCredentials = true;
+
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +28,6 @@ export default function Orders() {
 
   const getOrders = (page = 1) => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(
         `/api/admin/orders/?paid=${paidFilter}&shipped=${shippedFilter}&id=${searchContent}&page=${page}`
@@ -35,8 +37,8 @@ export default function Orders() {
         setTotalPages(response.data.total_pages);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };
@@ -83,130 +85,141 @@ export default function Orders() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
-        <div className={styles.loading_wrapper}>
-          <Image src={spiner} width={80} height={80} alt="لودینگ" />
-        </div>
-      </div>
+    <>
+      <Head>
+        <title>ابازارک | پنل مدیریت | سفارشات</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta
+          name="description"
+          content={"پنل مدیریت سایت ابازارک | سفارشات"}
+        />
+      </Head>
 
-      <div className={styles.search_box}>
-        <form
-          className={styles.products_search}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setPaidFilter("");
-            setShippedFilter("");
-            getOrders();
-          }}
-        >
-          <input
-            type="text"
-            placeholder="جستجوی کد سفارش ..."
-            onChange={(e) => {
-              setSearchContent(e.target.value);
-            }}
-          />
-
-          <button type="submit">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </form>
-
-        <div className={styles.search_buttons}>
-          <div
-            className={`${styles.inventory_button} ${
-              paidFilter === false ? styles.show : ""
-            }`}
-            onClick={() => {
-              setPaidFilter(paidFilter === "" ? false : "");
-              setShippedFilter("");
-            }}
-          >
-            <div>
-              <span></span>
-            </div>
-            پرداخت نشده ها
+      <div className={styles.container}>
+        <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+          <div className={styles.loading_wrapper}>
+            <Image src={spiner} width={80} height={80} alt="لودینگ" />
           </div>
+        </div>
 
-          <div
-            className={`${styles.inventory_button} ${
-              shippedFilter === false ? styles.show : ""
-            }`}
-            onClick={() => {
+        <div className={styles.search_box}>
+          <form
+            className={styles.products_search}
+            onSubmit={(e) => {
+              e.preventDefault();
               setPaidFilter("");
-              setShippedFilter(shippedFilter === "" ? false : "");
+              setShippedFilter("");
+              getOrders();
             }}
           >
-            <div>
-              <span></span>
+            <input
+              type="text"
+              placeholder="جستجوی کد سفارش ..."
+              onChange={(e) => {
+                setSearchContent(e.target.value);
+              }}
+            />
+
+            <button type="submit">
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </form>
+
+          <div className={styles.search_buttons}>
+            <div
+              className={`${styles.inventory_button} ${
+                paidFilter === false ? styles.show : ""
+              }`}
+              onClick={() => {
+                setPaidFilter(paidFilter === "" ? false : "");
+                setShippedFilter("");
+              }}
+            >
+              <div>
+                <span></span>
+              </div>
+              پرداخت نشده ها
             </div>
-            ارسال نشده ها
+
+            <div
+              className={`${styles.inventory_button} ${
+                shippedFilter === false ? styles.show : ""
+              }`}
+              onClick={() => {
+                setPaidFilter("");
+                setShippedFilter(shippedFilter === "" ? false : "");
+              }}
+            >
+              <div>
+                <span></span>
+              </div>
+              ارسال نشده ها
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className={styles.orders}>
-        <div className={styles.orders_top}>
-          <div className={styles.orders_title}>شماره</div>
-          <div className={styles.orders_title}>تلفن</div>
-          <div className={styles.orders_title}>قیمت</div>
-          <div className={styles.orders_title}>وضعیت پرداخت</div>
-          <div className={styles.orders_title}>تاریخ</div>
-          <div className={styles.orders_title}>وضعیت ارسال</div>
+        <div className={styles.orders}>
+          <div className={styles.orders_top}>
+            <div className={styles.orders_title}>شماره</div>
+            <div className={styles.orders_title}>تلفن</div>
+            <div className={styles.orders_title}>قیمت</div>
+            <div className={styles.orders_title}>وضعیت پرداخت</div>
+            <div className={styles.orders_title}>تاریخ</div>
+            <div className={styles.orders_title}>وضعیت ارسال</div>
+          </div>
+
+          {orders.length > 0 ? (
+            orders.map((order, index) => (
+              <Link
+                key={order.id}
+                className={styles.order}
+                href={`/admin/orders/${order.id}`}
+              >
+                <div className={styles.order_id}>{index + 1}</div>
+                <div className={styles.phone_number}>{order.number}</div>
+                <div className={styles.order_value}>
+                  {order.total_price} تومان
+                </div>
+                <div className={styles.order_price}>
+                  {order.paid ? "پرداخت شده" : "پرداخت نشده"}
+                </div>
+                <div className={styles.order_date}>{order.created_at}</div>
+                <div className={styles.order_active}>
+                  {order.shipped ? "ارسال شده" : "ارسال نشده"}
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className={styles.no_order}>سفارشی یافت نشد !</div>
+          )}
         </div>
 
-        {orders.length > 0 ? (
-          orders.map((order, index) => (
-            <Link
-              key={order.id}
-              className={styles.order}
-              href={`/admin/orders/${order.id}`}
-            >
-              <div className={styles.order_id}>{index + 1}</div>
-              <div className={styles.phone_number}>{order.number}</div>
-              <div className={styles.order_value}>
-                {order.total_price} تومان
-              </div>
-              <div className={styles.order_price}>
-                {order.paid ? "پرداخت شده" : "پرداخت نشده"}
-              </div>
-              <div className={styles.order_date}>{order.created_at}</div>
-              <div className={styles.order_active}>
-                {order.shipped ? "ارسال شده" : "ارسال نشده"}
-              </div>
-            </Link>
-          ))
-        ) : (
-          <div className={styles.no_order}>سفارشی یافت نشد !</div>
-        )}
-      </div>
+        <div className={styles.pagination}>
+          <div
+            className={styles.perv_btn}
+            onClick={() => handlePageClick(currentPage - 1)}
+          >
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+            قبلی
+          </div>
 
-      <div className={styles.pagination}>
-        <div
-          className={styles.perv_btn}
-          onClick={() => handlePageClick(currentPage - 1)}
-        >
-          <span>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </span>
-          قبلی
+          {renderPageButtons()}
+
+          <div
+            className={styles.next_btn}
+            onClick={() => handlePageClick(currentPage + 1)}
+          >
+            بعدی
+            <span>
+              <FontAwesomeIcon icon={faAngleRight} />
+            </span>
+          </div>
         </div>
 
-        {renderPageButtons()}
-
-        <div
-          className={styles.next_btn}
-          onClick={() => handlePageClick(currentPage + 1)}
-        >
-          بعدی
-          <span>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </span>
-        </div>
+        <AdminMenu />
       </div>
-
-      <AdminMenu />
-    </div>
+    </>
   );
 }

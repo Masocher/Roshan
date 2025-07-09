@@ -1,24 +1,24 @@
 .container {
-    width: 100%;
+  width: 100%;
 }
 
 .brand_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .title_box {
-    color: #000;
-    font-size: 50px;
-    font-family: KalamehB;
-    margin: 40px 0;
-    width: 100%;
-    text-align: center;
+  color: #000;
+  font-size: 50px;
+  font-family: KalamehB;
+  margin: 40px 0;
+  width: 100%;
+  text-align: center;
 }
 
 @media (max-width: 580px) {
-    .title_box {
-        font-size: 30px;
-    }
+  .title_box {
+    font-size: 30px;
+  }
 }

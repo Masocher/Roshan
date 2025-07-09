@@ -15,96 +15,60 @@ import img10 from "../../../public/images/10.webp";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function BrandsSlider() {
-    const matches2 = useMediaQuery(1200);
-    const matches3 = useMediaQuery(950);
-    const matches4 = useMediaQuery(580);
+  const matches2 = useMediaQuery(1200);
+  const matches3 = useMediaQuery(950);
+  const matches4 = useMediaQuery(580);
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.title_box}>بــرند ها</div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.title_box}>بــرند ها</div>
 
-            <Swiper
-                className={styles.brands}
-                slidesPerView={matches4 ? 3 : matches3 ? 5 : matches2 ? 6 : 8}
-                autoplay={{
-                    delay: 2000,
-                    disableOnInteraction: false,
-                }}
-                loop={"true"}
-                modules={[Autoplay]}
-            >
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img2}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+      <Swiper
+        className={styles.brands}
+        slidesPerView={matches4 ? 3 : matches3 ? 5 : matches2 ? 6 : 8}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
+        loop={"true"}
+        modules={[Autoplay]}
+      >
+        <SwiperSlide className={styles.product}>
+          <Image src={img2} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img3}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img3} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img4}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img4} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img5}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img5} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img6}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img6} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img7}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img7} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img8}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img8} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img9}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
+        <SwiperSlide className={styles.product}>
+          <Image src={img9} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
 
-                <SwiperSlide className={styles.product}>
-                    <Image
-                        src={img10}
-                        alt="عکس برند"
-                        className={styles.brand_img}
-                    />
-                </SwiperSlide>
-            </Swiper>
-        </div>
-    );
+        <SwiperSlide className={styles.product}>
+          <Image src={img10} alt="عکس برند" className={styles.brand_img} />
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  );
 }

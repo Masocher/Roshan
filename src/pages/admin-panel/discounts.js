@@ -1,3 +1,4 @@
+import Head from "next/head";
 import styles from "../../styles/admin/Discounts.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,52 +29,63 @@ export default function Discounts({ discountsList }) {
   const [discounts, setDiscounts] = useState(discountsList || []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.top_box}>
-        <Link href={"/admin/discounts/create"} className={styles.add_btn}>
-          <span>
-            <FontAwesomeIcon icon={faPlus} />
-          </span>
-          تخفیف جدید
-        </Link>
-      </div>
+    <>
+      <Head>
+        <title>ابازارک | پنل مدیریت | تخفیفات</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta
+          name="description"
+          content={"پنل مدیریت سایت ابازارک | تخفیفات"}
+        />
+      </Head>
 
-      <div className={styles.discounts}>
-        <div className={styles.discounts_top}>
-          <div className={styles.discounts_title}>شماره</div>
-          <div className={styles.discounts_title}>وضعیت</div>
-          <div className={styles.discounts_title}>تعداد محصولات</div>
-          <div className={styles.discounts_title}>مقدار تخفیف</div>
+      <div className={styles.container}>
+        <div className={styles.top_box}>
+          <Link href={"/admin/discounts/create"} className={styles.add_btn}>
+            <span>
+              <FontAwesomeIcon icon={faPlus} />
+            </span>
+            تخفیف جدید
+          </Link>
         </div>
 
-        {discounts.length > 0 ? (
-          discounts.map((discount, index) => (
-            <Link
-              className={styles.discount}
-              href={`/admin/discounts/${discount.id}`}
-              key={discount.id}
-            >
-              <div className={styles.discount_id}>{index + 1}</div>
+        <div className={styles.discounts}>
+          <div className={styles.discounts_top}>
+            <div className={styles.discounts_title}>شماره</div>
+            <div className={styles.discounts_title}>وضعیت</div>
+            <div className={styles.discounts_title}>تعداد محصولات</div>
+            <div className={styles.discounts_title}>مقدار تخفیف</div>
+          </div>
 
-              <div className={styles.discount_num}>
-                {discount.is_active ? "فعال" : "غیر فعال"}
-              </div>
+          {discounts.length > 0 ? (
+            discounts.map((discount, index) => (
+              <Link
+                className={styles.discount}
+                href={`/admin/discounts/${discount.id}`}
+                key={discount.id}
+              >
+                <div className={styles.discount_id}>{index + 1}</div>
 
-              <div className={styles.discount_num}>
-                {discount.products_count}
-              </div>
+                <div className={styles.discount_num}>
+                  {discount.is_active ? "فعال" : "غیر فعال"}
+                </div>
 
-              <div className={styles.discount_value}>
-                {discount.discount_value} درصد
-              </div>
-            </Link>
-          ))
-        ) : (
-          <div className={styles.no_discount}>تخفیفی یافت نشد !</div>
-        )}
+                <div className={styles.discount_num}>
+                  {discount.products_count}
+                </div>
+
+                <div className={styles.discount_value}>
+                  {discount.discount_value} درصد
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className={styles.no_discount}>تخفیفی یافت نشد !</div>
+          )}
+        </div>
+
+        <AdminMenu />
       </div>
-
-      <AdminMenu />
-    </div>
+    </>
   );
 }

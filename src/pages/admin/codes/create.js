@@ -8,6 +8,8 @@ import spiner from "../../../../public/images/loading.svg";
 import Image from "next/image";
 import { toast, Toaster } from "react-hot-toast";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const res = await fetch("https://abazarak.ir/api/categories/", {
     headers: {
@@ -77,15 +79,14 @@ export default function CreateCode({ categoriesList }) {
       return toast.error("حداقل یک کاراکتر وارد کنید");
     }
     setLoading_2(true);
-    axios.defaults.withCredentials = true;
     axios
       .get(`/api/admin/products/fetch/?search=${text}`)
       .then((response) => {
         setSearchedProducts(response.data);
         setLoading_2(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading_2(false);
       });
   };
@@ -113,7 +114,6 @@ export default function CreateCode({ categoriesList }) {
 
   const sendData = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .post("/api/admin/cupons/", {
         valid_from: startDate,
@@ -125,7 +125,7 @@ export default function CreateCode({ categoriesList }) {
         categories: selectedCategoriesIdList,
         products: selectedProductsIdList,
       })
-      .then((res) => {
+      .then(() => {
         setStartDate("");
         setEndDate("");
         setAllFilter(false);
@@ -137,7 +137,6 @@ export default function CreateCode({ categoriesList }) {
         setSelectedCategoriesIdList([]);
         setSelectedproducts([]);
         setSelectedproductsIdList([]);
-
         setLoading(false);
         toast.success("کد تخفیف با موفقیت ایجاد شد");
       })
@@ -158,10 +157,9 @@ export default function CreateCode({ categoriesList }) {
           } else if (error.response.data.non_field_errors) {
             error.response.data.non_field_errors.map((err) => toast.error(err));
           } else {
-            console.log(error);
+            toast.error("خطایی رخ داد !");
           }
         }
-
         setLoading(false);
       });
   };

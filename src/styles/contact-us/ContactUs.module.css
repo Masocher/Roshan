@@ -1,184 +1,184 @@
 .loading {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000080;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
 }
 .loading.show {
-    display: flex;
+  display: flex;
 }
 
 .loading_wrapper {
-    padding: 30px;
-    border-radius: 8px;
-    background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 .wrapper {
-    width: 100%;
-    margin: 50px auto 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  margin: 50px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .right_section {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .main_title {
-    width: 100%;
-    font-size: 20px;
-    font-family: KalamehM;
-    margin: 50px 0 30px 0;
+  width: 100%;
+  font-size: 20px;
+  font-family: KalamehM;
+  margin: 50px 0 30px 0;
 }
 
 .input_box {
-    width: calc(100% - 42px);
-    font-family: Kalameh;
-    padding: 20px;
-    outline: 0;
-    border: 1px solid #e8eef2;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    letter-spacing: 0.5px;
+  width: calc(100% - 42px);
+  font-family: Kalameh;
+  padding: 20px;
+  outline: 0;
+  border: 1px solid #e8eef2;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
 }
 .input_box:focus {
-    border-color: #12a386;
+  border-color: #12a386;
 }
 
 .inf_input {
-    width: calc(50% - 52px);
+  width: calc(50% - 52px);
 }
 
 .body_input {
-    resize: none;
-    height: 200px;
+  resize: none;
+  height: 200px;
 }
 
 .left_section {
-    width: 60%;
-    display: flex;
-    height: fit-content;
+  width: 60%;
+  display: flex;
+  height: fit-content;
 }
 
 .inf_box {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .inf_title {
-    width: fit-content;
-    margin-left: 10px;
-    color: #12a386;
+  width: fit-content;
+  margin-left: 10px;
+  color: #12a386;
 }
 
 .inf_value {
-    color: #777;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+  color: #777;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 .inf_box:nth-child(2) {
-    margin: 0 60px;
+  margin: 0 60px;
 }
 
 .send_message_btn {
-    background-color: #12a386;
-    color: #fff;
-    margin: 0;
-    padding: 16px 0;
-    transition: 0.2s;
-    cursor: pointer;
-    font-family: KalamehM;
-    width: 100%;
-    text-align: center;
-    border-radius: 8px;
-    font-size: 14px;
-    border: none;
-    outline: 0;
+  background-color: #12a386;
+  color: #fff;
+  margin: 0;
+  padding: 16px 0;
+  transition: 0.2s;
+  cursor: pointer;
+  font-family: KalamehM;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  outline: 0;
 }
 
 @media (max-width: 1200px) {
-    .right_section {
-        width: calc(100% - 60px);
-    }
+  .right_section {
+    width: calc(100% - 60px);
+  }
 
-    .body_input {
-        height: 100px;
-    }
+  .body_input {
+    height: 100px;
+  }
 
-    .left_section {
-        width: calc(100% - 60px);
-    }
+  .left_section {
+    width: calc(100% - 60px);
+  }
 }
 
 @media (max-width: 950px) {
-    .wrapper {
-        margin: 120px auto 0 auto;
-    }
+  .wrapper {
+    margin: 120px auto 0 auto;
+  }
 
-    .right_section {
-        width: calc(100% - 40px);
-    }
+  .right_section {
+    width: calc(100% - 40px);
+  }
 
-    .left_section {
-        width: calc(100% - 40px);
-    }
+  .left_section {
+    width: calc(100% - 40px);
+  }
 
-    .input_box {
-        margin-bottom: 10px;
-    }
+  .input_box {
+    margin-bottom: 10px;
+  }
 
-    .inf_input {
-        width: calc(50% - 47px);
-    }
+  .inf_input {
+    width: calc(50% - 47px);
+  }
 
-    .send_message_btn {
-        margin-top: 10px;
-    }
+  .send_message_btn {
+    margin-top: 10px;
+  }
 
-    .main_title {
-        margin: 40px 0 30px 0;
-    }
+  .main_title {
+    margin: 40px 0 30px 0;
+  }
 }
 
 @media (max-width: 580px) {
-    .main_title {
-        font-size: 18px;
-        margin-top: 0;
-    }
+  .main_title {
+    font-size: 18px;
+    margin-top: 0;
+  }
 
-    .left_section {
-        flex-direction: column;
-        margin-top: 30px;
-    }
+  .left_section {
+    flex-direction: column;
+    margin-top: 30px;
+  }
 
-    .inf_box:nth-child(2) {
-        margin: 20px 0;
-    }
+  .inf_box:nth-child(2) {
+    margin: 20px 0;
+  }
 
-    .input_box {
-        width: calc(100% - 32px);
-        padding: 15px;
-        font-size: 12px;
-    }
+  .input_box {
+    width: calc(100% - 32px);
+    padding: 15px;
+    font-size: 12px;
+  }
 
-    .send_message_btn {
-        font-size: 12px;
-    }
+  .send_message_btn {
+    font-size: 12px;
+  }
 
-    .wrapper {
-        flex-direction: column-reverse;
-    }
+  .wrapper {
+    flex-direction: column-reverse;
+  }
 }

@@ -13,6 +13,8 @@ import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../../../public/images/loading.svg";
 import Image from "next/image";
 
+axios.defaults.withCredentials = true;
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
@@ -47,7 +49,6 @@ export default function EditUser({ userData }) {
 
   const changeUserActiveStatus = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .patch(`/api/admin/accounts/${user.id}/`, {
         is_active: !userActiveStatus,
@@ -57,15 +58,14 @@ export default function EditUser({ userData }) {
         toast.success("حالت کاربر با موفقیت تغییر کرد");
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };
 
   const changeUserAdminStatus = () => {
     setLoading(true);
-    axios.defaults.withCredentials = true;
     axios
       .patch(`/api/admin/accounts/${user.id}/`, {
         is_staff: !userAdminStatus,
@@ -75,8 +75,8 @@ export default function EditUser({ userData }) {
         toast.success("حالت ادمین با موفقیت تغییر کرد");
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
         setLoading(false);
       });
   };

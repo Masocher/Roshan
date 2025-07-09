@@ -1,115 +1,115 @@
 .loading {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000080;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
 }
 .loading.show {
-    display: flex;
+  display: flex;
 }
 
 .loading_wrapper {
-    padding: 30px;
-    border-radius: 8px;
-    background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 .container {
-    width: 100%;
+  width: 100%;
 }
 
 .main_title {
-    font-size: 26px;
-    font-family: KalamehM;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    margin-top: 30px;
+  font-size: 26px;
+  font-family: KalamehM;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .back_btn {
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 30px;
-    background-color: #12a386;
-    padding: 5px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #12a386;
-    transition: 0.2s;
-    cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 30px;
+  background-color: #12a386;
+  padding: 5px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #12a386;
+  transition: 0.2s;
+  cursor: pointer;
 }
 .back_btn:hover {
-    background: none;
-    color: #12a386;
+  background: none;
+  color: #12a386;
 }
 .back_btn span {
-    margin: 5px 0 0 5px;
+  margin: 5px 0 0 5px;
 }
 
 .create_product {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    margin: 50px auto 0 auto;
-    font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 50px auto 0 auto;
+  font-size: 14px;
 }
 
 .first_section {
-    display: flex;
+  display: flex;
 }
 
 .image {
-    width: 250px;
-    height: 246px;
-    background-color: #fff;
-    border-radius: 8px;
-    margin-left: 20px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    transition: 0.2s;
-    border: 2px dashed #f3f4f6;
+  width: 250px;
+  height: 246px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-left: 20px;
+  cursor: pointer;
+  border: 1px solid #fff;
+  transition: 0.2s;
+  border: 2px dashed #f3f4f6;
 }
 .image:hover {
-    border-color: #12a386;
+  border-color: #12a386;
 }
 
 .add_layer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 .add_layer span {
-    background-color: #12a386;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    border-radius: 50%;
-    color: #fff;
+  background-color: #12a386;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  color: #fff;
 }
 
 .main_information {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
 }
 
 .name,
@@ -120,19 +120,19 @@
 .brand,
 .feature_title,
 .feature {
-    font-family: Kalameh;
-    outline: 0;
-    border: 1px solid #fff;
-    background-color: #fff;
-    width: 700px;
-    padding: 10px 20px;
-    border-radius: 8px;
-    letter-spacing: 0.5px;
+  font-family: Kalameh;
+  outline: 0;
+  border: 1px solid #fff;
+  background-color: #fff;
+  width: 700px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
 }
 .about {
-    height: 165px;
-    resize: none;
-    margin: 0;
+  height: 165px;
+  resize: none;
+  margin: 0;
 }
 .name:focus,
 .about:focus,
@@ -142,171 +142,171 @@
 .brand:focus,
 .feature_title:focus,
 .feature:focus {
-    border-color: #12a386;
+  border-color: #12a386;
 }
 
 .second_section {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .price,
 .value,
 .category,
 .brand {
-    width: calc(50% - 50px);
-    height: fit-content;
+  width: calc(50% - 50px);
+  height: fit-content;
 }
 
 .third_section {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .fourth_section {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .add_feature {
-    width: calc(80% - 60px);
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
+  width: calc(80% - 60px);
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .feature_inputs {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 0 0;
 }
 
 .feature_title,
 .feature {
-    background-color: #f3f4f6;
-    width: calc(45% - 60px);
-    border: 1px solid #f3f4f6;
+  background-color: #f3f4f6;
+  width: calc(45% - 60px);
+  border: 1px solid #f3f4f6;
 }
 
 .add_feature_btn {
-    background-color: #12a386;
-    color: #fff;
-    width: 10%;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: 1px solid #12a386;
-    transition: 0.2s;
+  background-color: #12a386;
+  color: #fff;
+  width: 10%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #12a386;
+  transition: 0.2s;
 }
 .add_feature_btn:hover {
-    background: none;
-    color: #12a386;
+  background: none;
+  color: #12a386;
 }
 
 .features {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .feature_box {
-    background-color: #f3f4f6;
-    padding: 10px 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    margin-top: 20px;
-    position: relative;
+  background-color: #f3f4f6;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 20px;
+  position: relative;
 }
 .feature_box .title {
-    color: #777;
-    margin-bottom: 5px;
+  color: #777;
+  margin-bottom: 5px;
 }
 
 .close_btn {
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    font-size: 12px;
-    background-color: #f93827;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    border-radius: 50%;
-    cursor: pointer;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  font-size: 12px;
+  background-color: #f93827;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .inventory_button {
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 10px;
-    color: #777;
-    background-color: #fff;
-    border-radius: 8px;
-    width: 20%;
-    height: fit-content;
-    padding: 20px 0;
-    transition: 0.2s;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+  color: #777;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 20%;
+  height: fit-content;
+  padding: 20px 0;
+  transition: 0.2s;
 }
 .inventory_button.show {
-    color: #12a386;
+  color: #12a386;
 }
 
 .inventory_button div {
-    width: 37px;
-    height: 18px;
-    background-color: #f3f4f6;
-    border-radius: 20px;
-    position: relative;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: 0.2s;
+  width: 37px;
+  height: 18px;
+  background-color: #f3f4f6;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 .inventory_button.show div {
-    background-color: #12a386;
+  background-color: #12a386;
 }
 
 .inventory_button div span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    position: absolute;
-    left: 3px;
-    top: 3px;
-    background-color: #12a386;
-    transition: 0.4s;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  background-color: #12a386;
+  transition: 0.4s;
 }
 .inventory_button.show div span {
-    background-color: #fff;
-    left: 22px;
+  background-color: #fff;
+  left: 22px;
 }
 
 .edit_btn {
-    background-color: #12a386;
-    color: #fff;
-    border: 1px solid #12a386;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    cursor: pointer;
-    width: fit-content;
-    transition: 0.2s;
+  background-color: #12a386;
+  color: #fff;
+  border: 1px solid #12a386;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.2s;
 }
 .edit_btn:hover {
-    background: none;
-    color: #12a386;
+  background: none;
+  color: #12a386;
 }
