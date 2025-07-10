@@ -267,7 +267,8 @@ export default function ShoppingCart({ user, initialData }) {
               {products.map((product) => (
                 <div className={styles.cart_product} key={product.id}>
                   <div className={styles.product_right_content}>
-                    <Link href={`${product.product.slug}`}>
+                    -
+                    <Link href={`/product/${product.product.slug}`}>
                       <Image
                         className={styles.cart_product_img}
                         src={product.product.image}
@@ -275,9 +276,9 @@ export default function ShoppingCart({ user, initialData }) {
                         width={100}
                         height={100}
                         quality={100}
+                        priority
                       />
                     </Link>
-
                     <div className={styles.cart_product_inf}>
                       <Link
                         href={`${product.product.slug}`}
@@ -330,6 +331,19 @@ export default function ShoppingCart({ user, initialData }) {
                     >
                       <FontAwesomeIcon icon={faTrashCan} />
                     </span>
+
+                    {product.discount && (
+                      <div className={styles.discount_stat}>
+                        <div className={styles.off_percent}>
+                          {product.discount}%
+                        </div>
+
+                        <div className={styles.product_price}>
+                          {product.price}
+                          <div className={styles.toman}>تومان</div>
+                        </div>
+                      </div>
+                    )}
 
                     <div className={styles.cart_product_price}>
                       {product.product.final_price}

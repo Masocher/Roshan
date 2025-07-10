@@ -1,9 +1,9 @@
-import styles from "../styles/shopping/PurchaseInformation.module.css";
+import styles from "../../styles/shopping/PurchaseInformation.module.css";
 import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import img1 from "../../public/images/12.png";
+import img1 from "../../../public/images/12.png";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -13,9 +13,12 @@ axios.defaults.withCredentials = true;
 export default function Gateway({ gatewayStatus, productsPrice, orderId }) {
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
+
   const [bankStatus, setBankStatus] = useState(true);
 
   const completeOrder = () => {
+    setLoading(true);
     axios
       .get("/api/ordering/preview/")
       .then((response) => {
@@ -36,8 +39,12 @@ export default function Gateway({ gatewayStatus, productsPrice, orderId }) {
       .post(`/api/ordering/history/${orderId}/payment_gateway/`)
       .then((response) => {
         router.push(response.data.gateway_url);
+        setLoading(false);
       })
-      .catch((err) => toast.error("خطایی رخ داد !"));
+      .catch((err) => {
+        toast.error("خطایی رخ داد !");
+        setLoading(false);
+      });
   };
 
   return (
@@ -49,7 +56,7 @@ export default function Gateway({ gatewayStatus, productsPrice, orderId }) {
       <div className={styles.payment_gateway}>
         <div className={styles.gateway_main_title}>
           انتخاب درگاه پرداخت
-          <Link href={"/user-orders"} className={styles.show_order}>
+          <Link href={`/order-detail/${orderId}`} className={styles.show_order}>
             نمایش سفارش
             <span>
               <FontAwesomeIcon icon={faAngleLeft} />

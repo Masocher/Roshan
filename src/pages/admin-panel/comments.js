@@ -187,29 +187,31 @@ export default function Comments() {
           )}
         </div>
 
-        <div className={styles.pagination}>
-          <div
-            className={styles.perv_btn}
-            onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
-          >
-            <span>
-              <FontAwesomeIcon icon={faAngleLeft} />
-            </span>
-            قبلی
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
+            <div
+              className={styles.perv_btn}
+              onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+            >
+              <span>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </span>
+              قبلی
+            </div>
+            {renderPagination()}
+            <div
+              className={styles.next_btn}
+              onClick={() =>
+                currentPage < totalPages && setCurrentPage(currentPage + 1)
+              }
+            >
+              بعدی
+              <span>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </span>
+            </div>
           </div>
-          {renderPagination()}
-          <div
-            className={styles.next_btn}
-            onClick={() =>
-              currentPage < totalPages && setCurrentPage(currentPage + 1)
-            }
-          >
-            بعدی
-            <span>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </span>
-          </div>
-        </div>
+        )}
 
         <AdminMenu />
       </div>

@@ -219,47 +219,49 @@ export default function Users() {
           )}
         </div>
 
-        <div className={styles.pagination}>
-          <div
-            className={`${styles.perv_btn} ${
-              currentPage === 1 ? styles.disabled : ""
-            }`}
-            onClick={handlePrevClick}
-            style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
-          >
-            <span>
-              <FontAwesomeIcon icon={faAngleLeft} />
-            </span>
-            قبلی
-          </div>
-
-          {getPaginationButtons().map((page) => (
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
             <div
-              key={page}
-              className={`${styles.page_btn} ${
-                page === currentPage ? styles.show : ""
+              className={`${styles.perv_btn} ${
+                currentPage === 1 ? styles.disabled : ""
               }`}
-              onClick={() => handlePageClick(page)}
+              onClick={handlePrevClick}
+              style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
             >
-              {page}
+              <span>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </span>
+              قبلی
             </div>
-          ))}
 
-          <div
-            className={`${styles.next_btn} ${
-              currentPage === totalPages ? styles.disabled : ""
-            }`}
-            onClick={handleNextClick}
-            style={{
-              cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-            }}
-          >
-            بعدی
-            <span>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </span>
+            {getPaginationButtons().map((page) => (
+              <div
+                key={page}
+                className={`${styles.page_btn} ${
+                  page === currentPage ? styles.show : ""
+                }`}
+                onClick={() => handlePageClick(page)}
+              >
+                {page}
+              </div>
+            ))}
+
+            <div
+              className={`${styles.next_btn} ${
+                currentPage === totalPages ? styles.disabled : ""
+              }`}
+              onClick={handleNextClick}
+              style={{
+                cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+              }}
+            >
+              بعدی
+              <span>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         <AdminMenu />
       </div>

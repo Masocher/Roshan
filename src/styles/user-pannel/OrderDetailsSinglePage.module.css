@@ -10,6 +10,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 30px;
+  letter-spacing: 0.5px;
 }
 
 .user_orders_main_title .title {
@@ -17,6 +18,28 @@
   font-family: KalamehM;
   display: flex;
   align-items: center;
+}
+
+.back_btn {
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #12a386;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 20px;
+  display: flex;
+  border: 1px solid #12a386;
+  transition: 0.2s;
+  letter-spacing: 0;
+}
+.back_btn:hover {
+  background: none;
+  color: #12a386;
+}
+
+.back_btn span {
+  margin: 0 0 0 5px;
 }
 
 .order {
@@ -201,5 +224,17 @@
   .third_section {
     margin: 0;
     padding: 30px 20px 50px 20px;
+  }
+
+  .user_orders_main_title .title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+
+  .back_btn {
+    font-size: 12px;
   }
 }

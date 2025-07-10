@@ -107,6 +107,10 @@
   font-size: 14px;
   border: none;
   outline: 0;
+  transition: .2s;
+}
+.send_message_btn:hover {
+  background-color: #000;
 }
 
 @media (max-width: 1200px) {

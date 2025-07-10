@@ -123,43 +123,45 @@ export default function Tickets() {
           )}
         </div>
 
-        <div className={styles.pagination}>
-          <div
-            className={`${styles.perv_btn} ${
-              page === 1 ? styles.disabled : ""
-            }`}
-            onClick={() => page > 1 && getTickets(page - 1)}
-          >
-            <span>&lt;</span> قبلی
-          </div>
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
+            <div
+              className={`${styles.perv_btn} ${
+                page === 1 ? styles.disabled : ""
+              }`}
+              onClick={() => page > 1 && getTickets(page - 1)}
+            >
+              <span>&lt;</span> قبلی
+            </div>
 
-          {getPageNumbers().map((p, i) =>
-            p === "..." ? (
-              <div key={i} className={styles.dots}>
-                ...
-              </div>
-            ) : (
-              <div
-                key={i}
-                className={`${styles.page_btn} ${
-                  p === page ? styles.show : ""
-                }`}
-                onClick={() => handlePageClick(p)}
-              >
-                {p}
-              </div>
-            )
-          )}
+            {getPageNumbers().map((p, i) =>
+              p === "..." ? (
+                <div key={i} className={styles.dots}>
+                  ...
+                </div>
+              ) : (
+                <div
+                  key={i}
+                  className={`${styles.page_btn} ${
+                    p === page ? styles.show : ""
+                  }`}
+                  onClick={() => handlePageClick(p)}
+                >
+                  {p}
+                </div>
+              )
+            )}
 
-          <div
-            className={`${styles.next_btn} ${
-              page === totalPages ? styles.disabled : ""
-            }`}
-            onClick={() => page < totalPages && getTickets(page + 1)}
-          >
-            بعدی <span>&gt;</span>
+            <div
+              className={`${styles.next_btn} ${
+                page === totalPages ? styles.disabled : ""
+              }`}
+              onClick={() => page < totalPages && getTickets(page + 1)}
+            >
+              بعدی <span>&gt;</span>
+            </div>
           </div>
-        </div>
+        )}
 
         <AdminMenu />
       </div>

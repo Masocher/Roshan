@@ -5,7 +5,6 @@ import {
   faArrowRight,
   faLocationDot,
   faEarthAmericas,
-  faTruck,
   faPlus,
   faUser,
   faAddressCard,
@@ -20,9 +19,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
-import Gateway from "./gateway";
+import Gateway from "@/components/global/gateway";
 import Loading from "@/components/global/Loading";
 import cities from "../cities.json";
+import spiner from "../../public/images/loading.svg";
 
 export async function getServerSideProps(context) {
   const { req } = context;
@@ -78,6 +78,8 @@ export async function getServerSideProps(context) {
 
 export default function PurchaseInformation({ serverData }) {
   const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
 
   const [gatewayStatus, setGatewayStatus] = useState(false);
   const [addressBoxStatus, setAddressBoxStatus] = useState(false);
@@ -239,6 +241,8 @@ export default function PurchaseInformation({ serverData }) {
       return;
     }
 
+    setLoading(true);
+
     axios.defaults.withCredentials = true;
     axios
       .post("/api/ordering/checkout/", {
@@ -250,6 +254,7 @@ export default function PurchaseInformation({ serverData }) {
         setOrderId(response.data.order_id);
         setGatewayStatus(true);
         toast.success(response.data.detail);
+        setLoading(false);
       })
       .catch((err) => {
         if (err.response && err.response.data) {
@@ -270,6 +275,7 @@ export default function PurchaseInformation({ serverData }) {
         } else {
           toast.error("خطایی رخ داد !");
         }
+        setLoading(false);
       });
   };
 
@@ -305,6 +311,12 @@ export default function PurchaseInformation({ serverData }) {
   } else {
     return (
       <div className={styles.container}>
+        <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+          <div className={styles.loading_wrapper}>
+            <Image src={spiner} width={80} height={80} alt="لودینگ" />
+          </div>
+        </div>
+
         <Toaster position="bottom-left" reverseOrder={true} />
 
         <Gateway
@@ -617,13 +629,6 @@ export default function PurchaseInformation({ serverData }) {
             </div>
           </div>
 
-          <div className={styles.send_type}>
-            <span>
-              <FontAwesomeIcon icon={faTruck} />
-            </span>
-            ارسال معمولی
-          </div>
-
           <div className={styles.products}>
             {products.map((product) => (
               <div className={styles.product_box} key={product.id}>
@@ -702,7 +707,7 @@ export default function PurchaseInformation({ serverData }) {
             <div className={styles.title}>مبلغ قابل پرداخت</div>
 
             <div className={styles.badge}>
-              {productsPrice.pay_price}
+              <span>{productsPrice.pay_price}</span>
               <div className={styles.toman}>تومان</div>
             </div>
           </div>

@@ -1,3 +1,25 @@
+.loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
+}
+.loading.show {
+  display: flex;
+}
+
+.loading_wrapper {
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
 .container {
   width: calc(100% - 100px);
   padding: 50px;
@@ -238,7 +260,7 @@
   font-family: KalamehM;
 }
 .inf_box_4 {
-  color: #12a386;
+  color: #000;
   background-color: #0d7c6611;
   width: calc(100% - 40px);
   padding: 20px;
@@ -254,6 +276,13 @@
   align-items: center;
 }
 
+.inf_box_4 .badge span {
+  font-size: 20px;
+}
+.inf_box_4 .badge .toman {
+  font-size: 14px;
+}
+
 .toman {
   font-size: 12px;
   margin-right: 8px;
@@ -267,21 +296,6 @@
   border-radius: 0 0 5px 5px;
   border: 1px solid #12a386;
   cursor: pointer;
-}
-
-.send_type {
-  display: flex;
-  align-items: center;
-  color: #f93827;
-  font-family: KalamehM;
-  width: calc(100% - 40px);
-  padding: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #e8eef2;
-}
-.send_type span {
-  margin: 5px 0 0 10px;
-  color: #f93827;
 }
 
 .create_address input {
@@ -454,7 +468,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 10;
   display: none;
   justify-content: center;
   align-items: center;
@@ -531,17 +545,19 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #0d7c6611;
-  color: #12a386;
+  background-color: #e8eef2;
+  color: #000;
   border-radius: 8px;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .value {
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 22px;
+  font-family: KalamehM;
+  letter-spacing: 0.5px;
 }
 
 .gateway {
@@ -556,6 +572,7 @@
   width: calc(100% - 40px);
 }
 .gateway.show {
+  background-color: #0d7c6611;
   border-color: #12a386;
 }
 
@@ -601,7 +618,7 @@
   background-color: #e8eef2;
   color: #999;
   width: 100%;
-  padding: 10px 0;
+  padding: 12px 0;
   text-align: center;
   border-radius: 8px;
   margin-top: 20px;
@@ -778,11 +795,6 @@
     font-size: 16px;
   }
 
-  .toman {
-    font-size: 10px;
-    margin-right: 5px;
-  }
-
   .product_left_content span {
     font-size: 12px;
     width: 25px;
@@ -854,7 +866,6 @@
 }
 
 @media (max-width: 580px) {
-  .gateway_container,
   .address_container {
     align-items: flex-end;
   }
@@ -916,8 +927,29 @@
     padding: 15px 20px;
   }
 
-  .value {
+  .gateway {
+    padding: 15px;
+    width: calc(100% - 30px);
+  }
+
+  .gateway_main_title {
+    margin-bottom: 20px;
     font-size: 14px;
+  }
+
+  .gateway_image {
+    width: 35px;
+  }
+
+  .value_box {
+    font-size: 12px;
+  }
+
+  .value {
+    font-size: 18px;
+  }
+  .value .toman {
+    margin: 0 5px 0 0;
   }
 
   .products {

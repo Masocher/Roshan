@@ -189,75 +189,77 @@ export default function Products() {
           )}
         </div>
 
-        <div className={styles.pagination}>
-          <div
-            className={styles.perv_btn}
-            onClick={() => {
-              if (currentPage > 1) fetchProducts(currentPage - 1);
-            }}
-          >
-            <span>
-              <FontAwesomeIcon icon={faAngleLeft} />
-            </span>
-            قبلی
-          </div>
-
-          <div
-            className={`${styles.page_btn} ${
-              currentPage === 1 ? styles.show : ""
-            }`}
-            onClick={() => fetchProducts(1)}
-          >
-            1
-          </div>
-
-          {currentPage - 1 > 1 && (
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
             <div
-              className={styles.page_btn}
-              onClick={() => fetchProducts(currentPage - 1)}
+              className={styles.perv_btn}
+              onClick={() => {
+                if (currentPage > 1) fetchProducts(currentPage - 1);
+              }}
             >
-              {currentPage - 1}
+              <span>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </span>
+              قبلی
             </div>
-          )}
 
-          {currentPage !== 1 && currentPage !== totalPages && (
-            <div className={`${styles.page_btn} ${styles.show}`}>
-              {currentPage}
-            </div>
-          )}
-
-          {currentPage + 1 < totalPages && (
-            <div
-              className={styles.page_btn}
-              onClick={() => fetchProducts(currentPage + 1)}
-            >
-              {currentPage + 1}
-            </div>
-          )}
-
-          {totalPages > 1 && (
             <div
               className={`${styles.page_btn} ${
-                currentPage === totalPages ? styles.show : ""
+                currentPage === 1 ? styles.show : ""
               }`}
-              onClick={() => fetchProducts(totalPages)}
+              onClick={() => fetchProducts(1)}
             >
-              {totalPages}
+              1
             </div>
-          )}
 
-          <div
-            className={styles.next_btn}
-            onClick={() => {
-              if (currentPage < totalPages) fetchProducts(currentPage + 1);
-            }}
-          >
-            بعدی
-            <span>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </span>
+            {currentPage - 1 > 1 && (
+              <div
+                className={styles.page_btn}
+                onClick={() => fetchProducts(currentPage - 1)}
+              >
+                {currentPage - 1}
+              </div>
+            )}
+
+            {currentPage !== 1 && currentPage !== totalPages && (
+              <div className={`${styles.page_btn} ${styles.show}`}>
+                {currentPage}
+              </div>
+            )}
+
+            {currentPage + 1 < totalPages && (
+              <div
+                className={styles.page_btn}
+                onClick={() => fetchProducts(currentPage + 1)}
+              >
+                {currentPage + 1}
+              </div>
+            )}
+
+            {totalPages > 1 && (
+              <div
+                className={`${styles.page_btn} ${
+                  currentPage === totalPages ? styles.show : ""
+                }`}
+                onClick={() => fetchProducts(totalPages)}
+              >
+                {totalPages}
+              </div>
+            )}
+
+            <div
+              className={styles.next_btn}
+              onClick={() => {
+                if (currentPage < totalPages) fetchProducts(currentPage + 1);
+              }}
+            >
+              بعدی
+              <span>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         <AdminMenu />
       </div>

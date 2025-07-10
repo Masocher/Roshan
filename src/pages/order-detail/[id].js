@@ -6,7 +6,7 @@ import BlackBackground from "@/components/global/BlacKBackground";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowRight,
+  faAngleRight,
   faClose,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
@@ -88,13 +88,13 @@ export default function OrderDetailsSinglePage({ user, orderList }) {
         <div className={styles.orders_container}>
           <div className={styles.user_orders_main_title}>
             <div className={styles.title}>
-              <Link href={"/user-orders"} legacyBehavior>
-                <a
-                  style={{ color: "#000", marginTop: 5, marginLeft: 15 }}
-                  aria-label="بازگشت به سفارشات"
-                >
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </a>
+              <Link href={"/user-orders"} className={styles.back_btn}>
+                <div>
+                  <span>
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </span>
+                  همه سفارشات
+                </div>
               </Link>
               جزئیات سفارش {orderList?.id ?? ""}
             </div>

@@ -33,26 +33,24 @@ export async function getServerSideProps(context) {
   let user = null;
   const { slug } = context.params;
 
-  try {
-    const userRes = await fetch("https://abazarak.ir/api/auth/me/", {
-      headers: {
-        Cookie: context.req.headers.cookie || "",
-      },
-    });
-    if (userRes.ok) user = await userRes.json();
-  } catch (err) {
-    console.error("خطا در دریافت اطلاعات کاربر:", err);
-  }
+  const userRes = await fetch("https://abazarak.ir/api/auth/me/", {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
+  if (userRes.ok) user = await userRes.json();
 
-  try {
-    const productRes = await fetch(`https://abazarak.ir/api/products/${slug}/`);
-    if (!productRes.ok) return { notFound: true };
-    const product = await productRes.json();
-    return { props: { user, productSingle: product } };
-  } catch (error) {
-    console.error("خطا در دریافت اطلاعات محصول:", error);
-    return { notFound: true };
-  }
+  const productRes = await fetch(`https://abazarak.ir/api/products/${slug}/`, {
+    headers: {
+      Cookie: context.req.headers.cookie || "",
+    },
+  });
+
+  if (!productRes.ok) return { notFound: true };
+
+  const product = await productRes.json();
+
+  return { props: { user, productSingle: product } };
 }
 
 export default function ProductSinglePage({ user, productSingle }) {
@@ -74,26 +72,29 @@ export default function ProductSinglePage({ user, productSingle }) {
   }, [product]);
 
   const addToCart = async () => {
-    try {
-      setLoading(true);
-      await axios.post(
-        `/api/products/${product.slug}/add_cart/`,
-        {},
-        { withCredentials: true }
-      );
-      toast.success("این محصول به سبد خرید شما اضافه شد");
-      setDeleteStatus(true);
-    } catch (err) {
-      if (err?.response?.status === 401) {
-        toast.error("برای افزودن محصولات به سبد خرید ابتدا وارد حساب خود شوید");
-      } else if (err?.response?.status === 400) {
-        toast.error("این محصول از قبل در سبد خرید شما موجود است");
-      } else {
-        toast.error("خطایی رخ داد !");
-      }
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true);
+    axios
+      .post(`/api/products/${product.slug}/add_cart/`, {})
+      .then((res) => {
+        console.log(res);
+        console.log(productSingle);
+
+        setDeleteStatus(true);
+        toast.success("این محصول به سبد خرید شما اضافه شد");
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err?.response?.status === 401) {
+          toast.error(
+            "برای افزودن محصولات به سبد خرید ابتدا وارد حساب خود شوید"
+          );
+        } else if (err?.response?.status === 400) {
+          toast.error("این محصول از قبل در سبد خرید شما موجود است");
+        } else {
+          toast.error("خطایی رخ داد !");
+        }
+        setLoading(false);
+      });
   };
 
   const removeFromCart = async () => {
@@ -113,7 +114,7 @@ export default function ProductSinglePage({ user, productSingle }) {
     }
   };
 
-  if (!product || product.in_cart === null) return <Loading />;
+  if (!product) return <Loading />;
 
   return (
     <>

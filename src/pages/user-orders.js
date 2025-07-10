@@ -11,7 +11,7 @@ import {
   faClose,
   faReceipt,
 } from "@fortawesome/free-solid-svg-icons";
-import Gateway from "./gateway";
+import Gateway from "../components/global/Gateway";
 import Link from "next/link";
 import Image from "next/image";
 import spiner from "../../public/images/loading.svg";

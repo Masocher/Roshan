@@ -178,7 +178,7 @@ export default function Orders() {
                 <div className={styles.order_id}>{index + 1}</div>
                 <div className={styles.phone_number}>{order.number}</div>
                 <div className={styles.order_value}>
-                  {order.total_price} تومان
+                  {order.pay_price} تومان
                 </div>
                 <div className={styles.order_price}>
                   {order.paid ? "پرداخت شده" : "پرداخت نشده"}
@@ -194,29 +194,31 @@ export default function Orders() {
           )}
         </div>
 
-        <div className={styles.pagination}>
-          <div
-            className={styles.perv_btn}
-            onClick={() => handlePageClick(currentPage - 1)}
-          >
-            <span>
-              <FontAwesomeIcon icon={faAngleLeft} />
-            </span>
-            قبلی
-          </div>
+        {totalPages > 1 && (
+          <div className={styles.pagination}>
+            <div
+              className={styles.perv_btn}
+              onClick={() => handlePageClick(currentPage - 1)}
+            >
+              <span>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </span>
+              قبلی
+            </div>
 
-          {renderPageButtons()}
+            {renderPageButtons()}
 
-          <div
-            className={styles.next_btn}
-            onClick={() => handlePageClick(currentPage + 1)}
-          >
-            بعدی
-            <span>
-              <FontAwesomeIcon icon={faAngleRight} />
-            </span>
+            <div
+              className={styles.next_btn}
+              onClick={() => handlePageClick(currentPage + 1)}
+            >
+              بعدی
+              <span>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         <AdminMenu />
       </div>
