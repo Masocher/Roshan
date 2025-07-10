@@ -85,12 +85,12 @@ export default function ResetPassword() {
       <div className={styles.logo}>تغییر رمز عبور</div>
 
       <div className={styles.auth_form}>
-        <Link href={"/"} className={styles.back_btn_2}>
+        <div onClick={() => router.back()} className={styles.back_btn_2}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
           بازگشت
-        </Link>
+        </div>
 
         <div className={styles.title_box}>شماره تلفن را وارد کنید</div>
 

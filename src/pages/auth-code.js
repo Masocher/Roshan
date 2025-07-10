@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faRotate } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
@@ -16,7 +16,29 @@ export default function AuthCode() {
 
   const [code, setCode] = useState("");
 
-  const [err1, setErr1] = useState(false);
+  const [err1, setErr1] = useState(true);
+
+  const [timeLeft, setTimeLeft] = useState(120);
+  const [canResend, setCanResend] = useState(false);
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const interval = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    } else {
+      setCanResend(true);
+    }
+  }, [timeLeft]);
+
+  const checkCode = (code) => {
+    if (/^\d{4}$/.test(code)) {
+      setErr1(false);
+    } else {
+      setErr1(true);
+    }
+  };
 
   const [loading, setLoading] = useState(false);
 
@@ -36,21 +58,34 @@ export default function AuthCode() {
       .catch((err) => {
         if (err.response.data.detail) {
           toast.error(err.response.data.detail);
-        }
-
-        if (err.response.data.otp) {
+        } else if (err.response.data.otp) {
           toast.error("کد تایید : " + err.response.data.otp);
+        } else {
+          toast.error("خطایی رخ داد !");
         }
         setLoading(false);
       });
   };
 
-  const checkCode = (code) => {
-    if (code.length > 0) {
-      setErr1(false);
-    } else {
-      setErr1(true);
-    }
+  const resendCode = () => {
+    setLoading(true);
+    axios
+      .post("/api/auth/register/verify/")
+      .then(() => {
+        toast.success("کد جدید ارسال شد");
+        setTimeLeft(120);
+        setCanResend(false);
+      })
+      .catch((err) => {
+        if (err.response.data.detail) {
+          toast.error(err.response.data.detail);
+        } else {
+          toast.error("ارسال مجدد کد ناموفق بود");
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -63,64 +98,78 @@ export default function AuthCode() {
 
       <Toaster position="bottom-left" reverseOrder={true} />
 
-      <Link href={"/"} className={styles.logo}>
-        روشن مارکت
-      </Link>
+      <div className={styles.logo}>روشن مارکت</div>
 
-      <div className={styles.auth_form}>
-        <div
-          onClick={() => router.back()}
-          href={"/sign-in"}
-          className={styles.back_btn}
-        >
-          <span>
-            <FontAwesomeIcon icon={faArrowRight} />
-          </span>
-          بازگشت
-        </div>
-
-        <div className={styles.title}>کد تایید را وارد کنید</div>
-
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className={`${styles.input_box} ${styles.code_input_box}`}>
-            <div className={styles.input_title}>
-              کد تایید به شماره 09054182307 ارسال شد
-            </div>
-
-            <input
-              type="text"
-              maxLength={"6"}
-              onChange={(e) => {
-                setCode(e.target.value);
-                checkCode(e.target.value);
-              }}
-              className={`${err1 ? styles.error : ""}`}
-            />
-
-            <div className={`${styles.error_box} ${err1 ? styles.show : ""}`}>
-              کد تایید اجباری است !
-            </div>
-          </div>
-
-          <div className={styles.again_code_time}>
+      {!canResend ? (
+        <div className={styles.auth_form}>
+          <Link href={"/sign-up"} className={styles.back_btn}>
             <span>
-              59<div>:</div>01
+              <FontAwesomeIcon icon={faArrowRight} />
             </span>
-            مانده تا دریافت مجدد کد
-          </div>
+            بازگشت
+          </Link>
 
-          <div className={styles.get_code_again}>
+          <div className={styles.title}>تایید شماره تلفن</div>
+
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div className={`${styles.input_box} ${styles.code_input_box}`}>
+              <div className={styles.input_title}>
+                کد تایید به شماره <div>{localStorage.getItem("number")}</div>{" "}
+                پیامک شد
+              </div>
+
+              <input
+                type="text"
+                placeholder="____"
+                maxLength={"4"}
+                onChange={(e) => {
+                  setCode(e.target.value);
+                  checkCode(e.target.value);
+                }}
+                className={`${err1 ? styles.error : ""}`}
+              />
+
+              <div className={`${styles.error_box} ${err1 ? styles.show : ""}`}>
+                کد تایید 4 رقمی الزامی است!
+              </div>
+            </div>
+
+            <div className={styles.again_code_time}>
+              <span>{timeLeft} ثانیه</span>
+              تا ارسال مجدد کد تایید
+            </div>
+
+            <button
+              className={`${styles.submit_btn} ${err1 ? "" : styles.show}`}
+              onClick={() => sendCode(code)}
+            >
+              تایید
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className={styles.auth_form}>
+          <Link href={"/sign-up"} className={styles.back_btn}>
+            <span>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </span>
+            بازگشت
+          </Link>
+
+          <div className={styles.title}>تایید شماره تلفن</div>
+
+          <button
+            type="button"
+            onClick={resendCode}
+            className={styles.get_code_again_2}
+          >
             <span>
               <FontAwesomeIcon icon={faRotate} />
             </span>
-            دریافت مجدد کد
-          </div>
-
-          <button className={styles.submit_btn} onClick={() => sendCode(code)}>
-            تایید
+            ارسال مجدد کد
           </button>
-        </form>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

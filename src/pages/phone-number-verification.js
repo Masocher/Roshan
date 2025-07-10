@@ -1,6 +1,6 @@
 import styles from "../styles/authentication/Auth.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { faRotate, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
 export default function PhoneNumberVerification({ user }) {
   const router = useRouter();
   const [code, setCode] = useState("");
-  const [err1, setErr1] = useState(false);
+  const [err1, setErr1] = useState(true);
   const [number, setNumber] = useState(user?.number || "");
   const [loading, setLoading] = useState(false);
 
@@ -57,12 +57,6 @@ export default function PhoneNumberVerification({ user }) {
     }
   }, [timeLeft]);
 
-  const formatTime = (seconds) => {
-    const m = String(Math.floor(seconds / 60)).padStart(2, "0");
-    const s = String(seconds % 60).padStart(2, "0");
-    return `${m}:${s}`;
-  };
-
   const checkCode = (code) => {
     if (/^\d{4}$/.test(code)) {
       setErr1(false);
@@ -72,7 +66,11 @@ export default function PhoneNumberVerification({ user }) {
   };
 
   const sendCode = () => {
-    if (err1 || code.length !== 4) return;
+    if (err1 || code.length !== 4) {
+      toast.error("کد تایید 4 رقمی الزامی است !");
+      return;
+    }
+
     setLoading(true);
     axios
       .post("/api/auth/activation/verify/", { otp: code })
@@ -103,20 +101,16 @@ export default function PhoneNumberVerification({ user }) {
         setCanResend(false);
       })
       .catch((err) => {
-        toast.error("ارسال مجدد کد ناموفق بود");
-
         if (err.response.data.detail) {
           toast.error(err.response.data.detail);
+        } else {
+          toast.error("ارسال مجدد کد ناموفق بود");
         }
       })
       .finally(() => {
         setLoading(false);
       });
   };
-
-  useEffect(() => {
-    resendCode();
-  }, []);
 
   return (
     <>
@@ -145,66 +139,82 @@ export default function PhoneNumberVerification({ user }) {
 
         <Toaster position="bottom-left" reverseOrder={true} />
 
-        <Link href="/" className={styles.logo}>
+        <div className={styles.logo}>
           روشن مارکت
-        </Link>
+        </div>
 
-        <div className={styles.auth_form}>
-          <div className={styles.title} style={{ marginTop: 0 }}>
-            تایید شماره تلفن
-          </div>
+        {!canResend ? (
+          <div className={styles.auth_form}>
+            <Link href={"/shopping-cart"} className={styles.back_btn}>
+              <span>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+              بازگشت
+            </Link>
 
-          <form onSubmit={(e) => e.preventDefault()}>
-            <div className={`${styles.input_box} ${styles.code_input_box}`}>
-              <div className={styles.input_title}>
-                کد تایید به شماره
-                <div>{number}</div>
-                ارسال شد
+            <div className={styles.title}>تایید شماره تلفن</div>
+
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className={`${styles.input_box} ${styles.code_input_box}`}>
+                <div className={styles.input_title}>
+                  کد تایید به شماره <div>{localStorage.getItem("number")}</div>{" "}
+                  پیامک شد
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="____"
+                  maxLength={"4"}
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                    checkCode(e.target.value);
+                  }}
+                  className={`${err1 ? styles.error : ""}`}
+                />
+
+                <div
+                  className={`${styles.error_box} ${err1 ? styles.show : ""}`}
+                >
+                  کد تایید 4 رقمی الزامی است!
+                </div>
               </div>
 
-              <input
-                type="text"
-                maxLength="4"
-                value={code}
-                onChange={(e) => {
-                  setCode(e.target.value);
-                  checkCode(e.target.value);
-                }}
-                className={err1 ? styles.error : ""}
-              />
-
-              <div className={`${styles.error_box} ${err1 ? styles.show : ""}`}>
-                کد تایید 4 رقمی الزامی است!
-              </div>
-            </div>
-
-            {!canResend ? (
               <div className={styles.again_code_time}>
-                <span>{formatTime(timeLeft)}</span>
+                <span>{timeLeft} ثانیه</span>
                 تا ارسال مجدد کد تایید
               </div>
-            ) : (
+
               <button
-                type="button"
-                onClick={resendCode}
-                className={styles.get_code_again}
+                className={`${styles.submit_btn} ${err1 ? "" : styles.show}`}
+                onClick={() => sendCode(code)}
               >
-                <span>
-                  <FontAwesomeIcon icon={faRotate} />
-                </span>
-                ارسال مجدد کد
+                تایید
               </button>
-            )}
+            </form>
+          </div>
+        ) : (
+          <div className={styles.auth_form}>
+            <Link href={"/shopping-cart"} className={styles.back_btn}>
+              <span>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+              بازگشت
+            </Link>
+
+            <div className={styles.title}>تایید شماره تلفن</div>
 
             <button
-              className={styles.submit_btn}
-              type="submit"
-              onClick={sendCode}
+              type="button"
+              onClick={resendCode}
+              className={styles.get_code_again_2}
             >
-              تایید
+              <span>
+                <FontAwesomeIcon icon={faRotate} />
+              </span>
+              ارسال مجدد کد
             </button>
-          </form>
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

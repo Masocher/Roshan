@@ -178,7 +178,7 @@ export default function FilterBox({
                     }
 
                     setOption1(false);
-                    setOption2(false);
+                    setOption2(true);
                     setOption3(false);
 
                     setFiltersStatus(true);
@@ -278,7 +278,7 @@ export default function FilterBox({
 
                     setOption1(false);
                     setOption2(false);
-                    setOption3(false);
+                    setOption3(true);
 
                     setFiltersStatus(true);
                   }}
