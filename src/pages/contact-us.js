@@ -51,37 +51,65 @@ export default function ContactUs({ user }) {
   const [number, setNumber] = useState("");
   const [content, setContent] = useState("");
 
-  const sendTicket = () => {
-    setLoading(true);
-    axios
-      .post("/api/site/ticket/", {
-        full_name: name,
-        number,
-        content,
-      })
-      .then(() => {
-        setName("");
-        setNumber("");
-        setContent("");
-        toast.success("پیام به مدیر فروشگاه ارسال شد");
-        setLoading(false);
-      })
-      .catch((error) => {
-        if (error.response && error.response.data) {
-          if (error.response.data.full_name) {
-            toast.error(
-              "نام و نام خانوادگی : " + error.response.data.full_name
-            );
-          } else if (error.response.data.number) {
-            toast.error("شماره تلفن : " + error.response.data.number);
-          } else if (error.response.data.content) {
-            toast.error("متن پیام : " + error.response.data.content);
-          } else {
-            toast.error("خطایی رخ داد !");
+  const sendTicket = async () => {
+    if (!name) {
+      toast.error("نام و نام خانوداگی نمیتواند خالی باشد !");
+      return;
+    }
+    if (!number) {
+      toast.error("شماره تلفن نمیتواند خالی باشد !");
+      return;
+    }
+    if (!content) {
+      toast.error("متن پیام نمیتواند خالی باشد !");
+      return;
+    }
+
+    if (!window.grecaptcha) {
+      toast.error("reCAPTCHA بارگذاری نشد.");
+      return;
+    }
+
+    try {
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: "ticket" }
+      );
+
+      setLoading(true);
+      axios
+        .post("/api/site/ticket/", {
+          full_name: name,
+          number,
+          content,
+          recaptcha: token,
+        })
+        .then(() => {
+          setName("");
+          setNumber("");
+          setContent("");
+          toast.success("پیام به مدیر فروشگاه ارسال شد");
+          setLoading(false);
+        })
+        .catch((error) => {
+          if (error.response && error.response.data) {
+            if (error.response.data.full_name) {
+              toast.error(
+                "نام و نام خانوادگی : " + error.response.data.full_name
+              );
+            } else if (error.response.data.number) {
+              toast.error("شماره تلفن : " + error.response.data.number);
+            } else if (error.response.data.content) {
+              toast.error("متن پیام : " + error.response.data.content);
+            } else {
+              toast.error("خطایی رخ داد !");
+            }
           }
-        }
-        setLoading(false);
-      });
+          setLoading(false);
+        });
+    } catch (error) {
+      toast.error("احراز reCAPTCHA با خطا مواجه شد.");
+    }
   };
 
   return (

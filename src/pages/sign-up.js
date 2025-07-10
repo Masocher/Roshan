@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "../styles/authentication/Auth.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,6 +15,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Image from "next/image";
 import spiner from "../../public/images/loading.svg";
 import Head from "next/head";
+import Script from "next/script";
 
 axios.defaults.withCredentials = true;
 
@@ -38,7 +41,7 @@ export default function SignUp() {
   const checkPassword = (pass) => setErr3(pass.length < 6);
   const checkPassword2 = (pass2) => setErr4(pass2 !== password);
 
-  const signUpFunction = (nam, num, pas1, pas2) => {
+  const signUpFunction = async (nam, num, pas1, pas2) => {
     if (nam.trim() === "") return setErr1(true);
     if (!/^09\d{9}$/.test(num)) return setErr2(true);
     if (pas1.length < 6) return setErr3(true);
@@ -47,35 +50,52 @@ export default function SignUp() {
       setErr4(true);
       return;
     }
-    setLoading(true);
-    axios
-      .post("/api/auth/register/", {
-        full_name: nam,
-        number: num,
-        password: pas1,
-        password2: pas2,
-      })
-      .then(() => {
-        localStorage.setItem("number", num);
-        router.push("/auth-code");
-        setLoading(false);
-        toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
-      })
-      .catch((err) => {
-        setLoading(false);
-        if (err.response && err.response.data) {
-          const data = err.response.data;
-          if (data.detail) toast.error(data.detail);
-          if (data.full_name)
-            toast.error("نام و نام خانوادگی : " + data.full_name);
-          else if (data.number) toast.error("شماره تلفن : " + data.number);
-          else if (data.password) toast.error("رمز عبور : " + data.password);
-          else if (data.password2)
-            toast.error("تکرار رمز عبور : " + data.password2);
-        } else {
-          toast.error("خطایی رخ داد !");
-        }
-      });
+
+    if (!window.grecaptcha) {
+      toast.error("reCAPTCHA بارگذاری نشد.");
+      return;
+    }
+
+    try {
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: "signup" }
+      );
+
+      setLoading(true);
+
+      axios
+        .post("/api/auth/register/", {
+          full_name: nam,
+          number: num,
+          password: pas1,
+          password2: pas2,
+          recaptcha: token,
+        })
+        .then(() => {
+          toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
+          localStorage.setItem("number", num);
+          router.push("/auth-code");
+          setLoading(false);
+        })
+        .catch((err) => {
+          if (err.response && err.response.data) {
+            const data = err.response.data;
+            if (data.detail) toast.error(data.detail);
+            else if (data.full_name)
+              toast.error("نام و نام خانوادگی : " + data.full_name);
+            else if (data.number) toast.error("شماره تلفن : " + data.number);
+            else if (data.password) toast.error("رمز عبور : " + data.password);
+            else if (data.password2)
+              toast.error("تکرار رمز عبور : " + data.password2);
+          } else {
+            toast.error("خطایی رخ داد !");
+          }
+          setLoading(false);
+        });
+    } catch (err) {
+      toast.error("احراز reCAPTCHA با خطا مواجه شد.");
+    }
   };
 
   return (
@@ -87,6 +107,11 @@ export default function SignUp() {
           content="صفحه ثبت نام در روشن مارکت، ثبت نام سریع و امن"
         />
       </Head>
+
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        strategy="afterInteractive"
+      />
 
       <main className={styles.container}>
         <div className={`${styles.loading} ${loading ? styles.show : ""}`}>

@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
+import spiner from "../../../public/images/loading.svg";
 
 axios.defaults.withCredentials = true;
 
@@ -19,32 +20,65 @@ export default function LeaveComment({
 
   const [content, setContent] = useState("");
 
-  const addComment = () => {
-    axios
-      .post(`/api/products/${product_slug}/add_comment/`, {
-        content: content,
-        score: starNum,
-      })
-      .then(() => {
-        setStarNum(1);
-        setContent("");
-        toast.success("دیدگاه شما بعد از تایید مدیر ثبت خواهد شد !");
-        setStatus(false);
-      })
-      .catch((err) => {
-        if (err.status === 401) {
-          toast.error("برای ثبت دیدگاه ابتدا وارد حساب خود شوید");
-          setStatus(false);
-        }
+  const [loading, setLoading] = useState(false);
 
-        if (err.status === 400) {
-          toast.error("متن دیدگاه : " + err.response.data.content);
-        }
-      });
+  const addComment = async () => {
+    if (!content) {
+      toast.error("متن دیدگاه نمیتواند خالی باشد");
+      return;
+    }
+
+    if (!window.grecaptcha) {
+      toast.error("reCAPTCHA بارگذاری نشد.");
+      return;
+    }
+
+    try {
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: "comment" }
+      );
+
+      setLoading(true);
+      axios
+        .post(`/api/products/${product_slug}/add_comment/`, {
+          content: content,
+          score: starNum,
+          recaptcha: token,
+        })
+        .then(() => {
+          setStarNum(1);
+          setContent("");
+          toast.success("دیدگاه شما بعد از تایید مدیر ثبت خواهد شد !");
+          setStatus(false);
+          setLoading(false);
+        })
+        .catch((err) => {
+          if (err.status === 401) {
+            toast.error("برای ثبت دیدگاه ابتدا وارد حساب خود شوید");
+            setStatus(false);
+          } else if (err.status === 400) {
+            toast.error("متن دیدگاه : " + err.response.data.content);
+          } else {
+            toast.error("خطایی رخ داد !");
+          }
+          setLoading(false);
+        });
+    } catch (error) {
+      toast.error("احراز reCAPTCHA با خطا مواجه شد.");
+    }
   };
 
   return (
     <div className={styles.container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+        </div>
+      </div>
+
+      <Toaster position="bottom-left" reverseOrder={true} />
+
       <div
         className={`${styles.black_back} ${status ? styles.show : ""}`}
       ></div>

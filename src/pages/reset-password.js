@@ -11,7 +11,7 @@ import Image from "next/image";
 
 axios.defaults.withCredentials = true;
 
-export default function ChangePasswordCode() {
+export default function ResetPassword() {
   const router = useRouter();
 
   const [err1, setErr1] = useState(false);
@@ -20,29 +20,48 @@ export default function ChangePasswordCode() {
 
   const [loading, setLoading] = useState(false);
 
-  const getCodeFunction = () => {
-    setLoading(true);
-    axios
-      .post("/api/auth/reset_password/", {
-        number: number,
-      })
-      .then(() => {
-        localStorage.setItem("userNumber", number);
-        toast.success("کد فعالسازی به شماره تلفن شما ارسال شد.");
-        router.push("/change-password");
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.response.data.detail) {
-          toast.error(err.response.data.detail);
-        }
-        if (err.response.data.number) {
-          toast.error("شماره تلفن : " + err.response.data.number);
-        }
+  const getCodeFunction = async () => {
+    if (!number) {
+      setErr1(true);
+      toast.error("شماره تلفن نمیتواند خالی باشد !");
+      return;
+    }
 
-        localStorage.removeItem("userNumber");
-        setLoading(false);
-      });
+    if (!window.grecaptcha) {
+      toast.error("reCAPTCHA بارگذاری نشد.");
+      return;
+    }
+
+    try {
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: "reset_password" }
+      );
+
+      setLoading(true);
+      axios
+        .post("/api/auth/reset_password/", {
+          number: number,
+          recaptcha: token,
+        })
+        .then(() => {
+          localStorage.setItem("userNumber", number);
+          toast.success("کد فعالسازی به شماره تلفن شما ارسال شد.");
+          router.push("/change-password");
+          setLoading(false);
+        })
+        .catch((err) => {
+          if (err.response.data.detail) {
+            toast.error(err.response.data.detail);
+          }
+          if (err.response.data.number) {
+            toast.error("شماره تلفن : " + err.response.data.number);
+          }
+
+          localStorage.removeItem("userNumber");
+          setLoading(false);
+        });
+    } catch (error) {}
   };
 
   const checkNumber = (number) => {
@@ -63,7 +82,7 @@ export default function ChangePasswordCode() {
 
       <Toaster position="bottom-left" reverseOrder={true} />
 
-      <div className={styles.logo}>فراموشی رمز عبور</div>
+      <div className={styles.logo}>تغییر رمز عبور</div>
 
       <div className={styles.auth_form}>
         <Link href={"/"} className={styles.back_btn_2}>

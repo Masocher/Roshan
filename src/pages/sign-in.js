@@ -27,7 +27,7 @@ export default function SignIn() {
 
   const [loading, setLoading] = useState(false);
 
-  const signInFunction = (num, pas) => {
+  const signInFunction = async (num, pas) => {
     if (!num) {
       setErr1(true);
       toast.error("شماره موبایل اجباری است!");
@@ -38,29 +38,45 @@ export default function SignIn() {
       toast.error("رمز عبور اجباری است!");
       return;
     }
-    setLoading(true);
-    axios
-      .post("/api/auth/login/", {
-        number: `${num}`,
-        password: `${pas}`,
-      })
-      .then((response) => {
-        toast.success(response.data.detail);
-        setLoading(false);
-        router.push("/");
-      })
-      .catch((err) => {
-        if (err.response?.data?.detail) {
-          toast.error(err.response.data.detail);
-        }
-        if (err.response?.data?.number) {
-          toast.error("شماره تلفن : " + err.response.data.number);
-        } else if (err.response?.data?.password) {
-          toast.error("رمز عبور : " + err.response.data.password);
-        }
 
-        setLoading(false);
-      });
+    if (!window.grecaptcha) {
+      toast.error("reCAPTCHA بارگذاری نشد.");
+      return;
+    }
+
+    try {
+      const token = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: "login" }
+      );
+
+      setLoading(true);
+      axios
+        .post("/api/auth/login/", {
+          number: `${num}`,
+          password: `${pas}`,
+          recaptcha: token,
+        })
+        .then((response) => {
+          toast.success(response.data.detail);
+          setLoading(false);
+          router.push("/");
+        })
+        .catch((err) => {
+          if (err.response?.data?.detail) {
+            toast.error(err.response.data.detail);
+          }
+          if (err.response?.data?.number) {
+            toast.error("شماره تلفن : " + err.response.data.number);
+          } else if (err.response?.data?.password) {
+            toast.error("رمز عبور : " + err.response.data.password);
+          }
+
+          setLoading(false);
+        });
+    } catch (error) {
+      toast.error("احراز reCAPTCHA با خطا مواجه شد.");
+    }
   };
 
   const checkNumber = (number) => {

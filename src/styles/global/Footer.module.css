@@ -35,7 +35,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  background-color: #000;
+  background-color: #12a386;
   margin-right: 10px;
   color: #fff;
   font-size: 18px;
@@ -44,14 +44,14 @@
   cursor: pointer;
 }
 .icon_box:hover {
-  background-color: #12a386;
+  background-color: #000;
 }
 
 .scroll_btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #12a386;
+  background-color: #000;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
@@ -63,7 +63,7 @@
   transition: .2s;
 }
 .scroll_btn:hover {
-  background-color: #000;
+  background-color: #12a386;
 }
 .scroll_btn span {
   margin: 4px 10px 0 0;

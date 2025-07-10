@@ -105,7 +105,7 @@ export default function FilterBox({
                       });
                     }
 
-                    setOption1(false);
+                    setOption1(true);
                     setOption2(false);
                     setOption3(false);
 

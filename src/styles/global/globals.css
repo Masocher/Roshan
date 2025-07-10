@@ -13,6 +13,10 @@
   src: url(../../../public/fonts/Kalameh-Black.ttf);
 }
 
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
 body {
   direction: rtl;
   margin: 0;

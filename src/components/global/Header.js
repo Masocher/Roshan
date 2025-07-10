@@ -101,7 +101,7 @@ export default function Header({ status, setStatus, user }) {
             ""
           )}
 
-          <Link className={styles.menu_sec} href={"/change-password-code"}>
+          <Link className={styles.menu_sec} href={"/reset-password"}>
             <span>
               <FontAwesomeIcon icon={faLock} />
             </span>

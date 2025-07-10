@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
-import Gateway from "@/components/global/gateway";
+import Gateway from "../components/global/Gateway";
 import Loading from "@/components/global/Loading";
 import cities from "../cities.json";
 import spiner from "../../public/images/loading.svg";
