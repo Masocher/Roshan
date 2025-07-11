@@ -189,15 +189,12 @@ export default function SignIn() {
               </div>
             </div>
 
-            <button type="submit" className={styles.submit_btn}>
+            <button type="submit" className={styles.submit_btn_2}>
               ورود به حساب
             </button>
           </form>
 
-          <Link
-            className={styles.forgot_password}
-            href={"/change-password-code"}
-          >
+          <Link className={styles.forgot_password} href={"/reset-password"}>
             رمز عبورم را فراموش کرده ام !
           </Link>
         </div>

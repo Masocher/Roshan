@@ -16,6 +16,7 @@ import Image from "next/image";
 import spiner from "../../public/images/loading.svg";
 import Head from "next/head";
 import Script from "next/script";
+import AuthCode from "@/components/auth/AuthCode";
 
 axios.defaults.withCredentials = true;
 
@@ -26,12 +27,21 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
+  const [userData, setUserData] = useState({
+    name: "",
+    number: "",
+    password: "",
+    password2: "",
+  });
+
   const [err1, setErr1] = useState(false);
   const [err2, setErr2] = useState(false);
   const [err3, setErr3] = useState(false);
   const [err4, setErr4] = useState(false);
 
   const [loading, setLoading] = useState(false);
+
+  const [verify, setVerify] = useState(false);
 
   const checkName = (name) => setErr1(name.trim() === "");
   const checkNumber = (number) => {
@@ -74,8 +84,7 @@ export default function SignUp() {
         })
         .then(() => {
           toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
-          localStorage.setItem("number", num);
-          router.push("/auth-code");
+          setVerify(true);
           setLoading(false);
         })
         .catch((err) => {
@@ -249,7 +258,7 @@ export default function SignUp() {
             </div>
 
             <button
-              className={styles.submit_btn}
+              className={styles.submit_btn_2}
               type="submit"
               disabled={loading}
               aria-busy={loading}
@@ -259,6 +268,16 @@ export default function SignUp() {
           </form>
         </div>
       </main>
+
+      <AuthCode
+        status={verify}
+        setStatus={setVerify}
+        userData={userData}
+        name={name}
+        number={number}
+        password={password}
+        password2={password2}
+      />
     </>
   );
 }

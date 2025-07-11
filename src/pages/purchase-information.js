@@ -36,23 +36,12 @@ export async function getServerSideProps(context) {
     });
 
     if (!res.ok) {
-      if (res.status === 401) {
-        return {
-          redirect: {
-            destination: "/sign-in",
-            permanent: false,
-          },
-        };
-      } else if (res.status === 403) {
-        return {
-          redirect: {
-            destination: "/phone-number-verification",
-            permanent: false,
-          },
-        };
-      }
-
-      return { notFound: true };
+      return {
+        redirect: {
+          destination: "/sign-in",
+          permanent: false,
+        },
+      };
     }
 
     const data = await res.json();
