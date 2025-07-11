@@ -45,20 +45,20 @@ export default function ResetPassword() {
           recaptcha: token,
         })
         .then(() => {
-          localStorage.setItem("userNumber", number);
           toast.success("کد فعالسازی به شماره تلفن شما ارسال شد.");
-          router.push("/change-password");
+          localStorage.setItem("change_password_status", true);
+          router.push(`/change-password`);
           setLoading(false);
         })
         .catch((err) => {
           if (err.response.data.detail) {
             toast.error(err.response.data.detail);
-          }
-          if (err.response.data.number) {
+          } else if (err.response.data.number) {
             toast.error("شماره تلفن : " + err.response.data.number);
+          } else {
+            toast.error("خطایی رخ داد !");
           }
-
-          localStorage.removeItem("userNumber");
+          localStorage.setItem("change_password_status", false);
           setLoading(false);
         });
     } catch (error) {}
@@ -85,12 +85,12 @@ export default function ResetPassword() {
       <div className={styles.logo}>تغییر رمز عبور</div>
 
       <div className={styles.auth_form}>
-        <div onClick={() => router.back()} className={styles.back_btn_2}>
+        <Link href={"/"} className={styles.back_btn_2}>
           <span>
             <FontAwesomeIcon icon={faArrowRight} />
           </span>
           بازگشت
-        </div>
+        </Link>
 
         <div className={styles.title_box}>شماره تلفن را وارد کنید</div>
 

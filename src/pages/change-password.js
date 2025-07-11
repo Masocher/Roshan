@@ -113,7 +113,7 @@ export default function ChangePassword() {
             <div className={`${styles.input_box} ${styles.code_input_box}`}>
               <div className={styles.input_title}>
                 کد تایید به شماره
-                <span>{localStorage.getItem("userNumber")}</span>
+                <div>{localStorage.getItem("userNumber")}</div>
                 پیامک شده است
               </div>
 
