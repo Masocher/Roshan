@@ -8,6 +8,7 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import spiner from "../../public/images/loading.svg";
 import Image from "next/image";
+import ChangePassword from "@/components/user-panel/ChangePassword";
 
 axios.defaults.withCredentials = true;
 
@@ -19,6 +20,8 @@ export default function ResetPassword() {
   const [number, setNumber] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const [verify, setVerify] = useState(false);
 
   const getCodeFunction = async () => {
     if (!number) {
@@ -45,9 +48,8 @@ export default function ResetPassword() {
           recaptcha: token,
         })
         .then(() => {
-          toast.success("کد فعالسازی به شماره تلفن شما ارسال شد.");
-          localStorage.setItem("change_password_status", true);
-          router.push(`/change-password`);
+          toast.success(`کد یکبار مصرف به شماره شما پیامک شد`);
+          setVerify(true);
           setLoading(false);
         })
         .catch((err) => {
@@ -58,10 +60,11 @@ export default function ResetPassword() {
           } else {
             toast.error("خطایی رخ داد !");
           }
-          localStorage.setItem("change_password_status", false);
           setLoading(false);
         });
-    } catch (error) {}
+    } catch (error) {
+      toast.error("احراز reCAPTCHA با خطا مواجه شد.");
+    }
   };
 
   const checkNumber = (number) => {
@@ -122,6 +125,8 @@ export default function ResetPassword() {
           </button>
         </form>
       </div>
+
+      <ChangePassword status={verify} setStatus={setVerify} number={number} />
     </div>
   );
 }

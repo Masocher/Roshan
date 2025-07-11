@@ -21,7 +21,6 @@ import AuthCode from "@/components/auth/AuthCode";
 axios.defaults.withCredentials = true;
 
 export default function SignUp() {
-  const router = useRouter();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -48,13 +47,13 @@ export default function SignUp() {
     const phoneRegex = /^09\d{9}$/;
     setErr2(!phoneRegex.test(number));
   };
-  const checkPassword = (pass) => setErr3(pass.length < 6);
+  const checkPassword = (pass) => setErr3(pass.length < 8);
   const checkPassword2 = (pass2) => setErr4(pass2 !== password);
 
   const signUpFunction = async (nam, num, pas1, pas2) => {
     if (nam.trim() === "") return setErr1(true);
     if (!/^09\d{9}$/.test(num)) return setErr2(true);
-    if (pas1.length < 6) return setErr3(true);
+    if (pas1.length < 8) return setErr3(true);
     if (pas1 !== pas2) {
       toast.error("رمز عبور و تکرار آن مطابقت ندارند.");
       setErr4(true);
@@ -231,7 +230,7 @@ export default function SignUp() {
                 id="errorPass1"
                 className={`${styles.error_box} ${err3 ? styles.show : ""}`}
               >
-                رمز عبور باید حداقل 6 کاراکتر باشد.
+                رمز عبور باید حداقل 8 کاراکتر باشد.
               </div>
             </div>
 

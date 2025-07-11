@@ -1,29 +1,25 @@
-import styles from "../../styles/authentication/Auth.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faRotate } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
+import axios from "axios";
+import styles from "../../styles/authentication/ChangePassword.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
-import Image from "next/image";
 import spiner from "../../../public/images/loading.svg";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faRotate } from "@fortawesome/free-solid-svg-icons";
 
 axios.defaults.withCredentials = true;
 
-export default function AuthCode({
-  status,
-  setStatus,
-  name,
-  number,
-  password,
-  password2,
-}) {
+export default function ChangePassword({ status, setStatus, number }) {
   const router = useRouter();
 
-  const [code, setCode] = useState("");
+  const [err1, setErr1] = useState(false);
+  const [err2, setErr2] = useState(false);
 
-  const [err1, setErr1] = useState(true);
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [timeLeft, setTimeLeft] = useState(status ? 120 : 0);
   const [canResend, setCanResend] = useState(false);
@@ -63,50 +59,53 @@ export default function AuthCode({
     }
   };
 
-  const [loading, setLoading] = useState(false);
+  const checkPassword = (password) => {
+    if (password.length > 0) {
+      setErr2(false);
+    } else {
+      setErr2(true);
+    }
+  };
 
-  const sendCode = async (code) => {
-    if (!window.grecaptcha) {
-      toast.error("reCAPTCHA بارگذاری نشد.");
+  const changePasswordFunction = (code, pas) => {
+    if (!code) {
+      setErr1(true);
+      toast.error("کد تایید نمیتواند خالی باشد");
       return;
     }
 
-    try {
-      const token = await window.grecaptcha.execute(
-        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-        { action: "signup" }
-      );
-
-      setLoading(true);
-      axios
-        .post("/api/auth/register/verify/", {
-          number: number,
-          full_name: name,
-          password: password,
-          password2: password2,
-          otp: `${code}`,
-          recaptcha: token,
-        })
-        .then(() => {
-          toast.success("خوش آمدید ، وارد حساب خود شوید");
-          setTimeout(() => {
-            router.push("/sign-in");
-            setLoading(false);
-          }, 3000);
-        })
-        .catch((err) => {
-          if (err.response.data.detail) {
-            toast.error(err.response.data.detail);
-          } else if (err.response.data.otp) {
-            toast.error("کد تایید : " + err.response.data.otp);
-          } else {
-            toast.error("خطایی رخ داد !");
-          }
-          setLoading(false);
-        });
-    } catch (error) {
-      toast.error("احراز reCAPTCHA با خطا مواجه شد.");
+    if (!pas) {
+      setErr2(true);
+      toast.error("رمز عبور نمیتواند خالی باشد");
+      return;
     }
+
+    setLoading(true);
+    axios
+      .post("/api/auth/reset_password/verify/", {
+        number: number,
+        otp: code,
+        new_password: pas,
+      })
+      .then(() => {
+        toast.success("رمز عبور شما با موفقیت تغییر پیدا کرد.");
+        setTimeout(() => {
+          router.push("/");
+          setLoading(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        if (err.response.data.detail) {
+          toast.error(err.response.data.detail);
+        }
+        if (err.response.data.otp) {
+          toast.error("کد تایید : " + err.response.data.otp);
+        }
+        if (err.response.data.new_password) {
+          toast.error("رمز عبور جدید : " + err.response.data.new_password);
+        }
+        setLoading(false);
+      });
   };
 
   const resendCode = async () => {
@@ -118,17 +117,13 @@ export default function AuthCode({
     try {
       const token = await window.grecaptcha.execute(
         process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-        { action: "signup" }
+        { action: "reset_password" }
       );
 
       setLoading(true);
-
       axios
-        .post("/api/auth/register/", {
-          full_name: name,
+        .post("/api/auth/reset_password/", {
           number: number,
-          password: password,
-          password2: password2,
           recaptcha: token,
         })
         .then(() => {
@@ -138,21 +133,18 @@ export default function AuthCode({
           setTimeLeft(120);
         })
         .catch((err) => {
-          if (err.response && err.response.data) {
-            const data = err.response.data;
-            if (data.detail) toast.error(data.detail);
-            else if (data.full_name)
-              toast.error("نام و نام خانوادگی : " + data.full_name);
-            else if (data.number) toast.error("شماره تلفن : " + data.number);
-            else if (data.password) toast.error("رمز عبور : " + data.password);
-            else if (data.password2)
-              toast.error("تکرار رمز عبور : " + data.password2);
+          if (err.response.data.detail) {
+            toast.error(err.response.data.detail);
+          } else if (err.response.data.otp) {
+            toast.error("کد تایید : " + err.response.data.otp);
+          } else if (err.response.data.password) {
+            toast.error("رمز عبور : " + err.response.data.password);
           } else {
             toast.error("خطایی رخ داد !");
           }
           setLoading(false);
         });
-    } catch (err) {
+    } catch (error) {
       toast.error("احراز reCAPTCHA با خطا مواجه شد.");
     }
   };
@@ -167,8 +159,6 @@ export default function AuthCode({
 
       <Toaster position="bottom-left" reverseOrder={true} />
 
-      <div className={styles.logo}>روشن مارکت</div>
-
       {!canResend ? (
         <div className={styles.auth_form}>
           <div className={styles.back_btn} onClick={() => setStatus(false)}>
@@ -178,18 +168,22 @@ export default function AuthCode({
             بازگشت
           </div>
 
-          <div className={styles.title}>تایید شماره تلفن</div>
+          <div className={styles.timer}>{timeLeft} ثانیه</div>
+
+          <div className={styles.title}>تغییر رمز عبور</div>
 
           <form onSubmit={(e) => e.preventDefault()}>
             <div className={`${styles.input_box} ${styles.code_input_box}`}>
               <div className={styles.input_title}>
-                کد تایید به شماره <div>{number}</div> پیامک شد
+                کد تایید به شماره
+                <div>{number}</div>
+                پیامک شده است
               </div>
 
               <input
                 type="text"
-                placeholder="____"
                 maxLength={"4"}
+                placeholder="____"
                 onChange={(e) => {
                   setCode(e.target.value);
                   checkCode(e.target.value);
@@ -198,18 +192,33 @@ export default function AuthCode({
               />
 
               <div className={`${styles.error_box} ${err1 ? styles.show : ""}`}>
-                کد تایید 4 رقمی الزامی است!
+                کد تایید نمیتواند خالی باشد !
               </div>
             </div>
 
-            <div className={styles.again_code_time}>
-              <span>{timeLeft} ثانیه</span>
-              تا ارسال مجدد کد تایید
+            <div className={styles.input_box}>
+              <div className={styles.input_title}>رمز عبور جدید</div>
+
+              <input
+                type="password"
+                placeholder="رمز عبور جدید را وارد کنید"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  checkPassword(e.target.value);
+                }}
+                className={`${err2 ? styles.error : ""}`}
+              />
+
+              <div className={`${styles.error_box} ${err2 ? styles.show : ""}`}>
+                رمز عبور نمیتواند خالی باشد !
+              </div>
             </div>
 
             <button
-              className={`${styles.submit_btn} ${err1 ? "" : styles.show}`}
-              onClick={() => sendCode(code)}
+              className={`${styles.submit_btn} ${
+                err1 || err2 ? "" : styles.show
+              }`}
+              onClick={() => changePasswordFunction(code, password)}
             >
               تایید کد
             </button>
@@ -224,7 +233,7 @@ export default function AuthCode({
             بازگشت
           </div>
 
-          <div className={styles.title}>تایید شماره تلفن</div>
+          <div className={styles.title}>تغییر رمز عبور</div>
 
           <button
             type="button"
