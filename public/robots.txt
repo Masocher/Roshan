@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /user-orders/
+Disallow: /order-detail/
+Disallow: /sign-up/
+Disallow: /sign-in/
+Disallow: /shopping-cart/
+Disallow: /purchase-information/
+Disallow: /reset-password/
+
+Allow: /
+
+Sitemap: https://abazarak.ir/sitemap.xml

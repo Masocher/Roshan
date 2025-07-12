@@ -210,22 +210,14 @@
   }
 
   .searchTag {
-    margin: 15px 0 0 0;
-    border-radius: 0;
-    width: calc(100% - 40px);
-  }
-
-  .searchTag span {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-left: 10px;
+    margin: 35px 20px 20px 0;
   }
 }
 
 @media (max-width: 580px) {
   .reset_btn_2.show {
     display: block;
+    margin-top: 0;
   }
 
   .reset_btn_2.show_2 {

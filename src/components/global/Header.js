@@ -1,6 +1,7 @@
 import styles from "../../styles/global/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faAngleLeft,
   faClose,
   faLock,
   faReceipt,
@@ -12,15 +13,24 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import spiner from "../../../public/images/loading.svg";
 import Image from "next/image";
+import { useCategories } from "../CategoryContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryQuery } from "@/store/Reducer";
 
 axios.defaults.withCredentials = true;
 
 export default function Header({ status, setStatus, user }) {
+  const dispatch = useDispatch();
+
+  const categoryQuery = useSelector((state) => state.category);
+
+  const headerCategories = useCategories();
+
   const router = useRouter();
 
   const location = useRouter();
@@ -101,7 +111,7 @@ export default function Header({ status, setStatus, user }) {
           {user ? (
             user.role === "staff" ? (
               <Link
-                className={styles.menu_sec}
+                className={`${styles.menu_sec} ${styles.admin_sec}`}
                 href={"/admin-panel/products"}
                 onClick={() => setMenuStatus(false)}
               >
@@ -252,37 +262,393 @@ export default function Header({ status, setStatus, user }) {
         </div>
 
         <div className={styles.categories}>
-          <div className={styles.categories_right}>
-            <div className={`${styles.categ_box} ${styles.show}`}>
-              ابزار فلزی
-            </div>
-            <div className={styles.categ_box}>ابزار پلاستیکی</div>
-            <div className={styles.categ_box}>ابزار فولادی</div>
-            <div className={styles.categ_box}>ابزار مسی</div>
-          </div>
-
-          <div className={styles.categories_left}>
-            <div className={styles.categ_item}>نردبان</div>
-            <div className={styles.categ_item}>پتک</div>
-            <div className={styles.categ_item}>تبر</div>
-            <div className={styles.categ_item}>کلنگ</div>
-            <div className={styles.categ_item}>قلاویز</div>
-            <div className={styles.categ_item}>انبر</div>
-            <div className={styles.categ_item}>آچار</div>
-            <div className={styles.categ_item}>اره دستی</div>
-            <div className={styles.categ_item}>تلمبه پایی</div>
-            <div className={styles.categ_item}>چکش</div>
-            <div className={styles.categ_item}>سمپاش</div>
-            <div className={styles.categ_item}>فاز متر</div>
-            <div className={styles.categ_item}>قلم بنایی</div>
-            <div className={styles.categ_item}>کیف ابزار</div>
-            <div className={styles.categ_item}>کاتر</div>
-            <div className={styles.categ_item}>مغار</div>
-            <div className={styles.categ_item}>سنباده</div>
-            <div className={styles.categ_item}>لوله بر</div>
-            <div className={styles.categ_item}>روغن دان</div>
-            <div className={styles.categ_item}>میخ پرچ</div>
-          </div>
+          {headerCategories.map((category) => (
+            <Link
+              href={"/products"}
+              className={`${styles.categ_box} ${
+                categoryQuery === category.name ? styles.show : ""
+              }`}
+              key={category.id}
+              onClick={() => dispatch(setCategoryQuery(category.name))}
+            >
+              {category.name}
+              <span>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </span>
+            </Link>
+          ))}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>{" "}
+          <Link href={"/products"} className={`${styles.categ_box}`}>
+            چکش
+            <span>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+          </Link>
         </div>
       </div>
     </div>

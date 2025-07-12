@@ -125,52 +125,7 @@ export default function UserOrders({ user, initialOrders, nextPage }) {
           name="description"
           content="مشاهده تاریخچه سفارشات و وضعیت پرداخت و ارسال سفارش‌های شما در فروشگاه اینترنتی ابازارک."
         />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#212121" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="ابازارک" />
-        <meta property="og:title" content="تاریخچه سفارشات | فروشگاه ابازارک" />
-        <meta
-          property="og:description"
-          content="پیگیری و مشاهده وضعیت سفارشات شما در فروشگاه ابزار و تجهیزات صنعتی ابازارک."
-        />
-        <meta property="og:url" content="https://abazarak.ir/user-orders" />
-        <meta
-          property="og:image"
-          content="https://abazarak.ir/images/og-image.jpg"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="تاریخچه سفارشات | فروشگاه ابازارک"
-        />
-        <meta
-          name="twitter:description"
-          content="مشاهده و پیگیری سفارشات شما در فروشگاه ابازارک."
-        />
-        <meta
-          name="twitter:image"
-          content="https://abazarak.ir/images/og-image.jpg"
-        />
-
-        <link rel="canonical" href="https://abazarak.ir/user-orders" />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "CollectionPage",
-              name: "تاریخچه سفارشات ابازارک",
-              url: "https://abazarak.ir/user-orders",
-              about:
-                "مشاهده و پیگیری سفارشات کاربران فروشگاه ابزارآلات صنعتی ابازارک",
-            }),
-          }}
-        />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <div className={styles.container}>
@@ -279,7 +234,7 @@ export default function UserOrders({ user, initialOrders, nextPage }) {
                         <div
                           className={styles.show_details_btn}
                           onClick={() => {
-                            setProductsPrice({ pay_price: order.final_price });
+                            setProductsPrice({ pay_price: order.pay_price });
                             setOrderId(order.id);
                             setGatewayStatus(true);
                           }}

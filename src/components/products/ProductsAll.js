@@ -24,7 +24,7 @@ export default function ProductsAll({ loading, productsList }) {
   return (
     <div className={styles.container}>
       <div className={styles.products}>
-        {products.length === 0 ? (
+        {products.length === 0 && !loading ? (
           <div className={styles.no_product}>
             <span>
               <FontAwesomeIcon icon={faExclamationTriangle} />
@@ -32,8 +32,22 @@ export default function ProductsAll({ loading, productsList }) {
             محصولی یافت نشد
           </div>
         ) : loading ? (
-          <div className="loader" style={spinerStyles}>
-            <Image src={spiner} width={40} height={40} alt="لودینگ" />
+          <div className={styles.skeleton_wrapper}>
+            {[...Array(10)].map((_, index) => (
+              <div key={index} className={styles.skeleton_box}>
+                <div className={styles.skeleton_image}></div>
+
+                <div className={styles.skeleton_text}>
+                  <div></div>
+                  <div></div>
+                </div>
+
+                <div className={styles.skeleton_price}>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           products.map((product, index) => (

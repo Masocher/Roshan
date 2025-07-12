@@ -23,6 +23,7 @@ import Gateway from "../components/global/Gateway";
 import Loading from "@/components/global/Loading";
 import cities from "../cities.json";
 import spiner from "../../public/images/loading.svg";
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const { req } = context;
@@ -299,414 +300,429 @@ export default function PurchaseInformation({ serverData }) {
     return <Loading />;
   } else {
     return (
-      <div className={styles.container}>
-        <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
-          <div className={styles.loading_wrapper}>
-            <div className={styles.loading_wrapper_title}>روشن ابزار</div>
-            <Image src={spiner} width={40} height={40} alt="لودینگ" />
+      <>
+        <Head>
+          <Head>
+            <title>تکمیل خرید | فروشگاه ابازارک</title>
+            <meta
+              name="description"
+              content="بررسی نهایی و ثبت سفارش ابزارآلات صنعتی در فروشگاه ابازارک. پرداخت امن، ارسال سریع و تضمین کیفیت محصولات."
+            />
+            <meta name="robots" content="noindex, nofollow" />
+          </Head>
+        </Head>
+
+        <div className={styles.container}>
+          <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+            <div className={styles.loading_wrapper}>
+              <div className={styles.loading_wrapper_title}>روشن ابزار</div>
+              <Image src={spiner} width={40} height={40} alt="لودینگ" />
+            </div>
           </div>
-        </div>
 
-        <Toaster position="bottom-left" reverseOrder={true} />
+          <Toaster position="bottom-left" reverseOrder={true} />
 
-        <Gateway
-          gatewayStatus={gatewayStatus}
-          productsPrice={productsPrice}
-          setBackStatus={setBackStatus}
-          orderId={orderId}
-        />
+          <Gateway
+            gatewayStatus={gatewayStatus}
+            productsPrice={productsPrice}
+            setBackStatus={setBackStatus}
+            orderId={orderId}
+          />
 
-        <div
-          className={`${styles.address_container} ${
-            addressBoxStatus ? styles.show : ""
-          }`}
-        >
-          <div className={styles.select_address}>
-            <div className={styles.address_main_title}>انتخاب آدرس</div>
+          <div
+            className={`${styles.address_container} ${
+              addressBoxStatus ? styles.show : ""
+            }`}
+          >
+            <div className={styles.select_address}>
+              <div className={styles.address_main_title}>انتخاب آدرس</div>
 
-            <div className={styles.addresses}>
-              {addresses.map((address) => (
-                <div
-                  className={`${styles.address} ${
-                    address.id === selectedAddressId ? styles.show : ""
-                  }`}
-                  key={address.id}
-                  onClick={() => setSelectedAddressId(address.id)}
-                >
-                  <div className={styles.address_title}>
-                    <div
-                      className={`${styles.check_box}  ${
-                        address.id === selectedAddressId ? styles.show : ""
-                      }`}
-                    >
-                      <span></span>
+              <div className={styles.addresses}>
+                {addresses.map((address) => (
+                  <div
+                    className={`${styles.address} ${
+                      address.id === selectedAddressId ? styles.show : ""
+                    }`}
+                    key={address.id}
+                    onClick={() => setSelectedAddressId(address.id)}
+                  >
+                    <div className={styles.address_title}>
+                      <div
+                        className={`${styles.check_box}  ${
+                          address.id === selectedAddressId ? styles.show : ""
+                        }`}
+                      >
+                        <span></span>
+                      </div>
+
+                      {address.address}
                     </div>
 
-                    {address.address}
-                  </div>
+                    <div className={styles.address_inf}>
+                      <span>
+                        <FontAwesomeIcon icon={faAddressCard} />
+                      </span>
+                      {address.postal_code}
+                    </div>
 
-                  <div className={styles.address_inf}>
-                    <span>
-                      <FontAwesomeIcon icon={faAddressCard} />
-                    </span>
-                    {address.postal_code}
-                  </div>
-
-                  <div className={styles.address_inf}>
-                    <span>
-                      <FontAwesomeIcon icon={faLocationDot} />
-                    </span>
-                    {address.city_name}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.select_address_buttons}>
-              <div
-                className={`${styles.new_address} ${styles.new_address_2}`}
-                onClick={() => {
-                  setAddressBoxStatus(false);
-                  selectAddress();
-                }}
-              >
-                <span>
-                  <FontAwesomeIcon icon={faCheckCircle} />
-                </span>
-                انتخاب
-              </div>
-
-              <div
-                className={styles.new_address}
-                onClick={() => {
-                  setAddressBoxStatus(false);
-                  setCreateAddressStatus(true);
-                }}
-              >
-                <span>
-                  <FontAwesomeIcon icon={faPlus} />
-                </span>
-                افزودن آدرس جدید
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={`${styles.address_container} ${
-            createAddressStatus ? styles.show : ""
-          }`}
-        >
-          <div className={styles.select_address}>
-            <div className={styles.address_main_title}>
-              افزودن آدرس جدید
-              <div
-                className={styles.close_btn}
-                onClick={() => setCreateAddressStatus(false)}
-              >
-                <FontAwesomeIcon icon={faClose} />
-              </div>
-            </div>
-
-            <div className={styles.address_inputs}>
-              <div className={styles.address_section}>
-                <div
-                  className={styles.select_box}
-                  onClick={() => {
-                    setProvinceStatus(!provinceStatus);
-                    setCityStatus(false);
-                  }}
-                >
-                  <div>
-                    {provinceSelected === ""
-                      ? "انتخاب استان"
-                      : provinceSelected}
-                  </div>
-
-                  <span>
-                    <FontAwesomeIcon icon={faAngleLeft} />
-                  </span>
-                </div>
-
-                <div
-                  className={`${styles.select_box} ${
-                    provinceSelected === "" ? styles.show : ""
-                  }`}
-                  onClick={() => {
-                    setCityStatus(!cityStatus);
-                    setProvinceStatus(false);
-                  }}
-                >
-                  <div>{citySelected === "" ? "انتخاب شهر" : citySelected}</div>
-
-                  <span>
-                    <FontAwesomeIcon icon={faAngleLeft} />
-                  </span>
-                </div>
-              </div>
-
-              <div
-                className={`${styles.province_box} ${
-                  provinceStatus ? styles.show : ""
-                }`}
-              >
-                {provinces.map((p) => (
-                  <div
-                    className={styles.province}
-                    key={p.province_id}
-                    onClick={() => {
-                      setProvinceSelected(p.name);
-                      setProvinceId(p.province_id);
-                      setProvinceStatus(false);
-                      setCitySelected("");
-                    }}
-                  >
-                    {p.name}
+                    <div className={styles.address_inf}>
+                      <span>
+                        <FontAwesomeIcon icon={faLocationDot} />
+                      </span>
+                      {address.city_name}
+                    </div>
                   </div>
                 ))}
               </div>
 
-              <div
-                className={`${styles.city_box} ${
-                  cityStatus ? styles.show : ""
-                }`}
-              >
-                {cities
-                  .filter((city) => city.province_id == provinceId)
-                  .map((c) => (
-                    <div
-                      className={styles.province}
-                      key={c.city_id}
-                      onClick={() => {
-                        setCitySelected(c.name);
-                        setCityId(c.city_id);
-                        setCityStatus(false);
-                      }}
-                    >
-                      {c.name}
-                    </div>
-                  ))}
-              </div>
+              <div className={styles.select_address_buttons}>
+                <div
+                  className={`${styles.new_address} ${styles.new_address_2}`}
+                  onClick={() => {
+                    setAddressBoxStatus(false);
+                    selectAddress();
+                  }}
+                >
+                  <span>
+                    <FontAwesomeIcon icon={faCheckCircle} />
+                  </span>
+                  انتخاب
+                </div>
 
-              <div className={styles.address_section}>
-                <input
-                  type="text"
-                  placeholder="کد پستی تحویل گیرنده"
-                  onChange={(e) => setPostalCode(e.target.value)}
-                  value={postalCode}
-                />
-
-                <input
-                  type="text"
-                  placeholder="پلاک تحویل گیرنده"
-                  onChange={(e) => setPelak(e.target.value)}
-                  value={pelak}
-                />
-              </div>
-
-              <textarea
-                placeholder="آدرس تحویل گیرنده"
-                onChange={(e) => setAddress(e.target.value)}
-                value={address}
-              />
-
-              <div
-                className={styles.create_address_btn}
-                onClick={() => createAddress()}
-              >
-                افزودن آدرس
+                <div
+                  className={styles.new_address}
+                  onClick={() => {
+                    setAddressBoxStatus(false);
+                    setCreateAddressStatus(true);
+                  }}
+                >
+                  <span>
+                    <FontAwesomeIcon icon={faPlus} />
+                  </span>
+                  افزودن آدرس جدید
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className={styles.top_section}>
-          <Link href={"/shopping-cart"} className={styles.main_title}>
-            <span>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </span>
-            تکمیل سفارش
-          </Link>
-
-          <div className={styles.logo_box}>روشن مارکت</div>
-        </div>
-
-        <div className={styles.right_section}>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className={`${styles.user_inf_form} ${
-              fullNameError ? styles.name_error : ""
-            } ${phoneNumberError ? styles.number_error : ""}`}
+          <div
+            className={`${styles.address_container} ${
+              createAddressStatus ? styles.show : ""
+            }`}
           >
-            <div className={styles.title}>
-              <span>
-                <FontAwesomeIcon icon={faUser} />
-              </span>
-              اطلاعات دریافت کننده
-            </div>
+            <div className={styles.select_address}>
+              <div className={styles.address_main_title}>
+                افزودن آدرس جدید
+                <div
+                  className={styles.close_btn}
+                  onClick={() => setCreateAddressStatus(false)}
+                >
+                  <FontAwesomeIcon icon={faClose} />
+                </div>
+              </div>
 
-            <input
-              type="text"
-              placeholder="نام و نام خانوادگی"
-              onChange={(e) => {
-                setFullName(e.target.value);
-                setFullNameError(false);
-              }}
-            />
+              <div className={styles.address_inputs}>
+                <div className={styles.address_section}>
+                  <div
+                    className={styles.select_box}
+                    onClick={() => {
+                      setProvinceStatus(!provinceStatus);
+                      setCityStatus(false);
+                    }}
+                  >
+                    <div>
+                      {provinceSelected === ""
+                        ? "انتخاب استان"
+                        : provinceSelected}
+                    </div>
 
-            <input
-              type="text"
-              placeholder="شماره تلفن"
-              onChange={(e) => {
-                setPhoneNumber(e.target.value);
-                setPhoneNumberError(false);
-              }}
-            />
-          </form>
+                    <span>
+                      <FontAwesomeIcon icon={faAngleLeft} />
+                    </span>
+                  </div>
 
-          <div className={styles.location_box}>
-            <div className={styles.title}>انتخاب آدرس</div>
+                  <div
+                    className={`${styles.select_box} ${
+                      provinceSelected === "" ? styles.show : ""
+                    }`}
+                    onClick={() => {
+                      setCityStatus(!cityStatus);
+                      setProvinceStatus(false);
+                    }}
+                  >
+                    <div>
+                      {citySelected === "" ? "انتخاب شهر" : citySelected}
+                    </div>
 
-            <div className={styles.selected_address_box}>
-              <div className={styles.title_box}>
-                <div className={styles.title}>
-                  <span>
-                    <FontAwesomeIcon icon={faEarthAmericas} />
-                  </span>
-                  {addresses.length === 0
-                    ? "آدرسی در لیست شما وجود ندارد ، آدرس جدید ایجاد کنید"
-                    : "ارسال به آدرس انتخاب شده"}
+                    <span>
+                      <FontAwesomeIcon icon={faAngleLeft} />
+                    </span>
+                  </div>
                 </div>
 
-                {addresses.length === 0 ? (
-                  <div
-                    className={`${styles.select_address_btn} ${styles.select_address_btn_1}`}
-                    onClick={() => setCreateAddressStatus(true)}
-                  >
+                <div
+                  className={`${styles.province_box} ${
+                    provinceStatus ? styles.show : ""
+                  }`}
+                >
+                  {provinces.map((p) => (
+                    <div
+                      className={styles.province}
+                      key={p.province_id}
+                      onClick={() => {
+                        setProvinceSelected(p.name);
+                        setProvinceId(p.province_id);
+                        setProvinceStatus(false);
+                        setCitySelected("");
+                      }}
+                    >
+                      {p.name}
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className={`${styles.city_box} ${
+                    cityStatus ? styles.show : ""
+                  }`}
+                >
+                  {cities
+                    .filter((city) => city.province_id == provinceId)
+                    .map((c) => (
+                      <div
+                        className={styles.province}
+                        key={c.city_id}
+                        onClick={() => {
+                          setCitySelected(c.name);
+                          setCityId(c.city_id);
+                          setCityStatus(false);
+                        }}
+                      >
+                        {c.name}
+                      </div>
+                    ))}
+                </div>
+
+                <div className={styles.address_section}>
+                  <input
+                    type="text"
+                    placeholder="کد پستی تحویل گیرنده"
+                    onChange={(e) => setPostalCode(e.target.value)}
+                    value={postalCode}
+                  />
+
+                  <input
+                    type="text"
+                    placeholder="پلاک تحویل گیرنده"
+                    onChange={(e) => setPelak(e.target.value)}
+                    value={pelak}
+                  />
+                </div>
+
+                <textarea
+                  placeholder="آدرس تحویل گیرنده"
+                  onChange={(e) => setAddress(e.target.value)}
+                  value={address}
+                />
+
+                <div
+                  className={styles.create_address_btn}
+                  onClick={() => createAddress()}
+                >
+                  افزودن آدرس
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.top_section}>
+            <Link href={"/shopping-cart"} className={styles.main_title}>
+              <span>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+              تکمیل سفارش
+            </Link>
+
+            <div className={styles.logo_box}>روشن مارکت</div>
+          </div>
+
+          <div className={styles.right_section}>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className={`${styles.user_inf_form} ${
+                fullNameError ? styles.name_error : ""
+              } ${phoneNumberError ? styles.number_error : ""}`}
+            >
+              <div className={styles.title}>
+                <span>
+                  <FontAwesomeIcon icon={faUser} />
+                </span>
+                اطلاعات دریافت کننده
+              </div>
+
+              <input
+                type="text"
+                placeholder="نام و نام خانوادگی"
+                onChange={(e) => {
+                  setFullName(e.target.value);
+                  setFullNameError(false);
+                }}
+              />
+
+              <input
+                type="text"
+                placeholder="شماره تلفن"
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                  setPhoneNumberError(false);
+                }}
+              />
+            </form>
+
+            <div className={styles.location_box}>
+              <div className={styles.title}>انتخاب آدرس</div>
+
+              <div className={styles.selected_address_box}>
+                <div className={styles.title_box}>
+                  <div className={styles.title}>
                     <span>
-                      <FontAwesomeIcon icon={faPlus} />
+                      <FontAwesomeIcon icon={faEarthAmericas} />
                     </span>
-                    افزودن آدرس جدید
+                    {addresses.length === 0
+                      ? "آدرسی در لیست شما وجود ندارد ، آدرس جدید ایجاد کنید"
+                      : "ارسال به آدرس انتخاب شده"}
+                  </div>
+
+                  {addresses.length === 0 ? (
+                    <div
+                      className={`${styles.select_address_btn} ${styles.select_address_btn_1}`}
+                      onClick={() => setCreateAddressStatus(true)}
+                    >
+                      <span>
+                        <FontAwesomeIcon icon={faPlus} />
+                      </span>
+                      افزودن آدرس جدید
+                    </div>
+                  ) : (
+                    <div
+                      className={styles.select_address_btn}
+                      onClick={() => setAddressBoxStatus(true)}
+                    >
+                      {selectedAddress === "" ? "انتخاب آدرس" : "تغییر آدرس"}
+                      <span>
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {selectedAddress === "" ? (
+                  <div className={styles.please_select_address}>
+                    <span>
+                      <FontAwesomeIcon icon={faExclamationCircle} />
+                    </span>
+                    لطفا یک آدرس انتخاب کنید
                   </div>
                 ) : (
-                  <div
-                    className={styles.select_address_btn}
-                    onClick={() => setAddressBoxStatus(true)}
-                  >
-                    {selectedAddress === "" ? "انتخاب آدرس" : "تغییر آدرس"}
+                  <div className={styles.selected_address}>
                     <span>
-                      <FontAwesomeIcon icon={faArrowLeft} />
+                      <FontAwesomeIcon icon={faLocationDot} />
                     </span>
+                    {selectedAddress.address}
                   </div>
                 )}
               </div>
-
-              {selectedAddress === "" ? (
-                <div className={styles.please_select_address}>
-                  <span>
-                    <FontAwesomeIcon icon={faExclamationCircle} />
-                  </span>
-                  لطفا یک آدرس انتخاب کنید
-                </div>
-              ) : (
-                <div className={styles.selected_address}>
-                  <span>
-                    <FontAwesomeIcon icon={faLocationDot} />
-                  </span>
-                  {selectedAddress.address}
-                </div>
-              )}
             </div>
-          </div>
 
-          <div className={styles.products}>
-            {products.map((product) => (
-              <div className={styles.product_box} key={product.id}>
-                <div className={styles.product_right_content}>
-                  <Image
-                    className={styles.cart_product_img}
-                    src={product.product.image}
-                    alt="عکس محصول"
-                    width={100}
-                    height={100}
-                    quality={100}
-                  />
+            <div className={styles.products}>
+              {products.map((product) => (
+                <div className={styles.product_box} key={product.id}>
+                  <div className={styles.product_right_content}>
+                    <Image
+                      className={styles.cart_product_img}
+                      src={product.product.image}
+                      alt="عکس محصول"
+                      width={100}
+                      height={100}
+                      quality={100}
+                    />
 
-                  <div className={styles.cart_product_inf}>
-                    <div className={styles.product_title}>
-                      {product.product.name}
-                    </div>
+                    <div className={styles.cart_product_inf}>
+                      <div className={styles.product_title}>
+                        {product.product.name}
+                      </div>
 
-                    <div className={styles.cart_product_value}>
-                      <div className={styles.cart_product_num}>
-                        {product.quantity} <span>عدد</span>
+                      <div className={styles.cart_product_value}>
+                        <div className={styles.cart_product_num}>
+                          {product.quantity} <span>عدد</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className={styles.product_left_content}>
-                  <div className={styles.cart_product_price}>
-                    {product.price}
-                    <div className={styles.toman}>تومان</div>
+                  <div className={styles.product_left_content}>
+                    <div className={styles.cart_product_price}>
+                      {product.price}
+                      <div className={styles.toman}>تومان</div>
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.purchase_inf}>
+            <div className={styles.inf_box}>
+              <div className={styles.title}>قیمت محصولات</div>
+
+              <div className={styles.badge}>
+                {productsPrice.base_price}
+                <div className={styles.toman}>تومان</div>
               </div>
-            ))}
+            </div>
+
+            <div className={`${styles.inf_box} ${styles.inf_box_1}`}>
+              <div className={styles.title}>تخفیف</div>
+
+              <div className={styles.badge}>
+                {productsPrice.discount_amount}
+                <div className={styles.toman}>تومان</div>
+              </div>
+            </div>
+
+            <div className={`${styles.inf_box} ${styles.inf_box_2}`}>
+              <div className={styles.title}>جمع کل</div>
+
+              <div className={styles.badge}>
+                {productsPrice.final_price}
+                <div className={styles.toman}>تومان</div>
+              </div>
+            </div>
+
+            <div className={`${styles.inf_box} ${styles.inf_box_3}`}>
+              <div className={styles.title}>هزینه ارسال</div>
+
+              <div className={styles.badge}>
+                {productsPrice.shipping_fee}
+                <div className={styles.toman}>تومان</div>
+              </div>
+            </div>
+
+            <div className={`${styles.inf_box} ${styles.inf_box_4}`}>
+              <div className={styles.title}>مبلغ قابل پرداخت</div>
+
+              <div className={styles.badge}>
+                <span>{productsPrice.pay_price}</span>
+                <div className={styles.toman}>تومان</div>
+              </div>
+            </div>
+
+            <div className={styles.buy_btn} onClick={() => checkout()}>
+              ثبت سفارش
+            </div>
           </div>
         </div>
-
-        <div className={styles.purchase_inf}>
-          <div className={styles.inf_box}>
-            <div className={styles.title}>قیمت محصولات</div>
-
-            <div className={styles.badge}>
-              {productsPrice.base_price}
-              <div className={styles.toman}>تومان</div>
-            </div>
-          </div>
-
-          <div className={`${styles.inf_box} ${styles.inf_box_1}`}>
-            <div className={styles.title}>تخفیف</div>
-
-            <div className={styles.badge}>
-              {productsPrice.discount_amount}
-              <div className={styles.toman}>تومان</div>
-            </div>
-          </div>
-
-          <div className={`${styles.inf_box} ${styles.inf_box_2}`}>
-            <div className={styles.title}>جمع کل</div>
-
-            <div className={styles.badge}>
-              {productsPrice.final_price}
-              <div className={styles.toman}>تومان</div>
-            </div>
-          </div>
-
-          <div className={`${styles.inf_box} ${styles.inf_box_3}`}>
-            <div className={styles.title}>هزینه ارسال</div>
-
-            <div className={styles.badge}>
-              {productsPrice.shipping_fee}
-              <div className={styles.toman}>تومان</div>
-            </div>
-          </div>
-
-          <div className={`${styles.inf_box} ${styles.inf_box_4}`}>
-            <div className={styles.title}>مبلغ قابل پرداخت</div>
-
-            <div className={styles.badge}>
-              <span>{productsPrice.pay_price}</span>
-              <div className={styles.toman}>تومان</div>
-            </div>
-          </div>
-
-          <div className={styles.buy_btn} onClick={() => checkout()}>
-            ثبت سفارش
-          </div>
-        </div>
-      </div>
+      </>
     );
   }
 }

@@ -1,12 +1,11 @@
 import styles from "../styles/global/Custom404.module.css";
-import Link from "next/link";
 import Head from "next/head";
 
-export default function Custom404() {
+export default function Custom500() {
   return (
     <>
       <Head>
-        <title>صفحه یافت نشد - 404 | فروشگاه ابازارک</title>
+        <title>خطای داخلی سرور - 500 | فروشگاه ابازارک</title>
         <meta
           name="description"
           content="صفحه مورد نظر شما یافت نشد. لطفا به صفحه اصلی بازگردید."
@@ -15,11 +14,8 @@ export default function Custom404() {
       </Head>
 
       <div className={styles.container}>
-        <div className={styles.main_text}>404</div>
-        <div className={styles.message}>صفحه مورد نظر یافت نشد</div>
-        <Link href="/" className={styles.back_btn}>
-          برگشت به خانه
-        </Link>
+        <div className={styles.main_text}>500</div>
+        <div className={styles.message}>سایت به مشکل خورده ، بعدا امتحان کنید</div>
       </div>
     </>
   );

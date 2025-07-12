@@ -1,3 +1,100 @@
+.skeleton_box {
+  background-color: #fff;
+  height: 370px;
+  animation: pulse 2s infinite ease-in-out;
+  position: relative;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #f5f5f5;
+  }
+  100% {
+    background-color: #fff;
+  }
+}
+
+.skeleton_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.skeleton_box {
+  width: calc(100% / 5);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.skeleton_image {
+  height: 200px;
+  background-color: #e8eef2;
+}
+
+.skeleton_text div {
+  height: 17px;
+  margin: 10px 0;
+  background-color: #e8eef2;
+}
+.skeleton_text div:nth-child(2) {
+  width: 70%;
+}
+
+.skeleton_price {
+  direction: ltr;
+}
+
+.skeleton_price div {
+  width: 40%;
+  height: 17px;
+  background-color: #e8eef2;
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
+.skeleton_price div:nth-child(2) {
+  bottom: 50px;
+  left: 10px;
+  width: 25%;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000080;
+}
+.loading.show {
+  display: flex;
+}
+
+.loading_wrapper {
+  padding: 30px;
+  width: 170px;
+  height: 120px;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading_wrapper_title {
+  font-size: 32px;
+  color: #12a386;
+  font-family: KalamehB;
+}
+
 .container {
   width: 84%;
   position: relative;
@@ -65,6 +162,10 @@
   .container {
     width: 75%;
   }
+
+  .skeleton_box {
+    width: calc(100% / 4);
+  }
 }
 
 @media (max-width: 1200px) {
@@ -72,10 +173,14 @@
     width: calc((100% - 2px) / 2);
   }
 
+  .skeleton_box {
+    width: calc(100% / 2);
+  }
+
   .container {
     width: 70%;
   }
-  
+
   .product_box:hover {
     filter: none;
     z-index: 1;
@@ -91,5 +196,16 @@
     position: relative;
     font-size: 14px;
     padding: 50px 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .skeleton_box {
+    height: 300px;
+    padding: 5px;
+  }
+
+  .skeleton_image {
+    height: 150px;
   }
 }

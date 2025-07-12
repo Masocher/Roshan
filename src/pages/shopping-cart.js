@@ -187,48 +187,6 @@ export default function ShoppingCart({ user, initialData }) {
           content="مشاهده و مدیریت سبد خرید خود در فروشگاه ابازارک. اضافه کردن، حذف و پرداخت آسان ابزارآلات و تجهیزات صنعتی."
         />
         <meta name="robots" content="noindex, nofollow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#212121" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="ابازارک" />
-        <meta property="og:title" content="سبد خرید | فروشگاه ابازارک" />
-        <meta
-          property="og:description"
-          content="مدیریت آسان سبد خرید ابزار و تجهیزات صنعتی در ابازارک"
-        />
-        <meta property="og:url" content="https://abazarak.ir/cart" />
-        <meta
-          property="og:image"
-          content="https://abazarak.ir/images/cart-og-image.jpg"
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="سبد خرید | فروشگاه ابازارک" />
-        <meta
-          name="twitter:description"
-          content="پرداخت سریع و مدیریت سبد خرید ابزارآلات صنعتی"
-        />
-        <meta
-          name="twitter:image"
-          content="https://abazarak.ir/images/cart-og-image.jpg"
-        />
-
-        <link rel="canonical" href="https://abazarak.ir/cart" />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ShoppingCart",
-              name: "سبد خرید ابازارک",
-              url: "https://abazarak.ir/cart",
-              description:
-                "صفحه مدیریت سبد خرید و پرداخت ابزارآلات صنعتی فروشگاه ابازارک",
-            }),
-          }}
-        />
       </Head>
 
       <div className={styles.container}>

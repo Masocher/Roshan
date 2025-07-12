@@ -4,8 +4,9 @@ import Router from "next/router";
 import Loading from "@/components/global/Loading";
 import { Provider } from "react-redux";
 import store from "@/store/Store";
+import { CategoryProvider } from "@/components/CategoryContext";
 
-function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps, categories }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,9 +28,21 @@ function App({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      {loading ? <Loading /> : <Component {...pageProps} />}
+      <CategoryProvider initialCategories={categories}>
+        {loading ? <Loading /> : <Component {...pageProps} />}
+      </CategoryProvider>
     </Provider>
   );
 }
 
-export default App;
+MyApp.getInitialProps = async (appContext) => {
+  const appProps =
+    (await appContext.Component.getInitialProps?.(appContext.ctx)) || {};
+
+  const res = await fetch("https://abazarak.ir/api/categories/");
+  const categories = await res.json();
+
+  return { ...appProps, categories };
+};
+
+export default MyApp;

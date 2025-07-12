@@ -114,6 +114,7 @@ export default function SignUp() {
           name="description"
           content="صفحه ثبت نام در روشن مارکت، ثبت نام سریع و امن"
         />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <Script
