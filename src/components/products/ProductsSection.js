@@ -245,9 +245,9 @@ export default function ProductsSection({ categoriesList, brandsList }) {
 
         <div
           className={`${styles.f_box} ${
-            ordering === "-hits_count" ? styles.show : ""
+            ordering === "-buyers_count" ? styles.show : ""
           }`}
-          onClick={() => setOrdering("-hits_count")}
+          onClick={() => setOrdering("-buyers_count")}
         >
           پر فروش ترین
         </div>
@@ -301,7 +301,7 @@ export default function ProductsSection({ categoriesList, brandsList }) {
       <div ref={loaderRef}>
         {loading_2 && (
           <div className="loader" style={spinerStyles2}>
-            <Image src={spiner} width={80} height={80} alt="لودینگ" />
+            <Image src={spiner} width={40} height={40} alt="لودینگ" />
           </div>
         )}
       </div>

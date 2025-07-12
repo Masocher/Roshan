@@ -33,7 +33,7 @@ export default function ProductsAll({ loading, productsList }) {
           </div>
         ) : loading ? (
           <div className="loader" style={spinerStyles}>
-            <Image src={spiner} width={80} height={80} alt="لودینگ" />
+            <Image src={spiner} width={40} height={40} alt="لودینگ" />
           </div>
         ) : (
           products.map((product, index) => (

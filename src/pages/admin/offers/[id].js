@@ -147,7 +147,7 @@ export default function CreateOffer({ offerData }) {
     <div className={styles.container}>
       <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
         <div className={styles.loading_wrapper}>
-          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+          <Image src={spiner} width={40} height={40} alt="لودینگ" />
         </div>
       </div>
 
@@ -279,7 +279,7 @@ export default function CreateOffer({ offerData }) {
 
           {loading_2 ? (
             <div className={styles.loading_wrapper_2}>
-              <Image src={spiner} width={80} height={80} alt="لودینگ" />
+              <Image src={spiner} width={40} height={40} alt="لودینگ" />
             </div>
           ) : (
             <div

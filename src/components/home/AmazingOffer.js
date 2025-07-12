@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AmazingOffer({ data }) {
   const matches1 = useMediaQuery(1500);
@@ -64,12 +65,14 @@ export default function AmazingOffer({ data }) {
               <SwiperSlide
                 className={`${styles.product} ${styles.last_product}`}
               >
-                <div>
-                  <span>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                  </span>
-                  مشاهده همه
-                </div>
+                <Link href={"/amazings"} style={{ textDecoration: "none" }}>
+                  <div>
+                    <span>
+                      <FontAwesomeIcon icon={faArrowLeft} />
+                    </span>
+                    مشاهده همه
+                  </div>
+                </Link>
               </SwiperSlide>
             </Swiper>
           </div>
