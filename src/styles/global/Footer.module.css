@@ -22,6 +22,20 @@
 .contact_information {
   font-size: 16px;
   margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  font-family: KalamehM;
+}
+.contact_information div {
+  padding-right: 8px;
+  direction: ltr;
+}
+.contact_information span {
+  display: flex;
+  color: #777;
+  flex-direction: column-reverse;
+  font-size: 12px;
+  margin-bottom: 4px;
 }
 
 .icons {
@@ -60,7 +74,7 @@
   width: fit-content;
   height: 40px;
   margin-bottom: 20px;
-  transition: .2s;
+  transition: 0.2s;
 }
 .scroll_btn:hover {
   background-color: #12a386;
@@ -246,12 +260,16 @@
   .footer_container {
     margin-bottom: 0;
   }
+
+  .contact_information {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 580px) {
   .footer_container {
     width: 100%;
-    padding: 100px 0 63px 0;
+    padding: 50px 0 63px 0;
   }
 
   .center_section {
@@ -263,11 +281,56 @@
   }
 
   .logo {
-    font-size: 22px;
+    font-size: 28px;
+  }
+
+  .contact_information {
+    font-size: 17px;
   }
 
   .left_section {
     flex-direction: column-reverse;
+  }
+
+  .scroll_btn {
+    width: 160px;
+    margin: 20px 0 0 0;
+  }
+
+  .cs2 {
+    width: 100%;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+  }
+
+  .icon_box {
+    margin: 0;
+  }
+
+  .hcb .title {
+    font-size: 16px;
+  }
+
+  .bottom_section {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 321px) {
+  .footer_container {
+    width: 100%;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .contact_information {
+    font-size: 16px;
   }
 
   .scroll_btn {

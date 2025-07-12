@@ -10,6 +10,7 @@ import {
   faAngleUp,
   faAngleLeft,
   faAngleDown,
+  faHeadphones,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
@@ -25,7 +26,12 @@ export default function Footer() {
           <div className={styles.logo}>فروشگاه اینترنتی روشن ابزار</div>
 
           <div className={styles.contact_information}>
-            تلفن پشتیبانی - 09166991715
+            <span>
+              <div>پشتیبانی</div>
+              <FontAwesomeIcon icon={faHeadphones} />
+            </span>
+
+            <div>0916 699 1715</div>
           </div>
         </div>
 

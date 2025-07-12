@@ -15,6 +15,8 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useState } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
+import spiner from "../../../public/images/loading.svg";
+import Image from "next/image";
 
 axios.defaults.withCredentials = true;
 
@@ -35,13 +37,20 @@ export default function Header({ status, setStatus, user }) {
   const [loading, setLoading] = useState(false);
 
   const logOut = () => {
+    setLoading(true);
     axios
       .post("/api/auth/logout/")
       .then((response) => {
-        window.location.href = "/";
         toast.success(response.data.detail);
+        setTimeout(() => {
+          window.location.href = "/";
+          setLoading(false);
+        }, 3000);
       })
-      .catch((err) => toast.error("خطایی رخ داد !"));
+      .catch(() => {
+        toast.error("خطایی رخ داد !");
+        setLoading(false);
+      });
   };
 
   const [text, setText] = useState("");
@@ -52,6 +61,12 @@ export default function Header({ status, setStatus, user }) {
 
   return (
     <div className={styles.header_container}>
+      <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
+        <div className={styles.loading_wrapper}>
+          <Image src={spiner} width={80} height={80} alt="لودینگ" />
+        </div>
+      </div>
+
       <Toaster position="bottom-left" reverseOrder={true} />
 
       <div

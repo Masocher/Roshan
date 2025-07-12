@@ -99,6 +99,14 @@ export default function AuthCode({
             toast.error(err.response.data.detail);
           } else if (err.response.data.otp) {
             toast.error("کد تایید : " + err.response.data.otp);
+          } else if (err.response.data.number) {
+            toast.error("شماره تلفن : " + err.response.data.number);
+          } else if (err.response.data.full_name) {
+            toast.error("نام و نام خانوادگی : " + err.response.data.full_name);
+          } else if (err.response.data.password) {
+            toast.error("رمزعبور : " + err.response.data.password);
+          } else if (err.response.data.password2) {
+            toast.error("تکرار رمز عبور : " + err.response.data.password2);
           } else {
             toast.error("خطایی رخ داد !");
           }

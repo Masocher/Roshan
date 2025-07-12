@@ -19,6 +19,10 @@
   display: block;
 }
 
+.product.amazing .amazing_box {
+  display: none;
+}
+
 .off_percent {
   background-color: #f93827;
   color: #fff;
@@ -56,6 +60,21 @@
   align-items: center;
   margin-top: 10px;
   letter-spacing: 0.5px;
+  font-family: KalamehM;
+}
+
+.new_price_box {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+.new_price_box .product_price.show {
+  font-size: 14px;
+}
+.new_price_box .off_percent {
+  margin-top: 6px;
+  margin-left: 10px;
 }
 
 .new_price {
@@ -70,7 +89,7 @@
 }
 
 .product_price.show {
-  color: #f93827;
+  color: #c0c2c5;
   font-size: 10px;
   letter-spacing: 0;
   text-decoration: line-through;
@@ -104,6 +123,48 @@
 }
 
 @media (max-width: 580px) {
+  .product.amazing .off_percent_2 {
+    display: none;
+  }
+
+  .product_informations {
+    font-size: 13px;
+  }
+
+  .amazing_box {
+    font-size: 13px;
+  }
+
+  .off_percent {
+    font-size: 11px;
+  }
+  .off_percent span {
+    margin-left: 1px;
+  }
+
+  .product {
+    padding: 10px;
+    width: calc(100% - 22px);
+  }
+}
+
+@media (max-width: 321px) {
+  .product.amazing .product_informations {
+    font-size: 12px;
+  }
+  .product.amazing .off_percent {
+    font-size: 10px;
+  }
+  .product.amazing .new_price_box .product_price.show {
+    font-size: 12px;
+  }
+  .product.amazing .new_price_box .product_price {
+    font-size: 14px;
+  }
+  .product.amazing .new_price {
+    font-size: 14px;
+  }
+
   .product_informations {
     font-size: 10px;
   }

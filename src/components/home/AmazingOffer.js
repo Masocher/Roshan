@@ -56,6 +56,7 @@ export default function AmazingOffer({ data }) {
                     slug={product.slug}
                     amazing={product.is_amazing}
                     discount={product.discount}
+                    amazingBox={true}
                   />
                 </SwiperSlide>
               ))}

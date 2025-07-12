@@ -59,8 +59,10 @@ export default function SignIn() {
         })
         .then((response) => {
           toast.success(response.data.detail);
-          setLoading(false);
-          router.push("/");
+          setTimeout(() => {
+            router.push("/");
+            setLoading(false);
+          }, 3000);
         })
         .catch((err) => {
           if (err.response?.data?.detail) {

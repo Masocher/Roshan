@@ -111,7 +111,6 @@ export default function Home({ user, siteData }) {
           status={categoriesStatus}
           setStatus={setCategoriesStatus}
         />
-        <Alert />
         <MiniMenu status={categoriesStatus} setStatus={setCategoriesStatus} />
         <Header
           status={categoriesStatus}
@@ -120,6 +119,7 @@ export default function Home({ user, siteData }) {
         />
         <HomeSlider />
         <AmazingOffer data={siteData.amazing_discounts} />
+        <Alert />
         <BestSellers data={siteData.best_sellers} />
         <Categories />
         <Affordables data={siteData.economic_products} />

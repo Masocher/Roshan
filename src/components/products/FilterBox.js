@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export default function FilterBox({
   filters,
@@ -31,6 +32,8 @@ export default function FilterBox({
   categoriesList,
   brandsList,
 }) {
+  const matches4 = useMediaQuery(580);
+
   const [categories, setCategories] = useState(categoriesList || []);
   const [brands, setBrands] = useState(brandsList || []);
 
@@ -105,7 +108,7 @@ export default function FilterBox({
                       });
                     }
 
-                    setOption1(true);
+                    setOption1(matches4 ? false : true);
                     setOption2(false);
                     setOption3(false);
 
@@ -178,7 +181,7 @@ export default function FilterBox({
                     }
 
                     setOption1(false);
-                    setOption2(true);
+                    setOption2(matches4 ? false : true);
                     setOption3(false);
 
                     setFiltersStatus(true);
@@ -278,7 +281,7 @@ export default function FilterBox({
 
                     setOption1(false);
                     setOption2(false);
-                    setOption3(true);
+                    setOption3(matches4 ? false : true);
 
                     setFiltersStatus(true);
                   }}
