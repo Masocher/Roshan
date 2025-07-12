@@ -63,6 +63,7 @@ export default function Header({ status, setStatus, user }) {
     <div className={styles.header_container}>
       <div className={`${styles.loading} ${loading ? styles.show : ""}`}>
         <div className={styles.loading_wrapper}>
+          <div className={styles.loading_wrapper_title}>روشن ابزار</div>
           <Image src={spiner} width={40} height={40} alt="لودینگ" />
         </div>
       </div>
