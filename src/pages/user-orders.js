@@ -241,7 +241,7 @@ export default function UserOrders({ user, initialOrders, nextPage }) {
                         ? "در انتظار پرداخت"
                         : order.shipped === false
                         ? "در انتظار تحویل مرسوله به پست"
-                        : order.shipping.tracking_code}
+                        : order.tracking_code}
                     </div>
                   </div>
 

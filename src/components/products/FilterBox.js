@@ -9,6 +9,8 @@ import {
 import { useState } from "react";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useDispatch } from "react-redux";
+import { setBrandQuery, setCategoryQuery } from "@/store/Reducer";
 
 export default function FilterBox({
   filters,
@@ -32,6 +34,8 @@ export default function FilterBox({
   categoriesList,
   brandsList,
 }) {
+  const dispatch = useDispatch();
+
   const matches4 = useMediaQuery(580);
 
   const [categories, setCategories] = useState(categoriesList || []);
@@ -96,6 +100,8 @@ export default function FilterBox({
                   className={styles.option}
                   key={categ.slug}
                   onClick={() => {
+                    dispatch(setCategoryQuery(""));
+
                     if (categ.name === categName) {
                       setFilters({
                         ...filters,
@@ -168,6 +174,8 @@ export default function FilterBox({
                 <div
                   className={styles.option}
                   onClick={() => {
+                    dispatch(setBrandQuery(""));
+
                     if (brand.name === brandName) {
                       setFilters({
                         ...filters,
@@ -303,6 +311,9 @@ export default function FilterBox({
               : styles.show
           }`}
           onClick={() => {
+            dispatch(setCategoryQuery(""));
+            dispatch(setBrandQuery(""));
+
             setOption1(false);
             setOption2(false);
             setOption3(false);

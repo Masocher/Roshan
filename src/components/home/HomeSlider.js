@@ -25,17 +25,6 @@ export default function HomeSlider() {
         modules={[Autoplay]}
       >
         <SwiperSlide className={styles.product}>
-          <div className={styles.title_box}>
-            <div>بهترین های جوشکاری !</div>
-
-            <div className={styles.show_btn}>
-              مشاهده محصولات
-              <span>
-                <FontAwesomeIcon icon={faAngleLeft} />
-              </span>
-            </div>
-          </div>
-
           <Image
             src={slide_1}
             alt="عکس پس زمینه"
@@ -49,17 +38,6 @@ export default function HomeSlider() {
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <div className={styles.title_box}>
-            <div>دنیای آچار</div>
-
-            <div className={styles.show_btn}>
-              مشاهده محصولات
-              <span>
-                <FontAwesomeIcon icon={faAngleLeft} />
-              </span>
-            </div>
-          </div>
-
           <Image
             src={slide_2}
             alt="عکس پس زمینه"
@@ -73,17 +51,6 @@ export default function HomeSlider() {
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <div className={styles.title_box}>
-            <div>اوستای خودت باش !</div>
-
-            <div className={styles.show_btn}>
-              مشاهده محصولات
-              <span>
-                <FontAwesomeIcon icon={faAngleLeft} />
-              </span>
-            </div>
-          </div>
-
           <Image
             src={slide_3}
             alt="عکس پس زمینه"
@@ -97,17 +64,6 @@ export default function HomeSlider() {
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <div className={styles.title_box}>
-            <div>ابزار های مکانیکی</div>
-
-            <div className={styles.show_btn}>
-              مشاهده محصولات
-              <span>
-                <FontAwesomeIcon icon={faAngleLeft} />
-              </span>
-            </div>
-          </div>
-
           <Image
             src={slide_4}
             alt="عکس پس زمینه"
@@ -121,17 +77,6 @@ export default function HomeSlider() {
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <div className={styles.title_box}>
-            <div>هرچی لازم داری اینجاست</div>
-
-            <div className={styles.show_btn}>
-              مشاهده محصولات
-              <span>
-                <FontAwesomeIcon icon={faAngleLeft} />
-              </span>
-            </div>
-          </div>
-
           <Image
             src={slide_5}
             alt="عکس پس زمینه"

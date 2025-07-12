@@ -8,8 +8,15 @@ import Image from "next/image";
 import spiner from "../../../public/images/loading.svg";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setBrandQuery, setCategoryQuery } from "@/store/Reducer";
 
 export default function ProductsSection({ categoriesList, brandsList }) {
+  const dispatch = useDispatch();
+
+  const category = useSelector((state) => state.category);
+  const brand = useSelector((state) => state.brand);
+
   const router = useRouter();
 
   const spinerStyles2 = {
@@ -22,7 +29,10 @@ export default function ProductsSection({ categoriesList, brandsList }) {
   };
 
   const [products, setProducts] = useState([]);
-  const [filters, setFilters] = useState({ categName: "", brandName: "" });
+  const [filters, setFilters] = useState({
+    categName: category || "",
+    brandName: brand || "",
+  });
   const [minPriceText, setMinPriceText] = useState("");
   const [maxPriceText, setMaxPriceText] = useState("");
   const [priceRange, setPriceRange] = useState({
@@ -43,53 +53,94 @@ export default function ProductsSection({ categoriesList, brandsList }) {
   const loaderRef = useRef(null);
   const loadingRef = useRef(false);
 
-  const fetchProducts = useCallback(
-    async (page = 1, reset = false) => {
-      if (loadingRef.current || (finished && !reset)) return;
+  const [queriesStatus, setQueriesStatus] = useState(false);
 
-      loadingRef.current = true;
-      if (reset) setLoading(true);
-      else setLoading_2(true);
+  const fetchProducts =
+    category || brand
+      ? useCallback(async (page = 1, reset = false) => {
+          if (loadingRef.current || (finished && !reset)) return;
 
-      try {
-        let query = `?page=${page}`;
-        if (ordering) query += `&ordering=${ordering}`;
-        if (filters.categName) query += `&category__name=${filters.categName}`;
-        if (filters.brandName) query += `&brand__name=${filters.brandName}`;
-        if (priceRange.min_price) query += `&min_price=${priceRange.min_price}`;
-        if (priceRange.max_price) query += `&max_price=${priceRange.max_price}`;
-        if (searchText) query += `&search=${encodeURIComponent(searchText)}`;
+          loadingRef.current = true;
+          if (reset) setLoading(true);
+          else setLoading_2(true);
 
-        const res = await fetch(`/api/products/${query}`);
-        const data = await res.json();
+          try {
+            setQueriesStatus(true);
 
-        if (reset) {
-          setProducts(data.results);
-        } else {
-          setProducts((prev) => [...prev, ...data.results]);
-        }
+            let query = `?page=${page}`;
+            if (category) query += `&category__name=${category}`;
+            if (brand) query += `&brand__name=${brand}`;
 
-        setNext(data.next ? page + 1 : null);
-        setFinished(!data.next);
-      } catch (err) {
-        toast.error("خطا در دریافت محصولات");
-      }
+            const res = await fetch(`/api/products/${query}`);
+            const data = await res.json();
 
-      if (reset) setLoading(false);
-      else setLoading_2(false);
+            if (reset) {
+              setProducts(data.results);
+            } else {
+              setProducts((prev) => [...prev, ...data.results]);
+            }
 
-      loadingRef.current = false;
-    },
-    [ordering, filters, priceRange, finished, searchText]
-  );
+            setNext(data.next ? page + 1 : null);
+            setFinished(!data.next);
+          } catch (error) {
+            toast.error("خطا در دریافت محصولات");
+          }
+
+          if (reset) setLoading(false);
+          else setLoading_2(false);
+
+          loadingRef.current = false;
+        })
+      : useCallback(
+          async (page = 1, reset = false) => {
+            if (loadingRef.current || (finished && !reset)) return;
+
+            loadingRef.current = true;
+            if (reset) setLoading(true);
+            else setLoading_2(true);
+
+            try {
+              setQueriesStatus(false);
+
+              let query = `?page=${page}`;
+              if (ordering) query += `&ordering=${ordering}`;
+              if (filters.categName)
+                query += `&category__name=${filters.categName}`;
+              if (filters.brandName)
+                query += `&brand__name=${filters.brandName}`;
+              if (priceRange.min_price)
+                query += `&min_price=${priceRange.min_price}`;
+              if (priceRange.max_price)
+                query += `&max_price=${priceRange.max_price}`;
+              if (searchText)
+                query += `&search=${encodeURIComponent(searchText)}`;
+
+              const res = await fetch(`/api/products/${query}`);
+              const data = await res.json();
+
+              if (reset) {
+                setProducts(data.results);
+              } else {
+                setProducts((prev) => [...prev, ...data.results]);
+              }
+
+              setNext(data.next ? page + 1 : null);
+              setFinished(!data.next);
+            } catch (err) {
+              toast.error("خطا در دریافت محصولات");
+            }
+
+            if (reset) setLoading(false);
+            else setLoading_2(false);
+
+            loadingRef.current = false;
+          },
+          [ordering, filters, priceRange, finished, searchText]
+        );
 
   useEffect(() => {
     setSearchText(router.query.search || "");
   }, [router.query.search]);
-
-  useEffect(() => {
-    fetchProducts(1, true);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -116,7 +167,7 @@ export default function ProductsSection({ categoriesList, brandsList }) {
     setFinished(false);
     loadingRef.current = false;
     fetchProducts(1, true);
-  }, [filters, priceRange, ordering, searchText]);
+  }, [filters, priceRange, ordering, searchText, category, brand]);
 
   return (
     <div className={styles.container}>
@@ -157,6 +208,8 @@ export default function ProductsSection({ categoriesList, brandsList }) {
             : styles.show
         } ${searchText ? "" : styles.show_2}`}
         onClick={() => {
+          dispatch(setCategoryQuery(""));
+          dispatch(setBrandQuery(""));
           setOption1(false);
           setOption2(false);
           setOption3(false);
@@ -241,6 +294,7 @@ export default function ProductsSection({ categoriesList, brandsList }) {
           categoriesList={categoriesList}
           brandsList={brandsList}
         />
+
         <ProductsAll loading={loading} productsList={products} />
       </div>
 

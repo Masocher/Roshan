@@ -2,6 +2,8 @@ import "@/styles/global/globals.css";
 import { useEffect, useState } from "react";
 import Router from "next/router";
 import Loading from "@/components/global/Loading";
+import { Provider } from "react-redux";
+import store from "@/store/Store";
 
 function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,11 @@ function App({ Component, pageProps }) {
     };
   }, []);
 
-  return <>{loading ? <Loading /> : <Component {...pageProps} />}</>;
+  return (
+    <Provider store={store}>
+      {loading ? <Loading /> : <Component {...pageProps} />}
+    </Provider>
+  );
 }
 
 export default App;

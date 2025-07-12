@@ -75,6 +75,11 @@
   .container {
     width: 70%;
   }
+  
+  .product_box:hover {
+    filter: none;
+    z-index: 1;
+  }
 }
 
 @media (max-width: 950px) {
@@ -86,10 +91,5 @@
     position: relative;
     font-size: 14px;
     padding: 50px 0;
-  }
-
-  .product_box:hover {
-    filter: none;
-    z-index: 1;
   }
 }

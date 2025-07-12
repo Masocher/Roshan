@@ -13,8 +13,13 @@ import img8 from "../../../public/images/8.webp";
 import img9 from "../../../public/images/9.webp";
 import img10 from "../../../public/images/10.webp";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setBrandQuery } from "@/store/Reducer";
 
 export default function BrandsSlider() {
+  const dispatch = useDispatch();
+
   const matches2 = useMediaQuery(1200);
   const matches3 = useMediaQuery(950);
   const matches4 = useMediaQuery(580);
@@ -34,39 +39,84 @@ export default function BrandsSlider() {
         modules={[Autoplay]}
       >
         <SwiperSlide className={styles.product}>
-          <Image src={img2} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img2} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img3} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img3} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img4} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img4} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img5} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img5} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img6} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img6} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img7} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img7} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img8} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img8} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img9} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img9} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
 
         <SwiperSlide className={styles.product}>
-          <Image src={img10} alt="عکس برند" className={styles.brand_img} />
+          <Link
+            href={"/products"}
+            onClick={() => dispatch(setBrandQuery("رونیکس"))}
+          >
+            <Image src={img10} alt="عکس برند" className={styles.brand_img} />
+          </Link>
         </SwiperSlide>
       </Swiper>
     </div>
